@@ -1,0 +1,233 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr1_21090124c       ---------------------------------------------------------MNV
+Atchr5_20028321c       ---------------------------------------------------MAFS--FNR
+GmTC229066             ------------------------------------------------------------
+HvTC137876             ------------------------------------------------------------
+MtTC100867             --------------------------------------------------------MKNV
+MtgAC126778_15274      ---------------------------------------------------MTFR--ISV
+MtgAC149080_73692      ---------------------------------------------------MAFA--LIL
+OsNP160072             MPRDTSADENFSEVYVEALRAPCRRGPRFYPPTATTNPHCEIRPITGVWAELTFAAAYHV
+OsNP887876             ------------------------------------------------------------
+OsNP911082             ------------------------------------------------------------
+OsQ5W6Y6               ------------------------------------------------------------
+OsTC257482             ------------------------------------------------------------
+PpTC41530              ------------------------------------------------------------
+PsCO489485             ---------------------------------------------------METS--CKT
+PvTC1948               ------------------------------------------------------------
+SoCO373094             ------------------------------------------------------------
+StTC116378             ------------------------------------------------------------
+TaCA608222             ------------------------------------------------------------
+ZmTC264051             ------------------------------------------------------------
+                                                                                   
+
+Atchr1_21090124c       PKV-----SRLWLLYAVLLFD-S-------------------------------------
+Atchr5_20028321c       ELR-----ISVTIVTFFFLLV-SFPG--NTYSEEDDSEV--GGEGGGIGGGGTGFGGGGT
+GmTC229066             -----------WILTFAILYV-CVFG--KNFGNADEDESEAQTGGGGYGGVGGGFGGAGA
+HvTC137876             MASFKLTHVCFIVVMFSALFSCC-RG----------------QGGGGGGGAGAAT-----
+MtTC100867             NSNF-LISIYVGI-LFFMLFNLA---------NAESN-----------------------
+MtgAC126778_15274      ---------RRWIFVFALLYV-CLFLNLNNFGEADDDEGDTQIGSG-FGGVGGGNGGGGA
+MtgAC149080_73692      KAN-----LLITALIFIAIFF---------------------------------------
+OsNP160072             QVRMGLRSIYRWMRHNNFLQLSSVLFDIFLVSEEQMDEAAAGAF----------------
+OsNP887876             MGLSAARLSR--FAVVVLLLCLCAPF--CK------------------------------
+OsNP911082             MAVLLHPSPRSVCLAFAIAVCLLLPC--CF------------------------------
+OsQ5W6Y6               MACLKLRHVCLTVVLFSIGISSC-RG----------------QGGGGAGG----------
+OsTC257482             --------------------------AI-------LETASAKKE----------------
+PpTC41530              ---------------AVLVGV-SIFC--CNLGKADEGEDVPQTGTGIIGGVPQTGTGTIG
+PsCO489485             PL-------RASALFFLVLLV-CGTD----------------------------------
+PvTC1948               -----------------------------------------------------------G
+SoCO373094             MGELSARHSRRWCGRFAAVLCLCATF--CK------------------------------
+StTC116378             ------------------------------------------------------------
+TaCA608222             -MGLPARLIRGWCGLAVLCLRLCATS--CN------------------------------
+ZmTC264051             MGDLSVGHSRRWCGRFAAVLCLCAAF--CK------------------------------
+                                                                                   
+
+Atchr1_21090124c       ------------------------------------------------------------
+Atchr5_20028321c       GVGGGGTGFGGGGLGAGGSGGGGAGGLGSGGTGVGGGGGLGAGGSGGGGAGGLGGGGTGV
+GmTC229066             GV-------------------------------VG-------------------------
+HvTC137876             ---------------------------------AG-------------------------
+MtTC100867             ------------------------------------------------------------
+MtgAC126778_15274      GFG-------GGSG----------VGGGSGGSGVG-------------------------
+MtgAC149080_73692      ------------------------------------------------------------
+OsNP160072             ------------------------------------------------------------
+OsNP887876             ------------------------------------------------------------
+OsNP911082             ------------------------------------------------------------
+OsQ5W6Y6               ------------------------------------------------------------
+OsTC257482             ------------------------------------------------------------
+PpTC41530              GV-------------------------------PQ-------------------------
+PsCO489485             ------------------------------------------------------------
+PvTC1948               GI-------------------------------VG-------------------------
+SoCO373094             ------------------------------------------------------------
+StTC116378             ------------------------------------------------------------
+TaCA608222             ------------------------------------------------------------
+ZmTC264051             ------------------------------------------------------------
+                                                                                   
+
+Atchr1_21090124c       ---------------------------------------Q-----RHSVNAQAGGIIGG-
+Atchr5_20028321c       GGGGTGGGTGFNGGGTGFGPFGGGGLGTGGGGAGGLGGGGGNGGFGGGGLGGGGLGGED-
+GmTC229066             ---------------------GGGGFGAGGG---------------GFGAGGGGVGSGD-
+HvTC137876             ------------------------------G---------------GGGSGIGAVVPGTQ
+MtTC100867             ------------------------------------------EEYIRQPRRHVNLS----
+MtgAC126778_15274      ---------------------GAGGIGGGGGGS---------SGVGGAGGIGGGGGIGD-
+MtgAC149080_73692      ----------------------------------------------CYSGDLAAEGELD-
+OsNP160072             ------------------------------------------------HG-QKRST----
+OsNP887876             ----------------------------------------------PEPD---GDVPIDP
+OsNP911082             ----------------------------------------------GSK------AAVE-
+OsQ5W6Y6               ---------------------------------------------------GGAVVPGTQ
+OsTC257482             ------------------------------------------------KE-KKSSSRKR-
+PpTC41530              ---------------------TGTGTGTIGG--------------VPQTGTGTGIVDAD-
+PsCO489485             ---------------------------------------------DVNPDKDAHMPSQD-
+PvTC1948               ---------------------GGTGVG-GGG---------------GFGGGGG--GVGD-
+SoCO373094             ----------------------------------------------PDPAWHADDLPVDP
+StTC116378             ----------VKQMIMRVKPP-----------LQEYFGNEYLPNYGDSHQYGGGTIDAQ-
+TaCA608222             ----------------------------------------------PD------VAPIEP
+ZmTC264051             ----------------------------------------------PD------ELPMDP
+                                                                                   
+
+Atchr1_21090124c       -AGILVQRAAF--CF-NNNLLYRG-CNEAFRLNQQGEF-----------KVPPEETDRFC
+Atchr5_20028321c       -PPEIVAKALE--CL-NEKHIYRE-CDESWRLTLNGDL-----------NIPLGRTEEFC
+GmTC229066             -PAQIVSKALL--CF-NDKNIYRS-CEETCRLNENGNL-----------NVPVEKTDTFC
+HvTC137876             DSVQIVAQAAL--CF-DNRPVLTG-CLQAMGINSSGT----GAGMPPPAPGSAASTAIMC
+MtTC100867             -PFDSWRSAYY--CMMNHSNTCN-LKSNNYTININGTL-----------NVQDSDIHDFC
+MtgAC126778_15274      -PSQIISKALL--CF-NDKYVSTISSCNSYRLTENGNL-----------DVPSEKTDAFC
+MtgAC149080_73692      -GGQDIVKALS--CF-ENKLIYAG-CDDAYRLNPSGNI-----------RVPPEATDFFC
+OsNP160072             --EDIVARAII--CF-SDRYIFSG-CQGQYRLGPEGAL-----------RVPAAAAEAFC
+OsNP887876             LPGL-PSRSLR--CF-DDGQVYSC-CEGAYRLNPSGVI-----------AVPPGEVDSYC
+OsNP911082             ----MFEKACH--CF-DDHNVYSE-CKEELRLGVEGAF-----------HVGKESVDEYC
+OsQ5W6Y6               DAIQIVAQAAL--CF-DNRQVING-CLQSMGINVTTTTGGSGATTSAPAAANGSAAATMC
+OsTC257482             -FLKFCNPGCVCSCIGGWVKIYSG-FQGQYRLGPEGAL-----------RVPSTAAEAFC
+PpTC41530              -PAEIVAKALL--CF-SDKYLYSS-CEVAYRLTQTGKL-----------NVPPEYADSYC
+PsCO489485             -PPEIVGKALE--CF-DHAD----TCKPEQRLSPSGSL-----------DIPRDETDEYC
+PvTC1948               -SSQIFAKALL--CF-NDKYIYSR-CEDSCRLNEKGNL-----------NVPADKTDIFC
+SoCO373094             LPNLLPTRSLQ--CF-EDQQVYSC-CEGAYRLNPSGII-----------AVPIGAVDYYC
+StTC116378             -PDYLFSKASR--CF-TDKHIYSS-CEESYRLTETGEL-----------HVPPEYTDQYC
+TaCA608222             L----PSRSLQ--CF-EDGQVYGC-CEGALRLDASGVI-----------GVPLGAVDYYC
+ZmTC264051             LPNLPPTRSLQ--CF-EDEQVYSC-CEGAYRLNPSGII-----------AVPVGAVDYYC
+                               .    *:                :                           *
+
+Atchr1_21090124c       NGPCSAETELVLTCINSVMSD-----FVFYNRATPRDVRNALRGGCSSSFTRGNFNVGDY
+Atchr5_20028321c       EGPCFSETHLALNCIEEIIHH-----YRFFNRATIHDIRETLKSGCSYGPERGVFNVLEH
+GmTC229066             QGPCLSETNLVLNCLDNVFSN-----FIFYNRATIQDIRETIEAGCGYGRQRGNFNVAEH
+HvTC137876             SPPCFGHVSMMMSCVNAIFGN-----FVSYNPALMQGVQAVFQDVLRQR-----------
+MtTC100867             TGGCYDHTLLVFKCIQDVKRD-----FHFATKAHISFVKNITMNACNELKGFDLLNYKDP
+MtgAC126778_15274      EGPCMSETNLVLGCIDNIFSH-----FIFYNRATLEDVKETILAGCGYGPERGDYHVLIA
+MtgAC149080_73692      SGPCLIETQLVLECIDNMLSN-----FIFYNKATVQQMRYALNSGCSYSRQRGNFNLEGY
+OsNP160072             GGPCLAETRLVLGCVDGIMDS-----FRFYNGASVRDVRLALDRGCG---LRGDFDVLRR
+OsNP887876             GGACVVETEDVLNCVAS-ALD----GFRFFNGASVEDARYALRRGCSHTIKRGDFNDLEP
+OsNP911082             GGPCLMETKMALQCVEEVAHD----GFRFYSGASLPAVKAALDTGCSYTPDRGTFEIRER
+OsQ5W6Y6               SAPCFGQMTMMMGCVNGIFGN-----FAGYSPGLMQGVQAVFQMACGNVNGQGGAGAAAG
+OsTC257482             GGPCLAETERRTWSSATSTPSWTASAFTMAPPSVM--SASRLAAAAA---ARGDFDVLQR
+PpTC41530              GGPCLVETHLVLSCIENIMKH-----FVFYNKATIEDIRDTIKAGCGYGPERGNFDVSEH
+PsCO489485             NGGCYQQTQVVLTCVDQILSN-----FEFHNKATIDDIRQTITDGCSNTDKRGDFNVAEH
+PvTC1948               QGPCLSETNLVLNCLNNVFSN-----FIFYNKATIHDIRDTVEAACGYGPQRGNFNVAQH
+SoCO373094             GGACVVERGTCSLA-SQ-RLG----RLRFTR-ASXGT-----------------------
+StTC116378             RGPCLEETHHVLNCLGSILSH-----FRFYNKATIRAVEETIKEGCSYGPERGLFNVAEH
+TaCA608222             GGACVGGDGGRAQMRGS-ALD----GSTSATGLRWRARRYPSRKGCNHTSKRGTQPLDHP
+ZmTC264051             GGACVVETEDVLNCVAS-ALD----GFAFYNGASVEDVRYALRRGCSHTARRGDFNDLEP
+                          *                                                        
+
+Atchr1_21090124c       AQGLY-------------------------------------------------------
+Atchr5_20028321c       IEDEE-------------------------------------------------------
+GmTC229066             IQREE-------------------------------------------------------
+HvTC137876             --------------------------------------QWPRRSM--SRSRRCS------
+MtTC100867             NSATS-------------------------------------------------------
+MtgAC126778_15274      YYNLR-------------------------------------------------------
+MtgAC149080_73692      IGGET-------------------------------------------------------
+OsNP160072             LGGDG-------------------------------------------------------
+OsNP887876             QM----------------------------------------------------------
+OsNP911082             KQCGD-------------------------------------------------------
+OsQ5W6Y6               GGGGGSAGASGGSGGGGGGAGGATGGGAGSGNASPNSEAWPWRTRASRTGSGCSSRNTRT
+OsTC257482             LGDDD-------------------------------------------------------
+PpTC41530              LQFEE-------------------------------------------------------
+PsCO489485             MAAST-------------------------------------------------------
+PvTC1948               VQREE-------------------------------------------------------
+SoCO373094             ------------------------------------------------------------
+StTC116378             ILAYD-------------------------------------------------------
+TaCA608222             ------------------------------------------------------------
+ZmTC264051             HL----------------------------------------------------------
+                                                                                   
+
+Atchr1_21090124c       --FGK---------------------AGKKLP----------------------GLFIVL
+Atchr5_20028321c       --ENA---------------------SEKIKS----------------R-------FGPL
+GmTC229066             --SKA---------------------P--KAT----------------S-------HVVM
+HvTC137876             -RRRCCWWS---WRRACW------------------------------------------
+MtTC100867             -----------LYGRMYMP----LLSTLMTM-----------------------------
+MtgAC126778_15274      --TNH---------------------KD--------------------------------
+MtgAC149080_73692      --NNA---------------------REVPIL----------------IR---CYLFIAA
+OsNP160072             --YDY---------------------GGGPRG----------------LVTTPAPLLLGA
+OsNP887876             ---------------GDYPDIYGDNSSDG-----------------GEDNAASPRLLAFL
+OsNP911082             --EYYHYSHHEQTTEQQYGGYYGSEEGEYPTT----------------TSTLPA--SDYC
+OsQ5W6Y6               PPMGCLWSAISRWSEAYVAAYYPSDKAVQADYELQSWYAEAVQSRHADKRDAPWWSRLSM
+OsTC257482             --HGC---------------------L---------------------------------
+PpTC41530              --NNA---------------------FK--TA----------------N-------QILL
+PsCO489485             --SHA---------------------NIGVLA----------------NM---GSLLIFV
+PvTC1948               --NEA---------------------APKATT----------------T-------HAVM
+SoCO373094             ------------------------------------------------------------
+StTC116378             --NTA---------------------FRASKS----------------SM---LHSFVLM
+TaCA608222             ---------------RQLPGIYGIRGMVQGYTLLXX--------XNCSVQSAP-AV----
+ZmTC264051             ---------------GDYPDIYGDDDEHS-FG--------------SKVVAAPLRLLAFL
+                                                                                   
+
+Atchr1_21090124c       ---V---L----------GFVPLIL-----------------------------------
+Atchr5_20028321c       ---------------------LFIIAL-------LL------------------------
+GmTC229066             ---G---L----------AIVMMGRAL-------LPLNFT--------------------
+HvTC137876             ------------------------------------------------------------
+MtTC100867             -----------------AFIVTFGV-----------------------------------
+MtgAC126778_15274      ------------------------------------------------------------
+MtgAC149080_73692      ---A---T----------AVYLM-------------------------------------
+OsNP160072             ---V---V----------AVLLWG------------------------------------
+OsNP887876             GAAAAA-----------AWLLLFGR-----------------------------------
+OsNP911082             YGAGASSLGLRYSLL--QMLMLFSASM-------VLLLLVI-------------------
+OsQ5W6Y6               PGARRGRPGVRAPRRRPAPLLPLGAAQPDADHDDMTVIDTLSTHSAAPPPDSPSTAAPPS
+OsTC257482             ------------------------------------------------------------
+PpTC41530              ---G---V----------GFMFGGHAL-------LL------------------------
+PsCO489485             ---T---L----------CGLLSMLSL-------IMV-----------------------
+PvTC1948               ---G---L----------AVIVMGRVL-------LPPNFT--------------------
+SoCO373094             ------------------------------------------------------------
+StTC116378             ---T---L----------ALIFFL------------------------------------
+TaCA608222             ------------------------------------------------------------
+ZmTC264051             GGAGL---------------FFLGP-----------------------------------
+                                                                                   
+
+Atchr1_21090124c       ------------------------------------------------------------
+Atchr5_20028321c       ------------------------------------------------------------
+GmTC229066             ------------------------------------------------------------
+HvTC137876             ------------------------------------------------------------
+MtTC100867             ------------------------------------------------------------
+MtgAC126778_15274      ------------------------------------------------------------
+MtgAC149080_73692      ------------------------------------------------------------
+OsNP160072             ------------------------------------------------------------
+OsNP887876             ------------------------------------------------------------
+OsNP911082             ------------------------------------------------------------
+OsQ5W6Y6               LPSAACWCSPAVQTTAPPSCLRHNSHRERNLATPADDADVAAHGQAVGASLTEEVLPMLE
+OsTC257482             ------------------------------------------------------------
+PpTC41530              ------------------------------------------------------------
+PsCO489485             ------------------------------------------------------------
+PvTC1948               ------------------------------------------------------------
+SoCO373094             ------------------------------------------------------------
+StTC116378             ------------------------------------------------------------
+TaCA608222             ------------------------------------------------------------
+ZmTC264051             ------------------------------------------------------------
+                                                                                   
+
+Atchr1_21090124c       --
+Atchr5_20028321c       --
+GmTC229066             --
+HvTC137876             --
+MtTC100867             --
+MtgAC126778_15274      --
+MtgAC149080_73692      --
+OsNP160072             --
+OsNP887876             --
+OsNP911082             --
+OsQ5W6Y6               EV
+OsTC257482             --
+PpTC41530              --
+PsCO489485             --
+PvTC1948               --
+SoCO373094             --
+StTC116378             --
+TaCA608222             --
+ZmTC264051             --
+                         

@@ -1,0 +1,83 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr5_16079184      MESKR--------SSSSPLL--ILITTIMII-----FI---ISG----------------
+HvBM099307           MARPR---------NNTHNL--FLVIALLAMS--TAFL---PCNAE--DP----------
+HvBU980686           MAHAR---------NNTQFL--CLAIVLLVVM--SASL---SCNANDTYPNP--------
+HvTC132770           MAATG---------SNTRAL--CLLA-LLLMS--TTFL---PCHASGTRG----------
+HvTC134804           MAHAM---------NNTHLL--CLAVAL-LLM--SASL---SCNANDTDPNTYCESASEC
+HvTC143003           MARPR---------NNTHNL--FLVVAILVMS--TIFL---HCNAE--DP----------
+HvTC143272           MALIK---------NSANAL--CLVI-L-LMS--TTLL---PCEATRRNK--GTT-----
+OsQ53NF3             -------------------------MALLATA-TAGSIQVGKCGDLSPAF---P---GNC
+TaBE399723           ------------------------------------------------------------
+TaBQ805749           ---MP---------GTTQFL--CLVVAL-LV-----SL---SCNAKHTDPDTYRESMWES
+TaCA734165           MAPIG---------SNTRAL--CLVV-LLLMS--TTFL---SCHASGTAG----------
+TaCD893224           MAHAR---------NNTQFL--CLVVAL-LVM--SASL---SCNAKHTYPDV------GS
+TaCD931328           MAPTS---------SNARVL--CLVA-LLVMS--TTFL---SCDA---AG----------
+TaCD931844           ------------------MA--LVFMGLMIFS--NVFS---SCDAFGEHD----------
+TaCD939578           MALVK---------KNTHAL--CLVI-L-LMS--TTLL---SCEATGRNK--GTT-----
+TaTC242543           MALTK---------NNTNAL--CLVI-L-MMS--TTLL---PCEATGRNK--GTT-----
+TaTC259635           ---MG--------MNNTKAL--CFVLLIALST--LQYW---PCHASEGHISVEEG-----
+TaTC260902           MAFTM--------NKKATPM--CLVALLLVMS--AALL---SCHAAGRD-IGPAE-----
+TaTC260949           MALTM--------NKKATPM--CLVALILVMS--AALL---SCHATGRD-IGPAE-----
+TaTC270582           MARPR---------NDTHIL--FLVVALLVMS--TAFL---PCNADI-DP----------
+TaTC276279           MELIK---------NNTRAL--LLVA-LVMMS--TTLL---SCHAGSTKPIP--------
+TaTC276992           MAHKK---------NNTQAL--CLVV-LLMMS--STLW---SCEAIARNQ--GTT-----
+TaTC277039           MTSTK---------DNARVL--CLMA-LLAMS--STII---SCHATGTTGLGITS-----
+ZmTC253598           MNVHIYVVSNFQIHSNIAIPSVTPILATIAFNCTMISL--LCFNH---------------
+ZmTC262103           MA--------LIIKS--TIIAVFLVLGAISY----TSV--YCIGAIGTED----------
+                                                                                 
+
+Atchr5_16079184      -----------------------------------------PKSVDADCKHPVGPYT-DS
+HvBM099307           ---------------------------------------RSWCQPEGVCQNPVMPENTQT
+HvBU980686           -----------------------------------------WCNYMWECRRPVHDQDQRK
+HvTC132770           -------------------------------------GWAKLCIAEKACAPPAGPNGDNV
+HvTC134804           KRPVHDY-----GLNSFSKKYGDVPYNCGRVCDPKDTRANTYCEEMWECKRPVHDYDQRK
+HvTC143003           ---------------------------------------PSWCQPEGVCQNPVTPENTQT
+HvTC143272           -------------------------------------SQIDVCKPERLCENPIGY-NVTL
+OsQ53NF3             GADVCQFRCAVMGGD-REKAYCD--AATGRCCCP--PGSATLCRPLAGCRSRI-----PA
+TaBE399723           ------------------------------------------CNYMLG-----GYTTTER
+TaBQ805749           KRQVHDF-----GGH-----------NCQNTCVRKSIDTDIYCEYMWECNKPVHDHDQRK
+TaCA734165           -------------------------------------GWTKFCVAEKACAPTAGPKDDHV
+TaCD893224           KRQVHDF-----GGH-----------NCQNTCVRKNIDTDIYCEYMWECNTPVHDHDQRK
+TaCD931328           -------------------------------------GWTKFCVPEKACETPAGLHGDYV
+TaCD931844           ----------------------------------------IQCNK-------IEDCTITG
+TaCD939578           -------------------------------------ALIDVCKRDRLCENPIGY-NVTL
+TaTC242543           -------------------------------------ALIDVCKRDRLCENPIGY-NVTL
+TaTC259635           -------------------------------------GIRHMCRYMLG-----GNTTTER
+TaTC260902           -------------------------------------QWAKYCVAKPTCKTAPQA-ALDA
+TaTC260949           -------------------------------------QWAKYCVAKPTCKTAPQA-ALDA
+TaTC270582           ---------------------------------------PSWCTPEAVCQDPVTPGNRET
+TaTC276279           ---------------------------------------LNLCVRLASCEKG--HEFEEA
+TaTC276992           -------------------------------------GLWTSCTPFRACQIPTPN-NVAM
+TaTC277039           -------------------------------------TFTKLCVAAKGCTPPIQPTDNIV
+ZmTC253598           -------------------------------PDKKPET---ENAKLTHQKPNRTPELQKG
+ZmTC262103           ------------------------------TPAPKPKP----GMPCFHAGTSQYPCTTDG
+                                                                                 
+
+Atchr5_16079184      CFTDCVSGKYGYNYESAFCSRDETGTCKICCCELINE-----
+HvBM099307           CKNICK--TFGYNPEQAYCDPDPTP--R-CCCLY--------
+HvBU980686           CRNLCV--SLGFDYLKSFCRSDD-G--D-CCCHK--------
+HvTC132770           CKVDCG--RQGYDKAKSYCAPDPSG--I-CCCQK--------
+HvTC134804           CRELCV--SKGYNYLRSYCEHHPEE--Y-CCCHK--------
+HvTC143003           CKNICK--TFGYNPEQAYCDPGPTP--R-CCCLY--------
+HvTC143272           CKASCE--WSGYSFYNSYCE---KG--K-CCCAS--------
+OsQ53NF3             CRIKCK--SVFRDPGRAFCQDGSPGFGDSCCCPPNNVEDSSN
+TaBE399723           CRELCHAIGSIYNPDLSYIQFCDKRYTCECCCKMY-------
+TaBQ805749           CRNFCV--SMGYDYLRSYCEHHPYP--Y-CCCHK--------
+TaCA734165           CKADCG--RQGYDKDKSYCAPDPSG--I-CCCQK--------
+TaCD893224           CRNFCV--SKVYDYLRSYCEHHPYG--Y-CCCHK--------
+TaCD931328           CKVDCG--RQGYDEDKSHCT---SG--I-CCCEK--------
+TaCD931844           CKNMCK--EYGLDPYSAYCSLAPGDEMK-CCCTPVPPFHE--
+TaCD939578           CKVSCE--WSGYSFYNSYCE---EG--K-CCCAS--------
+TaTC242543           CKVSCE--WSGYSFDNSYCE---EG--K-CCCAS--------
+TaTC259635           CRELCLALGSIYNADLSYLQFCDKRYTCQCCCKMY-------
+TaTC260902           CRNDCN--FFGYPASKAYCSALEGG--I-CCCLR--------
+TaTC260949           CRNDCN--FFGYPANKAYCSAAEGG--I-CCCLR--------
+TaTC270582           CKSICK--SFGYNPEQAYCNPDPTP--R-CCCIY--------
+TaTC276279           CRNHCS--F--FEFKKSHCEPVNGG--S-CCCYN--------
+TaTC276992           CKISCE--WRGYSFEKSHCD---RS--I-WCCCEW-------
+TaTC277039           CKAYCV--GRGYNKDKSYCSPDSGG--M-CCCEK--------
+ZmTC253598           CRKVCR--APTPQERQAYCKSISPG--E-CCCPNEWRMCSCV
+ZmTC262103           CRRLCE--HQHHRSDKAYCKSISPG--E-CCCPNE-------
+                     *   *           :.            **          

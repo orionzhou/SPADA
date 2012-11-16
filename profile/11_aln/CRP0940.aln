@@ -1,0 +1,41 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr1_04658600         --MARLIF--HFVFALILAAYLLSVTD--AIPR----------------GWQE-------
+Atchr1_23800218c        ---MAVSKTTMLIVLVAIILSCVSISN--ARQMQRPQ---------------NVECVGGE
+Atchr1_24281435         MEKIVFRKIVFVA--FLLSLSCLL-------EGE--------------------ARMSG-
+Atchr1_25910755c        MEKTSLKL--IFLFSLTVIAFCSSLGD--AREM----------------VKAEVNC----
+Atchr1_25911554c        MEKTSLKL--VFLFSLTVIALCLSLSA--AREM----------------AKEEVNC----
+Atchr5_07728458c        ---MMLSKVVLLA--LLLSLSCLWVAK--ASEQR--------------------TRVSEV
+Atchr5_25157953         MEKMVLRKVVLLA--ILLSLSCLWVAK--ALEGE--------------------SKVSGQ
+Atchr5_25159537         MEKTVSRKVVVLA--ILLSLSCLCIAK--ASKGE--------------------EKTSGE
+BnCD812622              ---MASRKVLLLG--LLMSLSCLWVAK--ALEGE--------------------AKFRDD
+BnTC3740                ---MVSRKVLLLG--LLMCLSWLWVAK--ALEGD--------------------AKFRDD
+MtgAC137077_109818      MKEASSKLALWIIFIILASNTCFWLAGVQLKRMVAAQAQQTYNIKCQTDADCESRCDAGV
+                                   .   .                                            
+
+Atchr1_04658600         --------PCFCPSKNPYCDCGDDLQVPTTSVISPKPIIEQCARCERNSQCNKVCPATCK
+Atchr1_23800218c        C-------------------------------QPKHP-QQYFGSCFRDSDCRNSCFPYCR
+Atchr1_24281435         ---------------------------------DVTI--QRGGSCNNDNTCHDTC-PGCR
+Atchr1_25910755c        -------IGGKCPEGKKNCNCMPPI-------AHVMD---DIRPCNTDGDCYKFCPRECE
+Atchr1_25911554c        -------IGGHCPDGKKDCNCLPLI-------APTMDIYETNESCRTDNECIKYCPKGCK
+Atchr5_07728458c        V-------------------------------REAEI--HDGGQCTDDDICNKNC-LDCI
+Atchr5_25157953         V-------------------------------RDETP--HT-WYCKYDDNCRENC-PGCT
+Atchr5_25159537         L-------------------------------RDVTP--QRGGPCSYDNLCHNHC-PGCK
+BnCD812622              M-------------------------------TDVPIQTQRGGSCDNDGVCQTFC-PGCA
+BnTC3740                V-------------------------------TDVPIQTQREGSCDNDGVCQAFC-PGCA
+MtgAC137077_109818      CEKKCLELPSICLNGQCACPFGPEHSV---------TKTLPNSTCAFDDDCLKFCPSACS
+                                                                    *  :  *   *   * 
+
+Atchr1_04658600         YKVCIFNRTCEFSTCHCYRC----------------------------------
+Atchr1_23800218c        YQKCHHH------ECICSLCSSEVAPSPK-------------------------
+Atchr1_24281435         ITQCIFR------QCVCTRCNTPR---SSLRIESHM------------------
+Atchr1_25910755c        LGTCY---------CRCDYGCTCTC-----------------------------
+Atchr1_25911554c        IVDCNFG------TCLCEYC----------------------------------
+Atchr5_07728458c        ARQCIFQ------QCVCSKRFFPPNSQPNLRVKKH-------------------
+Atchr5_25157953         ITKCNYG------VCICSNCYHQQ---SDLGVESHM------------------
+Atchr5_25159537         ITQCVNG------ECVCLICYTPP---L--------------------------
+BnCD812622              VTKCIFK------QCVCEQCIPPK---PKLRVRRDATTEDGGQT----------
+BnTC3740                VTRCIFK------QCVCEQCIPPK---PKLRVRRDATTEDGGQTCDDDNTCIKN
+MtgAC137077_109818      IRSCLEA------QCHCGCHG---------------------------------
+                           *          * *                                     

@@ -1,0 +1,86 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+HvBU980464      -MRGSHIMIV----CLVLLVLASGTA------TAST-MQGGSL---TGTNCI----VKTP
+HvCK124533      -MKTALAMAVFSLAALLLLLPPSELXXGMATPAAAEDDVQHYTHGIGMWVCTV-YA--RP
+HvNP460989      -MKIANALLLLVSLALVVLSSSSTHTPSMV---------EGRAVVVPAADCSV-TVIGRG
+HvTC142700      -MKPCQVTLL---LAMVILASSPA-MATK------------CP---PEYTCTK-YIN--K
+HvTC143684      -MKTALAMAVFSLAALLLLLPPS----GMATPAAAEDDVQHYTHGIGIWVCTV-YA--RP
+HvTC151084      -MRTGQILLV----ALALLLLSSDRM------PAKV------SAGFAGNACES-YILYPD
+OsNP926406      -MEPDRVMFLVAIIGALLLSSSGGKWINFAAMATTA-EGGGDVPPPGGEACRR-VYDPPD
+OsTC258720      -MKAIHAALLI--LAIVLVASSSSPPGGV---------------TAQLETCTE-VINREY
+OsTC258803      -MRTVQLLLV----AIALMSLSSVMV------ARSA------DISALTPNCSS-VILNPG
+PvCV539044      -MKSISL------IVMIVLVASIEIEK------------EGAMKVVEGKTCRE-VL--YP
+SbTC98188       -MRATQVFLLLAFM---VLLSNEVGT------TAST-----ESSG--NGDCEP-AVIKLG
+SoCA289072      -MRRANMVVLLAVGFLMIIL-ASDAV-------------------AANKNCTSKKIPTRG
+TaCA730462      -MSTSQILVV----ALALLLLFLGGM------PAKV------SAGLAGTACDS-YVLNPG
+TaTC244658      LSNVYFVTRLLSFXDLHKFRPREPSSGSRV---------------SPEFYAT--TVIELG
+TaTC273013      -MKTIHMVLL---LAMVLVASSSGGMAGK-----------AVGPQYFQDTCSA-VIP-TG
+TaTC274112      -MKYCQVTLL---LALIVLASSPA-MATK------------CP---PEYTCTK-YIN--Q
+ZmTC268540      -------------------------D------LTTK-------VAAGCAHPVS-VILYPG
+ZmTC269050      -MARAHVFLLLAFM---VLLSNEVGI------IVST-----ESSSNIDADCTP-TVIKLG
+ZmTC275527      -MRTSRLVFLFAIVPLLLLLASSDLT------PTKA-------SAAGCPHPRS-MILYPD
+                                                                            
+
+HvBU980464      MPCDQIKRCVDMCNSLS--------------PVRGKPE----ISCVDKECRCTFC-----
+HvCK124533      GPIDK-ATCDWMCRLSNNSTGGGLQQVRLGDYDCC-----------DMGCRCSFCVSVYT
+HvNP460989      EKCEP-RKCEAECRRQHDG-----------MGACA-----------AMGCSCAVCAKEAS
+HvTC142700      GMCDA-AKCMADRVSAYKGA---------GEGQCF-----------TQGCRCSYCCKPHQ
+HvTC143684      GPIDK-ATCDWMCRLSNNSTDGGLQQVRLGDYDCC-----------DMGCRCSFCVSVYT
+HvTC151084      KQCDP-AKCKTDCEKKVQG----------GVGTCYGPP-------YYKGCACQYCPPTLP
+OsNP926406      ENCDP-DSCKAICSLRY-N----------GVGVC-DPV----------GCQCTYCHPPSP
+OsTC258720      PTCDS-GLCVANCQRQYRG----------GIGQCV-----------GNKCKCDYSCAFLP
+OsTC258803      KACSA-AKCNADCSRMY-K----------GTGTCFGPV----------GCDCEYCPSASA
+PvCV539044      KGCVV-SKCMSDCSSKHEGKH--------GVGKCDF----------TGACFCSYLCT---
+SbTC98188       DDCIP-KECSHNCIALG-A----------RSGNCIGGP----------ACNCVFCGPRHA
+SoCA289072      KACDP-RTCQEDAKKDFDN----------DGFRCPHAACTVQGRCVAGSCQRIVCK----
+TaCA730462      EQCDP-AKCQKDCEKTVHG----------GVGSCFNPP----PPYYNRRCACQYCPPTLP
+TaTC244658      KPCTD-SLCNDECMKIFPG-----------PGKCE-----------KGKCLWGFC-----
+TaTC273013      TKCEA-AKCKADCARQFKG----------GVGGCA-----------AHGCRCIYTCTFPS
+TaTC274112      GPCDA-AKCMMDCVSAYKGA---------GEGQCF-----------PQGCRCSYCCKPHQ
+ZmTC268540      RRCDR-GTCEKSCAKEFNG----------GKGTCMSPN----------GCDCEYCARVPR
+ZmTC269050      DNCSP-KDCSHNCIALG-A----------RSGNCIEGP----------ACNCVFCGPGIA
+ZmTC275527      LPCDP-DVCAKSCAKGLNN----------GNGTCMRPL----------GCDCEYCVPAAT
+                        *                                        *          
+
+HvBU980464      ------------------------------------------------------------
+HvCK124533      IGAGHGMRAAAAAALWPDRAVQPPLVLVVTLV----------------------------
+HvNP460989      THTAKPP----LIAKSPHHHRTPPMRHRTSASHTAKTVSWSPPQVPDSSTTRDCVKLSSA
+HvTC142700      GTI---------------------------------------------------------
+HvTC143684      IGAGHGMRAAAAXRVWAMGL-SSPLVLVVTLV----------------------------
+HvTC151084      RKMNQMN-----------------------------------------------------
+OsNP926406      PPKFRTSGQ---------------------------------------------------
+OsTC258720      PPP--PP----ATARN--------------------------------------------
+OsTC258803      PTATGSKN----------------------------------------------------
+PvCV539044      ------------------------------------------------------------
+SbTC98188       PPPQQ-------------------------------------------------------
+SoCA289072      ------------------------------------------------------------
+TaCA730462      RKLKN-------------------------------------------------------
+TaTC244658      ------------------------------------------------------------
+TaTC273013      SM----------------------------------------------------------
+TaTC274112      RTI---------------------------------------------------------
+ZmTC268540      LISSPRNRA---------------------------------------------------
+ZmTC269050      PPPLQ-------------------------------------------------------
+ZmTC275527      VAKRPAAVSTRLTTTTTT-------MASAGCPHPRSTILYP--DLP--------------
+                                                                            
+
+HvBU980464      ---------------------------------------------
+HvCK124533      ---------------------------------------------
+HvNP460989      SEMSPSVAATRVSKEEPDG--------------------------
+HvTC142700      ---------------------------------------------
+HvTC143684      ---------------------------------------------
+HvTC151084      ---------------------------------------------
+OsNP926406      ---------------------------------------------
+OsTC258720      ---------------------------------------------
+OsTC258803      ---------------------------------------------
+PvCV539044      ---------------------------------------------
+SbTC98188       ---------------------------------------------
+SoCA289072      ---------------------------------------------
+TaCA730462      ---------------------------------------------
+TaTC244658      ---------------------------------------------
+TaTC273013      ---------------------------------------------
+TaTC274112      ---------------------------------------------
+ZmTC268540      ---------------------------------------------
+ZmTC269050      ---------------------------------------------
+ZmTC275527      --CDPDVCAKSCAKGLNNGNGTCVRPIGCDCVFCVPTAGQAARTT
+                                                             

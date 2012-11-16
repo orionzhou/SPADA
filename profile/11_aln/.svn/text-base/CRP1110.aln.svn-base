@@ -1,0 +1,71 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr1_03684095c       ------------------------M----VAEFYMVAEARGPLV-SRWCRTVNHC-----
+Atchr3_04358833c       ------------------MLRFVLV----YIPVSVVSHTLCISL-FIICSTRHTCFS---
+Atchr5_01093712        -----MEKVTSI------FFVLLLI----SSCLILRSQG------QFRCKSVAECDSRG-
+BnCD819151             -----MEKATII------FVIVLLI----SSYMIMRSEG------QFRCNKAEDCDPRG-
+GhBQ401814             --------MEKFSFNLFTFAVILIF----ATHSYMTAKAKGPVI-SCRRSKIEDCQG---
+GhBQ402478             --------MEKFSFKLFIFAVILIF----ATHS-MMAEAIGPVI-SCTCIKIEHCHG---
+GhTC30651              --------MEKFSFNLFIFTTILIF----ATHSEMMAEARGPVI-SCRCSKTEDCHG---
+GmTC218113             MLCNKMDTTRKSSVALTFLLAFFII----ASDMCMESEARGPIV-HVHCSRDDDCK----
+GmTC222417             -----MDSTRKSSLTLVFLLAFFII----ASDMGMKSEAQISPL--ARCSKDSDCKR---
+GmTC228192             VDPRVRDSSRHSVVIVAFLLAFSIM----ASDICIKSEARGPIY-KSHCDKDFECRV---
+GmTC234590             ---------MYSVGKLAILLAFFIV----ASDVCMESEALG-----KGCDFDFECRY---
+LeAW036101             ----------------------------------LVRDVKLC----CFCEKDEDCKS---
+LeAW036463             -----------SSTAV--AAALELV----DPPGCRNSAR--VM--GQACTLASECPQ---
+LeTC156328             -------MMKESTILFTILWVFILL----GSQSCIVFGK------DQKCQITKDCAPSC-
+LsBQ983973             ----MNQTSLKTVFLVTFLLSIYGL----FISSVLA--DQGSII-NSACIDIGDCKI---
+MtAJ498165             -----METSRNSSLLVTFLLAFLII----ASDICMESQAKSVTDEIVVCSSTKDCRDKNY
+MtAW573795             -----MAKTTKLIYVMILFLSLFLV----AKNVTA----------QIRCNDAFECRRSA-
+MtgAC138014_45397      --MDKMNTTRSYVVTMVLLFAFFIC----ASETCLALERRELFG--IKCNNDAYCQS---
+MtgCT009657_22001      --------MTKCSALIFLL-VLLIC----ITGKPASVEARGP----FECPHMVDCIK---
+StCV430857             ------------LLILTFLLIPYNI----GSPSNTVLGR------EQQCQTTKDCDPAT-
+VvCF404535             --------MT--FNIAFLL-VFSTIASGLLFKGIPKADARGD----FRCPRMIDCSK---
+                                                                             *     
+
+Atchr1_03684095c       -----TK----CECL-NNFCTCTGRLPPATALTPASQPSPLL------------------
+Atchr3_04358833c       ---------KRYTCL-LNICFCFFISSRIRNYF---------------------------
+Atchr5_01093712        -CRVGTH----VICNEHHICTCAHGSPIGGQCDGVEDC-----DLSGCPPNS--HVICDR
+BnCD819151             -CRGYTH----VICKEH-KCTCAHGAVIGDQCLGVRDC-----ILDGCPPNN--HIICQF
+GhBQ401814             ICAVCPN----YNCI-NNLCTCLSGAPPFQ------------------------------
+GhBQ402478             ICAVCPN----YNCI-NNLCTCLSSAPPF-------------------------------
+GhTC30651              ICAACPN----YKCI-NNLCTCLSDAPPFP------------------------------
+GmTC218113             YRPCRAKCGC----V-CSNSYCTCVFSFMDNVLTHA------------PTN---------
+GmTC222417             YCPTCYQCNC----V-RRVCLCENSPPLANNINSQA------------PPY---------
+GmTC228192             GCHNI-MCGCRAVCI-DHVCQCPHPSSTNNNILGVA------------PPN---------
+GmTC234590             GCQNVPNCGCKVKCI-NHICRCPRSTTSNNNFLNRG------------PPKLSAEIL---
+LeAW036101             FCHK-PP----YRCA-LHVCACSKYTFSKIGLQ-NLI-----GA----------------
+LeAW036463             -CRV-----GIPECA-DGVCICCVGRTCQGDQENIN------------LRQ----IL---
+LeTC156328             --Q-----HEIPTCT-DGICGCIEGIRRSVSFKKNSIY-----MGKCCPGCKPHC-V---
+LsBQ983973             YCGIGI-----PNCC-RNICQCLPCHT---------------------------------
+MtAJ498165             PCPSPLV----LDCV-ANVCTCIHLQPTFTNEIHAP------------KPSVTN------
+MtAW573795             ICN----FPNKWKCN-DHKCECV-------------------------------------
+MtgAC138014_45397      VSDCDIHKGEQSHCI-DGKCWCFLPPSSANKHT---------------------------
+MtgCT009657_22001      VCQG-YP----YCCV-KGFCICKTCPPSLNDLS-IIQPNSHLN-----------------
+StCV430857             --C-D--PGFLLNCT-NGVCTCNRGIKNNPTCKQDSDC-----KDKYSVHVLTRKVI---
+VvCF404535             VCQG-FP----YKCV-DGKCICGESKETQVFNS-ASQLEARVQPEESCASTKDCNIICPH
+                                          . *                                      
+
+Atchr1_03684095c       -------------------
+Atchr3_04358833c       -------------------
+Atchr5_01093712        IGGN---FCTCVPN-----
+BnCD819151             ---D---VCTCVPS-----
+GhBQ401814             -------------------
+GhBQ402478             -------------------
+GhTC30651              -------------------
+GmTC218113             -------------------
+GmTC222417             -------------------
+GmTC228192             -------------------
+GmTC234590             -------------------
+LeAW036101             -------------------
+LeAW036463             -------------------
+LeTC156328             LGLC---TCPCC-------
+LsBQ983973             -------------------
+MtAJ498165             -------------------
+MtAW573795             -------------------
+MtgAC138014_45397      -------------------
+MtgCT009657_22001      -------------------
+StCV430857             FEKS---L-----------
+VvCF404535             STKCVNGQCVCEKTWISPP
+                                          

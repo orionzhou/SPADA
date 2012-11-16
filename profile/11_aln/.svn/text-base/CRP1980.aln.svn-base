@@ -1,0 +1,74 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+PpAJ768234      --------------------------------------------------MKAFLIACFL
+PpBU820064      --------------------------------------------------MKAFLLACIL
+PpBU827215      -----------------------------SRKWTAT------------------------
+PpCK317893      ------------------------------------------------MNSKAFLIACIL
+PpCX168364      --------------------------------------------------MKAFLIACIL
+PpCX170101      ----------------------------------------------------------WI
+PpCX187106      ------------------------------------------------MNSKAFLLACIL
+PpTC19311       YQTQPDPNLPAEYKPGLFCREPSHFYSPTLIPWCTTSLPVCNPLISVCRQR-CSLVIAIL
+PpTC19334       ------------------------------------------MLVTYISKMKAFLIVCIL
+PpTC19341       --------------------------------------------------MKAFLIVCFL
+PpTC19343       ------------------------------------------------MNSKAFLLACIL
+PpTC19386       --------------------------------------------------MKAFLIACFL
+PpTC19405       --------------------------------------------------MKAFLIVCFL
+PpTC19432       --------------------------------------------------MKAFLIACIL
+PpTC19471       ------------------------------------------------LDM---------
+PpTC19486       --------------------------------------------------M-KALVIAIL
+PpTC22119       ------------------------------------------------MNSKAFLIVCFL
+PpTC23559       --------------------------------------------------MKAFLIACIL
+PpTC26933       --------------------------------------------------MKALVIVCFV
+PpTC33004       ---------------------------------------------------RPFFFACIL
+PpTC38699       --------------------------------------------------MKALLIVCFL
+VvTC51094       -----------------------------------------------MMEKAYSLFLCVL
+                                                                            
+
+PpAJ768234      LATVVFSPLSTCSARELAERG-GSSGG------AL----------------------NPH
+PpBU820064      LAAIVFSPLSTCTARELSERA-TKSPG-------P----------------------EPG
+PpBU827215      ------SPRNASIGRF------QHGLGVLM----DPEISRI---LSDGVTTLGNRGRDPS
+PpCK317893      LATIVFSPLSTCTARELGERD-AS--G------SN----------------------NPN
+PpCX168364      LATIVFSPLSTCTARELTERD-GSQ-R------YF----------------------NPH
+PpCX170101      LKLSGFSRVSKN----------------------------------------ALDALSGN
+PpCX187106      LATIVFSPLSTCTARELAERD-VSR-G------AL----------------------NPH
+PpTC19311       IATIAFSPLSMA-ARELVDYG-KDSVTV----NIPST-GDVSSRS--------QPPTYAP
+PpTC19334       LATIVFTPLSTCSARELAEQD-AS--G------SN----------------------NPY
+PpTC19341       LATIVFSPLSTCTARELAERA-IPSPG-------L----------------------NPG
+PpTC19343       LATIVFSPLSTCTARELAERV-GPSRGL----NPL----------------------NPG
+PpTC19386       LATIVFSPLSTCTARELVERD-ASR-G------AL----------------------DPG
+PpTC19405       LATIVFSPLSTCTARELAERD-VGT---------R----------------------NPN
+PpTC19432       FATIVFSPLSTCTARELAERA-GPSPPV----NPL----------------------NPG
+PpTC19471       -PRIL--------LKERGAFG-NADTGG----AWLSS-ARA-SST--------RKGTSNP
+PpTC19486       IATIAFSPLSTA-ARELVDYG-KDSVTV----NIPST-GDASSRT--------LPPSSAP
+PpTC22119       LAAIVFSPLSTCSARELAERD-AS--G------SN----------------------NPK
+PpTC23559       LATIVFSPLSTCTARELAERD-VSR-G------AL----------------------NPH
+PpTC26933       FATVVFSPLCTCSARELTERA-TKTPG-------G----------------------DPG
+PpTC33004       LATIVFSPLSTCTARELAEQA-VHSP-------PL----------------------NPG
+PpTC38699       LATVVFSPLSTCSARELTERA-RYG-G-------L----------------------SSN
+VvTC51094       FITVLFLPSTAA-GRALLQTAQTEGEGGNHGGNDGSKIGVTGSHSKPAPSKTGVSSPSKP
+                                                                            
+
+PpAJ768234      KPVFGCGRG-M-RYCVPK--P-PPCKNRYKRNC-------------------
+PpBU820064      KVPLNCGRG-Q-RYCVVSKPPTPTPCLPYKRDCGRRL---------------
+PpBU827215      NAAYECCPGER-YQCLGRQ--NDARCVPYKRDCLHTYSRSLCNMWPLLCAFP
+PpCK317893      KPVFGCGRG-K-RYCVPSQPP-NRC-PPYKRNC-------------------
+PpCX168364      KPVFSCGRG-N-RYCVPGQSPKPKCTSPYRRGCGRH----------------
+PpCX170101      KATFNGGRGVAYLDCLSQ-RNGGHRCGIYHRECPR-----------------
+PpCX187106      KPVYGCGRG-N-RYCVPQT-P-RGCPNPYKRNCGRH----------------
+PpTC19311       RTGSGCSIY-Q-RDCPK-----KKPCNPYKRSCHRP----------------
+PpTC19334       KPVFGCGRG-K-RYCVPK--P-PPCKNPYKRNC-------------------
+PpTC19341       KVPFNCGRG-K-RYCVPSQPPTSTPCLPYKRDCGRRL---------------
+PpTC19343       KVPFNCG-------CVPSQPPK--RCPPPRQNC-------------------
+PpTC19386       KVPFNCGRG-N-RYCSPKT-Q-RGCPNPYKRNCGRS----------------
+PpTC19405       KPVFSCGRG-N-RYCVPGPSPKRKCTSPYRRGCGRH----------------
+PpTC19432       KVPFNCGRG-K-RYCVPSQPPK--RCPPYKRNC-------------------
+PpTC19471       GPVFGCGRG-N-RYCLDKVHH-GRPCPVYKRDCPK-----------------
+PpTC19486       RTGSGCSIY-Q-RDCPPR---KKKPCNPYKRECHRP----------------
+PpTC22119       KPVFGCGRG-K-RYCVPKTAP-PPCTSLYKRNC-------------------
+PpTC23559       KPVYGCGRG-N-RYCVPKT-P-RGCPNPYKRNCGRH----------------
+PpTC26933       KVPFNCGRG-Q-RYCVPSQPPTPTPCLPYKRNCGRRL---------------
+PpTC33004       KVPFNCGRG-Q-RYCVPSQPPK--RCPPCKRNCGRAIKIRSKQIKLSTT---
+PpTC38699       KPVFSCGRG-N-RYCVRGQPPKRKCTSPYQRNCGR-----------------
+VvTC51094       TPVVECTKNPK-VACLPS---TPRSCGPYKRDCH------------------
+                              *              :: *                   

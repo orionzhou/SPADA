@@ -1,0 +1,51 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr1_16817173c      ----MKSLIF--LVPILCLVISPTTTI-------ASWPKPSEVSNEDM-LMNTEHNHYFG
+Atchr1_16824196c      MSSFILATTL--LMALICFVSLPISTVGLQ---KKPWPKPSELVAGRH-HG-------KG
+Atchr3_18778468c      ----MKSVIV--IVALLCLVSLPNPTVGST---KKPWPKPSDLANH--------------
+Atchr3_18780500c      ----MKTSIVLVAAAFLCLVAFPTTTVGKYWPKIEGWPNPSEITRNELMLLNTGH-----
+BnCD838564            ----------------------------------PPIPNIPGIPNI--------------
+                                                           *:   :                 
+
+Atchr1_16817173c      NKLNFKDS-KVWKCTYNNGSGAAVSISYPSPPHPPSPKPPTPSSRPPSPLSPKKSPPSPK
+Atchr1_16824196c      -YSRLGDSKIGWGTSSLSDSKAPLSPPVLLPG------------FPSIPWLPN-------
+Atchr3_18778468c      -NNNFGDSKVGWACSSSSDPNTP--PSPP-GS------------FPNI---PQ-------
+Atchr3_18780500c      -SFGYGDS-KVWKCTYSNGSAPAISISPSTPIP-------------STPSTPSPPPPAPK
+BnCD838564            -----PQIPIP---QIPAIPNIPIPQIPG-IP------------NIPI---PQ-------
+                            :                                            *.       
+
+Atchr1_16817173c      PSPPPRTPKKSPPPPKPSSPPPIPKKSPPPPKPSSPPPTPKKSPPPPKPSSPPPSPKKSP
+Atchr1_16824196c      -------------------IPGIPIIPSLPNIPSLP-TI---------------------
+Atchr3_18778468c      -------------------IPGIPNIP-FPNIPGIP------------------------
+Atchr3_18780500c      KSPPPPTPKKS--------------------------------PSPPS------------
+BnCD838564            -------------------IPGIPNIP-IPQIPGIP-NI---------------------
+                                                                                  
+
+Atchr1_16817173c      PPPKPSPSPPKPSTPPPTPKKSPPSPPKPSSPPPSPKKSPPPPKPSPSPPKPSTPPPTPK
+Atchr1_16824196c      -----------PEI--------PNIPRIPNI-----------------PGLPN-------
+Atchr3_18778468c      -------------I--------P------NI-----------------PGLPN-------
+Atchr3_18780500c      ---------LTPFVPHPTPKKSPSPPPTPSLPPPAPKKS---------PSTPSLPPPTPK
+BnCD838564            -----------P-I--------PQFPEIPNI-----------------PGLPN-------
+                                            *      .                  *  *.       
+
+Atchr1_16817173c      KSPPPPKPSQPPPKPSPPRRKPSPPTPKPSTTPPSPKPSPPRPTPKKSPPPPTTPSPSYQ
+Atchr1_16824196c      ------IPGL-PNLPSIPRIPGLPPL------------------------PWV--KSEVV
+Atchr3_18778468c      ------IPGL-PG-------------------------------------PPF--ESLLV
+Atchr3_18780500c      KSPPPPPSH--------------------------------------HSSSPSNPPHHQQ
+BnCD838564            ------IPSL-GG-----------SF------------------------SPF--ESVLV
+                                                                                  
+
+Atchr1_16817173c      DPWVHFANCISEFGP--SAICKQQMEVSYYRRGF--LVSDYCCNLIVNMRHECTDVILGF
+Atchr1_16824196c      SKSAKVENCLTKDGSKTSKKSFSKILSSWEKKDYFTLMDEECCEIVVNMDKKCNSHVQML
+Atchr3_18778468c      SQSGELEKCLSKDGSKTNEKCFSQIFSSWAENDF--ALDKECCEIIVNMNKRCYGHLHMM
+Atchr3_18780500c      NPWEHIERCMINMGP--VGMCRMQMEVSFYTRLF--QVSDYCCNLVVNMKSECDDVAWGF
+BnCD838564            SQSSELEKCLTGDKSKRSEKCFSQVFSSWADNDL--SLDKECCEIVLNMDKKCNGHLHMM
+                      .   .. .*:          .  ::  *:  .     :.. **::::**  .*      :
+
+Atchr1_16817173c      FTDPFFVPLIRYTCHVKY---------------
+Atchr1_16824196c      FKSPFFVPLLRYSCHIKHTKD------------
+Atchr3_18778468c      FKSHFFAPLLQYSCHIKHAKN------------
+Atchr3_18780500c      FNDPFFVPLVRYTCHSCDICCRSYLMNGSFVKV
+BnCD838564            FKSHFFAPLLQYSCHIKHAKKN-----------
+                      *.. **.**::*:**                  

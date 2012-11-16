@@ -1,0 +1,32 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+TaCV066006      ------------------------------------------------------------
+TaTC264054      -----------------MKKFLVLALIVIAA-----------------------------
+TaTC264067      -----------------MKKFLVLALIVVAA-----------------------------
+TuQ9FS59        PQPQPFSQQPRQAFPQPQQTFPLQPQQVFPQPQQPQQQFPQPQQPQQPFPQPQQPQLPFP
+                                                                            
+
+TaCV066006      ------------------------------------------------------------
+TaTC264054      ---TTTAAEPFTAFRIASEPQHPSSPEQQ-------------PTLQPQEHPVPHQKLNPC
+TaTC264067      ---TTTAAEPFTAFRTAWEPQHPSSPEQQ-------------PTPQPQEHPVPHQKLNPC
+TuQ9FS59        QQPFPQPQQPQQPFPQSQQPQQPFPQPQQQFPQPQQPQQSFPQQQQPLIQPYLQQQMNPC
+                                                                            
+
+TaCV066006      ---------AVADMSFLRSQVVQHSSCLVMWEQCCQQLKAIPKQSRCEAIHNVVHAIILQ
+TaTC264054      RDALLHQCSPVADMSFLRSQVVQHSSCLVMWEQCCQQLKAIPKQSRCEAIHNVVHAIILQ
+TaTC264067      RDALLQQCSPVADMSFLRSQVVQHSSCLVMWEQCCQQLKAIPKQSRCEAIHNVVHAIILQ
+TuQ9FS59        KNYLLQQCNPVSLVSSLVSMILPRSDCQVMQQQCCQQLAQIPRQLQCTAIHSVVHAIIMQ
+                          *: :* * * :: :*.* ** :******  **:* :* ***.******:*
+
+TaCV066006      QQQQLVQATSTQPQQQQQQGQQQQQGLGSSQPQ---QQTQLDQGWIAAIGTWVIQTIPAM
+TaTC264054      QQKQLVQGTSTQPQQQQQQGQQE-HGQGSSQPQHQQQQQQLDQGWIVAIGTWVIQTVPAM
+TaTC264067      QQQQLVQAISTQPQQQQQQGQQQQQGLGSSQPQ---QQTQLDQGWIAVIGTWVIQTIPAM
+TuQ9FS59        QEQQGIQILRPL------------------------------------------------
+                *::* :*                                                     
+
+TaCV066006      CDRHCSPYCSTTISPSSDVTTDMGGTEKTRGLVSEKWTTNV
+TaTC264054      CDVHVPPYCYTIISSSSDVTTGMGGY---------------
+TaTC264067      CDVHVPPYCYTTISPSSDVTTDMGGY---------------
+TuQ9FS59        -----------------------------------------
+                                                         

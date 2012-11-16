@@ -1,0 +1,92 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+HvBQ766125      ------MKLQTQL-LLLAS--ITAALIMSRGV-----LAG------ATHAVPV--PALRG
+HvTC149668      ------MKPQTQLLLLLAS--IAAALLMSRGV-----LAG------AGAHAAM--PV--R
+OsBI306119      ------------------------------------------------------------
+OsNP899474      ---------MKPLLLLISSIVVMTFLLLLSGAGAL--TA-------DHATVGVAVAGGKR
+OsTC248176      ------------MKLMLLF---AATVVAAALVLVAAVDVG-----SSGALLPMHVLRG-R
+OsTC268055      MVSRSKQALATPLSLFLLHLLLAALALRLVAVASASVVISVAEEAENNATAPW-------
+SoCA069237      ------MERQTRLVVLLAFAFFAAVALLASSAAATDLSAG------AQ-AMPSSLHALRR
+SoTC61066       ------MERQTRLVVLLVFAFFAAGAFFASSAAAADLSAG------AQATMPSSLHALRR
+TaBE404035      ------------LLLLLAY--IAAALVMSRGV-----LAG------AGTHAAM--PV--R
+TaBQ838404      ------MKLQTQL-LLLAF--ITAGLIMSRGV-----LAG------GTHTMPV--RALRR
+TaCA618469      --------------------------------A-ADLSAA------AG---SLHALPLRR
+TaCA667139      --------------------------------------------MSSDARRPAALLQI--
+TaCD873252      ------MKLQTQL-LLLAF--ITAGLIMSRGV-----LAG------GTHTMPV--RALRR
+TaTC255487      ------MKPQTQLLLLLAY--IAAALVMSGGV-----LAG------AGTHAAM--PV--R
+ZmTC252434      ------MERQTRFVLLV----FAIGALLASSAA-ADLSAA------AG---SLHALPLRH
+ZmTC266331      ------------------------------------------------------------
+                                                                            
+
+HvBQ766125      VEDDDDV-GFAERE-------------EAAYPRRRVL-YGEQYISYKGVQASRPACTGSC
+HvTC149668      IVEDDEV-GFAERE-------------EAAYPQRRVLAYKPEYVGYGGLEENKAACYGSC
+OsBI306119      ----------------------------WQKGQKRVL--QGGNPVYKPL-GKGGACNPIC
+OsNP899474      TRHAEEL----------------SEMDSVPYPQRRVL--QGGNTVYRPL-GRGAACNPIC
+OsTC248176      VADVEDVVASVVEEE------------EAAYPRRRIL-YDSRYASYNGLTESKAACYGSC
+OsTC268055      -ATEERLVVVVELGSAAARQLQLGGGGVELHHRRREL---AGKIPFGPLRPDGSACRPHC
+SoCA069237      VEDDDASSFFVESVE------------EAAYPRRRAL-YGGGSIGYGALTASQAACYGPC
+SoTC61066       VEDDDASSFFVESVE------------EAAYPRRRAL-YGGGSIGYGALTASQAACYGPC
+TaBE404035      TVEDDEA-GFTEREE------------EAACPQRRVLAYSPQYIGYGGLEANKAACYGSC
+TaBQ838404      VED-EDV-GFLERE-------------EAAYPRRRVL-YGDQYISYKGVQASRPACSGSC
+TaCA618469      VEDDDASSF----VE------------EAAYPPRRAL-YGGGSISYGALTANKAVCYGSC
+TaCA667139      ----ALL-VVV--A-------------AVIMNSSV---CLGAAVGTGDLDPTHPTCGTNC
+TaCD873252      VED-EDV-GFLERE-------------EAAYPRRRVL-YGDQYISYKGVQASRPACSGSC
+TaTC255487      TVEEDEV-GFAEREE------------EAAYPQRRVLAYSPTSIGYGGLEANKAACYGSC
+ZmTC252434      VEDDDASSF----VE------------EAAYPPRRAL-YGGGSISYGALTANKAVCYGSC
+ZmTC266331      ---------------------------------------------ARALTANKAVCCGSC
+                                                                :     .*   *
+
+HvBQ766125      AGQG-QPYTGSGCKAIFGCRGR--------------------------------------
+HvTC149668      PGRG-QPYTGRGCKAIFGCRGR--------------------------------------
+OsBI306119      SGCG-NRYPGRGCKSRYQGRGM--------------------------------------
+OsNP899474      PGRG-DRYTGRGCKSRYQCRGM--------------------------------------
+OsTC248176      PGRG-QPYSGRSCLNIYQCKG---------------------------------------
+OsTC268055      PAKSGLPYT-RDCKVIYLCGRGR-------------------------------------
+SoCA069237      PARG-QAYS-RGCLAIYQCRAPALKSAGMTSSTTRYPPALAAKRKEIGPLIGSLLSRVKV
+SoTC61066       PARG-QAYS-RGCLAIYQCRG---------------------------------------
+TaBE404035      PGRG-QPYTGRGCKAIFGCRGR--------------------------------------
+TaBQ838404      SGRG-QPYTGSGCRGR--------------------------------------------
+TaCA618469      AARG-QAYT-RGCLAIYGCRGGR-------------------------------------
+TaCA667139      PSSG-QPYG-RRCSKIYGCK----------------------------------------
+TaCD873252      SGRG-QPYTGSGCQAIFGCRGR--------------------------------------
+TaTC255487      PGRG-QPYTGRGCKAIFGCRGR--------------------------------------
+ZmTC252434      AARG-QAYT-RGCLAIYGCRGGR-------------------------------------
+ZmTC266331      AARG-QAYT-RGCLAIYGCRGGR-------------------------------------
+                 . .   *    *                                               
+
+HvBQ766125      ------------------------------------------------------------
+HvTC149668      ------------------------------------------------------------
+OsBI306119      ------------------------------------------------------------
+OsNP899474      ------------------------------------------------------------
+OsTC248176      ------------------------------------------------------------
+OsTC268055      ------------------------------------------------------------
+SoCA069237      LAGDSLRSSEKSVAPFGLTDTSEMATLVMRDSLVELESLPIVRVSFVPHDXMANNAXNGT
+SoTC61066       ------------------------------------------------------------
+TaBE404035      ------------------------------------------------------------
+TaBQ838404      ------------------------------------------------------------
+TaCA618469      ------------------------------------------------------------
+TaCA667139      ------------------------------------------------------------
+TaCD873252      ------------------------------------------------------------
+TaTC255487      ------------------------------------------------------------
+ZmTC252434      ------------------------------------------------------------
+ZmTC266331      ------------------------------------------------------------
+                                                                            
+
+HvBQ766125      ---------
+HvTC149668      ---------
+OsBI306119      ---------
+OsNP899474      ---------
+OsTC248176      ---------
+OsTC268055      ---------
+SoCA069237      VASREEEDE
+SoTC61066       ---------
+TaBE404035      ---------
+TaBQ838404      ---------
+TaCA618469      ---------
+TaCA667139      ---------
+TaCD873252      ---------
+TaTC255487      ---------
+ZmTC252434      ---------
+ZmTC266331      ---------
+                         

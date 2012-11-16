@@ -1,0 +1,102 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr2_08597035       --------MAKPC----A--AFL-------------------------------------
+Atchr3_23412566c      --------MGKTI----SFSAII------------------------------------L
+HaBQ975598            ------------------------------------------------------------
+HaBQ977589            -------QHGD-------------------------------------------------
+HaQ9S9R1              --------MAN-----------------------------------------NSVSYLVL
+HvTC138216            ------MEAARKT----IVGAFL------------------------------------L
+HvTC150533            ------MAVSSKL----FPAAVL------------------------------------F
+LeTC156766            ------------MSKS-TIFLAL------------------------------------L
+LeTC166411            --------MAKSLLNY-TTFLAL------------------------------------L
+LsBQ855350            --------MGKSL----FVFILL------------------------------------V
+MtBG581411            --------MISSTSKLCTVFMFICLVVLLISTSGTNY-LSNLDLFTLVRYSILSLTYIFY
+MtTC101451            --------MTSTVNKFDIVIMFIFIVILPISTLEVEEDICKIMPLTISKYACDKSACNLV
+MtTC108510            --------MTYCANKFYNVLMFLCLAILLIF-----------------------------
+MtTC97008             --------MTFSASKFYIIFMYLYLAIFIN------------------------------
+NtCV017667            --------MAKSLVSY-TTFLAL------------------------------------L
+NtTC3695              --------MAKSLLSY-TTFLAL------------------------------------L
+OsTC282235            ------MEFQSSK----IAAAFF-------------------------------------
+PsTC7678              --------MAR--------AAFL------------------------------------L
+SbCD228526            MPRNFLLDMAALKVTS-TLCLSL------------------------------------L
+TaTC257922            --------MANHK----THMCSL------------------------------------L
+TaTC258944            ------MAVSSKL----FPAAVL------------------------------------L
+VrQ6T418              --------MERKT----FSFLFL------------------------------------L
+VrQ9FPG1              --------MERKT----FSFLFS------------------------------------L
+                                                                                  
+
+Atchr2_08597035       -VFLCLSMLILSIPDISCQMNDCDCDHD-----------------HRCGEW-EDESHGNC
+Atchr3_23412566c      -VFLLVSTGLMKQGDAQAQKCEWECKLLPNFPCWLKGAG-EGLCDNLCKY--EGAISGVC
+HaBQ975598            --------------EAK------MCEST---GRVASCAF-DRDCSHSCEK--DGFIDGHC
+HaBQ977589            -CEGRHCRVGMKVADAK------MCEHT---GRVASCAF-DRDCSHSCEK--EGFIDGHC
+HaQ9S9R1              LLLVFVLAISTGSAPVQ------YCDR---VTNLYHEKCDEKQCTEHCKTN-EKAESGYC
+HvTC138216            -ILLMASSSQVSCTENN-------CYKEISDSCPGS---QNKNCRDTCIE--MGWDDGQC
+HvTC150533            -LFLLLATEMGPVREAA------ACEHAPCKKCTGSCFD-PEDCAINCRN--EGYDSGDC
+LeTC156766            LCFLLISSNDMQGVEGK------TCRWRSKEYRTRFC-LLSDTCFIKCKQEYPKAIKGQC
+LeTC166411            LCFLLISSNEIEVVEGK------TCRWQSNLYRSRFC-LSSKYCVKRCRDEISKVTKGQC
+LsBQ855350            -ALFATDETMMSVTEAK------MCQTT---SHALSCAT-DTTCNSSCEK--QGFAQGKC
+MtBG581411            FIYLFIFCVE---AGDK------ICKV-MHHTKSE-FGCVKSACNEVCINI-EHATYGYC
+MtTC101451            CMKMMHATYE---EEEK------ICEINYHHTQSE-YGCDKSSCNEVCINI-EHATYGDC
+MtTC108510            -------IWE---VEAK------VCEYPLSRTWFEEGQCFKDLCNTKCKEM--IASYGSC
+MtTC97008             ------SAKD---EEAK------ICKILL-SSTMN-HGCEEIKCNEGCINE-ENANSGEC
+NtCV017667            LCFLLISSNEMEAAEGK------LCRRKSKTF-SGYC-FISEHCDEECKEK-EGAKRGMC
+NtTC3695              LCFLLISSNEIQAAEGK------LCRRKSKTF-SGYC-FISEHCDEECKEK-EGAKRGMC
+OsTC282235            -VFFLLATGGGAAGG---------CSVGESSTFRGNCEIDGGGCVESCRG--EGYTDGYC
+PsTC7678              LLLLMASNEFGSGVSAS------ICEKSSRKGGNAYCPDDEDDCAKICINK-EKAYNGKC
+SbCD228526            VMTLLLDP--SCGNKEP------CDEWSSDTYRMLLL-CSSKTCSKHCISE--GATRGKC
+TaTC257922            IALLVFASTWKPTMQLP------PCWHHPEKFSICFATWREEICNKLCIAE--NYEYGAC
+TaTC258944            -LLLLLATEMGPVREAM------ACEHARCKKCTGACFD-PDECAITCRN--EGYDSGDC
+VrQ6T418              -LLVLASDVAVERGEAR------TCMIK--KEGWGKCLI-DTTCAHSCKN--RGYIGGNC
+VrQ9FPG1              -LLVLASDVAVERGEAR------TCMIK--KEGWGKCLI-DTTCAHSCKN--RGYIGGDC
+                                                                     *         * *
+
+Atchr2_08597035       KQHH---L------RVVCTCTLDCLDISSTSNA---------------------------
+Atchr3_23412566c      VSD-----------PHRCLCRNRKPGCS--------------------------------
+HaBQ975598            DGV-----------RRKCVCRKAC------------------------------------
+HaBQ977589            DGI-----------RRRCVCRKAC------------------------------------
+HaQ9S9R1              LVVE--KQ-------QLSICSFDCAKYKPSTPAPPPPPPKLFYSGSWLQAKVENVMLPGQ
+HvTC138216            RNRAQEKAMFRFLTHAKCECYPPTCDH---------------------------------
+HvTC150533            TGG----G------AYRCTCSKNC------------------------------------
+LeTC156766            IRKS--TF------SRYCYCWRKC------------------------------------
+LeTC166411            ITK---GW------GRYCFCWRTGACPPKP------------------------------
+LsBQ855350            DGI-----------RRRCTCYKQC------------------------------------
+MtBG581411            VPPI--PY------FSFCFCYLKC------------------------------------
+MtTC101451            LLPN--PY------FSFCYCLYKC------------------------------------
+MtTC108510            QEDA--CV-------CAIYCY---------------------------------------
+MtTC97008             MATG--IV------VFFCYCFYECEQ----------------------------------
+NtCV017667            IKKS--IF------RRYCYCYHNCK-----------------------------------
+NtTC3695              IKKS--IF------RRYCYCYHKCK-----------------------------------
+OsTC282235            FTEVANPG------YHVCTCTRGCYSPAQSTRKMMARN----------------------
+PsTC7678              HGS----G---------CFCYFDHCTASDLKN----------------------------
+SbCD228526            GSL---IF------RSFCFCTKECD-----------------------------------
+TaTC257922            AMIY--PV-------PRCVCHKRH-CHDT-------------------------------
+TaTC258944            TGS----G------AYRCTCSKNC------------------------------------
+VrQ6T418              KGM-----------TRTCYCLVNC------------------------------------
+VrQ9FPG1              KGM-----------TRTCYCLVNC------------------------------------
+                                         *                                        
+
+Atchr2_08597035       ----------
+Atchr3_23412566c      ----------
+HaBQ975598            ----------
+HaBQ977589            ----------
+HaQ9S9R1              KNMNCTQCPK
+HvTC138216            ----------
+HvTC150533            ----------
+LeTC156766            ----------
+LeTC166411            ----------
+LsBQ855350            ----------
+MtBG581411            ----------
+MtTC101451            ----------
+MtTC108510            ----------
+MtTC97008             ----------
+NtCV017667            ----------
+NtTC3695              ----------
+OsTC282235            ----------
+PsTC7678              ----------
+SbCD228526            ----------
+TaTC257922            ----------
+TaTC258944            ----------
+VrQ6T418              ----------
+VrQ9FPG1              ----------
+                                

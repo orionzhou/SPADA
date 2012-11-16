@@ -1,0 +1,107 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+OsNP654163      -MADFLPLAILVFVSLMATGATANYGYTTPSPSPPPP-PRQQYT--PP-------AHSDK
+OsNP654165      -MAAFHPLAILMFVSLLAAGATANYGYTTPSPSPPPPPQQQ-------------------
+OsNP654166      -MAAFHPLAVIVFVSLLAAGATANYGYTTPSP-----PPPQQYT--PP-------AHSKK
+OsNP654169      -MADFLPLAI-LFASLMAAGATANYGYTTPSPSPPPP-PPQQYT--PP-------AHSDK
+OsNP654170      -MAAFHPLAIIVFVSLLAAGATANYGYTTPSPSPPPPPPQQQYT--PP-------AHSDK
+OsNP654171      -MVAFLPLAIL--VSLLAAGATANNGYTTPSPPP------------PP-------AHSDK
+OsNP654173      -MATFLPIAIL--VSLLAVGATANNGYTTPTPSPPPP---QQYT--PP-------AHSDK
+OsNP654174      -MAAFLHLAIL--VSLLAAGATANNGYTTPSPPPPPQ---HTPPPSPPPPAPAAHQSSDK
+OsQ5VR19        -MAAFHPLAILVFVSLLAAGATANYGYTTPSPSPPPLPPQVYPA----------------
+OsQ5VR30        -MADFLPLAILVFVSLMATGATANYGYTTPSPSPPPP-PRQQYT--PP-------AHSDK
+OsQ5VR32        -MAALHPLAILVFVSLLAAGATANYGYTTPSPSPP--PPPQQYT--PP-------AHSDK
+OsQ8LJM6        MAAFQLPLAIL--VSLLAVGATANNGYTTPSPPPPQ----QQYTPPPP-------AHSDK
+OsTC268715      MAAFQLPLAIL--VSLLAAGATANNGYTTPSPPPPQ----QQYTPPPP-------AHSDK
+                  .    :*:   .**:*.***** *****:*                            
+
+OsNP654163      LLVKVEGMVYCQSCAQRNTHSLEGAKSLPKAEVSVICHDAKNRAIVRCRRAVADDNGYFR
+OsNP654165      -------------AARKGTHSLEGVKPLPKAEVSVICHDANNRVMVRCRRAVANDNGYFL
+OsNP654166      LLVKVEGMVYCQSCAQRNTHSLEGAKPLPKADVSVICHDAKNRVMVRCHRAVANDNGYFL
+OsNP654169      LLVKVEGMVYCQSCAQRNTHSLEGAKPLPKAEVSIICHDAKNRAMVRCRQAVSNDNGYFL
+OsNP654170      LLVRVEGMVYCQSCAQRNTHSLEGAKPLPKAEVSVICHDAKNRVMVRCRRAVTDDNGYFR
+OsNP654171      LLVRVEGMVYCQSCAYRNTHSLNGAMPLPKAEVSVTCHDTKNRVM-ECKRAIADESGYFQ
+OsNP654173      LLVRVEGMVYCQSCAYRNTHSLDGAVPLPKAEVSITCHDTKNRVM-ECKRAIADESGYFL
+OsNP654174      VLVRVEGKVYCQSCEHRNSWSLDGARPLRGAEVSVTCRDAKNRAA-WWRLAVADESGYFL
+OsQ5VR19        ----------------GPQRQAAGAKPLPKAEVSVICHDAKNRVMVRCRRTVTDENGYFR
+OsQ5VR30        LLVKVEGMVYCQSCAQRNTHSLEGAKSLPKAEVSVICHDAKNRAIVRCRRAVADDNGYFR
+OsQ5VR32        LLA----------------------------EVSVICHDAKNRAMVRCHQAVADDNGYFR
+OsQ8LJM6        LLVRVEGMVYCQSCAYRNTHSLNGAMPLPKAEVSVTCHDVKNHVM-ECKRAIADESGYFQ
+OsTC268715      LLVRVEGMVYCQSCAYRNTHSLNGAMPLPKAEVFVTCHDTKNRVM-ECKRAIADESGYFQ
+                                               :* : *:*.:*:.    : :::::.*** 
+
+OsNP654163      AELDETNVSDFYMGDPRKACYLHLPLPPGGASPPPLHSHDWRCRSSSVAFSPLLPLPHHR
+OsNP654165      VELDETKVSDFYMGDPRKACYVRLRLLPDFECNNPTN----------INYSSIEGAPLRD
+OsNP654166      AELDETKVSDFYMGDPRKACYVRLRASQDFECNNPTN----------INYSSIEGAP---
+OsNP654169      AELDETKVTDFYMGDPRKACYVRLRASPDIECNNPTN----------INYSSIEGAP---
+OsNP654170      AELDETKVSDFYMGDPRKACYVRLRASPDFECNNPTN----------INYSSIEGAP---
+OsNP654171      TELGVTKVSDFFMGDPSKACHVRLQASPDFKCNNPTN----------INYSDIKGAPLR-
+OsNP654173      TELGVTKVSDFFMGDPRKACHVRLQASPDFKCNNPTN----------INSSDIEGAPLR-
+OsNP654174      AEFGVTRASDFLGADPRGACYARLLSSPDRKCDGLTN----------INAG-MVGAPLR-
+OsQ5VR19        AELDETKVSDFYMGDPRKACYVRLRTSLDFECNNPTN----------INNSSIQGAPLRD
+OsQ5VR30        AELDETNVSDFYMGDPRKACYVRLRASPDSECNNPTN----------INYSSIEGAP---
+OsQ5VR32        AELDETKVSDFYMGDPRKACYVRLHASPDFECNNPTN----------INYSSIEGAP---
+OsQ8LJM6        TELGVTKVSDFFMGDPSKACHVRLQASPEFKCNNPTN----------INYSSIEGASLR-
+OsTC268715      TELGVTKVSDFFMGDPSKACHVRLQASPDFKCNNPPQ----------TSTTLTSR--VR-
+                .*:  *..:**  .**  **: :*       .    .                       
+
+OsNP654163      RMPLSPWSELNGGVGSGALGPPLTTEIPSAGGSFSYLHVELSDIAVFLATGNIPLEAVVG
+OsNP654165      GAPLR---DEGKRWADHGYYNFMYATGPLA-----LRPA------ICPPKH---------
+OsNP654166      ---LR---DEGKRWADHDYYNVMYATGPLA-----FRPA------ICPPKH---------
+OsNP654169      ---LR---DEGKRWADHGYYNIMYATGPLA-----FRPA------ICPPKH---------
+OsNP654170      ---LH---DEGKRWADHDYYNVMYATGPLA-----FRPA------ICPPKG---------
+OsNP654171      --------DEGQDVVAIFQEAQTWVN--LY------VNK------LLPLDLHL---AGAT
+OsNP654173      --------DEDKRWTDQGYDNVVYAAGPLA-----FRPA------ICPLKH---------
+OsNP654174      --------DEGKRWPGQGYDNVVYAAGPLA-----FRPA------NCPPKHY--------
+OsQ5VR19        EGKRG---GAGSGAPSP----LLATEIPSAGGSFSYLHVELSDIAVFLAAGNIPLEAVVR
+OsQ5VR30        ---LR---DEGKQWADHDYYNIIILCTLPARSLFGRQSA------LLSTRHPINVSAFVT
+OsQ5VR32        ---LR---DEGKRWSDHDYYNVMYATGPLA-----FRPV------MCPPKH---------
+OsQ8LJM6        --------DEGKRWTGEGYDNVMYAAGPLA-----FRPA------ICPPKH---------
+OsTC268715      --------HSVTRV----SDGLVRATITLF-----MPPV------LSPSGRRYALPSTKT
+                                                                            
+
+OsNP654163      AV--R--------AVAW---------------LL-LA----AYLQFTFG-----------
+OsNP654165      ------------------------------------------------------------
+OsNP654166      ------------------------------------------------------------
+OsNP654169      ------------------------------------------------------------
+OsNP654170      ------------------------------------------------------------
+OsNP654171      RSPLRGCRYGEEGGTIWSTEAVADSPIGQIGRLLGLHAIRCITEKRLYPLQRTGKSPNYT
+OsNP654173      ------------------------------------------------------------
+OsNP654174      ------------------------------------------------------------
+OsQ5VR19        VV--R--------AMAW---------------LL-LA----AYLQFTLG-----------
+OsQ5VR30        L------------TLAR---------------LRVSS----IREARNYN-----------
+OsQ5VR32        ------------------------------------------------------------
+OsQ8LJM6        ------------------------------------------------------------
+OsTC268715      RHPM--------------------------------------------------------
+                                                                            
+
+OsNP654163      -------WRREEWFPAPLQLWWSRRR----LRVECLAGEERREKGGRERGREERKRKMKR
+OsNP654165      ------------------------------------------------------------
+OsNP654166      ------------------------------------------------------------
+OsNP654169      ------------------------------------------------------------
+OsNP654170      ------------------------------------------------------------
+OsNP654171      PKYELPPQTRKPYMFHPQLLISDELPLTRTGVVLVLHGSP----LGHGRKNGGTAQRDYV
+OsNP654173      ------------------------------------------------------------
+OsNP654174      ------------------------------------------------------------
+OsQ5VR19        -------WRREEWFPVPLRLWWSRRR----LWVVCFAGEERREKVGREMKRGKEERGEEE
+OsQ5VR30        -------WTVDTWFFCVSVLIVVAGV-------IIF------------------------
+OsQ5VR32        ------------------------------------------------------------
+OsQ8LJM6        ------------------------------------------------------------
+OsTC268715      ------------------------------------------------------------
+                                                                            
+
+OsNP654163      GNS-VMMFNKVGPF----------------------------------------
+OsNP654165      ------------------------------------------------------
+OsNP654166      ------------------------------------------------------
+OsNP654169      ------------------------------------------------------
+OsNP654170      ------------------------------------------------------
+OsNP654171      GNDTTKWQDDVGVVDAVDVASPGARPNGSASVSATLRPKPPDDGPPRNNSTRRR
+OsNP654173      ------------------------------------------------------
+OsNP654174      ------------------------------------------------------
+OsQ5VR19        E------EEEEGQFGH-DV-----------------------------------
+OsQ5VR30        ------------------------------------------------------
+OsQ5VR32        ------------------------------------------------------
+OsQ8LJM6        ------------------------------------------------------
+OsTC268715      ------------------------------------------------------
+                                                                      

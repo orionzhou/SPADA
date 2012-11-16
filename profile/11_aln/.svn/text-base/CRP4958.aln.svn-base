@@ -1,0 +1,72 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+EcP01087             ------------------------------------------------------------
+EcUPI0000110906      ------------------------------------------------------------
+OsQ8GVI3             ------------------------------------------------------------
+OsQ8H4M5             ------------------------------------------------------------
+SbP81367             ------------------------------------------------------------
+SbP81368             ------------------------------------------------------------
+SoCA288206           ------------------------------------------------------------
+TaTC236089           ------------------------------------------------------------
+TaTC236090           ------------------------------------------------------------
+ZmCD436537           ------------------------------------------------------------
+ZmTC259915           GSRRLHQAAHTYITCHASLASSVSFFLNKYMPLTWCSSIFQVTNANCTKKSIERPSTGEL
+ZmTC278483           ------------------------------------------------------------
+                                                                                 
+
+EcP01087             -------------------------------------------SVGTSCIPGMA-IPHNP
+EcUPI0000110906      -------------------------------------------SVGTSCIPGMA-IPHNP
+OsQ8GVI3             ------M---ASKNLLLSAA---VLLSVLAIAAA----AATASAATTSCQPGMA-IPHDP
+OsQ8H4M5             MASKNSKLSVSSVAVALVALMVVVVGAVVAAAAGGEEYYGGVARAADGCEPGQGVVPKDP
+SbP81367             ------------------------------------------TVDVTACAPGLA-IPAPP
+SbP81368             ---------------------------------------------ANWCEPGLV-IPLNP
+SoCA288206           ---MAST---RSSYFLLSAA---VLLSVLGAAA----------GRTNWCEPGLV-IPLNP
+TaTC236089           ------M---ASKHVLLSAL---VLLSILAAA-----------VATIACRPGVG-IPPKP
+TaTC236090           ----GIR---HEKHVLLSAL---VLLSILAAA-----------VATIACRPGVG-IPPKP
+ZmCD436537           ------------------AA---VLLSVLAAA---------SASAGPSCVPGWA-IPHNP
+ZmTC259915           MASSSSS---SHRRLILAAA---VLLSVLAAA---------SASAGTSCVPGWA-IPHNP
+ZmTC278483           -----MA---SSSHTLLSAA---VLLSVLAAAA----------ARTNWCEPGLV-IPLNP
+                                                                     * **   :*  *
+
+EcP01087             LDSCRWYVSTRTCGVG----PRLATQEMKARCCRQLEAIPAYCRCEAVRILMDGVVTPSG
+EcUPI0000110906      LDSCRWYVSTRTCGVG----PRLATQEMKARCCRQLEAIPAYCRCEAVRILMDGVVTSSG
+OsQ8GVI3             LRGCRRYVLRRACGLAA--GGRLYDWSLKERCCQELAAVPAYCRCAALAYFMDGAS----
+OsQ8H4M5             LPGCRAYLLRR-CGGGD-------PPGVRARCCHQLREVAARCRCDALRAMVEVLV----
+SbP81367             LPTCRTFARPRTCGLGGPYGPVDPSPVLKQRCCRELAAVPSRCRCAALGFMMDGVD----
+SbP81368             LPSCRTYMVRRACGVSI--GPVVPLPVLKERCCSELEKLVPYCRCGALRTALDSMM----
+SoCA288206           LQSCRAYLVRRTCGLSR--GPFVPLPVLKERCCTELEKIVPYCRCGALRIMMDGMP----
+TaTC236089           LPSCRAYVVQQTCKDTQQTAPTPGKVASKDPCCRELEAVSEECRCTAMEDFMQGML----
+TaTC236090           LPSCRAYVVQKTCKDTQQT--TPGKVASKDPCCRELEAVSEECRCTAMEDFMQGML----
+ZmCD436537           LPSCRWYVTTRPCGIG----PPLPCPELKRRCSRELADIPAYSRCTALSILMDGAIPPAP
+ZmTC259915           LPSCRWYVTSRTCGIG----PRLPWPELKRRCCRELADIPAYCRCTALSILMDGAIPPGP
+ZmTC278483           LQSCRAYLVRRTCGLGR--GPFVPLPVLKQRCCTELEEIVPYCRCGALRVMMDGMP----
+                     *  ** :   : *               :  *. :*  :   .** *:   ::       
+
+EcP01087             QH-EGRLLQDLPGCPRQVQRAFAPK-LVTEVECNLATIHGG---PFCLSLLGAGE-----
+EcUPI0000110906      QH-EGRLLQDLPGCPRQVQRAFAPK-LVTEVECNLATIHGG---PFCLSLLGAGE-----
+OsQ8GVI3             ---EGRLLEDLPGCPRETQRGLAAM-LTTPGECNLETIHGG---PYCLELTDR-EMPKY-
+OsQ8H4M5             -----EEEEAPLACKKGAMAAIAEG-LPGRDECDLDTRADDGGSRRCHLVIN--------
+SbP81367             -----APLQDFRGCTREMQRIYAVSRLTRAAECNLPTIPGG---GCHLSNSPR-------
+SbP81368             -----TGYEMRPTCSWGGLLTFAPT-IVCYRECNLRTLHGR---PFCYALGAEGTTT---
+SoCA288206           -----GGGEDTPPCSWGGQLELAPT-LVSEAECNLMTIHGR---PFCYALGAEQTTTD--
+TaTC236089           -----RLEGVPEGCTRNDLWEFTMS-LVKPELCNLQTITGG---PYCGLPPSNDARLADG
+TaTC236090           -----RLEGVPEGCTRKDLWEFTLS-LVKPELCNLKTITGG---PYCGLPPSNDARLADS
+ZmCD436537           DAQLEAPLEALPGSPREVQRGFPPP-LVTEAECNLAPISGV---PESPWIFGGGTIPSK-
+ZmTC259915           DAQLEGRLEDLPGCPREVQRGFAAT-LVTEAECNLATISGV---AECPWILGGGTMPSK-
+ZmTC278483           -----GGGVDRPPCSWGGQLELAPT-LVSEAECNLVTIHGR---PFCYALGAEGTTTD--
+                                  .            :     *:*                         
+
+EcP01087             ----
+EcUPI0000110906      ----
+OsQ8GVI3             ----
+OsQ8H4M5             ----
+SbP81367             ----
+SbP81368             ----
+SoCA288206           ----
+TaTC236089           VQDV
+TaTC236090           VQDV
+ZmCD436537           ----
+ZmTC259915           ----
+ZmTC278483           ----
+                         

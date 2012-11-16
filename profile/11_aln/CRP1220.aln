@@ -1,0 +1,20 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+MtAW574028              -----MALKFYSLFYIQLFIPFHLLNFL----------------AYITAVYGCNDDTDCP
+MtBG582210              -----MGETLKFVYTMSIFLSL----FLVVTSIVGEEWNSHSWNSEFYLKKSCSSDFDCP
+MtBG582888              MQMKKMATILKFVYLIILLIYP----LLVVTEE-----------SHYMKFSICKDDTDCP
+MtMNC5187835            --------LRKTLCAMIMLIS----LLFA---------------VTNGAQFLCSDDRDCP
+MtTC102115              -----MTLLLKFLYALIIFIS----LLFV---------------VTNGAQFLCSDDSDCP
+MtTC109393              -----MARILKNVYTIIHFLIINFLLLFHVLNVRRQ-------TEPPGPLIPCEFDYDCP
+MtgAC162277_102001      -----MTTSLKFVYVAILFLSL----LLVVMGG--------------IRRFECRQDSDCP
+                                    :     ::      ::                        *  * ***
+
+MtAW574028              PSCTTRGCPDSCAYPH-VLRCIGKNCVCT----
+MtBG582210              RTM--------CIKLS-LARCFNDFCHCY----
+MtBG582888              TLF--------CVLPN-VPKCIGSKCHCKLMVN
+MtMNC5187835            RDL--------CDRNSLTLRGVNYICQCT----
+MtTC102115              RDL--------CVRNSLTLRCVNYICQCR----
+MtTC109393              LID--------CIRTS-DSRCINGNCHCRE---
+MtgAC162277_102001      SYF--------CEKLT-VPKCFWSKCYCK----
+                                   *       : .   * *     

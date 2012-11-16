@@ -1,0 +1,90 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+OsNP1110563      MAPFKTILLVVFFALF--AVSSLQPSAAVRDAQ---VFKPTVAN----------------
+OsNP1113205      ------------------------------------------------------------
+OsNP932290       MAPSKSILVVVFALFA--VAASLPPSAAARDAQ---VFKPTVAVDVVHQEQQQQQQPAVN
+OsQ653W4         MAPSSKL-AALFFAFAVVAAAALAPAAEARVQGFNH----EAASEPA----IAAAGESKA
+OsQ67X48         ------------------------------------------------------------
+SbTC93172        -MASPKL-LALFFAFAMAVA-ALHPSEAARLQVVQQAFKPAAAGQEA----AEKVAD-QA
+SbTC93174        -MASPKL-IALFFAFAIASA-ALQPSEAARVQVVQQAFKPAAAGQEA----AEKVAD-QA
+TaTC261008       ------------------------------------------------------------
+ZmTC277767       ------------------------------------------------------------
+                                                                             
+
+OsNP1110563      --ADVTQPSA--SLVGLPGLPPLQPLPTIQIPGLPPLPQLPTIQIPSLPQLPPLPTIQIP
+OsNP1113205      ------------------------------------------------------------
+OsNP932290       AIADVSQPST--SLVGLPGLPPLPPLPTIQIPGLPPLPQLPTIQIPGLPPLQPLPAIQIP
+OsQ653W4         ATGGGA-P----TLPGLPGLPFPL---------FP--------FLTLPFPLIPIGGSSGG
+OsQ67X48         ------------------------------------------------------------
+SbTC93172        AAGGVARPSTTPPA--GPGIPAGL---------PP---NLLGAILGLLFP--PLGAI---
+SbTC93174        AAGGVARPSTTPPAGAGPGIPAGI---------PP---NLLGAILGLLFP--PLGAI---
+TaTC261008       -----------------------------HLAGAKKLKQ---------QPLHPCRLHHSP
+ZmTC277767       ------------------------------------------------------------
+                                                                             
+
+OsNP1110563      GLPTLPQLPTI-------------------------------------------------
+OsNP1113205      ------------MEGAATAS--------------------------SAAPVASLFPGLPP
+OsNP932290       GLPPLPQLPTIQIPGLPTLQPLPTIQIPGLPPLPQLPTIQIPGLPPLQPLPAIQIPGLPP
+OsQ653W4         GGAAPPS------AGSGFRFPFP------------------------------------L
+OsQ67X48         ------------------------------------------------------------
+SbTC93172        ---------------IGLLQPL--------------------------------------
+SbTC93174        ---------------IGLLQPL--------------------------------------
+TaTC261008       GDPPPSEE---------RAQ---ALKAPSVPHLAEAEPVA------ATSSPASPYTGV--
+ZmTC277767       --------------------------------------------------MCIFLVSLLL
+                                                                             
+
+OsNP1110563      ---------PGLPQLPTLPTI-QI-PELPPL-PPLPSVSITPGSPGAPARIPISSQSALA
+OsNP1113205      LPPLPAL--PALPPLPPLPALPPL-PPLPPL-PPLPSP-------GTTTTR---------
+OsNP932290       LQPLPTIQIPGLPPLPQLPTI-QI-PGLLPL-PPLPSIPITLGSPGAQ--IPINSQSALS
+OsQ653W4         PLPFPAPASPGG-------APPSSGSGFPAFPFPFPSSPVSPPSQASP-------ASPAA
+OsQ67X48         ------------------------------------------------------------
+SbTC93172        IPLLP---PPGS-------SLPPLQGG--------------AGNLGAS-------LTSFS
+SbTC93174        LPLLP---PPGS-------SLPPLQGG--------------AGNLGAS-------LTSFS
+TaTC261008       -----SVFIPAPPPL----------PGVPAL-PPLPGFPGMA---GAP------------
+ZmTC277767       ALTFTNA---------------QEESSHRTL-PPFPCIPGQP---RPP------------
+                                                                             
+
+OsNP1110563      AAPIAPQQPTECLSSLMALMPCMEYVTKADVPA--PPSVCCDGFKSLVEK-APICLCHGI
+OsNP1113205      -PRPPSPPPTECLTSLVELLPCVDYLTN-DATA--PPGACCDGFRSLVGS-ALICLCHGI
+OsNP932290       T-STTPQVITECLSSLMQLMPCMEYLTKADEPA--PPSIGCDSFKSLVEK-APICLCHGI
+OsQ653W4         PAPPSPPQPKECLTPLLSMMSCADYLTNSSAQT--PPGTCCEGFKSLVST-APICLCHGI
+OsQ67X48         ----------------MALMPCVEYATKTDVPA--PPSVCCDGFKSLVEM-APICLCHGI
+SbTC93172        PAPPAQPQPTECMTPLAGMVPCTDYLTNITVLT--PPGECGDGLKSVISD-APICLCHGM
+SbTC93174        PAPPAQPQPTECMTPLAGMVPCTDYLTNITVLT--PPGECCDGLRSVISD-APICLCHGM
+TaTC261008       -SPSPSQQLASCLGPLGRVITCAPYLTD-SVPA--PPSTCCDGFRSLVGSSARICLCHAI
+ZmTC277767       RLPPCPPAPTECYTSLSGMMPCADFLTHNEVPPMPPTVACCDGLRSLVTN-ASICLCHIV
+                                   :: *  : *.       *     :.::*::   * ***** :
+
+OsNP1110563      NGNISKLMPAPIDLTRIMSLPATCGVAPPVEALTKCFTGPVPPLM--PASTPAAAPSPSP
+OsNP1113205      NGDMSRMISRPIDPVRMVLLPAMCSTMLPPQSLFICYSKPTLLIICFFLFCQK-------
+OsNP932290       NGDISKFMPAPIDFARMMSLPATCGVAPPVEALTKCFTGPVPPLM--PAPTPAAAPSPGP
+OsQ653W4         NGDLSKFLPLPVDMMKMMTLPNTCGATVPLQTFSMCNTPSVPPLMPQSPSAAAP--APGV
+OsQ67X48         NGNIGKFMPAPIDLTRMMSLPATCGVTPPVEALTNGTSATVDACS--YSCC---------
+SbTC93172        NGNMNQFLPKPVDPIRMLILPLACGTVLPLQTLFGCNSQQVPPIMPPMPAEPPTMTPPSA
+SbTC93174        NGNMNQFLPKPVDPIRMLILPLACGTVLPLQTLFACNSQQVPPIMPPMAAEPPVT-PPSA
+TaTC261008       IGNLSTLARGEIDQLRLLVLPLTCSTIVPPDLLLMCILSPVPPIMPQHYGA---------
+ZmTC277767       NGNINKLLPAPMIPVRMVALPRFCVVRFPRAILRRCIRGHLPPMNPPPPPEASX------
+                  *::  :    :   ::: **  * .  *   :                           
+
+OsNP1110563      EPST--------------------------------------------------------
+OsNP1113205      ------------------------------------------------------------
+OsNP932290       SASLQDIRMAKVVAHGVLEEETIMFKGKRKQTDRLT-KIMHA--SLYGRETSR-------
+OsQ653W4         SP----------------------------------------------------------
+OsQ67X48         -C---SISISR--------AISLIYSNK-MDAHKLG-AIK--------------------
+SbTC93172        SP----------------------------------------------------------
+SbTC93174        SP----------------------------------------------------------
+TaTC261008       -----DVRERL----GALGG----------------------------------------
+ZmTC277767       -------RRNHH-----LHRQQHHHRNH-HQQHRHQNRRRHHHQSPSTTPTTPAAAPPKS
+                                                                             
+
+OsNP1110563      --------------------------------
+OsNP1113205      --------------------------------
+OsNP932290       --------------------------------
+OsQ653W4         --------------------------------
+OsQ67X48         --------------------------------
+SbTC93172        --------------------------------
+SbTC93174        --------------------------------
+TaTC261008       --------------------------------
+ZmTC277767       PSDPPPATPPESSSDPPSTPAATPPATPSPSS
+                                                 

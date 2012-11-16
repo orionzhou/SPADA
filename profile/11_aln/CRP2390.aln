@@ -1,0 +1,68 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+HvBM442257      ---MAVSRTAMSVSFLVAVVVAAASVPAATAQAPCDSVCRLKAATETFAAAPPTEKAAAV
+HvBQ468819      --MALQSRTAAVALLLIAVVVAAASVPAAT------------------------------
+OsAU064180      MAVAQVSRTAVVALVLVAVVVAAAYVPAXT------------------------------
+OsQ6Z2M1        --MAQVSRTVVAALLLVAAVVAASPVASAA------------------------------
+OsTC264101      MAVAQVSRTAVVALVLVAVVVAAAYVPAAT------------------------------
+TaBF483903      ---MAQSRTTAVALLLIAVLVAAASVPAAT------------------------------
+TpQ41615        ---MADTKMTVVALLLIS-MLKA-------------------------------------
+ZmTC249197      ---MAQSMRIVALALVALLVV-AAAAPVAT------------------------------
+ZmTC249198      --MAAQSTRMVALALVVLLVAATALVPTAT------------------------------
+                      :       .:   :  :                                     
+
+HvBM442257      EILSNKTEGAVSSAESAHHAAGLATRCLDDCNKLCGSSTR-DLACSTRCETICRVEVESL
+HvBQ468819      -----------------------AFGCFDDCYERCANGAKEDPACTKMCGEACGVAGKVV
+OsAU064180      -----------------------AYGCFDDCYERCANGKT-DDACNSMCKQASAAPAGPR
+OsQ6Z2M1        -----------------------TYGCFEDCYERCASGKK-DEACTKMCKEACGGAATDG
+OsTC264101      -----------------------AYGCFDDCYERCANGKT-DDACNSMCKQACSGAGGGP
+TaBF483903      -----------------------AFGCYDDCYERCANGAKEDPACTKMCGEACGVGGKGA
+TpQ41615        -----------------SSFPSVPALCLDDCIARCSNGKN-LDSCTNMCNMACIIPTTLP
+ZmTC249197      -----------------------AYGCYDDCYERCANGKK-DPACTKMCNQACGSTDQGA
+ZmTC249198      -----------------------AYGCYDDCYERCANGKKDDPACTKMCNQACGSTDKGA
+                                          * :**   *...     :*.. *   .       
+
+HvBM442257      SFAADVYAKS--------------------------------------------------
+HvBQ468819      GGAAAGVVGAGAS----AGGAGAATPTA--------------------------------
+OsAU064180      H-GANRGFDRRRRARAPPVHRSXYPPVAAXIIYTRLFVCLLLIQV---------------
+OsQ6Z2M1        HAPAAG-AGAGAGAGA-AVGAGA----------------KAAIGVGAGAGAGAGAGVGAG
+OsTC264101      AEAPDEA-----------------------------------------------------
+TaBF483903      GAAGGAPAA---------------------------------------------------
+TpQ41615        DGTDPATIITGK------------------------------------------------
+ZmTC249197      GAAGAAPA----------------------------------------------------
+ZmTC249198      AAGAPA------------------------------------------------------
+                                                                            
+
+HvBM442257      ------------------------------------------------------------
+HvBQ468819      ------------------------------------------------------------
+OsAU064180      ------------------------------------------------------------
+OsQ6Z2M1        AKAAIGAGTGAGAGAGAGAGVGAGAKAAIGAGAGVGAGAGAGAGAAVGAGAKAAIGAGAG
+OsTC264101      ------------------------------------------------------------
+TaBF483903      ------------------------------------------------------------
+TpQ41615        ------------------------------------------------------------
+ZmTC249197      ------------------------------------------------------------
+ZmTC249198      ------------------------------------------------------------
+                                                                            
+
+HvBM442257      ------------------------------------------------------------
+HvBQ468819      ------------------------------------------------------------
+OsAU064180      ------------------------------------------------------------
+OsQ6Z2M1        AGAGVGAAIGAGAKAAIGAGAGAGAGVGAGAKAAIGVGAGVGAGAAVGAGVGAAAKVAGA
+OsTC264101      ------------------------------------------------------------
+TaBF483903      ------------------------------------------------------------
+TpQ41615        ------------------------------------------------------------
+ZmTC249197      ------------------------------------------------------------
+ZmTC249198      ------------------------------------------------------------
+                                                                            
+
+HvBM442257      -------------
+HvBQ468819      -------------
+OsAU064180      -------------
+OsQ6Z2M1        AEGAAGAAPKVYA
+OsTC264101      -------------
+TaBF483903      -------------
+TpQ41615        -------------
+ZmTC249197      -------------
+ZmTC249198      -------------
+                             

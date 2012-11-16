@@ -1,0 +1,77 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+CaP01542        -------------------------------------TTCCPSIVARSNFNVCRLPGT-P
+DcP01541        -------------------------------------KSCCPTTAARNQYNICRLPGT-P
+HpP60057        -------------------------------------KSCCRNTLARNCYNACRFTGG-S
+HvBE194957      -----------MGLKGVMVCLLILGLVLEQ--VQVEGKSCCRSTLGRNCYNLCRVRGA--
+HvBE558377      KACVLQDSQPAMGLKGVRVCLLILGLVLEQ--VQVEGNSCCRSTLGRNCYNLCRVRGA--
+HvBE603091      -----------MGLKGVMVCLLILGLVLEQ--VQVEGKSCCRSTLGRNCYNLCRVRGA--
+HvBG416308      -----------MGLTGVMVCLLILGLVLKH--VPVECNSCCTSTLRRNCYNLCRVRGA--
+HvTC131445      --------MGSKGLKGVMVCLLILGLVLEH--VQVEGKSCCRSTLGRNCYNLCRVRGA--
+HvTC139438      -------MAPSKSIKSVVICVLILGLVLEQ--VQVEGKSCCKDTLARNCYNTCRFAGG-S
+OsQ5Z551        ----------MEGVKSLIMCALVLGLVLQQEKIHVEAKSCCPSTSARNVYNSCRFAGG-S
+PlP01540        -------------------------------------KSCCPSTTARNIYNTCRLTGT-S
+PlP59358        -------------------------------------KSCCPSTTARNIYNTCRLTGA-S
+PpP07504        -------------------------------------KSCCRNTWARNCYNVCRLPGTIS
+PtP01539        -------------------------------------KSCCPTTTARNIYNTCRFGGG-S
+TaCA716962      --------MGSKGLKGVMVCLLILGLVLEQ--VQVEGKSCCKSTLGRNCYNLCRARGA--
+VaP01537        -------------------------------------KSCCPBTTGRBIYBTCRFGGG-S
+VaP01538        -------MEVVR-GSSLVLLVLLLGA-LLV--SQVESKSCCPNTTGRNIYNACRLTGA-P
+VaP08943        -----------------------------F--RNVESKSCCPNTTGRNIYNTCRLGGG-S
+VaP32880        -------------------------------------KSCCPNTTGRNIYNTCRFGGG-S
+VaP83554        -------------------------------------KSCCPNTTGRNIYNTCRFAGG-S
+VaQ9S9A0        -------MEAAR-ASSMLLLVLLLGA-LLV--SSVESKSCCRNTTGRNCYNACRVPGT-P
+VaQ9S9A1        -------MEGAR--ASSLLLLLLLGALVV---YDVESKICCRAPAGKKCYNLCTAL--LS
+VaQ9S9A2        -------MEVVR-GSSFLFLVLLLGA-LVV--SNVESKSCCPNTTGRNIYNACRLTGA-P
+                                                     . **     :  :  *       
+
+CaP01542        EALCATYTGCIIIPGATCPGD-YAN-----------------------------------
+DcP01541        RPVCAALSGCKIISGTGCPPG-YRH-----------------------------------
+HpP60057        QPTCGILCDCIHVTTTTCPSS-HPS-----------------------------------
+HvBE194957      QKLCRSVCRCKLTSSRKMPYKAFPNCPL-GPLR---------------------------
+HvBE558377      QNLCAGVCKCKLTSSGKCPTG-FRKLGPCVQLR---------------------------
+HvBE603091      QKLCAGVCRCKLTSSGKCPTG-FPKLALVSNLE---------------------------
+HvBG416308      HKLCAGVCKCKLTSSGKCPTC-LPKLALVSYSHDPD----------TVKYCNFEV-----
+HvTC131445      QKLCANACRCKLTSGLKCPSS-FPKLALVSNSGKGN----------ELLLFHITSSF---
+HvTC139438      RPVCAGACRCKIISGPKCPSD-YPKLNLLPESGKRYHCYSFQLVHNDL------------
+OsQ5Z551        REACAKLSTCKHFDGSCQP-P-YDHLTLNYDGG----CCPSSTARNIYTSCRFVGGSYDS
+PlP01540        RPTCASLSGCKIISGSTCBSG-WBH-----------------------------------
+PlP59358        RSVCASLSGCKIISGSTCDSG-WNH-----------------------------------
+PpP07504        REICAKKCDCKIISGTTCPSD-YPK-----------------------------------
+PtP01539        RPVCAKLSGCKIISGTKCDSG-WNH-----------------------------------
+TaCA716962      QKLCANVCRCKLTSGLSCPKD-FPKLVLESNSXKEN----------ELLPIFIYYLFF--
+VaP01537        RZVCARISGCKIISASTCPSY-PBK-----------------------------------
+VaP01538        RPTCAKLSGCKIISGSTCPSD-YPKFYCTLGCE------SSQCATNSN------------
+VaP08943        RERCASLSGCKIISASTCPSD-YPKFYCTLGCQ-SSKCASITTPPNSE------------
+VaP32880        REVCASLSGCKIISASTCPSY-PDK-----------------------------------
+VaP83554        RERCAKLSGCKIISASTCPSD-YPK-----------------------------------
+VaQ9S9A0        RPVCASLCDCKIISGSKCPAD-YPRFYCTLGCQ------STQCA-NSN------------
+VaQ9S9A1        SETCANTCYCKDVSGETCPAD-YPAFYCNLGCQ------SSLCA-KSN------------
+VaQ9S9A2        CPTCAKLSGCKIISGSTCPSD-YPKFYCTLGCE------SSQCA-NTN------------
+                   *     *                                                  
+
+CaP01542        ---------------------------------------------
+DcP01541        ---------------------------------------------
+HpP60057        ---------------------------------------------
+HvBE194957      ---------------------------------------------
+HvBE558377      ---------------------------------------------
+HvBE603091      ---------------------------------------------
+HvBG416308      ---------------------------------------------
+HvTC131445      ---------------------------------------------
+HvTC139438      ------LT-------------------------------------
+OsQ5Z551        CARLSGCKIDFGRCQPPYDHLTLHSDTGKMDLTINSISLFFCTVN
+PlP01540        ---------------------------------------------
+PlP59358        ---------------------------------------------
+PpP07504        ---------------------------------------------
+PtP01539        ---------------------------------------------
+TaCA716962      ---------------------------------------------
+VaP01537        ---------------------------------------------
+VaP01538        ------GDAEAVRCKTACSDLCQDVDDA-----------------
+VaP08943        ------VDAEAVRCKAACSNLCDFGVTTNQEIQDD----------
+VaP32880        ---------------------------------------------
+VaP83554        ---------------------------------------------
+VaQ9S9A0        ------GDAEAVRCKTACSDLCGSTDHDVDDA-------------
+VaQ9S9A1        ------GEAEAVRCMTACSDLCGSGITATQDVDDA----------
+VaQ9S9A2        ------GDAEAVRCKTACSDLCNNDVDDA----------------
+                                                             

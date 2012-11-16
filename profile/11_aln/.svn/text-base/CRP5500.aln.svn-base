@@ -1,0 +1,80 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr2_12728564c      -----------------MKLKAFSS-FTFIT--IV---KYVMQTXXFD----ANKL----
+Atchr3_15929118c      ----------------------------IVSAVYRGLKSST-------------------
+Atchr5_24786180c      ------------MSSLYF-------AILCLFMIFLVPLHEFGNA----------------
+BnCD845099            ------------MSTSRF----------AFFLYILVFLGSFHESAKFKVDA---------
+BnTC1683              ------------MI-------SKTTFVRILMVSLLAI-----GRCR-QLDV---------
+BnTC3278              TNKTFSFKEKSQCQHLNL----------LSFVSSWFFFATFHECVN-K-VD---------
+HvTC135144            ------------MMSYKLSGYTNAKLATIIFFVLLGCHASSVHCGR-QLDD---------
+HvTC137820            ---------------------MRGKAAPILLLAILVCHAFWANAIR-QPDD---------
+HvTC142452            ------------MAKLT----MNGTRVVMIMIVILACTMIQSECRP--------------
+HvTC148937            ------------MSKLT----MNGTRVVMLMIVILACNKIHSQCRP--------------
+HvTC150016            ------------------MKNSNQTRGLVLLLLVLGCLTAHSNCRAMDEMVDEEKI-IV-
+HvTC151317            ------------MANYYM---KQAFQFLVLFLVLLGCFASRAQSEE--------------
+OsNP1107851           -----------------MEMKNVDSRLLFLLLLIIGCAAVPAVQCRSNGDMLGEKI-NI-
+SoCA288494            -----------------MEGHKMQN--GALVVLSLLCFSIHMAGGTVMDEMSIQKV-TI-
+SoTC54654             -----------------MNMSDRCK----ALVLILLLFVFLAQCR-PQEDIHVGTARGRA
+TaCD896701            ---------------MARSMNPLHTTIVLSVVLLLVFLANHGQSRNLDPDMGNGSK-VI-
+TaTC256890            --------------------MERSKII-MLVMIILPCLVTFSQA-Q-KPDD---------
+TaTC258559            -----------------MMKNMMQTRRLVLLLLVLGCFTSHANCQAKKETMDEEKI-VI-
+TaTC271322            ------------MANYYM---KQAFQFLVLFLVLLGCFASRAQS----------------
+ZmTC254003            ------------MARIT----MEASKAVLLLMVILGSLMIPAYSRN--------------
+ZmTC254312            ---------------ME----ASSKAALLLLMVIVGCLTIPAHSRN--------------
+ZmTC254921            -----------------MNMSNMCG----ATILVLFLFVFLAQCGRPHDDEVVGTARGRR
+ZmTC257503            -----------------MNMSNMCG----ATILVLFLFVFLAQCR-PHELDVVGTSYGIT
+ZmTC257919            ----------------------DSKVMVILLAVLLALFLSPAE--R-EGDDVAERSTGGH
+                                                                                  
+
+Atchr2_12728564c      ---------------GSSVCHL--GKCPKHREEVCYCCFN--DRSRCYRSLYKCV--AVC
+Atchr3_15929118c      ---GTNLEGFEASKLNLPKCLPGRCE---G-RKKCFCCRN-VRPRLCAPTKEACE--ADH
+Atchr5_24786180c      ------QGSEAELQLDPSMCLRVECAKHRN-QKWCFCCAGL--PRTCFLDKRGCT--SVC
+BnCD845099            --------------ARAPYCYR-------G-PKSDWCCIT-KPMDSCRGTRKECD--ANC
+BnTC1683              ------GEIKSSSNFIFEKCVRDRCG-----KEECWCCVV-DPLRPCKKTDKECN--ADG
+BnTC3278              --------------AAALTCTR-------L-PNSNWCCNT-TP-RRCRGSKVECD--AIC
+HvTC135144            -----NIRSSAARRPPIILCVKNT-C---D-HHTCWCCVSQFPGHHCYDNLDDCR--KVC
+HvTC137820            -----WHEIL---RKECKLSVCHEIG---G-HKSCFCCLA-TPDSPCWFKEDECK--KAC
+HvTC142452            -------------IEQMNNNKLQMCLCSRI-NKVYCCDLG----GGCYRDELQCI--KGC
+HvTC148937            -------------IEQMNNIKLQMCTCSRR-KSVYCCDLG----GRCFRDELQCI--KGC
+HvTC150016            --------------PPCRFCLKNKELIPR--SPLPWCCII--EGGLCYKTKVECQ--INC
+HvTC151317            ----------KGHGPDIFSCERQLMR---P-CNLCYCCLYGNNKGACYATDVDCR--LNC
+OsNP1107851           --------------PPGPLCAKRPDLC-----KNCWCCEV--SDGQCYQSLEACQ--VNC
+SoCA288494            ---------------PKWLCYRNRIGCKTISGNLCWCCLA--GRGHCYVEQSECE--ANC
+SoTC54654             A---------FSLTGDGETCFLK-----HQNNRNVYCCRQ--HPNKCYETFQWCL--AVC
+TaCD896701            --------------LPGDLCRAR--SCAD--MPGCYCCM---SDDICRPSLVACS--KTC
+TaTC256890            -------------SSKIQICLCQKNPPPCP-NDLCFCCALE--QDKCFRTSQECICGPDC
+TaTC258559            --------------PPCRFCLKDKQLIPP--TPLPWCCIL--EGGLCYKTKVECQ--INC
+TaTC271322            ----------QGHGPDIFSCERQLMR---P-CDLCYCCLYGNNKGVCYATDVDCR--LAC
+ZmTC254003            -------------VVRFCKCEKRACKKGAISEGVCYCCPG----GSCYSTVLDCS--TAC
+ZmTC254312            -------------VVRFCKCQKQTCKKGAIFEAVCYCCPG----GSCYSTIQDCA--PAC
+ZmTC254921            A---------AFSLTENGYCDTE-----HQNSKVVYCCSH-PQPKHCYATFMQCR--ANC
+ZmTC257503            -------------KRKDVFCQAG-----HIDNKLVYYCMHQKQKPICYDTLQECL--AKC
+ZmTC257919            RWLPGRKEMSERSRITIKLCVRQFCGSGIH-WRNCFCCAL-LPDRPCELDQKKCW--DTC
+                                                                    *      *      
+
+Atchr2_12728564c      NRLVH-----------------
+Atchr3_15929118c      TCH-------------------
+Atchr5_24786180c      KRESPSMA--------------
+BnCD845099            NPKRRL----------------
+BnTC1683              KCPIPWS---------------
+BnTC3278              KPKRL-----------------
+HvTC135144            PHPPTPSLPMAQQTMF------
+HvTC137820            SQVQLPPSSSGGTNQIVP----
+HvTC142452            APGCKRSHTLTEP---------
+HvTC148937            ALGCKQSRTLTEP---------
+HvTC150016            GC--------------------
+HvTC151317            PPPKFT-LP-------------
+OsNP1107851           PLPSPPAI--------------
+SoCA288494            HAK-------------------
+SoTC54654             YNHNCKWSTAHPANDA------
+TaCD896701            GRSSSTRVLRRPPV--------
+TaTC256890            PPLEATSTHPLPL----P----
+TaTC258559            GC--------------------
+TaTC271322            PPPKFT-LP-------------
+ZmTC254003            RCNKLSHALHFE----------
+ZmTC254312            RCDKLSHAPLNLTDR--P----
+ZmTC254921            YVHKRK----------------
+ZmTC257503            L---------------------
+ZmTC257919            PGAEPRQLLPAAAEAASPGDFA
+                                            

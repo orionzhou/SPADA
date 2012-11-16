@@ -1,0 +1,79 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+HvTC134230      ------MAAAALLAVAALLAVAGAA-----AAPQEAQCWQCYTSCMQQKCNGYR------
+HvTC134552      ---MAAAKIAVLLAMASLFAAAGAADPQLI---KGAHCWRCYSSCMHKC-DGYRDAAVLS
+ScTC3114        MVSMAAAKIAALLAVAALFAAAGAADPQPV---KGAHCWQCYSSCMPKC-DAYRDAATRS
+TaBJ265870      ------------------------ADPQPAQVATEAQCWPCYSSCMHTCDDGHGVTPAPD
+TaCA593516      MVSMAAARIAVLLAVAALFTAAGAADPQPA---KGAHCWRCYSSCMHKC-DGHHDAAARS
+TaCA594378      MVSMAAAKLAVLLAVAALFAV-AEA-----ANPQEAHCWQCYYSCMQQKCGGYR------
+TaTC232615      -----------------------------------------------------GDAAARS
+TaTC269550      ------------------------------------------------------------
+TaTC270290      ---MAAAKIAILLVAAALLAAAGAADPQPPQLSTEAQCWPCYSSCMHTCDDGHGGTPAPD
+                                                                            
+
+HvTC134230      ----DAAAVDNT------AYVPVSNFTGGTAA-----TVRPA------------------
+HvTC134552      ANRTQPAVHTTVDDGAAAASIPV-NSTDGTAA-----IVPSTDGAAAHLADGYEDKDDDD
+ScTC3114        VNRTQPVVHTTDDDGAVAASIPV-NPTDGTAT-----IVHSTDGTLATVDKADGAVAHIG
+TaBJ265870      VNRSQPAAHPAVDNGAAAASVPV-NSTDGTAV-----VVHSTVGTLAAIHKT-DGSGAPI
+TaCA593516      ASRTQPAVHTTVDDGAASRLHPR-QLHQWHCSSRTLHRWHSNHRSCSRPHR---------
+TaCA594378      ----NPAAHTAVDDGTAAASVP-LNSTDGTTA-----VVHPA------------------
+TaTC232615      AAVLSPAVHTTVDDGAAASSIPV-NSTNGTAA-----VVHSTDGTLATVDKTDPAVGHIG
+TaTC269550      -------------------------------------AVDKTDGAVAHIADGYDDRDDDD
+TaTC270290      VV----------------------NSTDGSAV-----GVRSAVGTLAAIHKTEDGSSAPI
+                                                                            
+
+HvTC134230      ------------------------------------------------------------
+HvTC134552      DKDDDNDDKNDKDDDDD--DDKD-------DKD-E-DDDDDKDDKDGDDDDYDDDDDDDD
+ScTC3114        DDNDDDD----KDYDKG--DDKD-------DKD-D-DDK-DDDDDDHDDDEKDDDDDDDD
+TaBJ265870      AD--------------GY------------------------------------------
+TaCA593516      ------------------------------------------------------------
+TaCA594378      ------------------------------------------------------------
+TaTC232615      DANDDDNKDYDKDDDKDDGDDKDD---NKDDKD-DDDDKDDKDDDDKDDDDDDDDDDDDD
+TaTC269550      KG--------DKKDDDDYGDKNDKDDDDKDDKDDDDDDKDNKDDDDNDDDKDDDDENDDN
+TaTC270290      AD--------------GY------------------------------------------
+                                                                            
+
+HvTC134230      ---DGG--AHVAGWNENYCKCNKACIVDCYKALPPVCYQMCVSETCAKLPPCKQAECYKA
+HvTC134552      DDDDDDDNDGGRGDWEKYFRCKKSCIVDCYKRLPPVCYKMCISESCLNMPPHKQAHCYKS
+ScTC3114        DDDDDDDDDGGRSDWGKYLRCKKMCIVDCYRSLPPVCYKM--------------------
+TaBJ265870      DDYKGGNKSDGEGYYEKYFECKKKCIVDCYKDLPPVCYKMCISETCLTLPPCKRGDCYKA
+TaCA593516      ------------------------------------------------------------
+TaCA594378      ---DGGAAAHVAGGYESYCKCNKACILDCYKALPPVCYQMCVSETCSKLPPCKQAECYKA
+TaTC232615      DDDDDDDDDNGGSDWAKYFKCKKKCIVDCYRSLRHRHRHHHH------------------
+TaTC269550      DDDDDDYYDDSRSDWRKYFKCKKMCIVDCYRSLPPVCYKMCISETCLNHPPYKQADCYKS
+TaTC270290      DE-KGGNKGDG----EEYFECKKKCIVCCYKDLPPVCYKMCVSQTCLALPPCKRGDCYKA
+                                                                            
+
+HvTC134230      CGEKC-----------YHKQPSPGPKPPSPNPGPKPPSPNPGPKPPSPKPTPPKPAPPNH
+HvTC134552      CGHKC-----------YHKHPSPGPKP-KPKPKPPKPKPTP-PKPTPPKPAPPKPMPPPS
+ScTC3114        ------------------------------------------------------------
+TaBJ265870      CGNKC-----------FHNQPYPGPNPG-PKPTPPPPTP-PKPVPPPPKAGA--EGEAKD
+TaCA593516      ------------------------------------------------------------
+TaCA594378      CGDKC-----------YHKQPSPGPKPPSPK-----------------------------
+TaTC232615      -------------------HPSPGPKP--PSPKPPKPKPTP-PKPTPPKPAPPKPMPPPS
+TaTC269550      CGHKCLDHHHHHHHHHHHHHPSPGPKPPSPKPPKPEPKPTP-PKPTPPKPAPPKPMPPPS
+TaTC270290      CGIKC-----------FHNQPTPTP----PKPMPPPPSP-PKPMPPRPSPIPPKPSPPKA
+                                                                            
+
+HvTC134230      GG-----------TPRT---PPVPPKRPCPCPPSAPKPKP-----------KPKPCPPKP
+HvTC134552      PMPPKP---MPPPSPMPPKPTPPKPLPKRPCPPNAPKTKP----KPKRKPPPKTNPKPKP
+ScTC3114        ------------------------------------------------------------
+TaBJ265870      A-------------------VPVTGY----------------------------------
+TaCA593516      ------------------------------------------------------------
+TaCA594378      ------------------------------------------------------------
+TaTC232615      PTPPKPTPPMPPPSPMPPTPTPPMPPT--PTPPMPPPSPMPPTTTPPKLPSPPNTPKQKP
+TaTC269550      P--------ISPPSPMPPKPTPPKPLLKRPCHPNARKPRLPCPSK------TNSKPKAKS
+TaTC270290      A-------------------AKATGY----------------------------------
+                                                                            
+
+HvTC134230      KPKPPCPPAGSVSASKKISDN
+HvTC134552      KPKPPCPPSANVSTSTNTSYN
+ScTC3114        ---------------------
+TaBJ265870      ---------------------
+TaCA593516      ---------------------
+TaCA594378      ---------------------
+TaTC232615      KPKAPVSAQD-----------
+TaTC269550      KPKPPCPSSATVSVSTNTSNN
+TaTC270290      ---------------------
+                                     

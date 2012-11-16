@@ -1,0 +1,82 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+LeTC154303             ----MAQPKF-NIITLSAILLCFLLMFASETQITEAKHCGKHSKSWNGKCFHK-KCNHWC
+LeTC166967             --MN---TKV---ILA--LLFCFLLVASNEMQVGEAKVCQRRSKTWSGPCINTGNCSRQC
+MtAJ499425             --MASSSPKLFTIFLF--LILVVLLFS---TSEVQAKLCRGRSKLWSGPCINS-KCKRQC
+MtBE124525             MAMGYNLNKMY---LFS-CASSILSLF---CAEVEEKVCGRPNRTWSGPCIDS-DCDEAC
+MtBF649584             --MTSSASKFYTIFIF--VCLAFLFIS---TSEVEAKLCQKRSTTWSGPCLNTGNCKRQC
+MtTC101060             --MASSTLKFNTIFLF--LSLALLLFF---TLEVQGNICKRKSTTWSGPCLNTGNCKNQC
+MtTC102850             --MSSSVSIFYTIFML--LSLALLLIF---TCEVKAKICDSPSRTWSGPCIRDSVCNTTC
+MtTC105086             --MASYARKFLTIFLL--LSVAVLFFS---TLEVEAKVCQWRSRTWQGICGNTIDCRNKC
+MtTC106263             ----------------------LLLLS---TCEVEAEVCRKKSITWLGLCINNLSCSTTC
+MtTC98064              --MASSALKYYTFFLF--FILALILLP---TLEVQGNTCQRKSKTWSGPCLNTANCKNQC
+MtTC99324              --MTSSATKFYTIFVF--VCLALLLIS---ICEVEAKVCQKRSKTWSGPCLNTGNCKRQC
+MtgAC140103_15087      --MTSSLSKFYTIFILILLCLVFLLIF---TWEVEAKLCGKPNRTLSSPCIDS-VCYAKC
+MtgAC140103_8086       --MTSFVSKFYTFFI--LLCLVFLLIF---TWEVEAKLCGRPSRTLSRPCIDS-ECDAKC
+MtgAC151666_75632      -MTLSTASKFYIIFMF--HCL--LLIS---TWEVEATLCGRKSRTLSGRCTSNSDCSTKC
+MtgCG924629            -----------------------------------------------------GICKNAC
+MtgCR322568            --------------------------------AMKPKICDWRSKTWSGICINTGNCKRQC
+NtTC1297               ---------------------------------QNAKYCGKPSKGWNGKCFPN-KCNHWC
+StTC119918             ----MAQPKV-NIITLSAILLCFLLMFASETQITEAKHCGKHSKSWNGKCFHN-KCSSWC
+                                                                              *   *
+
+LeTC154303             MEKE-DAKYGSCS----HGDCYCYYHC---------------------------------
+LeTC166967             KQQE-DARFGACHRSGFGFACFCYFKC---------------------------------
+MtAJ499425             INVE-RAVSGGCHLDNTGVFCFCDFKC---------------------------------
+MtBE124525             LDLEFAAIYGSC--GGTSYDCFCFFKC---------------------------------
+MtBF649584             INVE-HATFGACHRQGFGFACFCYKKCAPKSILLTLFFKTIIKMPKLKYNNINVTINHYD
+MtTC101060             INVE-HATFGACHQDGFGFACFCYFNC---------------------------------
+MtTC102850             IDAE-YSNYGAC--GGYGFDCICFFKC---------------------------------
+MtTC105086             INVEFANVGGECKRDGLGVACFCYYNC---------------------------------
+MtTC106263             VSE--HALYGAC--QGDYVHCNCYFTC---------------------------------
+MtTC98064              ISKEPPATFGACHRDGIGFACFCYFNC---------------------------------
+MtTC99324              VDVE-NATFGACHRQGYGFACFCYKKC---------------------------------
+MtgAC140103_15087      IDSDLDAVSGSCE-GFFTSECFCYYEC---------------------------------
+MtgAC140103_8086       IDSELDAVSGYCE-GFITSDCFCYYEC---------------------------------
+MtgAC151666_75632      IKWE-YATYGSC--GGFYIDCICFFNC---------------------------------
+MtgCG924629            IYLE-HAAFGACHRDGLGFACFCYFNC---------------------------------
+MtgCR322568            INVE-HATFGACHRQGFGFACFCYKNC---------------------------------
+NtTC1297               K-KE-DAAYGNCY----NKYCYCYYKC---------------------------------
+StTC119918             MEKE-DAKYGSCS----HGDCYCYYHC---------------------------------
+                                * *        * *   *                                 
+
+LeTC154303             ------------------------------------------------------------
+LeTC166967             ------------------------------------------------------------
+MtAJ499425             ------------------------------------------------------------
+MtBE124525             ------------------------------------------------------------
+MtBF649584             RCISPPDICEVEPKLCERRSKTWSGPCLISGNCKRQCINVEHATSGACHRQGIGFACFCK
+MtTC101060             ------------------------------------------------------------
+MtTC102850             ------------------------------------------------------------
+MtTC105086             ------------------------------------------------------------
+MtTC106263             ------------------------------------------------------------
+MtTC98064              ------------------------------------------------------------
+MtTC99324              ------------------------------------------------------------
+MtgAC140103_15087      ------------------------------------------------------------
+MtgAC140103_8086       ------------------------------------------------------------
+MtgAC151666_75632      ------------------------------------------------------------
+MtgCG924629            ------------------------------------------------------------
+MtgCR322568            ------------------------------------------------------------
+NtTC1297               ------------------------------------------------------------
+StTC119918             ------------------------------------------------------------
+                                                                                   
+
+LeTC154303             ---
+LeTC166967             ---
+MtAJ499425             ---
+MtBE124525             ---
+MtBF649584             KKC
+MtTC101060             ---
+MtTC102850             ---
+MtTC105086             ---
+MtTC106263             ---
+MtTC98064              ---
+MtTC99324              ---
+MtgAC140103_15087      ---
+MtgAC140103_8086       ---
+MtgAC151666_75632      ---
+MtgCG924629            ---
+MtgCR322568            ---
+NtTC1297               ---
+StTC119918             ---
+                          

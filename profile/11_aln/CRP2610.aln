@@ -1,0 +1,32 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr1_11044652       MGAKWNSMIIM--VFVVTMVIAMENVNG--ETKAQCHEDCILGCATTGRIPI--T-----
+Atchr1_11047012       MGAKWNSMIIM--VFVVTMVIAMENVNG--ETRAQCHEDCITDCATTGIIPI--K-----
+Atchr4_09205964c      -MPKLEPVSPLPSSQLSLKLKQFNYIHI--HNTYICMCDCMTACALQQPNYI--L-----
+BnTC3625              MGAKWNSMIAI--VFVVAMIMAMENISG--ETLPQCREDCIQGCATTGALPY--Q-----
+HvTC146864            -MAARGGKA-----LVLAMLISFLAVQGTLGDLHKCFCGCYTKCMKQTAGH--DACVKQC
+McBE034894            -MAFNKSVAI----LLIAMVV--LLVSP--KIQADCVADCVASCRQISITTD-QYCMG--
+OsNP323133            -MARRAASV-----ALACAVVAAAMVLPEAEAGQNCICECVKLCMRTRIPSIEAQCSGKC
+ZmTC254667            -MARAAAMM-----VVLAVVALALAAAPRAEAGQNCICECMKLCVRTRIPSM-GQCAGKC
+                                     :   :               *   *   *                
+
+Atchr1_11044652       ----CLQNCYRRCPGKPRRTLGNHFS------------------------EGKNKQTI--
+Atchr1_11047012       ----CLQNCYRRCPGKPRRTLGHHFS------------------------EGKKKIKI--
+Atchr4_09205964c      ----C------------------TRQINHTYVNKCMY-------------I---------
+BnTC3625              ----CLQSCYRGCRGLPPAIKAGAKRIEEIVMNQCWT-------------LGTFKLLL--
+HvTC146864            MN--PHGKCFFGCRRKSTPSMMALA----DHVNPDR-DEDTMTVAAEGADHGKFNVTEGS
+McBE034894            -------ICPGDCAKDPDQDKLKLGQ--------LWSQRGQRL-----KEAGKLE-----
+OsNP323133            RETACVRSCEEACARKGFPALPGEGI-GACELEPLTPDEAHMLH----------------
+ZmTC254667            REMACTKSCEDACTRKGFPGLPSEGI-PTCELEPLTPDETHMLH----------------
+                                                                                  
+
+Atchr1_11044652       -----------------------------------
+Atchr1_11047012       -----------------------------------
+Atchr4_09205964c      -----------------------------------
+BnTC3625              -LHPYGINCVTLLNK--------------------
+HvTC146864            MAVPAGGADHGEFNVTEGSMAALAGGCRSRRVQCR
+McBE034894            -----------------------------------
+OsNP323133            -----------------------------------
+ZmTC254667            -----------------------------------
+                                                         

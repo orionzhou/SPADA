@@ -1,0 +1,77 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr5_04481878c      ------------------------------------------------MMMGMKFFSFYV
+GmTC224530            ---------------------------------------------METILRALCWIAFLV
+GmTC231510            ---------------------------------------------MYRTSMSMPL---MV
+MtBE998701            -------------------------------------------------MLIRVL---MV
+MtgCR963577           ---------------------------------------------METKLRPLCLIAFIA
+OsNP891975            -------------------------------------------------------MAVAA
+OsTC273230            ----------------------------------------------MEHIRSFLLAALAV
+PpCV267254            ----------------------------------------------DKLLSCFLGISSLM
+PsTC41                ---------------------------------------------MGSLSRSGVYFGIMT
+PsTC8094              -------------------------------------------MDSRRLKRSGIV----C
+PtBX248964            -------------------------------------------MDARRLWRSGIL----C
+PtTC52395             MLAPANAAKRLLVVRLLAKLQLQPFFIFYFDFDFEHCLVVEPKMDARRLWRSGIL----C
+PvCV533448            ----------------------------MMIIKKKKKKKKKKKMKEWLMMRSWVI---VL
+                                                                                  
+
+Atchr5_04481878c      VLL-------------------L-VAASSGMRINGQSVSCLNQ-LAPCLNYLNGTKEVPQ
+GmTC224530            LLT-------------------C------IPRGSAQDSSCLNK-LSPCLNYLNGTEDPPD
+GmTC231510            V---------------------LGMTLVICLANGQATPPCAKH-LSPCLDVMNSTK-PPD
+MtBE998701            V---------------------ISMS-VISLIDAQVLPPCADQMLLPCIDYINSTQ-PPD
+MtgCR963577           LVT-------------------L------VSKGNAQDSSCLNK-LAPCLNYLSGTKNPPD
+OsNP891975            AVAAASETATTVPVAALPPLPALPVTA-AASTLQPGTASCMDD-LMPCATVSDDPT-MLT
+OsTC273230            VVA-----AA---TAAAAGLPPLPSTM-PADVPQPEIPPCLND-LMPCASVYDDSS-MLG
+PpCV267254            LFV-------------------L------LQDGYAQDTSCLNQ-LVPCLGYLNGTKDVPD
+PsTC41                VVL-------------------LSICDPARGADSSDYSNCIPA-LLPCVDYLNATK-PPD
+PsTC8094              MVL-------------------MSMLM-LVVCEDSDSTACLSS-LSSCAPYLNATTKPDS
+PtBX248964            LVL-------------------LSILM-LVGCEDTDNTSCISS-LSACAPYLNATTKPDA
+PtTC52395             LVL-------------------LSILM-LVGCEDTDNTSCISS-LSACAPYLNATTKPDA
+PvCV533448            V---------------------LGMT-VIEFANGQNMPECWKQ-LSPCLYFMNSTK-PPQ
+                                                             *    *  *    .       
+
+Atchr5_04481878c      VCCNPLKSVIRNNPECLCRMIS--NRWSSQAERAGIDVNDAQMLPARCGEH-VNPIACLT
+GmTC224530            SCCEPLKSVIESDAECLCSLVS--NRGTRQAEQAGININEAQQLPGRCGQH-VNPLSCLT
+GmTC231510            TCCNPIKE---TQSTCFCQLVS--TPG--MLEGIGTTIAQALKLANLCGVN-FTLTTCKA
+MtBE998701            ICCNPIKDLYATHKTCFCQLIG--AYG--LFEAFGLKITHVFQDIYLCGIN-FNTSSCIA
+MtgCR963577           SCCDPLKSMIESDATCLCSLVS--NKGTRQAEKAGINISDAQSLPGRCGQH-VNPLSCLS
+OsNP891975            PCCEAVAEVLKSDPECLCKVAEMSRNNTRKLASVSNNLDSDQQLFAQCKITGVSSDVCHK
+OsTC273230            PCCDALGKVFKSDRACLCQIWEMARNDTRQVG--SNALDGDQQMFARCKIPGASSTICDN
+PpCV267254            TCCDPLKTVIKSNPKCLCNLAS--NQGSNQAEQAGINVTEAQELPGRCGLH-VNPLSCLT
+PsTC41                TCCTPLVSEYTTNKACLCSLLN--QTA--LIQQYQINVTQAEELPVRCGLN-ASASSCSN
+PsTC8094              SCCSALISVIDKDSQCLCNLLN--SNT---VKELGVNVTQAMKMPAECGKN-VSATQCNK
+PtBX248964            TCCSALITVINKDSQCLCNLLN--SDA---VKQLGVNVTQAMKLPVECGKN-VSASQCSK
+PtTC52395             TCCSALISVIDKDSQCLCNLLN--SDA---VKQLGVNVTQAMKLPVECGKN-VSASQCSK
+PvCV533448            TCCNPIKEINATQKSCFCQIAS--TPG--IFEGLGITASQAIHLLQLCGVN-FKTTTCKA
+                       **  :     ..  *:* :                           *     .   *  
+
+Atchr5_04481878c      RSRG-GSTNSDRSSS----------------------------IG-NTF-SQSYWMTT--
+GmTC224530            NSPG-PT-NSDRNSA----------------------------TKLVHV-SSGIVMMILF
+GmTC231510            STSA-PPPS----LVQPPATLG---------GDEG--GA----SR-AAFTGL--SFALFL
+MtBE998701            SSPTLTLSS----LQPPA-ITR---------GDEG--GV----AGKATLTRI--CIILFI
+MtgCR963577           ------------------------------------------------------------
+OsNP891975            DKGHQGGHN---ETDTPAG--------DSLTDSQAKN----ASPPSR-L-SEA-FRILFL
+OsTC273230            GQAGHGTSAGYSSTDSPVLVNCRLPSKKCLTSLEVDRGIPDLSSPSNTV-HFG-SVKHTL
+PpCV267254            GSNN-SP-NSKNSVD----------------------------N------SASIFL-LPS
+PsTC41                LNGT---TS----GSPPPPNST---------------------SRKSAA-SSSSFEILPL
+PsTC8094              TATSGGSSVGKTPTSTPPPSSA---------TPST-TTIT--KSNSNAA-ASVSVKMFPV
+PtBX248964            TT-AGGSSTSKTPTSTTPSSSG---------STATPSTTT--STKSNAI-ASVSVKILPV
+PtTC52395             TT-AGGSSTGKTPTSTPPSSSG---------STTTPSTTT--STKSNAI-ASVSVKILPV
+PvCV533448            SSTSAPPPS----LAPPPPGKN---------S------------Q-FFFFTTSSRLTIF-
+                                                                                  
+
+Atchr5_04481878c      -LA---IAATVLSYCHHIIS
+GmTC224530            FSI---IAHV----------
+GmTC231510            CACVLFN-------------
+MtBE998701            WAFVLFH-------------
+MtgCR963577           --------------------
+OsNP891975            LQILF-----IFGL------
+OsTC273230            EDIIF-----HIHLPVQCM-
+PpCV267254            WSL---IVATTLSFTSQFL-
+PsTC41                LALLLLGVIVQVYQ------
+PsTC8094              AALVFVAVASVLGLKGPCLR
+PtBX248964            AALVLMAVASTLXLEGPCLR
+PtTC52395             AALVFVAVASTLGLEGPCLR
+PvCV533448            --------------------
+                                          

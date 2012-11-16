@@ -1,0 +1,62 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr4_11752480      -------------------MGSLRV-------STFAV-AVVVCLSILLMSPT--DGRRV-
+Atchr4_11754031      -------------------MGSLRV-------STVVI-AVVACLSILLISPTEVDGRLV-
+Atchr4_11755370      -------------------MGSLKL-------STVVVTALVVCLSILLISPTEAVEGKLK
+Atchr4_11758637      -------------------MRSLRL-------RTVVVATIVVCLSVL-LSPTEVDGS---
+Atchr4_11762304      -------------------MGSLRL-------STVAI-AVVVCLSILLISPTEVDGRQV-
+Atchr4_11763737      -------------------MGSLKL-------STF---AIVVCLSILLISPIEVNGWGK-
+HvBU976763           -------------------MGKK-----------LL------FMAILLIASLEAATTAVR
+HvTC143016           -------------------MPCK-----------IA---ANFMFVLLLVSA--VSSDMGD
+HvTC148949           -------------------MGKR-----------LL------LPGILLIAFLGMSTTVVR
+TaCD893596           PRVRKITTRGLNTKQIVTGQGYLSSRVLLKDPRAVFLAAIVVTA-M--VMPS--------
+TaCD894011           -------------------MGKT-----------LL------LLPVLLVASLGMSTTVVR
+TaTC242994           -------------------MGKK-----------KL-APLSLFLAILLITCCEMV-EEVG
+ZmTC254947           ------------------MMSIT-----------SRKSTLVLILIVVLVA--SKDEASIG
+                                                                  :  :           
+
+Atchr4_11752480      ----CDSAAGLCSM-------LFSCNTQCNSL----GRNFTGGECSDA-RFPGLS---VC
+Atchr4_11754031      ----CDTPAGTCTS-------SSTCNDQCNTW----GGNYSGGECADS-SFPGLS---IC
+Atchr4_11755370      E-ECENVPYGFCPFWLFNPRSEELCKEKCKRFKSE-TSEYYGGFCTPNGPPGGVSLTATC
+Atchr4_11758637      ----CDFPLGACTP-------FRDCKESCIKFKTRAGQTFFDGKCRPRDRPSVWT---AC
+Atchr4_11762304      ----CDYDKGECNSYE----KSSTCIEPCKQL----DSKFIGGRCIPVGGITGMG---LC
+Atchr4_11763737      ----CDLRKGLCRLAD----TISTCDVPCRAV----DSKYHGGECLNVGG--GQG---IC
+HvBU976763           GELVCDVLRAECMVK-CWQG-SGKCMRCCQAL------GYVHGRCNLVRG---E----VC
+HvTC143016           EKRCCESYPAPKDLS-CRD--LRACDKQCKDA------GYNGSFCPVD-----Y---PTC
+HvTC148949           SELTCGKLREECMAM-CIPGGTSWCMQCCQAR------GYVHGRCSSLHG---E---VTC
+TaCD893596           ----CYVAQGVGVCNQILPCTDNTCKVYCQKL----GYRFSKAQCKPGNLKKGVSY---D
+TaCD894011           SELACGSLREQCMAM-CIL--ASWCMHCCQAR------GYAHGRCRVLHG---E---TTC
+TaTC242994           AKLVCEIYWPRCIEK-CYK--SGNCMRCCKNW------GFVHGRCNPLRG---M----GC
+ZmTC254947           ADAECNNLPVSCYIK-CLR--PGACNSCCKQN------HFVRGECIGW----------DC
+                                             *   *          :  . *               
+
+Atchr4_11752480      YCCHNVE---SSAEMESM------------------------------------------
+Atchr4_11754031      YCCHYVG---SSAEMESM------------------------------------------
+Atchr4_11755370      NCCVREKV--SPPEIEAVEGKLEVCDNLQIGMCLWYLWPWYDSTKRCEETCQKQNNSPSG
+Atchr4_11758637      FCCYYDSIGAQ-------------------------------------------------
+Atchr4_11762304      VCCRDVQ---RGAEKESM------------------------------------------
+Atchr4_11763737      WCCRDYDAAKSGAEKESM------------------------------------------
+HvBU976763           YCCNDDGAPPSPPSQERHGRLP--------------------------------------
+HvTC143016           YCLRCTGNQTSAAGRVLSP----------------------HKERN--------------
+HvTC148949           YCCKDVPSPPSPAHSP--------------------------------------------
+TaCD893596           NCCYLKLE----PVIH---G----------------------------------------
+TaCD894011           YCCKDVPPSPSPAPGPQKSSAA--------GDLTF-----LTD-----------------
+TaTC242994           YCCADDSDPRDAALRRRYQYQT--------EEIRW-----SHRRQN-----------PDH
+ZmTC254947           WCCRA-------------------------------------------------------
+                      *                                                          
+
+Atchr4_11752480      --------------------------------------
+Atchr4_11754031      --------------------------------------
+Atchr4_11755370      ARYRYYGGFCTPIVRGTGFFIHGACNCCIRDIKKQASS
+Atchr4_11758637      --------------------------------------
+Atchr4_11762304      --------------------------------------
+Atchr4_11763737      --------------------------------------
+HvBU976763           --------------------------------------
+HvTC143016           --------------------------------------
+HvTC148949           --------------------------------------
+TaCD893596           --------------------------------------
+TaCD894011           --------------------------------------
+TaTC242994           HLLA----------------------------------
+ZmTC254947           --------------------------------------
+                                                           

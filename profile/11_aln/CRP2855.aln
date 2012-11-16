@@ -1,0 +1,42 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr1_28373601c       ----------MKT--ISS--LVVIFLLILIFQTNKLVS-GHDRSND--QD--------T-
+MtgAC151483_83001      ----------METFRNHGVVC-LLLLLI----AIVGLKGDEEHTNVNAPNKGNATFVTLS
+MtgAC160013_3001       ----------MENLRFCTVLC-LIILTV----EIVGLKGDELKNDTA-QSQGNVASSTLS
+OsNP1114428            MTKAVTGVPTMGGAPAAAVVVVLAFMAVMVVVPVFGADGGDGRVQV--QS--------LE
+OsTC264395             -------MTSMATPPPKTLLLLVLALSVILVSATAFH------H----------------
+PsCO218254             ------------------------------------------------------------
+                                                                                   
+
+Atchr1_28373601c       --VKNN------N--NDENSTTTGVVVRDK--------KRSYNGGSGSYRWGWGGG--GG
+MtgAC151483_83001      NSSQGINEEGKEKHDN--IYNKDVKV------------SSYNRGG---------------
+MtgAC160013_3001       NHQGNNKEHVKGKHNNEVVFNT-SKG------------SWYKRGGSGGFKWGWGGGG---
+OsNP1114428            RPVGGG------GGGNGTSYNATSVAGRKDGGGGGGGGGGSSGGSSWSYGWGWGWGTDSG
+OsTC264395             -------------------------HHHHDG-----------------------------
+PsCO218254             ------------------------------------------------------------
+                                                                                   
+
+Atchr1_28373601c       GGG----GGGGGGGGGGGGGGGWGWGGGGGGGGWYKWGCGGGGKG-----------KGRE
+MtgAC151483_83001      ------G------------------GSGGGGGGWWKWGCGGKPRHGKRKGEGKRIS----
+MtgAC160013_3001       ------GGGGGGGGGGGGGGGGWGWGGGGGGGGWWKWGCRGEPRSHVKGKKGTIRG----
+OsNP1114428            GGGSSGGGGGGGGGGGGGGGGGGGGGGGGGGGRRCWWGCGNGRRRHKGGKEGGGGGEGRK
+OsTC264395             ------GAEAGGGGGGGGGFFEVPWFGPPGGGGWGAWGAGYGGAGG--------------
+PsCO218254             ----------------------------------------GYGSS-----------SGGK
+                                                                                   
+
+Atchr1_28373601c       G--------------------------RGEFVKREYAECK-GRGKCSGKRLECPQHCG--
+MtgAC151483_83001      ------------------HYSNPYPYKVEDYIVGQFAQCM-TKTRCKGMRLDCPLHCG--
+MtgAC160013_3001       ------------------MKHHHQHASKEEYRLGEFAQCM-TRTRCKGMRLDCPLHCG--
+OsNP1114428            GIRTEREREGVGGGGAGRRHGRRPSYSSSLYRVGEYARCTAATGRCRGALLVCPMQCE--
+OsTC264395             -----------------------------HEMARPSTVCM-EKGACYKKRLTCPEKCFKS
+PsCO218254             G--------------------------YGSFVMRQYAVCT-SYGACSEMRLECPSYCY--
+                                                           : *      *    * **  *   
+
+Atchr1_28373601c       --------------GLCFYDCLFLCKPHCRR-
+MtgAC151483_83001      --------------GPCYYDCHHMCKAHCRRR
+MtgAC160013_3001       --------------GPCFYDCYHMCKAHCRRP
+OsNP1114428            --------------GPCFYDCDANCKAHCRF-
+OsTC264395             FSFKDKHGGGGGGGGGCSFDCN-KCEATC---
+PsCO218254             --------------GNCFYDCKYKCRAYCQY-
+                                     * * :**   *.  *   

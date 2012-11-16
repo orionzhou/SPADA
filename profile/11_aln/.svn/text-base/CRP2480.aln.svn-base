@@ -1,0 +1,50 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr1_03884455       --------------------------------MKNRSK----------NLAT-LS---LM
+Atchr1_19872003c      -----------------------------------MSL------------KK-CVVLMVV
+Atchr1_19873771c      -----------------------------------MSM------------KK-CVVLMVV
+Atchr5_13888945       --------------------------------MENKRM------------GV-FVVVMLM
+OsBX899132            MTSMATITAKSGVIAVSMVLVMCAASA----------------AAGDNDMLP--------
+OsTC283857            MTSMATITAKSGVIAVSMVLVMCAASA----------------AAGDNDMLP--------
+PhNP1240058           ---MGYL---RYVLGIQIIYTMCTSTSL-SMAMENDSAIAPSSSQDDSEMAPSSSQDDIA
+PpBU879389            -------------------------------MELITGF------------NK-VIVLMLM
+VvCB350096            --------------------------------MEGSGI------------RK-VVIVLMM
+VvTC43882             --------------------MACSKVAAVILIAMVIGF------------XX-LMQKM--
+                                                                                  
+
+Atchr1_03884455       IITLLTWSDIVVGQEALLGKKVLPLCHRECMPICMKVIEA----TQDICEPACQSGC---
+Atchr1_19872003c      VLVVMVAMVE-E----VEG-----LSYATCMDLCETKCNFFFTHPEKYCKDKCDRKC---
+Atchr1_19873771c      VLVVMVAMVD-D----VEG----RLSYATCMDLCETKCNFFFTHPEKYCKDKCNRKC---
+Atchr5_13888945       IGTLMVESRE-IATTPITVKPTFPICYTTCFALCLLNPIFL---NKKKCPEKCGNKC---
+OsBX899132            AAF-----DI-LQQPAKEAANLGHGCYTRCFASCFAAGF-----DGDYCSDFCSKECGDD
+OsTC283857            AAF-----DI-LQQPAKEAANLGHGCYTRCFAGCFAAGF-----DGDYCSDFCSKECGDD
+PhNP1240058           MAPSSSQDDS-AMAPSSSQDDHIVLCVRDCMRICMKLDDA----TSTECEEACRTGC---
+PpBU879389            L---MLLRKT-TAYSEEYD----KKCYDKCFRSCVDQDE-V---KRHICLKECSNTH---
+VvCB350096            LVAVMLEVAA-SRDAPVYS----EKCYRDCYNWCPVKGH-------TWCATLCSNKC---
+VvTC43882             ---------------LLLR----KACYVSCFPPCMKLKH-V---TAELCNTECNGLC---
+                                               .   *   *              *   *       
+
+Atchr1_03884455       -LQLQGRGTGLS-A-SDQGVDMVIA-----------------------------------
+Atchr1_19872003c      -RRLQSAQSSQMETIEMRNIN------G--------------------------------
+Atchr1_19873771c      -RRLQS---SQVETIGMRNIN------G--------------------------------
+Atchr5_13888945       -LESKPNPPK--------------------------------------------------
+OsBX899132            VRKFLSRLSPENS--------AIVGDICNIPRCISSCVEAKIDPPYCKIRCEDMCGDDVR
+OsTC283857            VRKFLSRLSPENS--------AIVGDICNIPRCISSCVEAKIDPPYCKIWCEDMCGDDVR
+PhNP1240058           -RPLLARKEISALH-SDDNSSMILTD-KNNPTNKPG------EFI---------------
+PpBU879389            -CNPKHFKKSP-------------------------------------------------
+VvCB350096            -TKGGPSVPDALCNCLFSCTQYICPDFGTDPNTDPK------KVQKCLNKCYDICDVKLI
+VvTC43882             -TNQLSSVHKIH------------------------------------------------
+                                                                                  
+
+Atchr1_03884455       --------
+Atchr1_19872003c      --------
+Atchr1_19873771c      --------
+Atchr5_13888945       --------
+OsBX899132            KNQIGLSA
+OsTC283857            KNQIGLSP
+PhNP1240058           --------
+PpBU879389            --------
+VvCB350096            --------
+VvTC43882             --------
+                              

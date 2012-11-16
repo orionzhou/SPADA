@@ -1,0 +1,65 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr1_09890830c      MGFIGKSVLVSLVALWCFTSSVFTEEVNHKTQTPSLAPAPAPYHHGHHHPHPPHHHHPHP
+Atchr2_14302313c      MGIIGKSVSLTLFALLCFTSSVFTLGVNQPGSSDPF-------HS-------------LP
+BnCD819036            MGFIGKSVLLTLIALCCFISSVFSTTALPPMK----------------------------
+OsTC275820            --------MVSSKI--HCAMAALLLAI---------------------------------
+OsTC277432            --------MRSHTAVVCSALLVLAAAL---------------------------------
+SoCA258275            ---MASASLSSRRAFLAVATLVAAAAL---------------------------------
+TaTC239340            --------MRSYAAVVRAALLVL-GAL---------------------------------
+                                :          .                                      
+
+Atchr1_09890830c      HPHPHPPAKSPVKPPVKAPVSPPAKPPVKPPVYPPTKAPVKPPTKPPVKPPVSPPAKPPV
+Atchr2_14302313c      QHLPLP--------PIKLPT--------------------------------LPPAKAPI
+BnCD819036            -----L--------ITPLPT--------------------------------LPPAKAPI
+OsTC275820            ----------------------------------------------------LLPVSHAS
+OsTC277432            ----------------------------------------------------LLPAHHAM
+SoCA258275            ----------------------------------------------------LVPARHAM
+TaTC239340            ----------------------------------------------------LLPAHHVM
+                                                                            *.    
+
+Atchr1_09890830c      KPPVYPPTKAPVKPPTKPPVKPPVYPPTKAPVKPPTKPPVKPPVYPPTKAPVKPPTKPPV
+Atchr2_14302313c      ------------------------------------------------------------
+BnCD819036            ------------------------------------------------------------
+OsTC275820            GRY----------------------------------------VAP--------------
+OsTC277432            AED----------------------------------------VVSSRDNTARAPSSSPS
+SoCA258275            AAA----------------------------------------DKA------RAPTSAYD
+TaTC239340            ADY----------------------------------------SAM-------APPPKPA
+                                                                                  
+
+Atchr1_09890830c      KPPVSPPAKPPVKPPVYPPTKAPVKPPVSPPTKPPVTPPVYPPKFNRSLVAVRGTVYCKS
+Atchr2_14302313c      KLPAYPPAKAPIKLPTLPPAKAPIKLPTLPPIKPPVLPPVYPPKYNKTLVAVRGVVYCKA
+BnCD819036            KIPTLPPAKAPIKVPTLPPTKAPIKP-------PDVLRPVSPPKFNRTLVAVRGVVFCKA
+OsTC275820            -----APAPVPV------------PPPP----------RTSPPSRIQPVVVVQGTIYCKS
+OsTC277432            AATATAPAPSPYT-------DTAMAPAP---SSSNDTAVEPVAPPPLPFIIVEGVVYCKT
+SoCA258275            SAM--PPSPSPVV-------NNGASPPP-------PLLLLVPPPPPLPFVIVEGTIYCKS
+TaTC239340            SAIS--TPPLPAN-------DTNMS-------------PLPPVQPMPPFVVVQGVIYCKS
+                                *                                     .: *.*.::**:
+
+Atchr1_09890830c      CKYAAFNTLLGAKPIEGATVKLVCKSKKNIT-AETTTDKNGYFLLLAPKTVTNFGFRGCR
+Atchr2_14302313c      CKYAGVNNVQGAKPVKDAVVRLVCKNKKNSI-SETKTDKNGYFMLLAPKTVTNYDIKGCR
+BnCD819036            CKYAGINNLQGAKPVKGAVVRLLCKNKKNAT-SEATTDKNGYFLLYAPKTVSNYAIKNCR
+OsTC275820            CNLSGYNRYMDASPLPNATAQLVCYGDKVLNMTSTATDKNGYFLVMV-YRLDVFRRSRCR
+OsTC277432            CKSRGYSSDMDASPLPGATAQLVCYGKKVVNVTGTVTDANGYFLVMF-YDLRNFNPRTCK
+SoCA258275            CKGKGYNTGIDASPLQGATAMMVCYGRKVVNATGTVTDANGYFLIMF-YDMKNFNARRCK
+TaTC239340            CKSRGYNRGMDASPIQGATVNLVCYGKKVVNVTATVSDEHGYFLVMF-YDLANFNARNCK
+                      *:  . .    *.*:  *.. ::*   *    : : :* .***::     :  :    *:
+
+Atchr1_09890830c      VYLVKSKDYKCSKVSKLFGGDVGAELKPEKKLGKS----TV--VVNKLVYGLFNVGPFAF
+Atchr2_14302313c      AFLVKSPDTKCSKVSSLHDGGKGSVLKPVLKPGFS----ST--IMRWFKYSVYNVGPFAF
+BnCD819036            AYLVKSPDAKCSKVSKLHGGYMGSVLKPVVKPENA----TI--IFNKLKYGLFSVGPFAF
+OsTC275820            VYLGSSPSPLCAAPFIPSNKWLGLTLERERVASLPKGVRGVYRPKSTLMFGPGTGG----
+OsTC277432            VFLGSSPTSLCDKPVYPPNKWIGLSLLKETRTVPPVGLQAIYCPTSVLFYGPANAG----
+SoCA258275            MYLLSSPTPQCSKPYYPPNQGIGLSLVRETRTIPPAGLQGIYTPTSVLFYAPAAKG----
+TaTC239340            LYLGTSPTPLCDKPVYPPNKWIGLSLVKETVTSPPAGLQGVYCPTSVLFYGPSAGQ----
+                       :* .*    *           *  *                     : :.         
+
+Atchr1_09890830c      NPSCPK------------
+Atchr2_14302313c      EPTCPK------------
+BnCD819036            EPVCLK------------
+OsTC275820            --KCPAAAAADAAGVPMM
+OsTC277432            --QCPSG-----------
+SoCA258275            --QCPY------------
+TaTC239340            --HCPFY-----------
+                         *              

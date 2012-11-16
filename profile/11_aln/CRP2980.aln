@@ -1,0 +1,137 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+AqTC2336        ----MAAA-RNMILR----HTMVTVMFSVV-LL----SACSEAR----------------
+AqTC7831        MAFSMDIAKSSKPLT----FLLFTVMLLVS-SIMHVQSAPTPTPTPGPAPTPTPTPTPTP
+BvBQ585141      ----MKP--Q-AKFA-------ICVLAITS-LL---------------------------
+HvTC133089      ----MARTGATTTTAAAAALLLLLALVATGAA--AAAGAG--------------------
+HvTC148547      ----MATTTSSAVL--------LVILVVLA-GLADLHAATGVPRPVRAAELS--------
+HvTC152058      ---RHEATTRSVLL--------LLALVGLA-GLVDLQAFAAAPTTVHAAEVS--------
+OsTC255686      ----MVRVG------AAAAVLVLAA-------------AA--------------------
+OsTC269683      ------MAGRASCV--------LILLLAIA-GFADVLAAGGATPSSSSSQVS--------
+OsTC282079      ----MAGAGGSNRAVRCAAAVAFIVVVVVV-GSADGRGGGRGG---H-------------
+PhCV296881      ------TRRINPSL-------ALLVLLVIS-TILV-------------------------
+PhCV300514      -------QQLHQFIH----LCLMLVFLVAC-TYMI-------------------------
+PpCK114194      ----MD-----SRVD----IVLALLLLICV-GAA--------------------------
+PpTC28512       ----MD-----SRLH----IVLALLLLICV-GAA--------------------------
+SbTC108998      ----MK------AVAAMTMTLLLLALVHHA------AGS---GHHQG-------------
+TaCA595936      ----MARTGATTTTGAAAV-LLLLALVATGAAAVDAAAGG--------------------
+TaCA741406      ------HEASSALL--------LLALVALA-GLVDLQAFAAAPTPAHAAEVS--------
+TaTC238424      ----MARTGATTT--AAAA-LLLLALVATSAAAVDAAAGG--------------------
+TaTC239285      ----MAAAGNPIGGV----LLLLLLVAAFM-STAEGRIKGVVR---A-------------
+TaTC239724      ----MARTGATTTTAAAAA-LLLLALVATGAAAVDAAAGG--------------------
+TaTC241031      ----MANTTSSTAL--------LIALVVLA-GLADLHAATADPRPVHASELS--------
+TaTC242481      -----MAATSSALL--------LLALVALA-GLVDLQAFAAAPMPADEAEVS--------
+TaTC252646      ------MATTSCAL--------LIALVLFA-GLADLQAAAAAARPVHATEHS--------
+TaTC252647      ------MATTSHAL--------LIALVVLA-GLADLQAA---AGPVHAAEHS--------
+TaTC256818      -----ATTTSSTAL--------LIALVVLA-GLADLHAATADPRPVHAAELS--------
+ZmTC253700      ----MK------AVVAATMLLLALVAAATVASA-DHRDDGHHQRHRG-------------
+                                                                            
+
+AqTC2336        -----------------------------------PVNFHDTPALCLGMCAADVFTCMTS
+AqTC7831        TPTPTPTPIPTPTPTPTPTPTPTPT---PTPTPTPTPTPTPPAVSCILKCRTMTLPCIEK
+BvBQ585141      --------------------------------FSVISADSEPMPQCFLECGSEVIGCAGK
+HvTC133089      -------------------YEMNAAPAAGG------RARPAGLTQCVGVCGTTVASCLLD
+HvTC148547      ----------V--------PAW-TT---NQPM---TAPELEGMMECMMGCWTTVMGCVFG
+HvTC152058      ----------L------------TT---G-----MADPELDGTMQCVIGCFTKVLGCAFK
+OsTC255686      -------------------AAMAAE--PPTDD-GA-VRVAAGLTKCVSGCGSKVTSCLLG
+OsTC269683      ----------T--------TTA------------AELKEVNGMLACMIGCFTQMFGCAFG
+OsTC282079      -------------------VL---HGGGGGDDP---GNFRSSMVDCMMECAAEVVSCSSA
+PhCV296881      ----------------------------------XMAEGQSVIGPCVITCGEKAIKCVIK
+PhCV300514      ----------------------------------NPA-QGQAMGLCVINCGQQAITCSIR
+PpCK114194      -----------------------------------QVKSQESLPQCLAACGQDIMKCAEI
+PpTC28512       -----------------------------------QVKSQESLPQCLAACGQDIMKCAET
+SbTC108998      -------------------HIWKH--DDAGHQ-YRSSSPLAGLTQCVTICGSGVTSCMLD
+TaCA595936      -------------------YEMTAA-AAGGRR-GG-RAQPAGLTQCMGGCGTKVASCLLD
+TaCA741406      ----------L--------AAAATM---S-----MADQELDGTVQCLIGCLTTVLGCAFK
+TaTC238424      -------------------YEMNAAAAAGGRR-SV-RAQPAGLTQCMGGCGTKVASCLLD
+TaTC239285      -------------------PLASVAPGAGERDMGGERVPTHSVVDCFMGCVSMADDCGSF
+TaTC239724      -------------------HEMTA---AGGRR-GV-RAQPAGLTQCMGGCGTKVASCLLD
+TaTC241031      ----------V--------PAW-VT---GQPM---TAPELEGMMECMMGCWTTVMGCVFG
+TaTC242481      ----------L--------AAATTT---G-----MADPELDGTMQCLIGCFTTILGCAFK
+TaTC252646      ----------S--------VAAMTA---EHPMADEADPDLNGMMQCMFGCFTSVMSCAFG
+TaTC252647      ----------A--------AAAMAT---AYPMADEADPDLNGMMQCMFGCFTSVMSCAFG
+TaTC256818      ----------V--------PAW-AA---GQPM---TAPELEGMMDCMMGCWTTVMGCVFG
+ZmTC253700      -------------------QSWHRH-SGGGRD-GRRSTPLAGLTQCVTTCGSGVTSCMLD
+                                                             *.  *      *   
+
+AqTC2336        CALR-------GAEASPCALKCNTVNGDCIAKCPGSTPPAP-AP-----APAPAPAPAAP
+AqTC7831        CVKSG-----APAERFKCIITCQETFLTCITKCIPNESTRTMQHVINS------------
+BvBQ585141      CVTEG------SSQMLQCITDCGQTNLDCLGKCTGFVVPHTPIASPVSYYY---------
+HvTC133089      CYDTAAG-----GTLPICFLGCTNTAVFCATDCSTQAL----------------------
+HvTC148547      CMAK------PPADMPLCWFGCDQTYVMGMIKCAFTPSPPAPAPPKPPAPPARP------
+HvTC152058      CLRVR-----KGIDLPLCVIGCNDRGIVCMCSCGRTPSPPGPKPPVPPAPTPTPPAPPAP
+OsTC255686      CYGGGGGAAAAATAMPFCVIGCTSDVLSCATGCSTSL-----------------------
+OsTC269683      CMAK-------GPDTTLCVVSCNQNSIVCMVRCALTPPPPKPKPTPPPPAPTPKP--PAP
+OsTC282079      CAGKPR------GEAPTCAADCVHGDISCRAGCGAPAPPAA-------------------
+PhCV296881      CTTENL-FTSNGSDPTKCFEECATGGINCMSSCLAPSTPPTAMISD--------T-----
+PhCV300514      CGPPA------SPQAVTCFQGCATTGIGCLTACLTPATPPPPPTQM--------P-----
+PpCK114194      CGWKG-----PLEDAISCIETCSVDNFTCMYDCATTAVYTMPHRGN--------------
+PpTC28512       CASKG-----PLEDAISCIETCSVDNFTCMYDCATTAVIPPSPPPVEH------------
+SbTC108998      CYQPLIDL--DPVELPVCLLKCTNDAMVCASGCPVNGNGV--------------------
+TaCA595936      CYNTSTG-----GTVPICYLGCTNNAVFCATDCTTQGL----------------------
+TaCA741406      CLRVR-----KGIDLPLCVIGCNDRGIVCMFSCGKPPSPPGPKPPEPPYPTPTPPAP---
+TaTC238424      CYNTSTG-----GTMPICYLGCTNNAVFCATDCTTQGL----------------------
+TaTC239285      CMDKPL------DEANDCMTECLTADLSCLTGCGPALGPAPPADA---------------
+TaTC239724      CYNTATG-----GTMPICYLGCTNHAVFCATDCTNPGL----------------------
+TaTC241031      CVAK------PPADMPLCWFACDQTYVMGMVKCAFTPSPPAPAPPKPPAPPARP------
+TaTC242481      CLRTR-----KGIDLPLCVIGCNDRGIVCMFSCGKPPSPPGPKPTPPPAPTPTPPPAP--
+TaTC252646      CMGK------GP-DLPLCIISCNQKSIVCMIRCGLTPSPPSPKPPTPPAPPAPKPAPPKP
+TaTC252647      CMGK------GP-DLPLCVISCNQKSIVCMIRCGLTPSPPSPKPPTP---PGPKPAPPKP
+TaTC256818      CMAK------PPADMPVCWFSCDQTYVMGMIKCALTPSPPAPAPPKPPAPPARP------
+ZmTC253700      CYQPLVDL--DPVELPVCLLKCTNDAMVCATGCPVTGNV---------------------
+                *                *   *          *                           
+
+AqTC2336        VPAPAVPV-----TLDAPVNPQF-------------------------------------
+AqTC7831        ------------------------------------------------------------
+BvBQ585141      ------------------------------------------------------------
+HvTC133089      ------------------------------------------------------------
+HvTC148547      ------------------------------------------------------------
+HvTC152058      PPTPTPPAPPAPTPTPKPPAPPAPKPKPPPAPKPKPPPAPKPKPPPAPTPKPPPAPTPNP
+OsTC255686      ------------------------------------------------------------
+OsTC269683      SPSPPPPKAAGHGVAGDPLA----------------------------------------
+OsTC282079      ------------------------------------------------------------
+PhCV296881      --AK---HVI--------------------------------------------------
+PhCV300514      --APPPPMIL-----DMVL-----------------------------------------
+PpCK114194      ------------------------------------------------------------
+PpTC28512       ------------------------------------------------------------
+SbTC108998      ------------------------------------------------------------
+TaCA595936      ------------------------------------------------------------
+TaCA741406      --TPTPPAPP--APTPTPPAPPAPKPKPPPAPKPKPPPAPKPKPTP--------------
+TaTC238424      ------------------------------------------------------------
+TaTC239285      ------------------------------------------------------------
+TaTC239724      ------------------------------------------------------------
+TaTC241031      ------------------------------------------------------------
+TaTC242481      --TPTPPEPP--APTPTPPAPPAPKPKPPPAPKPKPPPPKPTP------PYPPPAPTP--
+TaTC252646      APGPPPYARQNTETSP--------------------------------------------
+TaTC252647      APGPPPYARQNTETSP--------------------------------------------
+TaTC256818      ------------------------------------------------------------
+ZmTC253700      ------------------------------------------------------------
+                                                                            
+
+AqTC2336        --------------------------------------------
+AqTC7831        --------------------------------------------
+BvBQ585141      --------------------------------------------
+HvTC133089      --------------------------------------------
+HvTC148547      --------------------------------------------
+HvTC152058      PPYPSPPSPPPPPEPTPSPPAPPVHPA-RLTPAETSTYSDNYHP
+OsTC255686      --------------------------------------------
+OsTC269683      --------------------------------------------
+OsTC282079      --------------------------------------------
+PhCV296881      --------------------------------------------
+PhCV300514      --------------------------------------------
+PpCK114194      --------------------------------------------
+PpTC28512       --------------------------------------------
+SbTC108998      --------------------------------------------
+TaCA595936      --------------------------------------------
+TaCA741406      -PYP-------GPAPAPTPPAPPIHPARRLTPMXXSNYGDSYLA
+TaTC238424      --------------------------------------------
+TaTC239285      --------------------------------------------
+TaTC239724      --------------------------------------------
+TaTC241031      --------------------------------------------
+TaTC242481      --------------------------------------------
+TaTC252646      --------------------------------------------
+TaTC252647      --------------------------------------------
+TaTC256818      --------------------------------------------
+ZmTC253700      --------------------------------------------
+                                                            

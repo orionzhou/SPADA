@@ -1,0 +1,57 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+OsTC269032      --MSSSRSCSSSFAVVSVLLLMLAVVTASAATTAAEEPAHEEATHN----ERILLADSDA
+SbBG947122      MACSSSRLAEASLLL-LVVILLAAVGAC---ASAEAEMSAKTIA----------------
+ScTC3053        --------MSRSGALAVLLLLVLAARAAAAIKPLEEQPQGGKWADHLTAGAAITPSEEQP
+TaTC237114      ------------------------------------------------------------
+TaTC237115      --------MSRSGGLAVLLLLVLAARAAAAIKPLEEEPQGGKWTDQLTAEAAIKPSEEQP
+TaTC237116      --------MSRSGALAVLLLLVLAARAAAAIKPLEEQPQAGNRAATRARCRR--------
+ZmTC257736      -------MASASLPLLVIVLLVSVVGAC---TRAAEA-----------------------
+ZmTC260846      -------MMSRSCCLAVSVLLAVAATASGAIAPAVAARGAPR-------------GGGTA
+ZmTC260847      --------MSRSCCVAVSVLLAVAATASATAPAWLHEEQHLEEAMA---------TGPLV
+                                                                            
+
+OsTC269032      DTDTDAH-----QLLHNVEEE------LAAATTIAAG-QAAAAGVRV----ASAAEDQKK
+SbBG947122      ------------------------------------------------------------
+ScTC3053        QDGKLADHLTARAAI-------------------TPSEEQPQDGKRADHVAAIEPLEEQP
+TaTC237114      ------------------------------------------------------------
+TaTC237115      QDGKRADHVAAGAAIRPSEEQPQDGKRLTARAAITPSEEQPQDGKRLTARAAITPSEEQP
+TaTC237116      --G---------AA--------------------------------ST------------
+ZmTC257736      ------------------------------------------------------------
+ZmTC260846      GRGGR-------------------------------------------------------
+ZmTC260847      AEGAR-------------------------------------------------------
+                                                                            
+
+OsTC269032      DGGGDAG------------------------------AAAMPVALERQEAKTKTAGRLIA
+SbBG947122      -------------------------AVATRRKLDD--VVTTT----------------SS
+ScTC3053        QGGMRAGHLTAAKGLLGEEPAARLAYVRTEEKKDSDDAETMPLEG------MKPGGGVAI
+TaTC237114      --------------------------------------ATMPLEG------MKPGGGVAI
+TaTC237115      QGGMRAGHLTAAKGLLGEEPAARLAYVRTEEKKDSEDAATMPLEG------MKPGGGVAI
+TaTC237116      -----------------------------RRRR----A----------------------
+ZmTC257736      --------------------------AA-TRRKDD--VITTTT--------------SSS
+ZmTC260846      EGGVHLG---GQQGL------------------------------AGAAXEAWPSGGVA-
+ZmTC260847      ---VAPS---ASTWA------------------------------ADKASPARPSGGMA-
+                                                                            
+
+OsTC269032      TQGDDK----SGG------------GGG----NEHGKEGGGGGGKE--AEKSKSCVTKEE
+SbBG947122      SGSSSPSSSPSPAAGGGAEKKESKDDNGNKEKEKEKPKGGATSTKKPPPPLPAKCVTSKD
+ScTC3053        QQGGDPGMVPSASSGSGEHAKE---ESG----EHAGKEVSGSTSKEGEKSAAKSCLTKEE
+TaTC237114      QQGGDPGTVPS---GSGEHAKE---ESG----EH-GKEGSSSTSKEGEKS-AKSCLTKEE
+TaTC237115      QQGGDPGTVPSASSGSGEHAKE---ESG----EHAGKEGSSSTSKEGEKS-AKSCLTKEE
+TaTC237116      --------------------------------ASTARRGAAAPARRGE-KSAKSCLTKEE
+ZmTC257736      RGSSSPSSSPSPGAA---------------AEKKEKPKGGGGATSAKKPSPPAKCVTSKD
+ZmTC260846      TQGDDQS-----SSG-----------GG----EHAKEE---GSSKEGE-KQGRSCLTKEE
+ZmTC260847      TQGDDQS-----SSG-----------GS----GSSGE----HGKEEGE-KQGKSCLTKEE
+                                                                     .*:*.::
+
+OsTC269032      CHKKRLMCGKTCTMSAHTKCSAKCSKSCIP--TCG
+SbBG947122      CHLKRLVCAKKCTMAA-------------------
+ScTC3053        CHKKRLLCGKGCTLSAHAKCAAKCSKSCIA--TC-
+TaTC237114      CHKKRLLCGKGCTLSAHAKCAAKCSKSCIA--TC-
+TaTC237115      CHKKRLLCGKGCTMSAHAKCAAKCSKSCIA--TC-
+TaTC237116      CHKKRLLCGKGCTLSAHAKCAAK------------
+ZmTC257736      CHLKRLVCAKKCTMAAHNKCAAKCSHSCNALPICT
+ZmTC260846      CHKKKVLCGKACTLSAHSKCAAKCTKSCVP--TC-
+ZmTC260847      CHKKKMICGKGCTLSAHSKCAAKCTKSCVP--TC-
+                ** *:::*.* **::*                   

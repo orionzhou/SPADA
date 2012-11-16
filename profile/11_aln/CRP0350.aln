@@ -1,0 +1,65 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr5_10276630c       -----------------------MD--ITKNIVTLLLVVLFPILFYYNNVLAFPASDQSI
+GmBE661296             -----------------LCF--------VLGIV------CIAFLSISG------S-----
+GmTC220503             ------MAS---------RFDQ--------A---LL---LGIIFVAFVLT-----SGP--
+HvBQ755048             ------------MTCKIATAAV-------SI---FI---LALLLSCSASG-----FGC--
+HvBU982652             -----MAGS---------KMAS--------S---LC---LAALVVTAVLS-----S-C--
+MtgAC135801_23085      MAEATMSTLWWLQKQPIIFF--------MLTDR------MAPVVELQQSC---DV-----
+MtgAC147712_80528      --------MSRVVKAPCRRFLTDLNLSLLSTNQ------KTVEVEKANTC---VV-----
+MtgAC149206_68399      ------------------------------------------------------------
+OsQ53K03               -----MAQILNK-KAAAVFFFT------------SL-MVMATVNFSSGHT---TQ-----
+SoCA277292             ------------HRRRGAIFSG----AVLCTIA------VAVLI---VST---LSS----
+TaTC254712             -----MALIKRNTRM------------VMYNIVVAL-LVTVFMFSTLPSC---QAI----
+ZmCD961947             -----------------------MAVAKQTTIAAAV-LVIAAILLCSSPC---YQAGNXX
+ZmCD987354             -------------------------------------------TSNSISC---QAG----
+ZmCF007243             -----MAPMSGTTKV--RSFMA------VLGLV------LLNVCASSQSC---QGWNHSL
+ZmQ5CC32               --------MPSYKKLVIVGFA--------LTLL----LVSFGMDASAKLC---STTMDLL
+ZmTC253905             -----MMALNGGWRK---TFV-----SILTTCF------LVVVVIVSLSC---EAKGGV-
+ZmTC255305             -----MELVKSNMMR------------I--VHAALC-IVAVIMSSALPSC---QGD----
+ZmTC264875             -----MRTVHSTA----------------AGIC--------ILLLMVMSC---TLMTTP-
+ZmTC277089             -----MALLKISIKSTLVVFTV--------T---WL---LMTLLATAVPS-----AGN--
+                                                                                   
+
+Atchr5_10276630c       YA------RCIGPC--PRYAVPHWCENECLSRK--YMA-GGECAFIEGEGPTPRCCCINL
+GmBE661296             ---AGFVYSCTKA---GNCPDGKACYTLCQFFG--YKDFGGLCIE----D-KNQCCCVKD
+GmTC220503             ---ATVAQDCGPLK--CIIGHNDFCMQCCR-RE--GFG-SGICNND---GKYTRCSCT--
+HvBQ755048             -KHRARVAMCRPA----------VCMEQCI-LE--GYQ-DGYCSSK---ERSVCCCFNVR
+HvBU982652             ---VAENEECLPLK--GYCPEDD-CKDFCM-RS--R-L-RGRCITK---GTMPYCCCSR-
+MtgAC135801_23085      ---GSNEYTCCIT---GC---TIYCHQNCIFFG--YRS-GAFCKDTLGGK-LKMCCCYK-
+MtgAC147712_80528      ---GRPNLSCCFM---NC---TPRCMDDCKQKG--FRF-GGYCEFVI--D-QKLCCCVTN
+MtgAC149206_68399      ----------YCL---TC---SPYSGQYCIFFG--YRS-GAFCKDTSCGK-LKMCCCYK-
+OsQ53K03               -GGYGEMDSCMVL---VNC-DMNKCMSDCQIKG--F--NGGLCDGES----NDHCCCTDE
+SoCA277292             YAEARYD----CY---APCKDCPNCDGWCKQKG--YPK-GGHCHPKDGGGDVVFCCCDRT
+TaTC254712             -----QRRLCRDL---AGC-TDVSCQSDCLERGFRP-PYQLECETN---HHHLQCCCRQF
+ZmCD961947             XAS-----QC--FRPEGSC-TTERCHTQCQSKG--YKTSNPHCKLCRTA-ELWCCCT---
+ZmCD987354             LSSSGPPCFEPPT---HRCKDGRSCVFVCQYNG--ITTYRAFCKTPTNAQETYMCCCPP-
+ZmCF007243             VAAPKLKVWCYVLFRREEC-SDKSCHLVCQDKDKFYRH-GAYCVD-----KTWECCCPT-
+ZmQ5CC32               I--------CGGAIP-GA--VNQACDDTCRNKG--YTG-GGFCNMK-----IQRCVCRKP
+ZmTC253905             VP-RLRPPFCFPYDR-QYC-TPFHCGKVCQEYNFPAKN-GGYCDKR---GDPWKCCCPY-
+ZmTC255305             ------ETICIGL---AGC-IPLFCHLRCAQLAAQE-HKMLVNSRC---KTPWKCCCIFR
+ZmTC264875             ---TWAAEDCYQQY--PTC-QDAVCEAKCRYEF-HSKLSGFRCTSR---MHIAVCCCTHT
+ZmTC277089             -QEAENQAVCAQVK--GTCTQKV-CGGMCAEIG--SKG-VGSCKLN---GKVSYCCCQP-
+                                               .   *                         *     
+
+Atchr5_10276630c       -----------------------------
+GmBE661296             DGPGH--P---------------------
+GmTC220503             -----------------------------
+HvBQ755048             KHPVGKIIDSTHYEGSG--AD--------
+HvBU982652             DTTPNWTTAATPFQG--------------
+MtgAC135801_23085      -----------------------------
+MtgAC147712_80528      -----------------------------
+MtgAC149206_68399      -----------------------------
+OsQ53K03               ARTNNRFLLSKSTTT------VV------
+SoCA277292             DVRKL--LVSADALP--------------
+TaTC254712             GSILK------------------------
+ZmCD961947             -----------------------------
+ZmCD987354             -----------------------------
+ZmCF007243             -----------------------------
+ZmQ5CC32               CALEEQTEARAGDEAAGGAGDMMSRTMAD
+ZmTC253905             -----------------------------
+ZmTC255305             PQQHQAMAIVGNVEAPPTI----------
+ZmTC264875             -----------------------------
+ZmTC277089             KSPTNIGVH--------------------
+                                                    

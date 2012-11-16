@@ -1,0 +1,50 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr1_08203951       ------------------MEARHMLVTILLLSFVFMN-IMKVEAQKVIGYPAIGRDGAR-
+Atchr1_08205923       -------------MSNLRGTNRFILVAVLV-SFVFLS-IMNAEARKEIGYPKQRFGEDRT
+Atchr1_13049142       ----------------MLKAQVFMFVTVLVFVCVFINSN---DAKRYIEYPPWQ---KH-
+Atchr2_13910349       -----------------MAMLKAISVLCVALLIIFVVKADTINREQVISYESMRVNHAW-
+Atchr2_13911993       -------------MGISKKSTKAIIIYMALIMVFFTFATLKTNAEDVISYEVLLQDHAW-
+Atchr2_13959339       -------------MGISKKT----VVQSFA-LIIIISIVMSTTEANSIGAPAMREDLPK-
+Atchr2_14698490       -------------MVLSKKT----IMQSFA-LMIILSIVMSTTEAKTIGNPAMREDEPK-
+Atchr3_01292731c      -------------MSNMKITNRFMLVATFI-ACVFIS-SMNMTVGKVIGYPGLKPDL---
+Atchr4_06984303c      -------------MSILKETKRFMVVAMFI-ACVFISNNMNVAVANEIGYPGMGRGDRQ-
+Atchr4_07037352c      ----------------MIKTKEVTFVTILIVLCVFISTI---HAKRYIEYPIRL-DLGK-
+BnCD843025            INWENKNYQAFLLVGGGLKPLKIISFL--PLGGSWVLAAPKVGAPGSLGFEPLRQGNHN-
+BnCD843050            ----------------MSKPINLIFFL--PLGGSWALPPPKIKA-KSLNFGALLHGNPI-
+BnCD843178            ----------------MAKPIKIISSL--PLGGSWVLAAPKVEAPKSLGFNPLRLGNHN-
+BnTC978               -------------MSNLKGTNRVMVVAILIAACVFMISN--PATGKFIGYPPIRGGDRP-
+                                                                     :            
+
+Atchr1_08203951       ------------GCSPK----DPSCPQQPEKPYKRGCEKITRCERDRRKQAHLRNPRKVL
+Atchr1_08205923       NPYEEITPPLIGGCDPK--NPQTCLPKQPANPYRRGCLKITRCQRDV-------------
+Atchr1_13049142       ------------PCNPR-FPTPDCYKRTPANPYRRGCTCISRCRRDCGGLSTWKKLLDTI
+Atchr2_13910349       ------------GCSQK-Y-PQF-CQKTRANPYTKPPPKNSEAS----------------
+Atchr2_13911993       ------------GCSPK-F-PRLSCLKQKANP----------------------------
+Atchr2_13959339       ------------GCAPG---SSAGCKMQPANPYKPGCEASQRCRGG--------------
+Atchr2_14698490       ------------GCPPG---SPASCKMQPANPYKPGCEASQRCRGT--------------
+Atchr3_01292731c      ------------PCDHHRYPSACAPSEQPVNPYRRGCSKIHRCRRDSPPAPISRKM--LI
+Atchr4_06984303c      -----------PGCDH-----GNCPPDQPANPYHRGCEKSKRCRGPDPPALPRK-M--I-
+Atchr4_07037352c      ------------GCDPR-FPTAACYKRTPANPYRRPCTTANRCRRSTSSTR--VPSLKTF
+BnCD843025            -----------FGGGNL---PPHFCRRVQAIPYPKGCRGFNLCRG---------------
+BnCD843050            -----------SGCRKL---PPHFCKNQKPIPYPKGWKTENRCNRGLKKGFTQVKP--PL
+BnCD843178            -----------SGCSNL---PLHFCKRVQPIPYPKGCKGFNLCRG---------------
+BnTC978               -----------PGCSP-----GTCPPPQPVNPYKPGCPPEGRCRHVPPRPPTIN-I----
+                                                     *                            
+
+Atchr1_08203951       DVVAVMAKAKQLY----
+Atchr1_08205923       -----------------
+Atchr1_13049142       LKIPV------------
+Atchr2_13910349       -----------------
+Atchr2_13911993       -----------------
+Atchr2_13959339       -----------------
+Atchr2_14698490       -----------------
+Atchr3_01292731c      RGQLIYNNAYNAYIQYP
+Atchr4_06984303c      -----------------
+Atchr4_07037352c      VEIPPM-----------
+BnCD843025            -----------------
+BnCD843050            FG---------------
+BnCD843178            -----------------
+BnTC978               -----------------
+                                       

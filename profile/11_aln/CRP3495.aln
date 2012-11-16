@@ -1,0 +1,140 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+AcCF434830           --MK-ASYHSFAFLMAMGLLFCSAQSVVHANPIVLAYAPYASAPSILTKAPPPSHSACSP
+AqTC7074             --MA-MKSLLFVLV-----LIVGF--------------AA---LLAEAQL----------
+Atchr3_05676910      MAMLKNKHMTVSLI-----LVCLV--------VVS---PM---AEAQLGLGGSGGLGG--
+Atchr3_05681506      -MAVIKKHITFSLV-----LLCLI--------VVS---PM---ANAQSGLGGI-------
+GmTC203785           --MT-LKYFITFLL-----IAAMA--------INI---PQ---TLAQLGI----------
+HaCD847345           -------------V-----LIA-----------------A---QADEAQG----------
+HvBG299979           --------MATKSL-----LLAAL--------L-------------VVISLAPHPAEA--
+HvBQ460992           --------MAAKSL-----LLAAL--------L------------ALAVGLAPHGAEA--
+HvTC133964           ---------MASKL-----V---L--------LVA---TL---ACVLGGAEAKL------
+LeTC159259           ----MASSKVFLIF-----ILAAL--------IAT---PV---AVAQ-------------
+NtQ56S59             ----MASAKIFLIF-----LLAAL--------IAT---PA---AFAI-------------
+OsTC269325           --MAAPTSKNLLLV-----LVV-A--------A------------TAVGIVAPHGSEA--
+OsTC280123           --------MASRVV-----V---L--------LVV---AA---ACVLGAADAKL------
+OsTC282226           --MAKSSSSSIRSL-----LLAAA--------L------------LVAVGISPHAAEA--
+PpTC20066            --MA-FKTFLFVSL-----VIAAI--------LAA---PV---AEAQLGL----------
+SoTC52838            ----------------------------------V---AA---ACVVGPADAKFGRL---
+TaCA647128           -----------------------L--------RRA---PT---NGIYGGSP-PRGRAG--
+TaCD865047           -----------RGA-----L---L--------LVP---AL---ACVLGGANEKL------
+TaCV773412           --------MATNSL-----LLAAL--------L------------LFVVSLVPRGAEA--
+TaTC240230           --------MASTVA-----L---L--------LVA---AL---ACVLGGADAKL------
+ZmTC274846           --MK-----SQQHV-----VLAAL--------IVV---VV---ATILVQTPPPRGAEA--
+                                                                                 
+
+AcCF434830           TMTPTKSPPPPSSPPPPLPSSPRPPAPKYAPPPPPFT-PPPPPFMIGAAVEGVIYCASCK
+AqTC7074             ---------------------------------------LGGILA-LTQIRGTLFCSVNG
+Atchr3_05676910      -----------------LIGGLVGGLG------GLVGGLVGGIL-NLVNINGVVFCSLNG
+Atchr3_05681506      ---------------------------------------------NVPIINGVLFCTING
+GmTC203785           ---------------------------------------LSGLLGSVSNIQGTVFCTSKD
+HaCD847345           ---------------------------------------LPPI-TAAVNISGIVTCSVNG
+HvBG299979           -------------------DN---------------------KQPPLALVAGVVPCSAGS
+HvBQ460992           -------------------G----------------------KEQPLVIASGVVPCSAGS
+HvTC133964           ---------------------------------------------GRLVVSGVVPCNTGS
+LeTC159259           -----------------------------------LGGLLGGLL-APTSIEGVLFCSLNG
+NtQ56S59             -----------------------------------LV----PTL-VSTHISGLVFCSVNG
+OsTC269325           -------------------AA---------------------GRAVTGLVTGVVPCSAGS
+OsTC280123           ---------------------------------------------GRLVVTGVVPCNTGS
+OsTC282226           -------------------SS---------------------GGAVMGLVTGVVPCSAGS
+PpTC20066            ---------------------------------------IGGLLG-LIRIQGTLFCTADG
+SoTC52838            ---------------------------------------------GRLVITGVVPCNTGS
+TaCA647128           -------------------VRAR---------------RRRCEARQAPSSAASVPCKTGS
+TaCD865047           ---------------------------------------------GRLVVRGVVPCKTGS
+TaCV773412           -------------------D----------------------KQPPLALVAGVVPCSAGS
+TaTC240230           ---------------------------------------------GRLVVSGVVPCKTGS
+ZmTC274846           -------------------AAII---------------P-GNVSAANAVVFGVVPCSTGS
+                                                                        . : *    
+
+AcCF434830           LKGYDPSLNASPLPGIPTKLLCNSTKKG---LTINGNATTDSKGYYLIQAQNKN------
+AqTC7074             SIGS-NSTTTPVFPNALVQLQCGTGN-VVASA------TTNTAGVFSILLDPLR------
+Atchr3_05676910      A--PS-GTSTPAFANAGVELQCGRQNRVVSTA------TTNAAGLFSLPTDSIQ------
+Atchr3_05681506      A--PLNGTPAPAFANAVVQLQCGNLNRVVAET------ITNIAGLFTFSTNGIQ------
+GmTC203785           NMGV-KGASVPVFPNAQVQLVCGG-K-ELSNA------KTNDDGTFSMMMDPLL------
+HaCD847345           S------ANAPPFANALVELSCGG-N-VIASA------VTNAQGVFNITVNPLR------
+HvBG299979           SINA--A-AVPPFPNAVVHMVCGG--RVVAGT------KADDGGAFTMNMGPAT------
+HvBQ460992           SINA--A-AVPPFPNAAVQMVCGR--DVMASV------TADRSGAYTMNMGPAT------
+HvTC133964           LIDI--A-TSPAFPNAEVELRCAG--QVVAGA------TTNTNGSFTMEADLTS------
+LeTC159259           KIDVLNGATTPIFPDASVQLRCGAGN-VVSST------TTNGSGAFSLVTSPVQ------
+NtQ56S59             NLDVINGLSPQVFPNASVQLRCGATN-VISST------ITNGSGAFSLAVNTF-------
+OsTC269325           SINA--A-SVPAFPDAGVQMVCGG--RVVGGA------TADGTGAFTINMGALN------
+OsTC280123           LIDI--A-TSPAFPNADVELRCAG--KLVAGA------TTNSNGSFAMEADLTS------
+OsTC282226           SINA--A-SVPGFPNAAVQLECGG--RAVAGA------TADGSGAFAINLGKLT------
+PpTC20066            NIGA-NGTATPVFPNALVQLQCGG-N-VVSTS------TTNGSGMFSILLDPLN------
+SoTC52838            LIDI--A-TSPAFPNADVELRCAG--KVVAGA------TTNTNGTFSMELDMTN------
+TaCA647128           SIRH--PPPPPVSPNAEVELRCAG--RWVAGA------TTNTNGPSTMEAA---------
+TaCD865047           LMDI--A-PSPVFPNAEVDLRCPG--QVVPGA------TTNPNGSFTMKAALTS------
+TaCV773412           SINV--A-AVPPFPNAVVHMVCGG--RVVAGT------KADERGPFTMNMGTVT------
+TaTC240230           LIDI--A-TSPVFPNAEVELRCAG--QVVAGA------TTNTNGSFTMEADLTS------
+ZmTC274846           SINV--A-TAPPFPNASLQLQCGG--AALAGNVSGRATTADSRGNFLVGVGVIRNANSSG
+                                       .: *                 ::  *   .            
+
+AcCF434830           --------PNQMKSCRLVVRMPIW-CNKPISPRGSK-AGFPLHFE--KV--------YKF
+AqTC7074             -----FVLSSLLTNCNLVVKTPLATCNSSLPTNGIL--ISALQFF--GRTVDGI------
+Atchr3_05676910      -----MLLSTLLSDCRVVVTTPLSTCNANLPSVGNL--VSRLAMI--GNSLTGLLNI---
+Atchr3_05681506      -----ISLPTLLNDCRIVVPTPRSSCDATLPSTGQL--ISQLNLV--GSIVSGLLNI---
+GmTC203785           -----LDLASLLSGCNLVVATPLSNCNAKLPSTGGL--ISTLNFA---------------
+HaCD847345           -----VTLNNLLSSCRIIVATPLSNCNATLPTAGTL--QSALQVA--GTFIRGILN----
+HvBG299979           ---SSLLAPLLGNQCKVVVVTPLAACNAILASVTGT-LGRPVQ-LLGVDSGNRS------
+HvBQ460992           ---SA-------------------------------------------------------
+HvTC133964           ------ALAAFIGRCSLVVDTPLIKCDAQLPPAGRL--VS-----------------YLQ
+LeTC159259           -----SLLSSLLSDCNIVVTTPLSTCNATLPSVGVL--QAPLQIV--GKTAGGGL-----
+NtQ56S59             ----------PLLNCNLVVATPLSTCNATLQSVGRL--ASSLRLV--NITLGSGTGL---
+OsTC269325           ---ATMLMAMAGNQYKVVVTTPLAACDASLAAVAGT-LTAPVQL-LGGTGGLGGLGGLIT
+OsTC280123           ------GLAMLIGGCKLVVDTPLIKCDANLPAAGSL--VS-----------------YLQ
+OsTC282226           ---AATLTPLLNDRCRVVVTTPLAA-----------------------------------
+PpTC20066            -----YILSSVLSDCNLKVDTPLISCNSSLPAVGGL--LSPLQFI--GNTALGALLS---
+SoTC52838            ------ALAAFIGGCTLVVDTPLIKCNADLTDVGSL--VS-----------------YLQ
+TaCA647128           ------------------------------------------------------------
+TaCD865047           ------ALAAFIARCSLVVDTPLIKCDAQLPPVGKL--VS-----------------YLQ
+TaCV773412           ---SSLLGPLLGNQCKVVVVTPLAGCNAVPGQRHRERLAHPVAPPWGAESGRRALGRNLA
+TaTC240230           ------ALAAFIGRCSLVVDTPLIKCDAQLPPVGKL--VS-----------------YLQ
+ZmTC274846           GAVLSLSSMLLGNQCSVVVTTPLAACNVSLAGANNGTLSAPVRVV-GGGPLLGGLLGLAA
+                                                                                 
+
+AcCF434830           G-----------TSQVALFTTAFSWSLVLPSK-ELCPKRP--------------------
+AqTC7074             ---------------INIIPVEFIFLLN--------------------------------
+Atchr3_05676910      -------------IS--IIPAGFGLLN---------------------------------
+Atchr3_05681506      -------------VA--ILPTGFIPTI---------------------------------
+GmTC203785           ------------------------------------------------------------
+HaCD847345           --------------NVNLVPIRFRLVV---------------------------------
+HvBG299979           -----------------RRPLR---NWWPNW-----------------------------
+HvBQ460992           ------------------------------------------------------------
+HvTC133964           G-----PLTRLLGGIFHLFPAGFSFHSR--------------------------------
+LeTC159259           -------------LNIVKLVTGAFQLIN--------------------------------
+NtQ56S59             -------------IRVGLAPTGFILNLNIN------------------------------
+OsTC269325           L--ITQILSGLLGEILNIIPLPFSLV----------------------------------
+OsTC280123           G-----PLTRLLGGIFRLFPAGFSFHAH--------------------------------
+OsTC282226           ------------------------------------------------------------
+PpTC20066            --------------VANIIPAGFRFVPSN-------------------------------
+SoTC52838            G-----PLTRLLGGIFHLFPAGFSFHARRA------------------------------
+TaCA647128           ------------------------------------------------------------
+TaCD865047           G-----PLPRLLGGIFPLFPAGFSFHSR--------------------------------
+TaCV773412           GPDIPLIGSKLVGGALLRADIPKATSPWGHFS-PLAQKDMRKFYFAVGGRALVLYSFTGD
+TaTC240230           G-----PLTRLLGGIFHLFPAGFSFHSR--------------------------------
+ZmTC274846           G--------------------PFSFSFSNRSSSALGRRRMMRSS----------------
+                                                                                 
+
+AcCF434830           -------------
+AqTC7074             -------------
+Atchr3_05676910      -------------
+Atchr3_05681506      -------------
+GmTC203785           -------------
+HaCD847345           -------------
+HvBG299979           -------------
+HvBQ460992           -------------
+HvTC133964           -------------
+LeTC159259           -------------
+NtQ56S59             -------------
+OsTC269325           -------------
+OsTC280123           -------------
+OsTC282226           -------------
+PpTC20066            -------------
+SoTC52838            -------------
+TaCA647128           -------------
+TaCD865047           -------------
+TaCV773412           TVLFLNRLREEYT
+TaTC240230           -------------
+ZmTC274846           -------------
+                                  

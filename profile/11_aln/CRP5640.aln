@@ -1,0 +1,110 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+GhBM360120      -----------MAATAILAVL--AAALATTARAQTCGAQAGGAKCPNCLCCSRFGFCGST
+LeTC153678      -------------------LL--FSSPLLTASAEQCGVQAGGALCAAGLCCSKFGWCGYT
+PsQ6SSF0        MGGSSSDKSVMAL-------VLVLLLVGVSVNAQNCG-------CASGVCCSQFGYCGTT
+SbCN135290      ---MANAPPRILAVLGALG-LALLCAAAVPAAAQNCG-------CQAGYCCSKFGYCGTT
+SoCA196780      CRHQEEPRACSTTAAAVLCVL--AAALAV-ASGQQCGSQAGGATCRDCLCCSQFGFCGNT
+SoCA280366      PVQLDEPGACRRRRRAVLCVL--SAALGV-AIGHHCGSHAGGATCRDCLCCSQFGFCGNT
+SoTC49510       ----------MMRALAVVAMVATAALLAASTRAEQCGTQAGGALCPNCLCCSKFGWCGTT
+SoTC67969       MSTSGGAPSLATTAAAVLCVL--AAALAV-ASGQQCGSQAGGATCRDCLCCSQFGFCGNT
+StTC112024      ---------MRLSEFTALSLL--FSLLLLTASAEQCGKQAGGARCAAGLCCSNFGWCGNT
+StTC112025      ---------MRLSEFTTLFLL--FSVLLLSASAEQCGSQAGGALCASGLCCSKFGWCGNT
+TaCV773428      -----------MRGVVVAAML--AAAFAVSAHAEQCGSQAGGATCPNCLCCSKFGFCGTT
+TaCV775502      -----------MRGVVVVAML--AAAFAVSAHAEQCGSQAGGATCPNCLCCSKFGFCGST
+TaCV782337      -----------MRGVVVVAML--AAAFAVSAHAEQCGSQAGGATCPNCLCCSKFGFCGST
+TaTC259404      MSAPRAAPSLATAATAILAVL--AAALATAARAQTCGSQAGGATCPNCLCCSRFGFCGSG
+VvTC39929       ---------MKIWGLRLFPLM--LLAIGGAFAQEQCGRQAGGALCSGGLCCSQYGYCGST
+ZmTC248737      MA-QKLAPPTAAV-------VVVLLALALSAAAQNCG-------CASGLCCSRFGYCGTG
+                                    :            . **       *    ***.:*:**  
+
+GhBM360120      SEWCGAG-CQSQCSGCPT-------PP--GPGGQGVASILSKDLFERLLLHRNDAACLAR
+LeTC153678      DAHCAPGNCQSQCRDSPEP-------------SGDLSGVISNSMFDQMLNHRNDNTCQGK
+PsQ6SSF0        SAYCGKG-CKSGPCYSSGG-------GSPSAGGGSVGGIISQSFFNGLAG-GAGSSCEGK
+SbCN135290      DDYCGDG-CQSGPCRSSGS---------SSGGGGNVGSVVTDAFFNGIKN-QAASGCEGK
+SoCA196780      SDYCGAG-CQSQCTGCG---------P--GPAGPGVASVVPRDLFERLLLHRNDAACPAR
+SoCA280366      CDYCRAC-CHSHYSWCG---------W--GPAGPGVASVVPRDLFERLLLHRNDAACPAR
+SoTC49510       SDYCGSG-CQSQCTGSCG-STPTPTP---SSGGGSVASIISESLFNQMLLHRNDAACPAN
+SoTC67969       SDYCGAG-CQSQCTGCG---------P--GPAGPGVASVVPRDLFERLLLHRNDAACPAR
+StTC112024      NDYCGPGKCQSQCPSGPSPK---PPTPGPGPSGGDIGSVISNSMFDQMLKHRNDNACQGK
+StTC112025      NDYCGPGNCQSQCPGG---------------SPGDLGGVISNSMFDQMLNHRNDNACQGK
+TaCV773428      SDYCGTG-CQSQCNGCSG-GTPVPVPT--PSGGGGVSSIISQSLFDQMLLHRNDAACLAK
+TaCV775502      SDYCGNG-CQSQCNGC---GTPVPVPT--PSGGGGVSSIISQSLFDQMLLHRNDAACQAK
+TaCV782337      SDYCGNG-CQSQCNGCSGGGTPVPVPT--PTG-GGVSSIISQSLFDQMLLHRNDAACQAK
+TaTC259404      SEWCGAG-CQSQCSGCPA------------PGGQGVASIVPKDLFERLLLHRNDAACLAR
+VvTC39929       SAYCSTG-CQSQCPSGGSPSTPSTPTPTPSGGGGDISSLISKSLFDEMLKHRNDAACPGK
+ZmTC248737      EDYCGAG-CQSGPCDV------------PETNNASVASIVTPAFFDALLA-QAAASCEAN
+                   *    *:*                        :..::   :*: :        * ..
+
+GhBM360120      G-FYTYEAFLAAAAAFPAFAGTSEGLSVETRKREVA-AFLGQTSHETTGGWSTA------
+LeTC153678      NNFYSYNAFISAAKSFPGFGTSGD---TTARKREIA-AFFAQTSHETTGIYINLNLMNSI
+PsQ6SSF0        G-FYTYNAFIAAANAFSGFGTTGS---NDVKKRELA-AFFANVMHETGGLCYINEKNPPI
+SbCN135290      N-FYTRSAFLSAANSYKSFGGG-----SVAGKREIA-AFFAHVTHETGHFCKSRGTTTTG
+SoCA196780      G-FYTYDAFLAADDGFPAFGTTAEG--DEQRKREVA-AFLGQTSHETTGGWPTAPDGPFS
+SoCA280366      G-FYTYDAFLAAVAAFPAFRTTVVD--YKQRNR---------------------------
+SoTC49510       G-FYTYAAFIAAANKFPGFGTTGGADTQKARAGGGPNPNLARD----DGRVGDGARRRLR
+SoTC67969       G-FYTYDAFLAAAAAFPAFGTTGGD--DEQRKREVA-AFLGQTSHETTGGWSTAPDGPFS
+StTC112024      NNFYSYNAFINAARSFGGFGTTGD---TTARKREIA-AFFAQTSHETTGTSI--------
+StTC112025      GNFYSYNAFISAAGSFPGFGTTGD---ITARKREIA-AFFAQTSHETTGMLI--------
+TaCV773428      G-FYNYGAFVAAANSFSGFATTGG---ADVKKREVA-AFLAQTSHETTGGWPTAPDGPYS
+TaCV775502      G-FYNYGAFVAARHSFSGFATTGG---TDVRKREVA-PFLAQTSHNTTRGWPKAPGRPLS
+TaCV782337      G-FYNYGAFVAAANSFSGFATTGG---ADVRKREVA-AFLAQTSHETTGGWPTAPDGPLL
+TaTC259404      G-FYTYEAFLAAAAAFPAFAGTSEGLSVETRKREAA-AFLGQTSHETTGGWPTAPDGPFS
+VvTC39929       G-FYTYEAFISAVKSFGGFGTTGD---TNTRKREIA-AFLAQTSHETTGGWALLQMDHMH
+ZmTC248737      G-FYTRDAFLAAAGYYPAFGRTGT---VDDSKREIA-AFFGNANHETISTCEQTEARPSS
+                  **.  **: *   : .*                                         
+
+GhBM360120      ------------------------------------------------------------
+LeTC153678      IR-----------SDNYDFIVNLEI-------------GK-----IRRIM---PC-----
+PsQ6SSF0        ---------------N-YCQSSSTWPCTSGKS-YHGRG-P--L-QLSW------------
+SbCN135290      L--------PGRPSASTGSRTRTRWRRTP-------------------------------
+SoCA196780      WGYWFKQ--EPQPPYDY-CDPRAEWPVRPRQGGTFGPGDPYEIFL---------------
+SoCA280366      ------------------------------------------------------------
+SoTC49510       LGLLLQGRAXR--------------------------RGGAGLLRAQHAMAVRRGE-KVL
+SoTC67969       WGYCFKE--ERSPPSDY-CEPRPEWPCAPGKK-YFGPRPHPDLLQLQL---RPSGE-SHR
+StTC112024      ------------------------------------------------------------
+StTC112025      ------------------------------------------------------------
+TaCV773428      WGYCFN--QERGAPSDYWFAKLRI--GRAPPDKKILR-GAGPFPDLHS---NFH-----L
+TaCV775502      -------------PGDYWLLP---------------------------------------
+TaCV782337      VEATASTRKRGGPPPNYLFAETPHWPVAAPGSRKDLPGRGAPFPKS--------------
+TaTC259404      WGYCFKQ--ERDPPADY-CQPRPEWPCAPGRR-YYGPRPHAALPQLHY---GRRAR-DRV
+VvTC39929       GD-----------IASFGNRATLETTVLPINN------GHA--LLVKNIMAEVPSKFHTT
+ZmTC248737      ---------------S-CY-----------------------------------------
+                                                                            
+
+GhBM360120      ------------------------------------------------------------
+LeTC153678      ------------------------------------------------------------
+PsQ6SSF0        ------------------------------------------------------------
+SbCN135290      ------------------------------------------------------------
+SoCA196780      ------------------------------------------------------------
+SoCA280366      ------------------------------------------------------------
+SoTC49510       RAGAQSDT----------------------------------------------------
+SoTC67969       RGPAQQPGPRRDRPRGILQDGAVVLDDRAGQQAVVPR-RDHGAVDAHGRGHGGRPGRARV
+StTC112024      ------------------------------------------------------------
+StTC112025      ------------------------------------------------------------
+TaCV773428      -LGRAGGGPFRTEPGSITPV-------------------PFGRLNASRCS----------
+TaCV775502      ------------------------------------------------------------
+TaCV782337      -------------P----------------------------------------------
+TaTC259404      TAHNQTGG-------------ATVWSTA----CLIPSTRPYG------------------
+VvTC39929       TTTVQQEK-----P----------------------------------------------
+ZmTC248737      ------------------------------------------------------------
+                                                                            
+
+GhBM360120      ---------------------------------------------------------
+LeTC153678      ---------------------------------------------------------
+PsQ6SSF0        ---------------------------------------------------------
+SbCN135290      ---------------------------------------------------------
+SoCA196780      ---------------------------------------------------------
+SoCA280366      ---------------------------------------------------------
+SoTC49510       ---------------------------------------------------------
+SoTC67969       RRGHQHHQRWDRVRARGRPPGDRPDWLLQALLRCLPHRLREQPRLRRPEAVQYRGGG
+StTC112024      ---------------------------------------------------------
+StTC112025      ---------------------------------------------------------
+TaCV773428      ---------------------------------------------------------
+TaCV775502      ---------------------------------------------------------
+TaCV782337      ---------------------------------------------------------
+TaTC259404      ---------------------------------------------------------
+VvTC39929       ---------------------------------------------------------
+ZmTC248737      ---------------------------------------------------------
+                                                                         

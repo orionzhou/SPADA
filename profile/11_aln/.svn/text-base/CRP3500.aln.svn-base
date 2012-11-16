@@ -1,0 +1,86 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr1_20508667       MAITRASFAICILLSLATIATADYYAPSSPPVYTSPVNKPTLPPPVYTPPVHKPTLPPPV
+Atchr2_19511290       ------------------------------------------------------------
+Atchr2_19512971       ------------------------------------------------------------
+Atchr3_23193754       MAITRSSLAICLILSLVTITTADYYSPSSPPVYKSPEHKPTLPSPVYTPPV---------
+Atchr4_00992996c      ------------------------------------------------------------
+GmTC216958            ------------------------------------------------------------
+GmTC216959            ------------------------------------------------------------
+GmTC233735            ------------------------------------------------------------
+LeAW625548            ------------------------------------------------------------
+ZmTC274591            ------------------------------------------------------------
+                                                                                  
+
+Atchr1_20508667       YTPPVHKPTLSPPVYTKPTLPPPAYTP---------PVYNKPTLPAPVYTPPVYKPTLSP
+Atchr2_19511290       ------------------------------------------------------------
+Atchr2_19512971       ------------------------------------------------------------
+Atchr3_23193754       -----YKPTLSPPVYTKPTIPPPVYTPPVYKHTPSPPVYTKPTIPPPVYTPPVYKPTLSP
+Atchr4_00992996c      ------------------------------------------------------------
+GmTC216958            ------------------------------------------------------------
+GmTC216959            ------------------------------------------------------------
+GmTC233735            ------------------------------------------------------------
+LeAW625548            ------------------------------------------------------------
+ZmTC274591            ------------------------------------------------------------
+                                                                                  
+
+Atchr1_20508667       PVYTKPTLLPPVFKPTLSP--PVYTKPTLSPTVYKPTLSPPVNNKPSLSPP-VYKPT--L
+Atchr2_19511290       -----------------------------------------MASTGA-------------
+Atchr2_19512971       -----------------------------------------MAQTC--------------
+Atchr3_23193754       PVYTKPTIPPPVYTPPVYKPTPVYTKPTIPPPVY--------------TPP-VYK-----
+Atchr4_00992996c      -----------------------------------------MAFSR--------------
+GmTC216958            -----------------------------------------MAFLR--------------
+GmTC216959            -----------------------------------------MAFLR--------------
+GmTC233735            -----------------------------------------MAYFH--------------
+LeAW625548            ------------------------------------------------------------
+ZmTC274591            -----------------------------------------MASLNLKDHCAVVAAVVAI
+                                                                                  
+
+Atchr1_20508667       SPPVYTKPTLPPPVYKKSPSYS--PPPP--FAPKPTYT-------------------PPT
+Atchr2_19511290       ---ATNLLLLAMVVVVATADYYA-QPQP--YVPKPTTTY----------------TSPVK
+Atchr2_19512971       SILYIPYMLLLSSLFA---------------------------------------AGIAT
+Atchr3_23193754       -------PTPSPPVYKKSPSYSS-PPPP--YVPKPTYT-------------------PTT
+Atchr4_00992996c      LSFAASLIVFSSLII-SSVAYYGNEAD---------------------------------
+GmTC216958            STLATSMVLLAMLAIVSATDYYGYGPTPKLENPKPKTDYKV-DKPHPRIPDYYAVPKPKG
+GmTC216959            STLATSMVLLAMLSIASATDYYGYGPTPKLENPKPKTDHKFDDKPHPTEPDYYAVPKSKG
+GmTC233735            STCFLVFMLIASLLVPG-------------------------------------RGGDYG
+LeAW625548            -----------------YENSYGND-----------------------APKTYK--KDVH
+ZmTC274591            CILAAALPSHASTAVDEPAKYKP------------------SGAPAPS-------PASAS
+                                                                                  
+
+Atchr1_20508667       KPYVPEI--IKAVGGIILCKN--------GYETYPIQGAKAKIVCSERGSYEKSKNEVVI
+Atchr2_19511290       TPYLPKSNPDIAIEGFILCKS--------GYKTYPIQGGKVKVVCPVVDSYGKLVAKVTI
+Atchr2_19512971       ITEGELLSSMIGVQGLIYCKR--------GSKLTPIQGAVARVTCERTDEYGYEAEDVTV
+Atchr3_23193754       KPYVPEI--LKAVDGIILCKN--------GYETYPILGAKIQIVCSDPASYGKSNTEVVI
+Atchr4_00992996c      PETGKLI--PIAVEGIIKCKS--------GGKTYPIQGATARIACVKVDAYGNELVPISI
+GmTC216958            NDELHLLPTIIGVQGVVLCKS--------GSNYFPIQGAVARVTCGWENELGYETGPISV
+GmTC216959            NDELHLLPTIIGVQGVVLCKS--------GSNYSPIQGAVARVTCGCEDEQGYDTGPTSV
+GmTC233735            PEEEKLLSKTIGIQGIVYCKS--------ASKLTPLEGALTRIACEAVDEYGFETTPFSF
+LeAW625548            TKGLVPEANIIAVQGMIYCKS--------GSKHIPLKGAVARITCLGTEKHGHETAPFSF
+ZmTC274591            SYVPPPVQPVIVVQGVIYCKSCKLRGYNSGMDASPLPNATASLVCYGDAESKYRV--LNQ
+                                  : *.: **         . .  *:  .   :.*               
+
+Atchr1_20508667       YSDPTDFKGYFHVVL--------THIKNLSNCRVKLYTSPVETCKNPTNVNKGLTGVPFS
+Atchr2_19511290       SSYPTDLKGYFYFITYG----LSHKVNNISSCKVKLESSPVFTCKTPTNVNKGVTGAPLS
+Atchr2_19512971       LSQATDAKGYFLATLSSSEVKDYKKVIKIKECRAFLELSPSDTCSFPTEINRGISGAILQ
+Atchr3_23193754       YSNPTDSKGYFHLSL--------TSIKDLAYCRVKLYLSPVETCKNPTNVNKGLTGVPLA
+Atchr4_00992996c      LSSKTDAKGYFIATIFPSQLRAG---RTVTKCKTYLYKSPLADCDFPTDVNKGVRGQPLS
+GmTC216958            LSHVTDSKGYFFATLSLGELGSK---LKITECKAYLESSPLETCKVPTDVNYGISGARLS
+GmTC216959            LSHVTDSKGYFLATLSF---GSK---LKITECKAYLETSPLETCKVPTDVNYGISGARLS
+GmTC233735            LSEATDSKGYFLATLSPQEVEGK---GVLKECRAFLDASPLNNCSYPTDVNKGISGAVLR
+LeAW625548            SSYQSDAKGYYYAVFSLNELKEYDQSCTITQCKAFLESSSLEECDVPTDENNGITGAILT
+ZmTC274591            TSTATDTNGYFIVMVYD------VGMFDRRSCRLYLRSSPTALCAAPFIPSNPKLGLTLV
+                       *  :* :**:                    *:  *  *    *  *   .    *  : 
+
+Atchr1_20508667       M-----YSD---KNLKLFNV-GPFYFTAGSKAAPAT----P-------RY
+Atchr2_19511290       PDNSKFLSH---DNLTLYTL-EPFYFSSPVAPKPVY--------------
+Atchr2_19512971       NY--RLLEN--KLKMKLFTV-GPFVFSSEETQDKSI----------PNGY
+Atchr3_23193754       LYGYRFYPD---KNLELFSV-GPFYYT-GPKAAPAT----P-------KY
+Atchr4_00992996c      TY--RILQD---KSFKLYWA-GPFFYTSEPTYY-----------------
+GmTC216958            SY--RLLEN----KMKLYTV-GPFFCTSQPA--KPL----------PNGY
+GmTC216959            SY--RLLQN----NIKLYSV-GPFFCTSQ-----PL----------PNGY
+GmTC233735            FH--RFLHD---KKMKLYTV-GPFQFTTSPT---PI----------SGGY
+LeAW625548            SY--RLLNEYAEKKTVLYSV-APFVYTSEDDGDDDADYTKSNYYRREGGY
+ZmTC274591            RDRAATAPR---GARGIFHPKTALMYAPATAGK-C-----PP-------Y
+                                      ::     :  :                       

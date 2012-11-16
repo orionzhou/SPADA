@@ -1,0 +1,42 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+GmTC230224              MGSKSSRWSVTWVVLFICLLLCFSAKAIATRN----------------------------
+MtAJ501421              --MASKKSSLILVVLFICLLS-FSSKALARNIANASKPYPCKTSPYPFCYC---ICAI--
+MtBE941725              --MASKKCSLILVVLFICLLS-FSSKALARNIPNASKLYLYEIGLNKKRL----------
+MtTC103711              --MASKRCSLIWVVLILFMLS-FSSKALARNIPDVPKLLED-------------------
+MtTC110251              --MASK--------------------IIS-----------------PYLGFSHS------
+MtTC96667               --MASKKCLLVFVVLFFCILS-FSAKTLARNIVDSSELYAF-------------------
+MtTC97099               --MASKKCSLIFVVLVFCMLS-FSSNILARNIADASELYACKIKLHESSVFSWERCIKYA
+MtgAC144929_130001      --MSSKRFFLIWGVLFLCVLS-FSTKPLARNIPNVSEFYSG-------------------
+                            *.                     ::                               
+
+GmTC230224              --------------------------------------LAGYADEKGPSRRLLG------
+MtAJ501421              -------------FWRNHYNNVFSCINIWY--------FCIVSEEIDLNKKRL-------
+MtBE941725              ----------------------LASVKPKPD-------NARGHNYADLNK-KR-------
+MtTC103711              ------------------------------------------SDEMGPNKRLLFQ-----
+MtTC110251              -----------------------LCVFIVCHETSLVLLSFIQARMKXXSRRLLGQEQTGG
+MtTC96667               ------------------------------------------SDEKGLNKRLLQE-NR--
+MtTC97099               TSEVQTLATIKIKLHDNMMRYILNCSYIICL-------ICVVSDEKSMNKRLLLQQKR--
+MtgAC144929_130001      ------------------------------------------ANEMGPNKRFLGQENK--
+                                                                        .:          
+
+GmTC230224              -RSPCKRGRMTSEVVQGDRKQQREDSPRCNNYL---------------------------
+MtAJ501421              -LLAEKCGKRI-------QHPDSAADPECHHYL---------------------------
+MtBE941725              -LLSEKCGSRT-------HQPH-ADRPRCHNYL---------------------------
+MtTC103711              -VPKCRRGRIT--------SEIRADKPRCHHYF---------------------------
+MtTC110251              SRSPCGA------SLINDQNKQASDQPRCGNYRHQSHP----------------------
+MtTC96667               -RAPCKRGKRD-------QMRQARDNPRCHNYL---------------------------
+MtTC97099               -LPPCKSRR----------NQEERDNPGCHNYIIVTWKEKNKEMYYMLFSLIFLHAISKN
+MtgAC144929_130001      -RPPCKRGIVT--------YAVRQDDPRCHHYL---------------------------
+                                                  * * .*                            
+
+GmTC230224              ----------------------
+MtAJ501421              ----------------------
+MtBE941725              ----------------------
+MtTC103711              ----------------------
+MtTC110251              ----------------------
+MtTC96667               ----------------------
+MtTC97099               KICKTNKFCQLFSMVINYFDGN
+MtgAC144929_130001      ----------------------
+                                              

@@ -1,0 +1,162 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+AcTC765         MLIHIGDPLRGRLLPTLAAALAILVAYNNVGSVSADPYIYSSPP-------PPYVYSSPP
+GmTC230251      ------------------------------------------------------------
+GmTC230252      --------------------------------PSPTPYYYKSPPPPSPT---PYYYKS-P
+GmTC234548      ------------------------------------------------------------
+HaBU025430      ------------------------------------------------------------
+LsBQ871976      ------------------------------------------------------------
+LsBU000066      ------------------------------------------------------------
+LsTC12020       ------------------------------------------------------------
+LsTC12048       ------------------------------------------------------------
+MtCX535175      ----------------------------------PPPYYYKSPPPPSPVPHPPYYYNS-P
+MtTC94165       -----------------PPPPYYYKSPPPPSPSPPPPYYYKSPPPPSPIPHTPYYYKS-P
+PcQ40793        ---------------------------------------YHSPPPPVKSPPPPYYYSS-P
+PvQ09085        ------------------------------------------------------------
+StCK275253      --------------------------------------------PPSPSPPPPYYYKS-P
+                                                                            
+
+AcTC765         PPPVKSSPPPYYYVSPPPPM----------------------------------------
+GmTC230251      ------------------------------------------------------PHPIF-
+GmTC230252      ----------------------PPPPYYYKSPPPP--SPTPYYYNSPPPPVVYPPHPYHP
+GmTC234548      --------------------------------------------PSPKPPPYTPYPHPHP
+HaBU025430      ----------------CVLLRYQQCSRQEQ-RSYHQKPK---------------QSLEYQ
+LsBQ871976      ----------------------KSPPHYY----YSSPPPPK---------SY--YPVPYP
+LsBU000066      ------------------------------------------------------------
+LsTC12020       ---------------------HHHHNHRFH-KHHHHQPP----------------AGSHP
+LsTC12048       ------------------------------------------------------------
+MtCX535175      PPPVKSPP--------------PPTPYYYQSPPPPKYTPPPYYYNSPPPPVVYPPP----
+MtTC94165       PPPSPSPPPPYYYKSPPPPSPIPHTPYYYKSPPPPKVLPPPYYYNSPPPPVAYPHP--HP
+PcQ40793        PPPVKSPPPPYYYTSPPPPVKSPPPPYYYTSPPPPMKSPPP---------PY--YPHPHP
+PvQ09085        ------------------------------------------------------------
+StCK275253      PPPSPSTPPPYYYTSPPPPTH------------------------------------YYP
+                                                                            
+
+AcTC765         -KSPPTVEVMGKVYCYKCFDWEHPTKSSHKKLFKGAVVKVTCEA-G-QKYVGYGKTNIHG
+GmTC230251      RTHPXIVKVVGKVYSYKCYDWEYPEKSNNKKHLKGAVVEVKCKA-GRNIIKAYGETKSNG
+GmTC230252      HHHPLIVKVVGKVYSYKCYDWEYPEKSHNKKHLKGAVVEVKCKA-GRNIIKAYGETKSNG
+GmTC234548      YHHPLIVKIVGKVYCYRCYDWKYPQKSHNKKHLKGATVEVTCEV-GSKTIKAYGKTKSNG
+HaBU025430      QYRELIVKVIGKVYCYSCYDWKYPIKSHAKHHLKGAVVEVTCKADGEKKIVAYGKTKING
+LsBQ871976      HHKKLIVKVVGKVYCYSCYDWKYPIQSHAKHHLKGAVVEITCKAVGQKEIFAFGKTKING
+LsBU000066      ---------------------------------------VTCKPAREKEIFIYGKTKIIG
+LsTC12020       HHNEAIVKVVGKVYCYSCYDWKYPIKSHAKHHLKGAVVEVTCKAAGEKEISVYGKTKING
+LsTC12048       ----------------------------------------------EKEISVYGKTKING
+MtCX535175      YHHPLIVKVVGKVYSYKCYNWEYPEKSHDKKHLKGAVVEVKCKA-GRNIIKAYGKTKSNG
+MtTC94165       YHHALIVRVVGKVYSFRCYDWEYPAKSHNKKHLQGAVVEVTCKA-GSKIVKAYGKTKNNG
+PcQ40793        HPHSYTVKVVGKVYCYRCYDWKYPIKSHAKKHLKGAVVEVTCKA-GDKDVVTYGKTKING
+PvQ09085        ----------------------------------GATVEVTCEV-GGKTIKSYGNTKSNG
+StCK275253      PRHQFVVKVVGKVYCFRCHNWKHPEMSHDKKHLKGAVVEVTCKA-GDKEIVSYGTTKING
+                                                               :    :* *:  *
+
+AcTC765         KYSVEIKGYPYWKYG-TKGCKVELHASPKGSMCNVKTELNK---DSPLKVYQTSHDEIVL
+GmTC230251      KYSITVKDFNYVKYG-STVCKAKLYAPPKGSPFNIPTKLNE---GTELKVKSKDK-----
+GmTC230252      KYSITVKDFNYVKYG-PTVCKAKLYAPPKGSPFNIPTKLNE---GTDLKVKSK-------
+GmTC234548      KYSITVEGFDYVKYG-ATVCKAKLHAPPKDSRCNIPTKLNE---GTKLKVKSKDKYEVVL
+HaBU025430      KFAITVDGLKYSKYGGAKACVAKLHMAPNGTKCNVPTNLHGGLKGAELKVKSKNDYEVVL
+LsBQ871976      KYAITVEGLDYSKYGGAKACTAKLHMAPKGTKCNIPTNLHGGLKGAMLKVKSKNAYEVVL
+LsBU000066      KYAIAVEGVNYSKYGGAKGNMANLHMTPHGPKCNIPSHLHGGKKGVEFKVKSKNNYEIVF
+LsTC12020       KYAITVEGLDYSKYGGAKGCIAKLHMAPNGTKCNIPTNLHGGLKGAELKVKSKNAYEIVL
+LsTC12048       KYAITVEGLDYSKYGGAKGCIAKLHMAPNGTKCNIPTNLHGGLKGAELKVKSKNAYEIVL
+MtCX535175      KYAITIPNFNYVKYG-SVVCKAKLYAPPKDSPFNIPTKLNE---GTDLKVKSKDKYEVV-
+MtTC94165       KYAITVKDFDYVKYG-STVCKAALYAPPKGSPFNIPTKLNQ---GTKLYLKSKDKYEVVL
+PcQ40793        KYSITVKGFEYGKYGGAKACKAKLHMAPKDSKCNIPTNLHWGIKGAKLKVKSKSKYEVVL
+PvQ09085        KYSITVEGLDYVKYG-GTVCKAQLHAPPKGSRCSIPTKLNE---GTKLALKSKDKYEVVL
+StCK275253      KFSITVGGFEYSKYG-AKACKAKLHNAPKDSKCSIPTNFHWGIKGANLKVKSKNKYEVVL
+                *::: :    * ***      . *:  *.    .: :.:.       : : ..       
+
+AcTC765         KSKSLAFAPEKHMQSVTSTTTWSQHQHLITTSHHPHRHTTISHHHLPSHFSLC-----LQ
+GmTC230251      ------------------------------------------------------------
+GmTC230252      ------------------------------------------------------------
+GmTC234548      KAKPFAYAPEKSY-DCEKPKPKP---------------SPTP----------------YH
+HaBU025430      YAKPFAYAPKTPFKICEKPKP--------------T-PTPYY----------------YK
+LsBQ871976      QAEPFAYAPKTPSTLCEKPKPKPE----------PT-PSPYY----------------YK
+LsBU000066      QGTASA------------------------------------------------------
+LsTC12020       QAKAFAYAPKTPSKICEKPKPKPE----------PT-PSPYY----------------YK
+LsTC12048       QAKAFAYAPKTPSKICEKPKPKPE----------PT-PSPYY----------------YK
+MtCX535175      ------------------------------------------------------------
+MtTC94165       KAKPFAYASKKHFKECEKPKPSP---------------TPYY----------------YK
+PcQ40793        SAKPFAYAPKTPYKKCYKPVPTPA----------APLTPPYY----------------YQ
+PvQ09085        KAKPFAYAPKKPY-DCEKHKHSPT----------PY-HKPYYYNSPPPPYYYKSPPYYYK
+StCK275253      YAKPFAYGSKTPYAECLKPKPTP---------------APYY----------------YK
+                                                                            
+
+AcTC765         ------------------------------------------------------------
+GmTC230251      ------------------------------------------------------------
+GmTC230252      ------------------------------------------------------------
+GmTC234548      KPY---------------------------------------------------------
+HaBU025430      SPPP--------------------------------------------------------
+LsBQ871976      SPPP----------------P--------------------PPTYLYKS-----------
+LsBU000066      ------------------------------------------------------------
+LsTC12020       SPPPP---------------P--------------------PPTYLYKSPPPPAR-----
+LsTC12048       SPPPVK-S------------P--------------------PPPYYYTSPPPPVK-----
+MtCX535175      ------------------------------------------------------------
+MtTC94165       SPPPPSPV---YKYNSPP-PPVHYYSPPYTYKSPPPPVKAAPTPYYYKSPPPPAP-----
+PcQ40793        SPPPPSKS-----------PA--------------------PTPYYYKSPPPPTK-----
+PvQ09085        SPPPPSPSPSPYYYKSPPPPHKDPYYPPYYYKSPPPPSPSPPPPYYYKSPPPPSPSPPPP
+StCK275253      SPPPPSPT---YVYKSPP-PP--------------------SPKYVYKSPPPPTP-----
+                                                                            
+
+AcTC765         ------------------------------------------------------------
+GmTC230251      ------------------------------------------------------------
+GmTC230252      ------------------------------------------------------------
+GmTC234548      ------------------------------------------------------------
+HaBU025430      ------------------------------------------------------------
+LsBQ871976      ------------------------------------------------------------
+LsBU000066      ------------------------------------------------------------
+LsTC12020       ---------------------WP-------------------------------------
+LsTC12048       ---------------------SPPPPYH------YTSPPPPVKSPPPPYHYTSPPPPVKS
+MtCX535175      ------------------------------------------------------------
+MtTC94165       ---------------VYKYNSPPPPVHYYSPPYTYKSPPPPVKAAPTPYYYKSPPPPAPV
+PcQ40793        ---------------------SPAPT----------------------------------
+PvQ09085        YYYKSPPPPDPSPPPPYYYKSPPPPSPSPPPPYYYKSPPPPSPSPPPPYYYKSPPPPSPS
+StCK275253      ---------------TYVYKSPPPPAYY------YKSPPPPTKS-PPHYYYKSPPPPSPK
+                                                                            
+
+AcTC765         ------------------------------------------------------------
+GmTC230251      ------------------------------------------------------------
+GmTC230252      ------------------------------------------------------------
+GmTC234548      ------------------------------------------------------------
+HaBU025430      ------------------------------------------------------------
+LsBQ871976      ------------------------------------------------------------
+LsBU000066      ------------------------------------------------------------
+LsTC12020       ------------------------------------------------------------
+LsTC12048       ----------------------PPPPYYYTSPPPPVKSSTTTYH----------------
+MtCX535175      ------------------------------------------------------------
+MtTC94165       ----------YKYNSPPPPVHYYSPPYTYKSPPPPVKVAPTPYYYKSPPPPAP-------
+PcQ40793        -------------------------PYYYKSP----------------------------
+PvQ09085        PPPSPSPPPPYYYKSPPPPDPSPPPPYYYKSPPPPSPSPPPPYYYKSPPPPSPSPPPPYY
+StCK275253      ----------------------PAPVYYYKSPPPPSPKPAPVYYY---------------
+                                                                            
+
+AcTC765         ------------------------------------------------------------
+GmTC230251      ------------------------------------------------------------
+GmTC230252      ------------------------------------------------------------
+GmTC234548      ------------------------------------------------------------
+HaBU025430      ------------------------------------------------------------
+LsBQ871976      ------------------------------------------------------------
+LsBU000066      ------------------------------------------------------------
+LsTC12020       ------------------------------------------------------------
+LsTC12048       ------------------------------------------------------------
+MtCX535175      ------------------------------------------------------------
+MtTC94165       -------------VYKYNSPPPPVHYYSPPYTYKSPPPPVKAALGFRFVVYDYYTRCWDL
+PcQ40793        ------------------------------------------------------------
+PvQ09085        YKSPPPPSPDPPTPYYYKSPPPPSPSPPPPYYYVSPPPPTKSPPPPAYSYASPPPPTYN-
+StCK275253      ------------------------------------------------------------
+                                                                            
+
+AcTC765         ---------------
+GmTC230251      ---------------
+GmTC230252      ---------------
+GmTC234548      ---------------
+HaBU025430      ---------------
+LsBQ871976      ---------------
+LsBU000066      ---------------
+LsTC12020       ---------------
+LsTC12048       ---------------
+MtCX535175      ---------------
+MtTC94165       ALKFCFCHCSVMASF
+PcQ40793        ---------------
+PvQ09085        ---------------
+StCK275253      ---------------
+                               

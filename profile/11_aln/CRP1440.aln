@@ -1,0 +1,34 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+MtBE997753              ----------MAKTLKFVYVIVLFLSLFLAAKNIDA--LPVCQTAADCPEGT----RG-R
+MtTC100071              -----------AISYKFVYAIIFFIFLFLVANNVEG--YIVCITDNDCPENT----EV-R
+MtTC100580              ----------MSGVLKFVYAIILFLFLFLVAREVGGLETIECETDGDCPRSMIKMWNKNY
+MtTC101177              ----------MIETLKFVYAMILFLSLFLITSEVGGL-YIGCETDRDYPPLA----NKTF
+MtTC103322              MTETLKFVVTKKKTLKFVYAMILFLSFFLIASEVGA--HFGCETDADCPRST----DKNF
+MtTC106589              ----------MANTHKL-VSMILFIFLFLVANNVEG--YVNCETDADCPPST----RV-K
+MtTC108183              ------------MAHKFVYAIILFIFLFLVAKNVKG--YVVCRTVDDCPPDT----RD-L
+MtTC109179              ------------MAHKLVYAITLFIFLFLIANNIED--DIFCITDNDCPPNT----LV-Q
+MtTC95126               ------------MAHKLVYTIILFIFLFLVANNVEG--DIVCITDNDCPPNT----LV-Q
+MtTC97658               ----------MTETLKFFYAMILFLSLFLITTNVGGS-YYGCETDADCPRSM----NKDF
+MtgAC150777_2031        ----------MPKSLKFVYTMILFIFLFLITKNVDA--LHDCEYDDDCPKST----SK-R
+MtgAC159613_129001      ----------MAKTLKFVYVMILFTSLFLFAKNVVG--YINCKTDDDCPKLE----SRMV
+MtgCG954083             ---------------------------------------VNCETDAEGPPRT----RV-K
+MtgCR328176             ------------MTHKLVYAIILFIFLFLVANNVEG--YILCKTVNDCPPNT----RN-L
+                                                                 *    : *           
+
+MtBE997753              TYKCINNKCRYPKLLKPIQ----------------
+MtTC100071              QYECIEGRCRLSRVLNP------------------
+MtTC100580              RHKCIDGKCEWIKKLP-------------------
+MtTC101177              YLKCIDKKCEWTVTDSLSTRSGRMQKLSI------
+MtTC103322              FLRCINKKCEWAAKRH-------------------
+MtTC106589              RFKCVKGECRWTRMSYA------------------
+MtTC108183              RYRCLNGKCKSYRLSYG------------------
+MtTC109179              RYRCINGKCNLSFVSYG------------------
+MtTC95126               GYRCIDGKCESVFLSYR------------------
+MtTC97658               YLKCVDKKCEWTAKI--------------------
+MtgAC150777_2031        TYRCINKKCRSYFTRVEK-----------------
+MtgAC159613_129001      VLKCTNSRCAAVILH--------------------
+MtgCG954083             RVKGVKGECRWTRTSYA------------------
+MtgCR328176             RYRCIDGKCKSHRVLYEWDE-SHTQDITITPCIEE
+                          .  . .*                          

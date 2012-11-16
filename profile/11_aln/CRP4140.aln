@@ -1,0 +1,46 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr4_14044117       MHNKLHLRNELITIYIIYRYRFLFVHESYISPSLASVLSSMKIHAIL--VVAFLVLM-KT
+Atchr5_17850543c      ----------------------------------------MDTHTTKLVAISLLLLLVIS
+BnCD842851            ----------------------------------------MNRHTTTLVVLS--LLLVVS
+NtBP131170            ------------------------------------------------------------
+PpBU876942            ------------------------------------------------------------
+PpTC34932             --------------------------------------------MLRIAGCCL-LVLLAS
+StCV506493            ----------------------------------------MTTKYLLLVFITLIVLVVLM
+StCV506817            -----------------------------------------TTKYLLLVFITLIVLVVLM
+StTC125901            ----------------------------------------MTTQSLLLFFVALIVLS-SC
+                                                                                  
+
+Atchr4_14044117       ----AVSQDNNPLEHCRDVFVSFMPCMGFVEGIFQQPSPDCCRGVTHLNNVVKFTSPGSR
+Atchr5_17850543c      DYTRLMIQVHSYVPFCAYTYDYFSYCLDFLTGYYYKPGKKCCVHIVKLNIIAKHKKEN--
+BnCD842851            DHTRLMIRVHSYVPFCAYTYDYFSYCLEFLTGNYYKPGKKCCVHIAKLNIIAKRKKEN--
+NtBP131170            -------------------LITSRIRQEYVDGDYDDPTPACCDNSHIMNENVKKDNTK--
+PpBU876942            -----------NFDSCKIISDKLSHCLDFLAGSYCKPSNQCCQSIYDLNAIARVV-MG--
+PpTC34932             -----GLDIAYSESKCEPVFEYFPYCLDFLTGYYNKPSKRCCDHIYKLNRSAKRG-LG--
+StCV506493            ----SPCNACNKDPICKDVNARFKTCERFIVGITSFPTLTCCNNLIIMNDNVKCEHDG--
+StCV506817            ----SPCNACNKDPICKDVNARFKTCERFVVGITSFPTLTCCNNLIIMNDNVKCEHDG--
+StTC125901            ----NAFRVYKKDPICDDVDACFASCEDFVDGITEYATWECCSNLMILNNNVKYDEDG--
+                                                  :: *        **     :*  .:       
+
+Atchr4_14044117       NRQDSGETERVCLCIEIMGN---ANHLPFLPAAINNLPLRCSLTLSFPISVDMDCSQFRN
+Atchr5_17850543c      -------PRLLCNCVEMMTR---GYTPPMLADKIQQLPLLCNTHLSFPISSSMDCSTV--
+BnCD842851            -------PRLLCNCVEMMTR---GYTPPMLADKIQELPPLCNTHLSFPISSSMDCSTV--
+NtBP131170            -------ARRYCYCIEVFCATVGRPHPPYLQSRITDLNIKCNFHRSFPISEHMDCTNV--
+PpBU876942            -------PRFICHCIENVAR---VLPTRIIPDRIGDLTIKCNTHNSFAISEYMDCNREPI
+PpTC34932             -------AQLICWCIEYMVR---GTEPRIRADRISELPTKCQTHLSFPISEWKDCNTIE-
+StCV506493            -------VRRYCSCIVDFSN--SHDHLPYLQERIEQLYIFCDVHLSFPISERMDCSKL--
+StCV506817            -------VRRYCSCIVDFSN--SHDHLPYLQERIEQLYVFCDVHLSFPISERMDCSKL--
+StTC125901            -------VRRYCSCIEDFSN--NHYHPPYLQSRIGRLYSICNIHLSFPISERMDCSEL--
+                              .  * *:  .               *  *   *.   ** **   **.    
+
+Atchr4_14044117       TKNPDVEKLN
+Atchr5_17850543c      ----------
+BnCD842851            ----------
+NtBP131170            ----------
+PpBU876942            QIDRPHD---
+PpTC34932             ----------
+StCV506493            ----------
+StCV506817            ----------
+StTC125901            ----------
+                                

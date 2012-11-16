@@ -1,0 +1,56 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+HvBI779167      MAPSPAGS----TATLLSLLVVLVLLGMG-------------CPAGATTACQDCAGQCNS
+OsQ53RA2        ------------------------MASGAV-AVCIRAEAQAAGPQAAPMACSQCDQMCNS
+OsTC258753      MAA--ASGRRRAAAFAVVICAALLLLSSAVE------------RAAAQVPCSQCDQACKE
+OsTC260988      MAASEFRSGRRAVALVVVICA-VLLLSSAVE------------RAAAQVPCSKCDHACKK
+OsTC272399      MAASEFRSGRRAVALVVVICA-VLLLSSAVE------------RAAAQVPCSKCDHACKK
+OsTC279007      -----MAGGASSPRVVACVVVALLLLSFAVEPLEAVAAAAAPATATKPIRCRKCDHACKK
+TaCD869056      MAPSPSS-----SAVVLAMLVLLVLLGMG-------------CPAAAATACTDCVSQCNS
+                                        : . .                     * .*   *:.
+
+HvBI779167      TCSAANFAG---AGPCGADCNPAPGCPSCLAAYHSKCLPYCVSACKANSPPGYDCESSCN
+OsQ53RA2        SCEGAGSE--PCSYACG-------SCQGCMQAYFYRCLPRCGDYCRSNCV----------
+OsTC258753      SCKGYGRDSSSCSAPCGDP-SNKDGCESCLEAYYSKCVNYCGPSCHVTCTSG--------
+OsTC260988      SCKGYGRDS-SCSLPCGDP-SNKAGCESCLDAYYLKCPNYCGQSCRVTCTSG--------
+OsTC272399      SCKGYGRDS-SCSLPCGDP-SNKAGCESCLDAYYLKCLNYCGQSCRSLEARARLDKAREL
+OsTC279007      SCKGYGRNS-DCSVPCGDP-SNKAGCKSCLQAYYSKCLNYCGQACRAVCIN---------
+TaCD869056      TCSAANFAG---AGPCGADCTRSQACLGCLEAYKSKCSGHCYSSCRRQTSSGYDCEGSCA
+                :*..        :  **       .* .*: **  :*   *   *:              
+
+HvBI779167      KTSLCSGSCSAVCGESPTCTDL---QANYSRGCTSC-----------C------------
+OsQ53RA2        ------------------------------------------------------------
+OsTC258753      ------------------------------------------------------------
+OsTC260988      ------------------------------------------------------------
+OsTC272399      RERLGLGSFGARAELESSLERAKLEQLQFSSFLTALRPGRLQDVLGAEGHYGLAIEDELS
+OsTC279007      ------------------------------------------------------------
+TaCD869056      RSCSNLTGWCGICAESPTCTAC---KANYSRGCTSC-----------C------------
+                                                                            
+
+HvBI779167      --TSYCKCHCV-------------------------------------------------
+OsQ53RA2        ------------------------------------------------------------
+OsTC258753      ------------------------------------------------------------
+OsTC260988      ------------------------------------------------------------
+OsTC272399      LGRDVGSVECLGKIPRSMEVKHELPMKEDGYGARSGSDPHRRAPPPLSSMTLRFSPASSF
+OsTC279007      ------------------------------------------------------------
+TaCD869056      --TSYCKCHCV-------------------------------------------------
+                                                                            
+
+HvBI779167      ------------------------------------------------------------
+OsQ53RA2        ------------------------------------------------------------
+OsTC258753      ------------------------------------------------------------
+OsTC260988      ------------------------------------------------------------
+OsTC272399      EARGRSSKREWLLQVSERRGVGLGLGEAGAGEVRPGISCGFGCRRPRIGGRVDSGGERVR
+OsTC279007      ------------------------------------------------------------
+TaCD869056      ------------------------------------------------------------
+                                                                            
+
+HvBI779167      ------------------------
+OsQ53RA2        ------------------------
+OsTC258753      ------------------------
+OsTC260988      ------------------------
+OsTC272399      RIWRCCGSTVEGDSNDDGVAAQWP
+OsTC279007      ------------------------
+TaCD869056      ------------------------
+                                        

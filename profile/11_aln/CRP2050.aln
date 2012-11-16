@@ -1,0 +1,59 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+HvBJ458332      -----------------------------------VAAVIINSSVCLGAVAGQSTVFNLP
+HvTC130810      ---------------MASAGRR-PTVLLQIALFVVVTAVIINSSVCLAAGGHDGTGTV--
+HvTC135557      ---------------MASTGSRPSRVLLQIALLVVVAAVIINSSVCLGAVV---------
+HvTC143179      ---------------MASTGSRPSRVLLQIALLVVVAAVIINSSVCLGAVV---------
+HvTC148231      ---------------MASTGSRPSRVLLQIALLVVVAAVITNSSVCLGAFV---------
+HvTC148232      ---------------MASTGRRPSRVLLQIALLVVVAAVIINSSVCLGAVA---------
+HvTC149448      ---------------MASTGRR-PRVLLQIALFVVVAAVIINSSVCLGAVA---------
+HvTC149589      ---------------MASAGRR-PTVLLQIALFVVVAAVIINSSVCLAAGGHDGTGTV--
+TaCK211530      ---------MASLG-SSAGGRR-PTVLLQIALFVVVAAIIINSSVCLGATAVHDAA----
+TaTC238566      ---------------MASAGRR-PTVLMQIALFFVVAAVIMNSSVCLGAAA--GDA----
+TaTC240621      ---------MASLGN--RGASR-FMALLKMALLVVVTTFIINSSVCLGAAGHHNTA----
+TaTC252163      ---------------MASAGRR-PTVLMQIALFFVVAAVIMNSSVCLGAAA--GDA----
+TaTC252425      MALQAPIINMASLGSRAAGRRR-PTVLQQIALFVVIAAVIMNSSVCVGAAGHDAAV----
+TaTC252426      MALQAPIINMASLGSSATGR-R-PTVLQQIALFLVVAAVIMNSSVCVGAAGHDAAL----
+TaTC263689      ---------MASLG-SSAGGRR-PTVLLQIALFVVVAAIIINSSVCLGATAVHDAA----
+TaTC263965      ---------------MASAGRR-PTVLQQIALFVVVAAVIMNSSVCLGAAGHDATV----
+TaTC269250      -----------MAS-HSAAGRR-PTALVHIALFVAIAAVIINSSVCLGA-AVHDAA----
+                                                   :::.* *****:.*           
+
+HvBJ458332      SKCVISSHAELTSMVSRSGSGALDPNRPDFPSPGGTSGGPYT-GRPCRTIYGCRGG-PPA
+HvTC130810      ------------VIGPGTGSGSNDPNHPVFPSPP---GKPYT-GRGCRTVYGCR---PPA
+HvTC135557      ------------------GSGALNPSRPDFPSPR---GGPYT-GRPCRTYYECRGG-PPA
+HvTC143179      ------------------GSGALNPSRPDFPSPRGASGGPYT-GRPCRTIYGCRDG-PPA
+HvTC148231      ------------------GSGALDPNRPDFPSPGGGAGRPYT-GRKCRTPYQCRGGGPPA
+HvTC148232      ------------------GSGALDPNRPNFPSPGGAAGRPYP-GQKCRTPYQCRGGGPPA
+HvTC149448      ------------------GSGALDTNRPDFPPPG---GVPYP-GRKCSTLYKCRGGGPPA
+HvTC149589      ------------VIGPGTGSGSNDPNHPVFPSPP---GQHYT-GGGCRRIYGCSKG-PPA
+TaCK211530      ----------------ASGTGALDPNVPAVPTPDGA-PHPPT-GRGCRTVYGCR---PPA
+TaTC238566      ----------------TAGSGAFDPNRPAVPSTGGA-GKPYT-GRRVPP-----------
+TaTC240621      -------------------------------------GPPTVNHRGCLGKYYCR---PPA
+TaTC252163      ----------------TAGSGAFDPNRPAVPSTGGA-GKPYT-GRRCLPKYRCY---PPA
+TaTC252425      --------------------VGTDPNHPAFPSPP---GKPYTGGRGCRTIYGCRDV-PPA
+TaTC252426      --------------------VGTDPNHPAFPSPP---GKPYTGGRGCRTIYGCPDV-PPA
+TaTC263689      ----------------ASGTGALDPNVPAVPTPGGA-GQPYT-GRGCRTVYGCR---PPA
+TaTC263965      -----------------VGTGSNDPNHPAFPSPP---GKPYT-GRPCSKIYGCNV--PTA
+TaTC269250      ----------------TSGTGALDPNVPAVPTPGGA-GQPYT-GRGCRTVYGCK---PPA
+                                                                            
+
+HvBJ458332      GGKP----------------------------------------
+HvTC130810      GGQP----------------------------------------
+HvTC135557      GGKP----------------------------------------
+HvTC143179      GGKP----------------------------------------
+HvTC148231      DGKP----------------------------------------
+HvTC148232      DGKP----------------------------------------
+HvTC149448      GGKP----------------------------------------
+HvTC149589      GGQP----------------------------------------
+TaCK211530      GGQP----------------------------------------
+TaTC238566      --------------------------------------------
+TaTC240621      GGQP----------------------------------------
+TaTC252163      GGQP----------------------------------------
+TaTC252425      GGQP----------------------------------------
+TaTC252426      GGQP----------------------------------------
+TaTC263689      GGQP----------------------------------------
+TaTC263965      GGQALIYNPCARLIFQKQCKDSFGYVTGRAGXTHIPFAXTMEGS
+TaTC269250      GSQP----------------------------------------
+                                                            

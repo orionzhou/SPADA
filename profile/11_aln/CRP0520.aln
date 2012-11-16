@@ -1,0 +1,38 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr3_15088209c      -----------------------------------------------MKRSFLLLLTILT
+Atchr3_22660180c      MTKTIVIAIFIVXPLLGLGLLYTYNILNVFSPFSHLFTVQCVDITSLFYIKILKLYI-LL
+GhBF268795            --------------------------------------------------SYLL--LLLV
+HvTC143938            -----------------------------------------------MEGKAIL--LCLM
+HvTC149814            ----------------------------------------------MRRSKLLPLFAIAL
+LsTC14947             ---------------------------------------------ELVVVDLVPEMI-LV
+OsNP497414            ----------------------------------------------MKTNQLALVAISLM
+SoCA290424            --------------------------------------------MATRAASFALYYILLL
+TaCA702361            -----------------------------------------------MEGKAIL--LCLM
+TaTC272764            -----------------------------------------MFVSSLMEGKAIL--LCLM
+                                                                        .         
+
+Atchr3_15088209c      IFIILGQGVMGNDEQL----RGNRCFQI--KFKTGKCVPKECQTACQEKLRKP-------
+Atchr3_22660180c      LLLXDGDGNT---S----RRRKSVCHH-NLITPTEGCKASPCDAMCASRFKGV-------
+GhBF268795            SFLILSPGLGIKTGEL----AEAACMMS--PIHLPNCSHEACVQSCVEKYGEC-------
+HvTC143938            VLVQLGNSFHDEE-----------CKE-MVAAYGRECDVSTCQVACKDLFGPEL------
+HvTC149814            IMISSGA--------------DAWCKY-EAILPKHLCTQESCMANCQKHLQEYV---CPD
+LsTC14947             ----------------------------QFHFLENGCSNHSCVSLCFEKVLLVYLLLCEL
+OsNP497414            VLCLDISGKV---------SATEECHAAPITEVPKPCVDATCKAICSDKYQSK-----GE
+SoCA290424            TLCSRGAEVRGVTEYPAAASATPYCGR-NFIASQGKCDDTKCWSSCHDKYFRL-----PN
+TaCA702361            VLVHLGNSIHIDKSKDLVHPQRKTCKD-LAAAYGRECVLSKCQLACRDLFGAEF------
+TaTC272764            VLVHVGNSIHIDKCKYRVHPQRTTCKD-VTASIGRECNLSKCQGTCKDLFGAEL------
+                                                          *    *   * .            
+
+Atchr3_15088209c      -KLKGEGFC---------MKECTCCFYT--------------
+Atchr3_22660180c      ------GGC-----SKTDQFTCNCMFICKT------------
+GhBF268795            --INGGCID---------YQTCCCRF----------------
+HvTC143938            --RKFWCA-----NVVPYYWHCYCLVCW--------------
+HvTC149814            CIRLESAACMNDGSLAPLDGACYCHICSKD------------
+LsTC14947             CRSVTSYLN-----KRTLFFSCNCM-----------------
+OsNP497414            CFSTDGLY--------------YCNFCANSPPLPQIGLN---
+SoCA290424            VTHVGGACE-----------TPTCCLCEVDCE----------
+TaCA702361            --KVSWCS-----NAVPYYWHCMCRVCFRIALNHHVEKWTND
+TaTC272764            --TASWCI-----NPVPYYWHCRCRICL--------------
+                                             *                  

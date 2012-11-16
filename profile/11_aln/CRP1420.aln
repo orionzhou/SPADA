@@ -1,0 +1,46 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+MtAJ388896             ------------------------------LYWLLTLNAA-------ENIECEVDADCPK
+MtAJ848016             ---------------MVKTLKFVYYMILFLSLFLFIKNVDG------AFVKCETDDDCPK
+MtBE997548             TLTVVSYFSILSGFSLVFFSYTIFYLILFYNILILSLIII-------ELIKCTMDADCPT
+MtBE997755             ---------------MDKTIKFVYAMILFISMFLAARNVD-------AYLKCKTVHDCPK
+MtBE998368             -------------------------RTM--------LYKIFE------IDECESNVDCSK
+MtTC100865             ---------------MAKTLKVMYTMVLFFSLFLVAKNVD-------AYVWCETVEDCFK
+MtTC103256             ---------------MAKTFEFVYAMIIFILLFLVENNFAAY-----I-IECQTDDDCPK
+MtTC105398             ---------------MDKTIKFVYAMILFISMFLAARNVD-------AYLKCKTVHDCPK
+MtTC105451             ---------------WLKLSKFFYAMLLFLFRLLIVKEVSGKRN----LPECSTDDHCKQ
+MtTC95194              ---------------MAKTLNFMFALILFISLFLVSKNVAID-----I-FVCQTDADCPK
+MtTC95998              ---------------MTKILKCVYAMILFLPLFVVAMEVGRR-----ANVECESDKDCQE
+MtgAC135604_92330      ---------------MFNTLTFAFVIILLVTLFLVPKNVD-------AFVKCETTDDCPK
+MtgAC144725_20095      ---------------MFEIFKFVYVVVIFLSLYILSIEVGGA------LIECEIDLDCPK
+MtgAC144725_51721      ---------------MFEIFKFVYVVVIFLSLYILS----XA------LIECEIDLDCPK
+MtgAC146558_27001      ---------------MTKTFDFVYATIIFSFLFFAEKNVVAY-----I-IECKTDNDCPI
+MtgAC146558_52001      ---------MQREKNMAKIFEFVYAMIIFILLFLVEKNVVAY-----LKFECKTDDDCQK
+MtgAC152186_49001      ---------------MAKTLKFVYAMILFINIFLXIKNTE-------AYPPCETVADCPE
+MtgCR483162            ---------------MTKTYKFVYAMILFLYIFQIARNVD-------ANFECKSTNDCPK
+PsQ9AVA4               ---------------MAKLLNIVHFMILFISVFFIERNIC-------INVECETDEFCQE
+VfQ9LEF8               ---------------MTKSLKLCYAIVLFISLFLIVKKIDGEPNLMTGYIKCKVDEDCPT
+                                                                          *     *  
+
+MtAJ388896             SQV----NSFVIKCIKNLCLYTKVHILYDTISKSESTLPQQKKSLRVHLHISRKNELLH
+MtAJ848016             YN-----GFRKYECVNNWCRLTGLH----------------------------------
+MtBE997548             SL------NRKWLCINNICRKMCVTNV--------------------------------
+MtBE997755             SQ-------VVYKCVGNYCRAVKIRRW---N----LS----------------------
+MtBE998368             SYIINWDKNYVHKCINNRCEWIKIIRRR-------------------------------
+MtTC100865             SQ------YFIFDCINNQCINVGKNPKEPRY----PGIPRDQ-----------------
+MtTC103256             SQL----EMFAWKCVKNGCHLFGMYEDDDDP----------------------------
+MtTC105398             SQ-------VVYRCVGNYCRAVKIRRW---N----LG----------------------
+MtTC105451             VSS----KFYRHICHNNRCKIVMFMPPNV------------------------------
+MtTC95194              SEL----SMYTWKCIDNECNLFKVMQQMV------------------------------
+MtTC95998              HWS----EFFIIQCIDNICVPSERPL---------------------------------
+MtgAC135604_92330      SD-----YIRQYECVNNWCRLARLHEFQPKK----STLTS-------------------
+MtgAC144725_20095      SYIKLWDRNYAHRCVNNICEWVKKPRIY-------------------------------
+MtgAC144725_51721      SYIKLWDKNYAHRCVNNICEWVKKPRIY-------------------------------
+MtgAC146558_27001      SQL----KIYAWKCVKNGCHLFDVIPMMYE-----------------------------
+MtgAC146558_52001      SLL----KTYVWKCVKNECYFFAKK----------------------------------
+MtgAC152186_49001      SY------FRIYRCENNFCRYREAVRRL--R----PPLRKK------------------
+MtgCR483162            SV------LRVWRCINNYCRPVRMKKI---H----NTM---------------------
+PsQ9AVA4               TFPN-INKSHIVKCIDNLCQFLGKKEVGVNT----------------------------
+VfQ9LEF8               LL-----VMSAYKCIDNLCKLFRLPF---------------------------------
+                                    *  * *                                        

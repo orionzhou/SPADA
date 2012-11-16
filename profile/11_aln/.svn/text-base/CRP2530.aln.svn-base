@@ -1,0 +1,65 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr1_21123560       ----MVS-IMKIMMIMVLLVVGVSAKTVEECKRTTCATKCRDSKSFACSDCIIHCAFPGS
+Atchr2_08879078c      MAKWSA--IVLIMMVMIV-AVTIEAQEE--------------------------------
+Atchr2_08880141       MAKWSA--ILVILMVVIA-ALAVEAKWS-EKDS---------------------------
+Atchr2_08883571       MAKWSA--ILVIMM-VIV-VVAVEASGT-KNSW---------------------------
+Atchr2_08896014       MKKWSA--IVVIMMMVIV-LVAVEAKGT-QKDW---------------------------
+Atchr2_08898272       MAKWSA--ILVILMVVIA-ALAVEAKWS-EKDF---------------------------
+Atchr3_16277301c      MTKSNV--IMVILLVMIA-AIGGEARHKHRKTW---------------------------
+Atchr5_09279312       MAANMWKTI----MMIALIMIGCGLQACNGMNV--------D-----------------K
+Atchr5_09282537       MTGNMYKMM----MLMALIMMTCGLQACNATNV--------D-----------------E
+Atchr5_09284615       MTGNMYKMM----MLMALIMMACGLQACNATNV--------D-----------------E
+Atchr5_23635335       ---MAGKMCMMVMVMVALIMIGCPLKACNGMAS--------H-----------------E
+BnCD812047            MXKGSAR-VVMIMMVTIVMVVTVESDPS--------------------------------
+BnTC1012              MAKWSA--IVLIMMVVIAVAVTVEAN-----KK---------------------------
+BnTC1019              ---MAQKVC---MIMMTLIMIGCHLKACSGMEN--------MSKE-------GHLTTMET
+BnTC225               ---MAGKVC----MVMALIMIGCVLQACNGANV--------D-----------------E
+BnTC3275              ---MAGKVC----MVMALIMIGCVLQACNGANV--------D-----------------E
+BnTC3761              MAKWSA--IVLIMMTVVAIAVTAEAKYD-RNEW---------------------------
+BnTC930               ---MAGKVC----MVMALIMIGCVLQACNGASV--------D-----------------E
+PpTC41510             MEGKGIRASI-LLVLMLVLMVLCNAR----------------------------------
+                                   :      :                                       
+
+Atchr1_21123560       ESKISQPRALCLRNCDVGCRPS-----NTCYQRCIKHCPPQ----SLI------------
+Atchr2_08879078c      -----SGGTICFRQCSQPCRSD----DGSCYENCKIECGGPKPPLSRL----R-------
+Atchr2_08880141       -----SDDDQCYRECIKSCRKH---DDGDCFEMCRAMCPIT------------AHHSSSR
+Atchr2_08883571       --------IKCYRKCSKSCADN----DGNCFERCKIKCGGPNPPHSSS----R-------
+Atchr2_08896014       --------IRCFRKCSKPCGDH----DGNCFVRCKIKCGGPNPPHGSS----GPPHSSSR
+Atchr2_08898272       --------IQCFRKCSKNCKKH----DGDCFEKCKIKCGGPNPPHSSS----R-------
+Atchr3_16277301c      --------IGCFRYCSRSCSEY----DGNCFEHCKIKCGGPTPPKTNS----R-------
+Atchr5_09279312       SKPTMFNRFTCFRRCSITCSVDQSLDKTPCYKKCLNKCGLVLDSKPKPTSSSSSSSSSSS
+Atchr5_09282537       SKP--DPKLECFKNCSISCGK----QNQPCYEVCLTKCGLPKRPS-TSTPSSSSTTA---
+Atchr5_09284615       SKP--DPKLECFKNCSISCGK----QNKPCYEDCLTKCGLPQRPS-TSTPASSSTTA---
+Atchr5_23635335       TIK-EHLWKLCYKNCMIKCGK----DNYQCQDHCFAVCDPDQRPPSPPSLK---------
+BnCD812047            -----DDYLKCYLSCALPCDDH----DVDCLNLCKRKCSGIISHQGPG----EPPAHNFR
+BnTC1012              --------KECFHKCSKPCKPH----HGNCFKHCKAKCGETNPHHGPG----GHHHGRGG
+BnTC1019              IRPDDVPNPVCIRNCSVTSHS------KKEFQDCITHCG---------------------
+BnTC225               SQPTQDPKFDCFRTCSIACGK----QNKPCYDECLTKCGLPQRLP-RPTTSSSPSSTA--
+BnTC3275              AKP-QDSRFVCFTACSIACGK----QNKPCYDGCLTKCGLPQRPS-KPTSSSAPSTTA--
+BnTC3761              --------LKCFRKCSKPCKTH----DGNCSKPCKVQCGGPNPPHGPG----GPPSS---
+BnTC930               AKP-KESRFICFTACSIACGK----QNKPCYEGCLTKCGLPKRPS-KPTSSPSPSTTA--
+PpTC41510             -----MAASDCFTPCVQKCKL--QIEPGKCIKECEIKCGDGPDVNRQNQVDDGKEAAKLS
+                                *   *   .              *   *                      
+
+Atchr1_21123560       ------------------
+Atchr2_08879078c      ------------------
+Atchr2_08880141       YYILSLPNFYKYLIS---
+Atchr2_08883571       YYIISLPLSINIFIN---
+Atchr2_08896014       YYFLYYIL----------
+Atchr2_08898272       ------------------
+Atchr3_16277301c      ------------------
+Atchr5_09279312       SSSSPPPTA---------
+Atchr5_09282537       ------------------
+Atchr5_09284615       ------------------
+Atchr5_23635335       ------------------
+BnCD812047            RTSRG--MAYVEVRGRKE
+BnTC1012              PPPPPRQNFT--------
+BnTC1019              ------------------
+BnTC225               ------------------
+BnTC3275              ------------------
+BnTC3761              ----P-------------
+BnTC930               ------------------
+PpTC41510             ------------------
+                                        

@@ -1,0 +1,26 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+AcCF435878      ------MAVISLNMSLAILFLTS-----IFSESLAQPSCAPTIVNLQPCIPFMQTNSTSN
+AcCF452047      ----------------------------PFSSSLAQPNCAPTIVNLQPCIPFMQTNSTSN
+OsTC256463      MASSAVVAACVVVVAAALLLVTAPGAAAQPGGASSGSGCNAGLIRLLPCLGFVGGNNA-A
+ZmTC255325      MASAP--AFC---VALLLLLASVAAVQAVPPQAGTSSTCSTDLLRLLPCLPFIEGTAT-V
+                                                : :   *   ::.* **: *:  . :  
+
+AcCF435878      PNQQCCTQLSSMVQTQVSCLCTFLNAAP---PLPFSYHRTPAITLPGSLQIRLLS-----
+AcCF452047      PSQQRCTQFSSMVQTQVSCLCTFLNAAP---PSTFQYQQNSSHHSS--------------
+OsTC256463      PSNTCCANLGSMVHDEPLCLCQALSQSGGGGAIPVPVNRTRAVQLPLLCRLDLPPAATAC
+ZmTC255325      PADTCCANLGSMVHDEPQCLCQALSNPS---TAPVAVNMTRVMAMPRLCRLDLPPATGAC
+                * :  *:::.***: :  ***  *.         .  . .                    
+
+AcCF435878      ------------------------------------------------------------
+AcCF452047      ------------------------------------------------------------
+OsTC256463      PGFDLGGAAPSPPVSVPRSTPN----------STAPSTPTPVTVTRAPPQQMTPSPKTS-
+ZmTC255325      AVAGLLPHGPSPPLPPPPPPPAAAVTPHASANSSAPATLTTPATPTPTTPRMIPSPSVSS
+                                                                            
+
+AcCF435878      --------------------------------
+AcCF452047      --------------------------------
+OsTC256463      SQTPEYSSGLKLIADCVPVALGFMALVSALTF
+ZmTC255325      QTPPRYSRGSKMIADGFFVTLGLVALVSVLAF
+                                                

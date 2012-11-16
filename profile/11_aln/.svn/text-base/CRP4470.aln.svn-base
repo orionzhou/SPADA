@@ -1,0 +1,32 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+OsTC259390      KLAAALFFAFAVVAATLAPAAEARVQGFEPAIAVEKTSVSGGAQRPPTTLPGLLPGLPFP
+SbTC108362      -------------------------------------------MAPRNKSFLI----A-L
+SbTC97677       -------------------------------------------MAPSISVALL----LFA
+ScTC2869        -------------------------------------------MAPPRSLVLL---VAYA
+                                                             *  .   :       
+
+OsTC259390      LFPFLMFPIPGSPAGAGGAPPSAGSGGFPFPLPFPLPLPAPGSPAAGAPPSSGSSGFPFP
+SbTC108362      LVAALAVSLHLQP-----------SAAIRIPA-----------------LIPCIPGLPK-
+SbTC97677       VVVAAPWLVQPSS-----------AAAFSFPP-----------------IFPCIPGFPR-
+ScTC2869        VLAAAMLQ------------PSV--------TRVQAATSSPSSPFTGDPPQPSLPGLP-P
+                :.                                                     *:*  
+
+OsTC259390      MPSPLPLPAHGSPAAGAPPSSGSGLPFPLPFPLPQPSSPAQPQPKECMTPLMSVMPCADY
+SbTC108362      ------I-----------------PFIPCYDVEPSPLPPPLKTPSECRTPLMKLMPCAGY
+SbTC97677       ------I-----------------PLFPCVEPPPLPA-----PPTECRSHLMKMMPCAGY
+ScTC2869        LPGLLAL----------PP-----------SPGFTGMAGAQQPARTCMEPLILVAPCISY
+                      :                                       *   *: : **  *
+
+OsTC259390      LTNTAVPTPPATCCDGFRSLVS--T-APICLCHGMNGDLNSFLPTPVDPMKMMLLPITCG
+SbTC108362      LTNASVSKPPSACCQGFDSIVNSGDGEGICLCHVGNGDIGQLLPAPLNIARIFRLTPDCD
+SbTC97677       LTNSSVTVPPSACCDGFSQV--SADLAAICFCHIANGDIQQLLPAPMIFKRMLAITDQCG
+ScTC2869        LTNSSVRAPPRACCDGLRSLVG--GGDRICVCHAIMGDLGPFAGGTIDQLRMLVLPLTCS
+                ***::*  ** :**:*: .:        **.**   **:  :    :   ::: :   * 
+
+OsTC259390      AMPPLQTLFMCSS--PSVPPLVPPRSPAAPAPASPSVSP
+SbTC108362      NDIRLEEFAEC--NMNDVPPMTPSSPGKVAPPPAS----
+SbTC97677       VNLRMEALVQHCDEFEGVPPMTLPSPPPSAA--------
+ScTC2869        TLIPSDLVLMCI---------------------------
+                     : .                               

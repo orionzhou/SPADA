@@ -1,0 +1,50 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+Atchr1_18401007c      ----------------MAKATSSLVV----------------PIIFLVI----------F
+Atchr1_27678021       ----------------MAKATSSLVV----------------PIIFLVI----------F
+Atchr2_08727945       ----------------MAKASSTLVL----------------SIIFLVM----------F
+Atchr2_12483449       ----------------MAKAASTLVF----------------PIIFLVM----------F
+Atchr4_06578835       ------------------------------------------------------------
+Atchr4_14694308       ----------------MAKTASSLVL----------------PIIFLVM----------F
+Atchr4_14696080       ----------------MAKAPSPLVF----------------PIIFLII----------F
+Atchr4_14698737       MMRLHSISFLLVSYIYMIYFSLTIILQIHIFVVCMFVLLDPYSYIALLMLSIYEYCFFCW
+BnCD814239            ----------------MAKAKNSVVF----------------SIIFLIM----------F
+BnCD821392            ----------------MARAASSLVF----------------PIIFLVM----------L
+BnTC1865              ----------------MAKSTSSLVV----------------AIIYLMM----------F
+BnTC1886              ----------------MAKTAFSLVL----------------PIIFIVM----------F
+BnTC2125              ----------------MSNAKFSVVF----------------PIIFLIK----------F
+BnTC3533              ----------------MAKAKFSVVF----------------PIIFLIM----------F
+                                                                                  
+
+Atchr1_18401007c      ALVEQNTGCFDYDVY-QPCDHCRERCLKYYPVTRKAIC-------RKNHCVCIGPCPNDK
+Atchr1_27678021       ALVEQNMGCNDYIVG-DVCVHCRERCLRYYPVTRKAEC-------YRNHCLCIGPCPDDR
+Atchr2_08727945       ALVEQNMGCTATMGPCEKDKSCSATCRATFGDRANGFCDYSTSTSPGGECTCVYHCPPVV
+Atchr2_12483449       ALIEQNMGCMAVLGSCGVITDCSGSCKTKFGQDASGDCDRD---GGQGTCMCGYPCPHDK
+Atchr4_06578835       -----------FDCW-RCVRSLSRKCLRYYPVTRKAVS-------QKNHCLCIGPCPDDR
+Atchr4_14694308       ALVEQNMGCMAVLGSCGVITDCSGECISRFGPQARGYCDRD---GGSGTCVCVYPCPADK
+Atchr4_14696080       ALVEPNMGCIQIIGRCIKIPDCSASCRKFLGPHASGYCDND---GAGGTCICTYPCQTKE
+Atchr4_14698737       IQXEKIMRCLTFIGMCKTDVN-DLLFIVMFGPIAGGSCDKGNDVGQFGQCICTYPCPADK
+BnCD814239            ALAEDCMGCQAMLGDCRI---CGIKC-SSYGRHAEAHCDYR---YDGGACVCDFPCNPPP
+BnCD821392            GLVEQSMNCEATFWACGD--HCRSKCRATFGPKTTAHRL-----KQTNQCICTFPCPVDK
+BnTC1865              SLGXXNMGCEVDYGSCKEIGNCEVMCMVKFGSAATGYCAGG---NETGRCYCDFPGPCIG
+BnTC1886              CLVDENMGCGQYIGPCPVRGTCDQACKAQFGPKADGICDFT----GTKRCACKYPCMTDK
+BnTC2125              ALXXDNMGCEASLGDCRI---CGIKC-SYYGRHAEAHC-------IGGICVCDYPCKPPP
+BnTC3533              ALAEDCMGCQVMLGDCRK---CGIRC-SSYGRHAEAHCDYR---YEGGACICDFPCNPPP
+                                                         .             * *        
+
+Atchr1_18401007c      AIPNVKLF---KNVKEQILS
+Atchr1_27678021       PHKRFQMLNSSKNVKAQILS
+Atchr2_08727945       PHESHL--------------
+Atchr2_12483449       LHM-----------------
+Atchr4_06578835       PHKRFEMLNSSKNVKEQILS
+Atchr4_14694308       PHM-----------------
+Atchr4_14696080       IHM-----------------
+Atchr4_14698737       THAIKSSISH--NI------
+BnCD814239            KL------------------
+BnCD821392            THI-----------------
+BnTC1865              --------------------
+BnTC1886              TRI-----------------
+BnTC2125              QL------------------
+BnTC3533              NL------------------
+                                          

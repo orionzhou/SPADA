@@ -1,0 +1,66 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+MtAJ848119              ------MAEIHNFISIMI-FCL-LIFIIGIK--------------GEFYCLSIKDCPQNL
+MtAW574154              --------------------------YVCYNYRTLCISSVRKNTDAKNICIDDVHCQKYK
+MtBE997678              ------MAYISRIFYVLI-IFL-SLFFVVING--VK-SLLLIKVRSFIPCQRSDDCPRNL
+MtBG580073              ------MAKIVNFIYSMI-IFL-SLFLVETNAQ-----------CIYPACFKDHMCRQLK
+MtBG580138              ----------LLDAFVMT-IFF-SQIIVATNAQ-----------KIR-RCFNDAHCPPDM
+MtBG581442              ------MDEVFKFVYVMI-IFPFLILDVATNAE-----------KIR-RCFNDAHCPPDM
+MtBG582133              ---------------------------------QVSLRHPFRTISKEVNCLDDADCLEVL
+MtBG582685              ------MNPNIRLFYDLI-IFL-SLLLVLTD--------------GSVPCLTSFGCPRST
+MtBG583831              ------MAKIVNFVYSMI-IFL-SLFLVETNAQ-----------WIYPACIKDIMCRRLK
+MtMNC5187944            ------------------------------------------------------TCPRFM
+MtTC100096              -FVCSARGKVYKFVYVMI-IFF-SQIIVATNAQ-----------KIR-RCFNDADCPPDM
+MtTC102778              ------MVKILKFIYVMI-IFL-SLFLVATNVN-----------AIN-KCSQDSHCPKDM
+MtTC103031              ----------------MI-IFL-SPLIVTMS--------------MKVLCGRDGTCPRFM
+MtTC104457              ------MGKIAKFVCILI-IFL-SLFLFEITVGGRY--------T-TPWCVRDIDCPKEK
+MtTC106610              ------MAKIVNFIYSMI-IFL-SLFLVETNAQ-----------CIYPACFKDHMCRQLK
+MtTC109717              ----KNMAEIFKFFYALI-IFI-SLILSVANAD-----------PMY--CFNDDDCRELK
+MtTC95058               ------------------------------------HTFIHIFITAKNICIDDVHCQKYK
+MtgAC142143_112588      ------MTIIIKFVYIMILLFF--PFLVVSQI-------------FPKWCLYDKDCPQNM
+MtgAC146566_71451       ------MTTIVNFVCGMI-IFL-SEFMVATNFKRKQ-IPFYFFIREFYPCFIDGNCPRNM
+MtgAC146566_89782       ------MSTIVNYVCSMMIICL-FQFTVATNFERKQ-ISFSFFMKEYWPCVTDDDCPSDL
+MtgAC146774_92732       MQKKKNMAQMHLFVYIFI-IIL-SLFIAVTNAL-----------I---FCFEDINCPFDK
+MtgAC149208_92563       MQKRENMTVIVKFVCVMI-IFL-SLSVT--------------------TCIYDSDCPEDM
+MtgAC150505_45354       --MENNKTEIIKFVYAMI-IFIFVFFDVSDVIAGES--------W---FCFQDMTCPHNL
+MtgCG951401             -------------VYVMI-IFI-SLFFVAINVD----------AIPFRVCFHNRDCPRNM
+MtgCR297324             ------MVEILKCFYVMI-TFL-FLFFILTD--------------ELLVCESDEECPKST
+MtgCR304006             ---------------------------------ILK-FEILRAILMIVLCGRDDTCPGFM
+MtgCR323910             ------MVKIAKFLYVLI-ISL-SLFLFAITVDGAY--------VTRFWCYRDLDCRKDM
+MtgCR324984             ------MVELVKFVYVMI-TLL-SIVVVAKNSQ-------------ENICFKDADCPQDI
+MtgCR332820             MKMEENRAKTFKFVYGMV-IFL-YLYHVAKRVE------------AAIPCITDANCPC--
+VfQ9LEF6                ------MTTFIKFVHVMI-VFL-SLFLVIMNVS----------ASERRTCFTPADCPTSD
+                                                                               *    
+
+MtAJ848119              CVGSPLPLQCLKF-----------ICRCE-----------SI----------
+MtAW574154              CSPG-LYPTSING-----------WCECK-----------------------
+MtBE997678              CVDQ-IIPTCVWA-----------KCKCK-----------NYND--------
+MtBG580073              CSPG-RTPKGVNY-----------QWR-------------------------
+MtBG580138              CTPG-VIPKCKFT--------------------------------ICKC---
+MtBG581442              CTLG-VIPKCS-------------------------------RFTICIC---
+MtBG582133              CVFG-SKAECVVN-----------ICICV-----------PPRFGKFDEHFR
+MtBG582685              CYPP-STPNCILR-----------ICECI-----------------------
+MtBG583831              CPPG------------------------------------------------
+MtMNC5187944            CGPG-FIPKCVGR-----------YCEC------------------------
+MtTC100096              CTPG-VIPKIRTC-----------FNDAHCPPDMCTLGVIPKRFTICIC---
+MtTC102778              CKKP-SKPRCVVS-----------PKLPL-----------SSKSGVCTCV--
+MtTC103031              CGPG-IIPKCVGR-----------YCEC------------------------
+MtTC104457              CKHP-FKPRCLTH-----------SCVCRLW-------------GSQDVI--
+MtTC106610              CSPG-RTPKCVNY-----------QCRCS-----------PQALGSYHLLT-
+MtTC109717              CSHP-RVRKCRMF-----------LCRCE-----------EVDKEDEK----
+MtTC95058               CSPG-LYPTCING-----------WCECK-----------------------
+MtgAC142143_112588      CRPG-RIPKCIFG-----------HCNCV-----------KQRS--------
+MtgAC146566_71451       CKVY-QIPKCVGG-----------LCRCI-----------PLRCGRWEK---
+MtgAC146566_89782       CKKVDQIPKCVGG-----------LCKCF-----------PIRFGQWER---
+MtgAC146774_92732       CFP--QLPKCINS-----------FCECV-----------------------
+MtgAC149208_92563       CYPP-KKSFCSTF-----------EILSI-----------ERKVGVCECI--
+MtgAC150505_45354       CFPS--KAVCISS-----------QCICI-----------------------
+MtgCG951401             CLPS--IPYCRFREKNVRFGSPLGLCSCD-----------------------
+MtgCR297324             CLPP-QIPKCLRM-----------ICECV-----------------------
+MtgCR304006             CGAGSIIPKCVGR-----------Y---------------------------
+MtgCR323910             CKPP-FNPRCHNH-----------ICICRLW-------------GL------
+MtgCR324984             CSYP-FKPKCNIY-----------G--------------------YCSC---
+MtgCR332820             -VFP-LKPRCNFG-----------YCICE-----------EMIP--------
+VfQ9LEF6                CEPP-SRPFCAFK-----------YCICG-----------------------
+                                                                            

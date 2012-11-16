@@ -1,0 +1,54 @@
+CLUSTAL O(1.1.0) multiple sequence alignment
+
+
+BnTC3355               ----------------------MASK-ITF--------LLLFALVVACAT------MMSV
+GmTC208566             ----------------------MAKASLLFPYLIVIILI-----AFG----------TGF
+GmTC209919             ----------------------MAKASMLFPCLIVLFLI-----TYA----------TGF
+LeAW036533             ------------------------------VFSIVIIL-----II-------------SC
+LsBQ982558             ----------------------MKKV-ILIC-----FLL-MV-CVSGSGISSKPKDTPNP
+MtAJ388870             ----------------------MAKL-VKFVYVIIVFY---------TLF------LVGT
+MtAJ388924             ----------------------MIKI-IKFVYAMTFLIFLFL----------------FI
+MtAL377883             ------------------------------IHALVIFLSLIGLVISGN------------
+MtAW574126             ------------------------------------------------------------
+MtAW775228             --------------------KFVAKI-ITIIQIFTIIML----------F------IFVI
+MtBG580843             MFKILLFTSSIIVFLSLFFVTYEGNS-LSFLEVFFFTLYLIFNPLVTFDL------FLFY
+MtBG582252             ----------------------MGEI-MKFVYVMIIYLF-MFNVATG---------SEFI
+MtBG583735             ----------------------MAKT-LMF--------IYI-VILLTCVL------AVID
+MtBG583854             ----------------------MGDI-IKVVFAMIIYLY-MLTIVTN-------------
+MtTC100329             -------------------------------FFLFHFS---------NII------LLFF
+MtTC107078             ----------------------MAGI-PCYFYGSIIFLSLFLLAAFFEK-----------
+MtTC107422             ----------------------MAQI-PRYFYAFIIFLYLFHVATTNRF-----------
+MtTC95365              ----------------------MEDI-VKFVYVIIIFLS-IFIIATN---------ME--
+MtTC96632              ----------------------MTKF-FKFVYTMFILISLFL----------------VV
+MtgAC119410_94001      ---------MPIYISTYKQVNNMDEI-IKFLFVMVIYLL-MFTIVID-------------
+MtgAC144516_63256      MYK----VVESIFIRYMHRKPNMTKF-FKFVYTMFILISLFL----------------VV
+MtgAC148820_50001      ----------------------MVKI-LKFIHIMIIFL-----------I------FIIV
+MtgCR307757            ------------------------------------------------------------
+PtTC51364              ---------------------------MRFSKTTLLFLA-MILLIIG---------FVNV
+                                                                                   
+
+BnTC3355               PTVEATYCLDSKDCPD--VRCKIG------EIERCRQNHCTCVPQFMVSHAE---
+GmTC208566             ANACNFPCHSRNGCGN--LHC--P-----GCLKQCVNFCCLCDCSP-PPNGNVS-
+GmTC209919             VDACNYPCKFPSDCNN--LRCLRP-----DCKKYCLNGCCLCNCRLIPPSGNV--
+LeAW036533             GAVIGRDCTIRSDCNY--LTCDQG-------LPTCIDGHCLCLILNTKPKV----
+LsBQ982558             PIGTLVTCTKSADCTS--YCTCDK------SKQLCINKNCYCSDKKC--------
+MtAJ388870             EIVSGHACTVNADCEQ--SMCDPLCVGRYHFAPVCIIDWCVCVGNRVL-------
+MtAJ388924             TD-TAGECITFLDCLH--LPCMPT------ETQLCVDKKCICMGLTIKSKNNYIT
+MtAL377883             ---HTYWCVTTDDCAT--NICRSG------LTEECWVFRCICKYETK--------
+MtAW574126             --SAVYWCFDNSDCPQ--HLCHEL------IIPRCKIGVCVCLP-----------
+MtAW775228             VTDASYPCKIHRDCTT--ITCSYP------LVPRCLIQKCYCGFN----------
+MtBG580843             IADFWNVCAYNSDCQS--YPCDLG------ESRNCTLNRCICVYNI---------
+MtBG582252             FTKKLTSCDSSKDCRS--FLCYSP------KFPVCKRGICECI------------
+MtBG583735             INAFSFPCKTNSDCPS--YLCHYP------KNPECVERECICW------------
+MtBG583854             ---AVTICDSDQDCRR--YRCDPP------EYPRCLGILCKCVYVSG--------
+MtTC100329             FNTAGHACTVNADCEQ--SMCDPFCVGGYHFTPICVIGWCVCVGNRVAPVL----
+MtTC107078             --GYMIPCATSDDCLK--NMCRPP------LTPRCIEHNCKCK------------
+MtTC107422             --LYRIGCDTSNDCPS--YMCPPP------LSPRCTKFYCKCI------------
+MtTC95365              ---AKTICIGDSDCRN--ERCMPG------IKPVCSEGWCDCIGFIP--------
+MtTC96632              TNANANNCTDTSDCSS--NHCSYE------GVSLCMNGQCICIYE----------
+MtgAC119410_94001      ---ATSFCDSVKDCREPAFFCEPP------KIARCVMLFCRCD------------
+MtgAC144516_63256      TNANAHNCTDISDCSS--NHCSYE------GVSLCMNGQCICIYE----------
+MtgAC148820_50001      TNGASNPCVSTRDCTT--HTCNPP------LVARCINLRCYCGYK----------
+MtgCR307757            ---GITICTGERDCRS--YHCIPH------EFPRCIRGMCRCKYSGN--------
+PtTC51364              ASGRDIRCSTDSDCRF--KTCNML----SMKKKVCNHGYCLCTW-----------
+                              *     *                    *    * *             
