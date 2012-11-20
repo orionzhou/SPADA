@@ -99,9 +99,9 @@ sub pipe_prepare_genome {
     system("rm -rf $f01.index") if -s "$f01.index";
 
     my $f11 = "$dir/11_refseq_trans6.fa";
-#  translate6($f01, $f11);
+    translate6($f01, $f11);
     my $f12 = "$dir/12_orf_genome.fa";
-#  get_genome_orf($f11, $f12);
+    get_genome_orf($f11, $f12);
 
     my $f71 = "$dir/71_orf_protein.fa";
     if(!exists $ENV{"SPADA_GFF"}) {
@@ -123,7 +123,6 @@ sub pipe_prepare_genome {
         my $f62 = "$dir/62_gene.gff";
         gtb2Gff($f61, $f62);
         get_protein_orf($f61, $f71, $f01);
-        die;
     }
 }
 
