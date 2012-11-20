@@ -186,7 +186,7 @@ sub format_gff_lj {
                 $ps[8] = join(";", map {$_."=".$ht->{$_}} keys(%$ht));
             }
         }
-        next if $ps[2] eq "tRNA" || (exists $ht->{"Note"} && $ht->{"Note"} =~ /tRNA/);
+        next if $ps[0] !~ /^chr/ || $ps[2] eq "tRNA" || (exists $ht->{"Note"} && $ht->{"Note"} =~ /tRNA/);
         
         if($ps[2] eq "gene") {
             print FHO join("\t", @ps)."\n";
