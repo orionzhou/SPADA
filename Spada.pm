@@ -39,7 +39,7 @@ sub run_genewise_batch {
         writeFile($f_dna, ">seq", $seq);
         writeFile($f_pro, ">pro", $seqP);
         my $fo = "$dirO/$id.txt";
-        runCmd("$f_bin -gff $f_pro $f_dna > $fo", -1);
+        runCmd("$f_bin -gff $f_pro $f_dna > $fo", 0);
         printf "  %5d / %5d done\r", ($i+1), $t->nofRow;
     }
     print "\n";

@@ -99,13 +99,16 @@ sub isnumber {
 sub runCmd {
     my ($cmd, $opt) = @_;
     $opt = defined($opt) ? $opt : 1;
-    print "$cmd\n" if $opt > -1;
-    $cmd .= " 2>&1" if $opt == 2;
-    $cmd .= " 2>/dev/null" if $opt == -1;
-    open(JJ, $cmd." |") || die "Failed: $! in \n$cmd\n";
-    while ( <JJ> ){
-        chomp;
-        print "$_\n" if $opt > 0;
+    if($opt == -1) {
+        $cmd .= " 2>/dev/null";
+        system($cmd) == 0 || die "!!!!! Failed system call !!!!!\n$cmd\n$!\n";
+    } elsif($opt == 0) {
+        system($cmd) == 0 || die "!!!!! Failed system call !!!!!\n$cmd\n$!\n";
+    } elsif($opt == 1) {
+        $cmd .= " 2>&1";
+        print "$cmd\n";
+        open(JJ, $cmd." |") || die "!!!!! Failed system call !!!!!\n$cmd\n$!\n";
+        while ( <JJ> ) { print $_; }
     }
 }
 sub runCmd2 {

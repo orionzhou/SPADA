@@ -107,7 +107,7 @@ sub run_augustus_batch {
       
         my $fo = "$dirO/$id";
         my $cmd = "$f_bin --AUGUSTUS_CONFIG_PATH=$d_cfg --species=arabidopsis --hintsfile=$f_hin --gff3=on --strand=forward --noInFrameStop=true $f_fas > $fo";
-        runCmd($cmd, -1);
+        runCmd($cmd, 0);
         printf "  %5d / %5d done...\r", $i+1, $t->nofRow;
     }
     print "\n";
@@ -203,7 +203,7 @@ sub run_augustus_batch_simple {
 #    next if $id != 30;
         writeFile($f_fas, ">tmp", $seq);
         my $cmd = "$f_bin --AUGUSTUS_CONFIG_PATH=$d_cfg --species=arabidopsis --gff3=on --strand=forward --noInFrameStop=true $f_fas > $fo";
-        runCmd($cmd, -1);
+        runCmd($cmd, 0);
         printf "  %5d / %5d done\r", $i+1, $t->nofRow;
     }
     print "\n";
@@ -250,7 +250,7 @@ sub run_genemark_batch {
         writeFile($f_fas, ">tmp", $seq);
         my $fo = "$dir/$id";
         my $cmd = "$f_bin -m $f_mod -f gff3 -o $fo $f_fas";
-        runCmd($cmd, -1);
+        runCmd($cmd, 0);
         printf "  %5d / %5d done...\r", $i+1, $t->nofRow;
     }
     print "\n";
@@ -295,7 +295,7 @@ sub run_glimmerhmm_batch {
         writeFile($f_fas, ">tmp", $seq);
         my $fo = "$dir/$id";
         my $cmd = "$f_bin $f_fas $d_train -g > $fo";
-        runCmd($cmd, -1);
+        runCmd($cmd, 0);
         printf "  %5d / %5d done...\r", $i+1, $t->nofRow;
     }
     print "\n";
@@ -340,7 +340,7 @@ sub run_geneid_batch {
         writeFile($f_fas, ">tmp", $seq);
         my $fo = "$dir/$id";
         my $cmd = "$f_bin -3 -W -P $f_param $f_fas > $fo";
-        runCmd($cmd, -1);
+        runCmd($cmd, 0);
         printf "  %5d / %5d done...\r", $i+1, $t->nofRow;
     }
     print "\n";

@@ -70,8 +70,7 @@ sub run_clustalo {
     my $cmd = qq/$f_bin -i $fi -o $fo --outfmt=clu --force/;
     $cmd .= " --hmm-in=$f_hmm" if $f_hmm;
     $cmd .= " --full --distmat-out=$f_dis" if $f_dis;
-    runCmd($cmd, -1);
-    die "error running clustalo\n" unless -s $fo;
+    runCmd($cmd, 0);
     system("rm $fi") if $mode == 2; 
 }
 sub run_pal2nal {

@@ -477,14 +477,14 @@ sub get_aln_score {
         my $f_ao = "$do/$pa.fas";
         if(exists $hs->{$fam}) {
             writeSeq([@seqs, @{$hs->{$fam}}], $f_fas);
-            runCmd("$f_bin -i $f_fas --outfmt=fasta --force -o $f_ao", -1);
+            runCmd("$f_bin -i $f_fas --outfmt=fasta --force -o $f_ao", 0);
         } else {
             my $f_ai = "$d_aln/$fam.aln";
             $log->error_die("alignment file [$f_ai] is not there") unless -s $f_ai;
             writeSeq(\@seqs, $f_fas);
             
             my $tag_input = @ids == 1 ? "--p1 $f_fas --p2 $f_ai" : "-i $f_fas --p1 $f_ai";
-            runCmd("$f_bin $tag_input --outfmt=fasta --force -o $f_ao", -1);
+            runCmd("$f_bin $tag_input --outfmt=fasta --force -o $f_ao", 0);
         }
 
         my $h = aln_score_group($f_ao, \@ids);
@@ -531,7 +531,7 @@ sub get_hmm_score {
         writeSeq([values(%$h_seq)], $f_fas);
         
         my $f_ao = "$do/$pa.txt";
-        runCmd("$f_bin -o $f_ao $f_hmm $f_fas", -1);
+        runCmd("$f_bin -o $f_ao $f_hmm $f_fas", 0);
         my $h = score_hmm_by_hit($f_ao);
         for my $id (sort keys(%$h_seq)) {
             my ($e, $score) = (10, 0);

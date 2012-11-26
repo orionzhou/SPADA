@@ -652,7 +652,7 @@ sub get_aln_score {
 
         writeFile($ft1, ">seq$id", $seq);
 #    print "  pls ignore this warning: $id [$seq]\n" if $seq =~ /^[atcg]+$/i;
-        runCmd("$f_bin --p1 $ft1 --p2 $f_aln --outfmt=fasta --force -o $ft2", -1);
+        runCmd("$f_bin --p1 $ft1 --p2 $f_aln --outfmt=fasta --force -o $ft2", 0);
         die "MSP $ft2 was not created\n" unless -s $ft2;
         my $score = aln_score_vector($ft2, "seq$id");
         $t->setElm($i, "aln_score", $score);
