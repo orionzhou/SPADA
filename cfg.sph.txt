@@ -1,7 +1,7 @@
 # source code directory of SPADA
 SPADA_SOURCE = /project/youngn/zhoup/spada
 # data (output) directory of SPADA
-SPADA_DATA = /project/youngn/zhoup/Data/misc3/spada
+SPADA_DATA = /project/youngn/zhoup/Data/misc3/spada.sph
 # directory containing profile alignments and HMM files
 SPADA_PROFILE = ${SPADA_DATA}/profile
 # organism to run (can be overriden by command line argument: --org Athaliana)

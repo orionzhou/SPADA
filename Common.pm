@@ -101,7 +101,7 @@ sub runCmd {
     $opt = defined($opt) ? $opt : 1;
     if($opt == -1) {
         $cmd .= " 2>/dev/null";
-        system($cmd) == 0 || die "!!!!! Failed system call !!!!!\n$cmd\n$!\n";
+        system($cmd);
     } elsif($opt == 0) {
         system($cmd) == 0 || die "!!!!! Failed system call !!!!!\n$cmd\n$!\n";
     } elsif($opt == 1) {

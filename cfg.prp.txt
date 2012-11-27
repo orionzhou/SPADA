@@ -1,0 +1,41 @@
+# source code directory of SPADA
+SPADA_SOURCE = /project/youngn/zhoup/spada
+# data (output) directory of SPADA
+SPADA_DATA = /project/youngn/zhoup/Data/misc3/spada.prp
+# directory containing profile alignments and HMM files
+SPADA_PROFILE = ${SPADA_DATA}/profile
+# organism to run (can be overriden by command line argument: --org Athaliana)
+SPADA_ORG = Athaliana
+# genome reference sequence file (FASTA format, required) (can be overridden by '--fas' argument)
+SPADA_FAS = ${SPADA_DATA}/${SPADA_ORG}/01_genome/01_refseq.fa
+# gene annotation file (GFF3 format, optional, comment this out if unavailable) (can be overridden by '--gff' argument)
+SPADA_GFF = ${SPADA_DATA}/${SPADA_ORG}/01_genome/51_gene.gff
+
+##########  required packages  ##########
+ClustalO = /home/msi/zhoup/spada_soft/clustalo
+# ClustalO (clustalo) binary should locate in {ClustalO}/bin
+HMMER = /home/msi/zhoup/spada_soft/hmmer
+# hmmsearch binary (hmmserach) should locate in {HMMER}/bin
+Augustus = /home/msi/zhoup/spada_soft/augustus
+# augustus binary (augustus) should locate in {Augustus}/bin, config diretory shold be {Augustus}/config
+SignalP = /home/msi/zhoup/spada_soft/signalp-4.0
+# signalp script (signalp) should locate in {SignalP} 
+GeneWise = /home/msi/zhoup/spada_soft/wise2.2.0
+# genewise binary (genewise) should locate in {GeneWise}/bin
+SplicePredictor = /home/msi/zhoup/spada_soft/GENESEQER
+# SplicePredictor binary (SplicePredictor) should locate in {SplicePredictor}/bin
+
+##########  optional packages  ##########
+trimAl = /home/msi/zhoup/spada_soft/trimal
+# trimal binary (trimal) should locate in {trimAl}/bin
+GeneMark = /home/msi/zhoup/spada_soft/genemark_hmm_euk.linux_64
+# GeneMark binary (gmhmme3) and MOD files (a_thaliana.mod) should locate in {GeneMark} 
+GlimmerHMM = /home/msi/zhoup/spada_soft/GlimmerHMM
+# GlimmerHMM binary (glimmerhmm) should locate in {GlimmerHMM}/bin, training directory locate in {GlimmerHMM}/trained_dir
+GeneID = /home/msi/zhoup/spada_soft/geneid
+# GeneID binary (geneid) should locate in {GeneID}/bin, parameter files should locate in {GeneID}/param
+
+##########  miscellaneous  ##########
+evalue = 0.001
+
+
