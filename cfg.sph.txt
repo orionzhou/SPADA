@@ -1,5 +1,5 @@
 # source code directory of SPADA
-SPADA_SOURCE = /project/youngn/zhoup/spada
+SPADA_SOURCE = /home/msi/zhoup/spada_soft/spada
 # data (output) directory of SPADA
 SPADA_DATA = /project/youngn/zhoup/Data/misc3/spada.sph
 # directory containing profile alignments and HMM files
