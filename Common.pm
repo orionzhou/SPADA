@@ -4,6 +4,7 @@ use Bio::Seq;
 use Data::Table;
 use File::Basename;
 use Data::Dumper;
+use IPC::Open3; use Symbol qw/gensym/;
 use Clone qw/clone/;
 use Graph;
 use List::Util qw/min max sum/;
@@ -99,16 +100,19 @@ sub isnumber {
 sub runCmd {
     my ($cmd, $opt) = @_;
     $opt = defined($opt) ? $opt : 1;
-    if($opt == -1) {
-        $cmd .= " 2>/dev/null";
-        system($cmd);
-    } elsif($opt == 0) {
-        system($cmd) == 0 || die "!!!!! Failed system call !!!!!\n$cmd\n$!\n";
-    } elsif($opt == 1) {
-        $cmd .= " 2>&1";
-        print "$cmd\n";
-        open(JJ, $cmd." |") || die "!!!!! Failed system call !!!!!\n$cmd\n$!\n";
-        while ( <JJ> ) { print $_; }
+
+    local *CATCHERR = IO::File->new_tmpfile;
+    my $pid = open3(gensym, \*CATCHOUT, ">&CATCHERR", $cmd);
+    if($opt == 1) {
+        while(<CATCHOUT>) { print $_; }
+    }
+    waitpid($pid, 0);
+    my $exit_status = $?;
+    
+    if($exit_status != 0 && $opt != -1) {
+        seek CATCHERR, 0, 0;
+        while(<CATCHERR>) { print $_; }
+        die "!!!!! failed system call !!!!!\n$cmd\n";
     }
 }
 sub runCmd2 {

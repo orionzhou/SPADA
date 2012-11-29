@@ -12,7 +12,7 @@ require Exporter;
 @ISA = qw/Exporter/;
 @EXPORT = qw/read_aln_ids aln_fmt_convert
     run_clustalw run_tcoffee run_clustalo run_pal2nal
-    pwAln run_dotplot
+    run_water run_dotplot
     aln_score_pw aln_score_vector aln_score_group aln_score_matrix/;
 @EXPORT_OK = qw//;
 
@@ -91,18 +91,21 @@ sub run_tcoffee {
     system("rm tcoffee.dnd") if -f "tcoffee.dnd";
 }
 
-sub pwAln {
-    my ($seqAry, $fo, $format) = rearrange(['seqs', 'out', 'format'], @_);
+sub run_water {
+    my ($seq1, $seq2) = @_;
     my $f_bin = "water";
-    $format ||= "pair";
-    my $fi1 = $ENV{"TMP_DIR"}."/water_1_".int(rand(1000)).".fa";
-    my $fi2 = $ENV{"TMP_DIR"}."/water_2_".int(rand(1000)).".fa";
-    writeSeq(-seqs=>$seqAry->[0], -out=>$fi1);
-    writeSeq(-seqs=>$seqAry->[1], -out=>$fi2);
-    my ($sid1, $sid2) = map {$_->id} @$seqAry;
-    my $cmd = qq/$f_bin $fi1 $fi2 -gapopen 20 -gapextend 2 -aformat $format -outfile $fo/;
+    my $format = "pair";
+    my $fi1 = "pw_seq1_".int(rand(1000)).".fa";
+    my $fi2 = "pw_seq2_".int(rand(1000)).".fa";
+    my $fo = "pw_".int(rand(1000)).".water";
+    writeFile($fi1, ">".$seq1->id, $seq1->seq);
+    writeFile($fi2, ">".$seq2->id, $seq2->seq);
+    my $cmd = "$f_bin $fi1 $fi2 -gapopen 20 -gapextend 2 -aformat $format -outfile $fo";
     runCmd($cmd, 0);
-    system("rm $fi1 $fi2");
+
+    my $aln = Bio::AlignIO->new(-file=>$fo, -format=>"emboss");
+    system("rm $fi1 $fi2 $fo");
+    return $aln->next_aln();
 }
 sub run_dotplot {
     my ($seqAry, $fo, $ws) = rearrange(['seqs', 'out', "ws"], @_);
@@ -215,88 +218,6 @@ sub aln_score_matrix {
         }
     }
     return $m;
-}
-
-
-sub align {
-# opt( 1 - dna, 2 - protein, 3 - dna2protein, 4 - cds )
-    my ($seqAry, $fOut, $opt, $prog) = rearrange(['seqs', 'out', "opt", "program"], @_);
-    my @uniqIds = uniq( map { $_->id } @$seqAry );
-    my @idxs;
-    for my $i (0..$#uniqIds) {
-        my $idx = first_index {$seqAry->[$_]->id eq $uniqIds[$i]} (0..@$seqAry-1);
-        push @idxs, $idx;
-    }
-    $seqAry = [ @$seqAry[@idxs] ];
-    my $idH;
-    for my $i (0..@$seqAry-1) {
-        my $seq = $seqAry->[$i];
-        my $id = $seq->id;
-        if($id =~ /[\:]/ || length($id) > 13) {
-            my $idN = $id;
-            $idN =~ s/[\:]/_/g;
-            $idN =~ s/Medtr//g;
-            $idN =~ s/contig\_/ctg/ig;
-            $idN =~ s/\.trim//;
-            $idN = substr($idN, 0, 13) if length($idN) > 13;
-            $idN =~ s/\W+$//;
-            $seqAry->[$i] = Bio::Seq->new(-id=>$idN, -seq=>$seq->seq);
-            $idH->{$idN} = $id;
-        }
-    }
-    my $ref = undef;
-    if(@$seqAry == 1) {
-        print "only 1 sequence -> alignment not made\n";
-        return undef;
-    }
-    if($opt == 1 || $opt == 2) {
-        if($prog =~ /^(water)|(needle)$/) {
-            die "not 2 seqs\n" unless @$seqAry == 2;
-            pwAln(-seqs=>$seqAry, -out=>$fOut, -format=>'pair', -program=>$prog);
-            $ref = getAlnDesc($fOut, 'emboss', $idH);
-        } else {
-            run_tcoffee(-seqs=>$seqAry, -out=>$fOut);
-#      run_clustalw(-seqs=>$seqAry, -out=>$fOut, -type=> $opt==1 ? "DNA" : "PROTEIN");
-            $ref = getAlnDesc($fOut, 'clustalw', $idH);
-        }
-    } else {
-        my $seqAry2 = [];
-        for (@$seqAry) {
-            if($_->alphabet eq "dna") {
-                my $seqP = $_->translate(-terminator=>'X')->seq;
-                $seqP =~ s/X$//i;
-                push @$seqAry2, Bio::Seq->new(-id=>$_->id, -seq=>$seqP);
-            } elsif($_->alphabet eq "protein") {
-                push @$seqAry2, $_;
-            }
-        }
-        if($opt == 3) {
-            if($prog && $prog =~ /^(water)|(needle)$/) {
-                die "not 2 seqs\n" unless @$seqAry == 2;
-                pwAln(-seqs=>$seqAry2, -out=>$fOut, -format=>'pair', -program=>$prog);
-                $ref = getAlnDesc($fOut, 'emboss', $idH);
-            } else {
-                run_tcoffee(-seqs=>$seqAry2, -out=>$fOut);
-#        run_clustalw(-seqs=>$seqAry2, -out=>$fOut,, -type=>"PROTEIN");
-                $ref = getAlnDesc($fOut, 'clustalw', $idH);
-            }
-        } elsif($opt == 4) {
-            my $f1 = "/tmp/cds.fa";
-            writeSeq(-seqs=>$seqAry, -out=>$f1);
-            my $f2 = "/tmp/protein.aln";
-            if($prog =~ /^(water)|(needle)$/) {
-                die "not 2 seqs\n" unless @$seqAry == 2;
-                pwAln(-seqs=>$seqAry2, -out=>$f2, -format=>'clustal', -program=>$prog);
-            } else {
-                run_tcoffee(-seqs=>$seqAry2, -out=>$f2);
-#        run_clustalw(-seqs=>$seqAry2, -out=>$f2,, -type=>"PROTEIN");
-            }
-            $ref = getAlnDesc($f2, 'clustalw', $idH);
-            run_pal2nal(-in1=>$f1, -in2=>$f2, -out=>$fOut);
-            system("rm $f1 $f2");
-        }
-    }
-    return $ref;
 }
 
 
