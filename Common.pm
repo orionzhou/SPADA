@@ -99,13 +99,20 @@ sub isnumber {
 }
 sub runCmd {
     my ($cmd, $opt) = @_;
-    $opt = defined($opt) ? $opt : 1;
+    $opt = defined($opt) ? $opt : 0;
 
     local *CATCHERR = IO::File->new_tmpfile;
     my $pid = open3(gensym, \*CATCHOUT, ">&CATCHERR", $cmd);
-    if($opt == 1) {
-        while(<CATCHOUT>) { print $_; }
+    my @output;
+    while(<CATCHOUT>) {
+        if($opt == 1) {
+            print $_;
+        } elsif($opt == 2) {
+            chomp;
+            push @output, $_;
+        }
     }
+
     waitpid($pid, 0);
     my $exit_status = $?;
     
@@ -114,16 +121,7 @@ sub runCmd {
         while(<CATCHERR>) { print $_; }
         die "!!!!! failed system call !!!!!\n$cmd\n";
     }
-}
-sub runCmd2 {
-    my ($cmd) = @_;
-    my @lines;
-    open(my $out, "$cmd | ") or die "Failed: $!\n";
-    while( <$out> ) {
-        chomp;
-        push @lines, $_;
-    }
-    return \@lines;
+    return \@output;
 }
 sub parse_gff_tags {
     my ($str) = @_;

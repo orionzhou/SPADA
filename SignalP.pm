@@ -70,10 +70,9 @@ sub run_sigp {
     die "$f_bin not there\n" unless -s $f_bin;
     
     my ($prob1, $prob2, $site) = ("") x 3;
-    open(OUT, "perl $f_bin -t euk -s notm $f_fas |") or die "failed: $!\n";
     my ($tag, $d, $pos) = (0, "", "");
-    while( <OUT> ) {
-        chomp;
+    my $lines = runCmd("perl $f_bin -t euk -s notm $f_fas", 2);
+    for (@$lines) {
         next unless /^tmp/;
         my ($id, $Cmax, $posC, $Ymax, $posY, $Smax, $posS, $Smean, $D, $sp, $Dmaxcut, $network) = split " ";
         ($tag, $pos, $d) = (1, $posY, $D) if $sp eq "Y";
