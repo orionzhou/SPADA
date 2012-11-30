@@ -50,7 +50,9 @@ sub get_splice_sites {
     die "$f_bin not there\n" unless -s $f_bin;
     my $f_fas = $ENV{"TMP_DIR"}."/splice_predictor_".int(rand(1000)).".fa";
     writeFile($f_fas, ">$seq", $seq);
-    my $lines = runCmd2("$f_bin -s Arabidopsis -c -99.9 -p 5 -a $beg -b $end -L $f_fas 2>&1");
+
+    my $cmd = "$f_bin -s Arabidopsis -c -99.9 -p 5 -a $beg -b $end -L $f_fas";
+    my $lines = runCmd($cmd, 2);
 
     my @stats = map { [split("\t", $_)] } @$lines;
     @stats = grep {defined($_->[1]) && $_->[1] =~ /^(ACPTR)|(DONOR)$/} @stats;

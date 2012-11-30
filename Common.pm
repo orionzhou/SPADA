@@ -14,7 +14,7 @@ use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter AutoLoader/;
 @EXPORT = qw/pretty tonum isnumber getDigits prettyStr extractAcc
-    runCmd runCmd2 parse_gff_tags
+    runCmd parse_gff_tags
     locStr2Ary locAry2Str locAryLen trimLoc cropLoc cropLoc_cds parse_old_loc_str
     posOvlp posCmp posMerge posSplit posDiff posMergeDeep
     rearrange group bsearch tiling readTable

@@ -145,12 +145,12 @@ sub get_hmm_stat {
         my $f_hmm = "$d_hmm/$fam.hmm";
         my $f_aln = "$d_aln/$fam.aln";
         
-        my $lines = runCmd2("$f_bin1 $f_hmm");
+        my $lines = runCmd("$f_bin1 $f_hmm", 2);
         die "cannot get stat for $fam from $f_hmm\n" unless $lines->[-1] =~ /^\s*\d+\s+$fam/;
         my @ps = split " ", $lines->[-1];
         my ($nseq, $len) = @ps[3,5];
         
-        $lines = runCmd2("$f_bin2 -c $f_hmm");
+        $lines = runCmd("$f_bin2 -c $f_hmm", 2);
         die "cannot get con seq for $fam from $f_hmm\n" unless $lines->[0] =~ /^\>$fam/;
         my $seq = join("", @$lines[1..@$lines-1]);
 
