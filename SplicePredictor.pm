@@ -49,7 +49,7 @@ sub get_splice_sites {
     my $f_bin = $ENV{"SplicePredictor"}."/bin/SplicePredictor";
     die "$f_bin not there\n" unless -s $f_bin;
     my $f_fas = $ENV{"TMP_DIR"}."/splice_predictor_".int(rand(1000)).".fa";
-    writeFile($f_fas, ">$seq", $seq);
+    writeFile($f_fas, ">tmp", $seq);
 
     my $cmd = "$f_bin -s Arabidopsis -c -99.9 -p 5 -a $beg -b $end -L $f_fas";
     my $lines = runCmd($cmd, 2);
