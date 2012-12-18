@@ -256,6 +256,8 @@ sub from_gff {
 }
 sub to_gff {
     my $self = shift;
+    my $flag_utr = shift;
+    $flag_utr = 1 unless defined($flag_utr);
     my @rows;
     
     my $seqid = $self->seqid;
@@ -266,8 +268,10 @@ sub to_gff {
 
     for (@{$self->exon}) { push @rows, [$seqid, '.', 'exon', $_->[0], $_->[1], '.', $strand, '.', 'Parent='.$self->id]; }
     for (@{$self->cds}) { push @rows, [$seqid, '.', 'CDS', $_->[0], $_->[1], '.', $strand, $_->[2], 'Parent='.$self->id]; }
-    for (@{$self->utr5}) { push @rows, [$seqid, '.', 'five_prime_UTR', $_->[0], $_->[1], '.', $strand, '.', 'Parent='.$self->id]; }
-    for (@{$self->utr3}) { push @rows, [$seqid, '.', 'three_prime_UTR', $_->[0], $_->[1], '.', $strand, '.', 'Parent='.$self->id]; }
+    if($flag_utr eq 1) {
+        for (@{$self->utr5}) { push @rows, [$seqid, '.', 'five_prime_UTR', $_->[0], $_->[1], '.', $strand, '.', 'Parent='.$self->id]; }
+        for (@{$self->utr3}) { push @rows, [$seqid, '.', 'three_prime_UTR', $_->[0], $_->[1], '.', $strand, '.', 'Parent='.$self->id]; }
+    }
     return join("\n", map {join("\t", @$_)} @rows);
 }
 

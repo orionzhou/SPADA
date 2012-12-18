@@ -2,8 +2,8 @@ require(ggplot2)
 require(RColorBrewer)
 
 orgs = c('Athaliana', 'Mtruncatula', 'Osativa')
-dir = file.path(DIR_Misc3, "spada")
-dirO = file.path(DIR_Misc3, "spada_stat")
+dir = file.path(DIR_Misc3, "spada.crp")
+dirO = file.path(dir, "img_stats")
 
 for (i in 1:length(orgs)) {
 	org = orgs[i]
@@ -33,7 +33,7 @@ p <- ggplot(te2) +
   opts(axis.text.x=theme_text(size=7, hjust=1, vjust=1, angle=45), strip.text.x=theme_text(face="italic")) +
   labs(shape='') +
   opts(legend.title=theme_blank(), legend.position="top", legend.direction="horizontal", legend.text=theme_text(size=7))
-ggsave(file.path(dirO, "11_stat_e.tiff"), p, width=5, height=3.5)
+ggsave(file.path(dirO, "11_stat_e.pdf"), p, width=5, height=3.5)
 
 ts1 = t[t$e == 0.001, c(-3, -4)]
 ts2 = reshape(ts1, idvar=c("org", "soft"), varying=list(3:6), timevar="type", v.names='value', times=colnames(ts1)[3:6], direction='long')
@@ -49,7 +49,7 @@ p <- ggplot(ts2) +
   opts(axis.text.x = theme_text(size=7, hjust=1, vjust=1, angle=30), strip.text.x=theme_text(face="italic")) +
   labs(fill='', colour='') +
   opts(legend.title=theme_blank(), legend.position="top", legend.direction="horizontal", legend.text=theme_text(size=7))
-ggsave(file.path(dirO, "12_stat_soft.tiff"), p, width=5, height=3.5)
+ggsave(file.path(dirO, "12_stat_soft.pdf"), p, width=5, height=3.5)
 
 t1 = t[, -4]
 t2 = reshape(t1, idvar=c("org", "soft", "e"), varying=list(4:7), timevar="type", v.names='value', times=colnames(t1)[4:7], direction='long')
@@ -66,4 +66,4 @@ p <- ggplot(t2) +
   opts(axis.text.x = theme_text(size=7, hjust=1, vjust=1, angle=45), strip.text.x=theme_text(face="italic")) +
   opts(legend.title=theme_blank(), legend.position="top", legend.direction="horizontal", legend.text=theme_text(size=8)) +
   labs(fill='', colour='')
-ggsave(file.path(dirO, "15_stat.tiff"), p, width=8, height=7)
+ggsave(file.path(dirO, "15_stat.pdf"), p, width=8, height=7)
