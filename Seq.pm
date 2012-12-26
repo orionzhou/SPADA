@@ -171,9 +171,10 @@ sub translate {
     return $pro;
 }
 sub translate6 {
-    my ($fi, $fo) = @_;
+    my ($fi, $fo, $sep) = @_;
     my $log = Log::Log4perl->get_logger("Seq");
     $log->info("translating sequences in 6 reading frames");
+    $sep ||= "|";
     
     my $seqHI = Bio::SeqIO->new(-file=>"<$fi", -format=>'fasta');
     my $seqHO = Bio::SeqIO->new(-file=>">$fo", -format=>'fasta');
@@ -187,7 +188,8 @@ sub translate6 {
             my ($beg, $end) = ($i+1, $i+$lenC);
             my $dna = substr($seq, $beg-1, $lenC);
             my $pro = translate($dna);
-            $seqHO->write_seq( Bio::Seq->new(-id=>"$id\_$beg\_$end\_+", -seq=>$pro) );
+            my $sid = join($sep, $id, $beg, $end, "+");
+            $seqHO->write_seq( Bio::Seq->new(-id=>$sid, -seq=>$pro) );
         }
         $seq = revcom($seq);
         for my $i (0..2) {
@@ -197,7 +199,8 @@ sub translate6 {
             my $dna = substr($seq, $beg-1, $lenC);
             my $pro = translate($dna);
             my ($begO, $endO) = ($len-$end+1, $len-$beg+1);
-            $seqHO->write_seq( Bio::Seq->new(-id=>"$id\_$begO\_$endO\_-", -seq=>$pro) );
+            my $sid = join($sep, $id, $begO, $endO, "-");
+            $seqHO->write_seq( Bio::Seq->new(-id=>$sid, -seq=>$pro) );
         }
     }
     $seqHI->close();

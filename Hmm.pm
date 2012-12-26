@@ -268,9 +268,10 @@ sub trim_aln_loc {
     return ($locQn, $locHn, $locAn, $alnQn, $alnHn, $alnPn);
 }
 sub recoverCoord {
-    my ($fi, $fo, $f_ref) = @_;
+    my ($fi, $fo, $f_ref, $sep) = @_;
     my $log = Log::Log4perl->get_logger("Hmm");
     $log->info("recovering to global coordinate");
+    $sep ||= "|";
 
     my $t = readTable(-in=>$fi, -header=>1);
     open(FH, ">", $fo) || die "Can't open file $fo: $!\n";
@@ -279,7 +280,7 @@ sub recoverCoord {
         my ($id, $idQ, $begQ, $endQ, $srdQ, $locQS, $idH, $begH, $endH, $srdH, $locHS, $e, $score, $srcN, $locAS, $alnQ, $alnH, $alnP) = $t->row($i);
         $log->error_die("srd error: \n".join("\t", $t->row($i))."\n") if $srdQ ne "+" || $srdH ne "+";
 
-        my ($seqid, $locHWS, $srd, $src) = reverse map {scalar reverse} split("_", reverse($idH), 4);
+        my ($seqid, $locHWS, $srd, $src) = reverse map {scalar reverse} split($idH, reverse($idH), 4);
         $log->error_die("Unknown strand $srd\n") if $srd !~ /^[\+\-]$/;
         my $locQ = locStr2Ary($locQS);
         my $locA = locStr2Ary($locAS);

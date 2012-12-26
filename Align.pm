@@ -12,7 +12,7 @@ require Exporter;
 @ISA = qw/Exporter/;
 @EXPORT = qw/read_aln_ids aln_fmt_convert
     run_clustalw run_tcoffee run_clustalo run_pal2nal
-    run_water run_dotplot
+    run_pw_aln
     aln_score_pw aln_score_vector aln_score_group aln_score_matrix/;
 @EXPORT_OK = qw//;
 
@@ -91,22 +91,40 @@ sub run_tcoffee {
     system("rm tcoffee.dnd") if -f "tcoffee.dnd";
 }
 
-sub run_water {
-    my ($seq1, $seq2) = @_;
-    my $f_bin = "water";
+sub run_pw_aln {
+    my ($seq1, $seq2, $opt) = @_;
+    my $f_bin = $opt == 2 ? "needle" : "water";
     my $format = "pair";
     my $fi1 = "pw_seq1_".int(rand(1000)).".fa";
     my $fi2 = "pw_seq2_".int(rand(1000)).".fa";
-    my $fo = "pw_".int(rand(1000)).".water";
+    my $fo = "pw_".int(rand(1000)).".pwaln";
     writeFile($fi1, ">".$seq1->id, $seq1->seq);
     writeFile($fi2, ">".$seq2->id, $seq2->seq);
-    my $cmd = "$f_bin $fi1 $fi2 -gapopen 20 -gapextend 2 -aformat $format -outfile $fo";
+    my $cmd = "$f_bin $fi1 $fi2 -gapopen 10 -gapextend 0.5 -aformat $format -outfile $fo";
     runCmd($cmd, 0);
 
-    my $aln = Bio::AlignIO->new(-file=>$fo, -format=>"emboss");
+    my ($len1, $len2) = ($seq1->length, $seq2->length);
+
+    my $alnH = Bio::AlignIO->new(-file=>$fo, -format=>"emboss");
+    my $aln = $alnH->next_aln();
+    my ($seqa1, $seqa2) = map {$_->seq} $aln->each_seq();
+    my $len_aln = length($seqa1);
+    my ($len_mat, $len_mis, $len_gap) = (0, 0, 0);
+    for my $i (0..$len_aln-1) {
+        my ($ch1, $ch2) = map {substr($_, $i, 1)} ($seqa1, $seqa2);
+        if($ch1 =~ /[\-\_ ]/ || $ch2 =~ /[\-\_ ]/) {
+            $len_gap ++;
+        } elsif($ch1 eq $ch2) {
+            $len_mat ++;
+        } else {
+            $len_mis ++;
+        }
+    }
+    die "alignment parse error\n$seqa1\n$seqa2\n" unless $len_aln == $len_mat+$len_mis+$len_gap;
     system("rm $fi1 $fi2 $fo");
-    return $aln->next_aln();
+    return ($len_aln, $len_mat, $len_mis, $len_gap, $len1, $len2);
 }
+
 sub run_dotplot {
     my ($seqAry, $fo, $ws) = rearrange(['seqs', 'out', "ws"], @_);
     $ws ||= 10;

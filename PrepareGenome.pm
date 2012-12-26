@@ -17,17 +17,18 @@ require Exporter;
 @EXPORT = qw/pipe_prepare_genome/; 
 
 sub get_genome_orf {
-    my ($fi, $fo, $cutoff_missing) = @_;
+    my ($fi, $fo, $cutoff_missing, $sep) = @_;
     my $seqHI = Bio::SeqIO->new(-file=>"<$fi", -format=>'fasta');
     my $seqHO = Bio::SeqIO->new(-file=>">$fo", -format=>'fasta');
     $cutoff_missing ||= 0.5;
+    $sep ||= "|";
     
     my $log = Log::Log4perl->get_logger("PrepareGenome");
     $log->info("extracting ORFs from translated genomic sequence");
     while(my $seq = $seqHI->next_seq()) {
         my $seqStr = $seq->seq;
         my ($id, $beg, $end, $srd) = ($seq->id, 1, 3*length($seqStr), "+");
-        if($seq->id =~ /^(\w+)\_(\d+)\_(\d+)\_([\+\-])$/) {
+        if($seq->id =~ /^(\w+)\Q$sep\E(\d+)\Q$sep\E(\d+)\Q$sep\E([\+\-])$/) {
             ($id, $beg, $end, $srd) = ($1, $2, $3, $4);
         }
         while( $seqStr =~ /([^\*]{15,})/g ) {
@@ -40,10 +41,11 @@ sub get_genome_orf {
                 $begG = $beg + ($begL*3-2) - 1;
                 $endG = $beg + $endL*3 - 1;
             }
+            my $sseq = $1;
+            my $sid = join($sep, $id, "$begG-$endG", $srd, "x");
             my $n_x =()= $1 =~ /X/gi;
             if($n_x / ($endL-$begL+1) <= $cutoff_missing) {
-                my $seqObj = Bio::Seq->new(-id=>join("_", $id, "$begG-$endG", $srd, "x"), -seq=>$1);
-                $seqHO->write_seq($seqObj);
+                $seqHO->write_seq(Bio::Seq->new(-id=>$sid, -seq=>$sseq));
             }
         }
     }
@@ -51,9 +53,10 @@ sub get_genome_orf {
     $seqHO->close();
 }
 sub get_protein_orf {
-    my ($f_gtb, $fo, $f_seq) = @_;
+    my ($f_gtb, $fo, $f_seq, $sep) = @_;
     my $t = readTable(-in=>$f_gtb, -header=>1);
     my $seqHO = Bio::SeqIO->new(-file=>">$fo", -format=>'fasta');
+    $sep ||= "|";
     
     my $log = Log::Log4perl->get_logger("PrepareGenome");
     $log->info("extracting ORFs from predicted protein sequence");
@@ -67,7 +70,7 @@ sub get_protein_orf {
         my $loc = locStr2Ary($locS);
 
         $loc = cropLoc_cds($loc, $srd, $phaseS);
-        my $id = join("_", $chr, locAry2Str($loc), $srd, "p");
+        my $id = join($sep, $chr, locAry2Str($loc), $srd, "p");
         next if exists $h->{$id};
         $h->{$id} = 1;
 
