@@ -280,7 +280,7 @@ sub recoverCoord {
         my ($id, $idQ, $begQ, $endQ, $srdQ, $locQS, $idH, $begH, $endH, $srdH, $locHS, $e, $score, $srcN, $locAS, $alnQ, $alnH, $alnP) = $t->row($i);
         $log->error_die("srd error: \n".join("\t", $t->row($i))."\n") if $srdQ ne "+" || $srdH ne "+";
 
-        my ($seqid, $locHWS, $srd, $src) = reverse map {scalar reverse} split($idH, reverse($idH), 4);
+        my ($seqid, $locHWS, $srd, $src) = reverse map {scalar reverse} split(/\Q$sep\E/, reverse($idH), 4);
         $log->error_die("Unknown strand $srd\n") if $srd !~ /^[\+\-]$/;
         my $locQ = locStr2Ary($locQS);
         my $locA = locStr2Ary($locAS);
