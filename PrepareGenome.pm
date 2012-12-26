@@ -28,7 +28,7 @@ sub get_genome_orf {
     while(my $seq = $seqHI->next_seq()) {
         my $seqStr = $seq->seq;
         my ($id, $beg, $end, $srd) = ($seq->id, 1, 3*length($seqStr), "+");
-        if($seq->id =~ /^(\w+)\Q$sep\E(\d+)\Q$sep\E(\d+)\Q$sep\E([\+\-])$/) {
+        if($seq->id =~ /^(\S+)\Q$sep\E(\d+)\Q$sep\E(\d+)\Q$sep\E([\+\-])$/) {
             ($id, $beg, $end, $srd) = ($1, $2, $3, $4);
         }
         while( $seqStr =~ /([^\*]{15,})/g ) {
