@@ -7,9 +7,9 @@ SPADA_PROFILE = ${SPADA_DATA}/profile
 # organism to run (can be overriden by command line argument: --org Athaliana)
 SPADA_ORG = Athaliana
 # genome reference sequence file (FASTA format, required) (can be overridden by '--fas' argument)
-SPADA_FAS = ${SPADA_DATA}/${SPADA_ORG}/01_genome/01_refseq.fa
+SPADA_FAS = ${SPADA_DATA}/${SPADA_ORG}/01_preprocessing/01_refseq.fa
 # gene annotation file (GFF3 format, optional, comment this out if unavailable) (can be overridden by '--gff' argument)
-SPADA_GFF = ${SPADA_DATA}/${SPADA_ORG}/01_genome/51_gene.gff
+SPADA_GFF = ${SPADA_DATA}/${SPADA_ORG}/01_preprocessing/51_gene.gff
 
 ##########  required packages  ##########
 ClustalO = /home/msi/zhoup/spada_soft/clustalo
@@ -37,5 +37,6 @@ GeneID = /home/msi/zhoup/spada_soft/geneid
 
 ##########  miscellaneous  ##########
 evalue = 0.001
-
+#method = Augustus_evidence;SPADA
+method = Augustus_evidence;SPADA;Augustus_de_novo;GeneMark;GlimmerHMM;GeneID
 

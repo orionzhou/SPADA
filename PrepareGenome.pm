@@ -1,6 +1,5 @@
 package PrepareGenome;
 use strict; 
-use File::Compare;
 use File::Path qw/make_path remove_tree/;
 use Common; 
 use Data::Dumper;
@@ -14,9 +13,9 @@ use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter/;
 @EXPORT_OK = qw//;
-@EXPORT = qw/pipe_prepare_genome/; 
+@EXPORT = qw/pipe_pre_processing/; 
 
-sub get_genome_orf {
+sub get_orf_genome {
     my ($fi, $fo, $cutoff_missing, $sep) = @_;
     my $seqHI = Bio::SeqIO->new(-file=>"<$fi", -format=>'fasta');
     my $seqHO = Bio::SeqIO->new(-file=>">$fo", -format=>'fasta');
@@ -52,7 +51,7 @@ sub get_genome_orf {
     $seqHI->close();
     $seqHO->close();
 }
-sub get_protein_orf {
+sub get_orf_proteome {
     my ($f_gtb, $fo, $f_seq, $sep) = @_;
     my $t = readTable(-in=>$f_gtb, -header=>1);
     my $seqHO = Bio::SeqIO->new(-file=>">$fo", -format=>'fasta');
@@ -84,13 +83,13 @@ sub get_protein_orf {
     $seqHO->close();
 }
 
-sub pipe_prepare_genome {
-    my ($dir, $genome) = @_;
+sub pipe_pre_processing {
+    my ($dir) = @_;
     make_path($dir) unless -d $dir;
 
     my $log = Log::Log4perl->get_logger("PrepareGenome");
-    $log->error_die("Genome Seq file not there: $ENV{'SPADA_FAS'}") unless( -s $ENV{"SPADA_FAS"} );
-    $log->info("___Preparing Genome Files___");
+    $log->error_die("Genome Seq file not there: $ENV{'SPADA_FAS'}") unless -s $ENV{"SPADA_FAS"};
+    $log->info("#####  Stage 1 [Pre-processing]  #####");
 
     my $f01 = "$dir/01_refseq.fa";
     if(-s $f01 && $f01 eq $ENV{"SPADA_FAS"}) {
@@ -104,9 +103,9 @@ sub pipe_prepare_genome {
     my $f11 = "$dir/11_refseq_trans6.fa";
     translate6($f01, $f11);
     my $f12 = "$dir/12_orf_genome.fa";
-    get_genome_orf($f11, $f12);
+    get_orf_genome($f11, $f12);
 
-    my $f71 = "$dir/71_orf_protein.fa";
+    my $f71 = "$dir/71_orf_proteome.fa";
     if(!exists $ENV{"SPADA_GFF"}) {
         $log->info("Annotation GFF not defined");
         $log->warn("Proceeding without GFF");
@@ -125,11 +124,9 @@ sub pipe_prepare_genome {
         gff2Gtb($f51, $f61);
         my $f62 = "$dir/62_gene.gff";
         gtb2Gff($f61, $f62);
-        get_protein_orf($f61, $f71, $f01);
+        get_orf_proteome($f61, $f71, $f01);
     }
 }
-
-
 
 
 1;

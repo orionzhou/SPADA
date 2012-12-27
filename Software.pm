@@ -86,7 +86,7 @@ sub run_augustus_batch {
     make_path($dirO) unless -d $dirO;
     remove_tree($dirO, {keep_root => 1});
     my $log = Log::Log4perl->get_logger("Software");
-    $log->info("running Augustus");
+    $log->info("running Augustus(evidence mode)");
 
     my $soft = $ENV{"Augustus"};
     my $f_bin = "$soft/bin/augustus";
@@ -189,7 +189,7 @@ sub run_augustus_batch_simple {
     make_path($dirO) unless -d $dirO;
     remove_tree($dirO, {keep_root => 1});
     my $log = Log::Log4perl->get_logger("Software");
-    $log->info("running Augustus(simple)");
+    $log->info("running Augustus(de novo mode)");
 
     my $f_bin = $ENV{"Augustus"}."/bin/augustus";
     die "$f_bin not there\n" unless -s $f_bin;

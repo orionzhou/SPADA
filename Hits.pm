@@ -667,7 +667,7 @@ sub get_aln_score {
 
 
 sub pipe_hit {
-    my ($dir, $f_hit, $p, $f_ref, $d_aln) = rearrange(['dir', 'in', 'p', 'ref', 'aln'], @_);
+    my ($dir, $f_hit, $p, $f_ref) = rearrange(['dir', 'in', 'p', 'ref'], @_);
     make_path($dir) unless -d $dir;
     
     my $f01f = "$dir/01_hit_full.htb";
