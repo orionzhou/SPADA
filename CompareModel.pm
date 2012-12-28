@@ -1,4 +1,4 @@
-package Genemodel;
+package CompareModel;
 use strict; 
 use Common; 
 use Data::Dumper;

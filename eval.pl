@@ -10,7 +10,7 @@ use Time::HiRes qw/gettimeofday tv_interval/;
 use File::Path qw/make_path remove_tree/;
 
 use ConfigSetup;
-use Model;
+use ModelEval;
 
 my ($f_cfg, $org, $f_fas, $f_gff) = ('') x 4;
 my $cutoff_e = ""; 
@@ -54,18 +54,7 @@ my $d01 = "$dir/01_preprocessing";
 my $f01_01 = "$d01/01_refseq.fa";
 my $f01_61 = "$d01/61_gene.gtb";
 
-my $d21 = "$dir/21_hits";
-my $f21 = "$d21/29_hits.tbl";
-
-my $d31 = "$dir/31_model_SPADA";
-my $d34 = "$dir/34_model_Augustus";
-my $d35 = "$dir/35_model_GeneMark";
-my $d36 = "$dir/36_model_GlimmerHMM";
-my $d37 = "$dir/37_model_GeneID";
-for my $soft (keys(%$p)) {
-    next if $soft eq "SPADA";
-    next unless $soft eq "GeneID";
-    my $dir = $p->{$soft};
+for my $soft (keys %{$ENV{"method"}}) {
 #  pipe_model(-dir=>$d37, -hit=>$f21, -ref=>$f01_01, -d_hmm=>$dp_hmm, -d_aln=>$dp_aln, -f_sta=>$fp_sta, -soft=>$soft);
 }
 

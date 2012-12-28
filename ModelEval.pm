@@ -23,7 +23,7 @@ require Exporter;
 
 sub get_aln_score {
     my ($fi, $d_aln, $f_sta, $do, $fo) = @_;
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("computing MSA scores");
     make_path($do) unless -d $do;
     remove_tree($do, {keep_root => 1});
@@ -88,7 +88,7 @@ sub get_aln_score {
 }
 sub get_hmm_score {
     my ($fi, $d_hmm, $do, $fo) = @_;
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("computing HMM alignment scores");
     make_path($do) unless -d $do;
     remove_tree($do, {keep_root => 1});
@@ -133,7 +133,7 @@ sub get_hmm_score {
 }
 sub merge_stats {
     my ($f_gtb, $fe, $fm, $fa, $fs, $fp, $fo) = @_;
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("merging stats");
     my $tg = readTable(-in=>$f_gtb, -header=>1);
     my $te = readTable(-in=>$fe, -header=>1);
@@ -165,7 +165,7 @@ sub merge_stats {
 }
 sub pick_best_model {
     my ($f_gtb, $f_stat, $fo) = @_;
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("picking best models & removing incomplete models");
     my $tg = readTable(-in=>$f_gtb, -header=>1);
     my $ts = readTable(-in=>$f_stat, -header=>1);
@@ -194,7 +194,7 @@ sub pick_best_model {
 }
 sub remove_ovlp_models {
     my ($f_stat, $fi, $fo) = @_;
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("removing overlapping models");
     my $ts = readTable(-in=>$f_stat, -header=>1);
     my $h;
@@ -234,7 +234,7 @@ sub remove_ovlp_models {
 }
 sub filter_models {
     my ($f_stat, $fi, $fo, $co_e, $co_aln, $opt_mt) = @_;
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("final e-value filter");
     
     my $ts = readTable(-in=>$f_stat, -header=>1);
@@ -277,7 +277,7 @@ sub output_models {
     }
 
     open(FH, ">$fo") or die "cannot open $fo for writing\n";
-    print FH join("\t", qw/id family chr start end strand e score_sp score_hmm score_aln sequence/)."\n";
+    print FH join("\t", qw/id family chr beg end strand e score_sp score_hmm score_aln sequence/)."\n";
     for my $i (0..$t->nofRow-1) {
         my ($id, $chr, $beg, $end, $srd) = map {$t->elm($i, $_)} qw/id chr beg end strand/;
         my ($pa, $fam, $e, $tag_sp, $score_sp, $score_hmm, $score_aln, $n_cds, $seq) = @{$hs->{$id}};
@@ -288,7 +288,7 @@ sub output_models {
 
 sub align_by_group {
     my ($f_gtb, $f_hs, $dirO) = rearrange(['f_gtb', 'hmmstat', 'out'], @_);
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("making sub-family alignments");
     make_path($dirO) unless -d $dirO;
     remove_tree($dirO, {keep_root => 1});
@@ -318,10 +318,10 @@ sub align_by_group {
 }
 
 sub pipe_model_evaluation {
-    my ($dir, $f_hit, $f_gtb, $f_ref, $f_gtb_cur, $d_hmm, $d_aln, $f_sta) = 
-        rearrange([qw/dir hit gtb_all ref gtb_cur d_hmm d_aln f_sta/], @_); 
+    my ($dir, $f_hit, $f_gtb, $f_ref, $f_gtb_ref, $d_hmm, $d_aln, $f_sta) = 
+        rearrange([qw/dir hit gtb_all ref gtb_ref d_hmm d_aln f_sta/], @_); 
     
-    my $log = Log::Log4perl->get_logger("ModelEvaluation");
+    my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("#####  Stage 4 [Model Evaluation & Selection]  #####");
     
     my $d31 = "$dir/31_stat";
@@ -349,8 +349,8 @@ sub pipe_model_evaluation {
     my $f81 = "$dir/81_aln";
     align_by_group(-f_gtb=>$f61, -hmmstat=>$f_sta, -out=>$f81);
     my $f91 = "$dir/91_compare.tbl";
-    if(-s $f_gtb) {
-        compare_models($f61, $f_gtb_cur, $f91);
+    if(defined($f_gtb_ref) && -s $f_gtb_ref) {
+        compare_models($f61, $f_gtb_ref, $f91);
     }
 }
 

@@ -60,7 +60,7 @@ sub remove_gap {
 }
 sub get_hit_seq {
     my ($fi, $fo, $f_ref) = @_;
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelPred");
     $log->info("extracting hit sequence");
     my $ti = readTable(-in=>$fi, -header=>1);
     my $to = Data::Table->new([], [qw/id family chr beg end srd loc begr endr begL endL locL e seq_pro seq/], 0);
@@ -119,7 +119,7 @@ sub get_hit_seq {
 }
 sub prefilter_hits {
     my ($fi, $fo, $co_e) = @_;
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelPred");
     $log->info("prefiltering hits by E-value");
 
     my @idxs_rm;
@@ -137,7 +137,7 @@ sub prefilter_hits {
 }
 sub pipe_model_prepare {
     my ($dir, $f_hit, $f_ref) = rearrange(['dir', 'hit', 'ref'], @_);
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelPred");
     $log->info("preparing hit sequences");
     make_path($dir) unless -d $dir;
     my $f01 = "$dir/01_hit_seq.tbl";
@@ -149,7 +149,7 @@ sub pipe_model_prepare {
 
 sub pipe_model_run {
     my ($dir, $f_hit, $f_ref, $soft) = rearrange(['dir', 'hit', 'ref', 'soft'], @_);
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelPred");
     $log->info("### working on $soft pipeline ###");
     
     if($soft eq "Augustus_evidence") {
@@ -171,7 +171,7 @@ sub pipe_model_run {
 
 sub collect_models { 
     my ($f_hit, $fo, $f_ref, $p) = rearrange(['hit', 'out', 'ref', 'p'], @_);
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelPred");
     $log->info("collecting all prediction results");
     my $hm;
     for my $source (keys(%$p)) {
@@ -204,7 +204,7 @@ sub collect_models {
 }
 sub refine_incomplete_models {
     my ($f_hit, $fi, $fo) = @_;
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelPred");
     $log->info("refining incomplete models");
     my $th = readTable(-in=>$f_hit, -header=>1);
     my $h = { map {$th->elm($_, "id") => $th->rowRef($_)} (0..$th->nofRow-1) };
@@ -269,7 +269,7 @@ sub refine_incomplete_models {
 }
 sub merge_redundant_models {
     my ($fi, $fo) = @_;
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelPred");
     $log->info("merging redundant models");
     my $ti = readTable(-in=>$fi, -header=>1);
     
@@ -325,7 +325,7 @@ sub locRel2Abs {
 }
 sub recover_global_coordinate {
     my ($f_hit, $fi, $fo) = @_;
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelPred");
     $log->info("converting coordinates to global genomic positions");
     my $th = readTable(-in=>$f_hit, -header=>1);
     my $h = { map {$th->elm($_, "id") => $th->rowRef($_)} (0..$th->nofRow-1) };
@@ -364,7 +364,7 @@ sub recover_global_coordinate {
 }
 sub remove_incompatible_models {
     my ($f_hit, $fi, $fo) = @_;
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelPred");
     $log->info("removing incompatible models");
     my $th = readTable(-in=>$f_hit, -header=>1);
     my $h;
@@ -403,7 +403,7 @@ sub remove_incompatible_models {
 }
 sub pipe_model_check {
     my ($dir, $f_hit, $f_ref, $p) = rearrange([qw/dir hit ref p/], @_);
-    my $log = Log::Log4perl->get_logger("Model");
+    my $log = Log::Log4perl->get_logger("ModelPred");
     $log->info("checking & refining models");
   
     my $f21 = "$dir/21_rel.gtb";
@@ -421,7 +421,7 @@ sub pipe_model_check {
 
 sub pipe_model_prediction {
     my ($dir, $f_hit, $f_ref) = rearrange([qw/dir hit ref/], @_); 
-    my $log = Log::Log4perl->get_logger("ModelPrediction");
+    my $log = Log::Log4perl->get_logger("ModelPred");
     $log->info("#####  Stage 3 [Model Prediction]  #####");
 
     my $f05 = "$dir/05_hits.tbl";

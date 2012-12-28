@@ -437,7 +437,7 @@ sub pipe_hmmsearch {
     $log->error_die("cannot execute $f_bin") unless -s $f_bin;
 
     my $f01 = "$dir/01_raw.txt";
-    $log->info("running hmmsearch against $f_tar");
+    $log->info(sprintf "running hmmsearch against %s", basename($f_tar));
     runCmd("$f_bin --domE 10 --cpu 4 -o $dir/01_raw.txt --domtblout $dir/01_raw.tbl $f_hmm $f_tar", -1);
 
     my $f02 = "$dir/02.htb";

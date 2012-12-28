@@ -77,7 +77,8 @@ pipe_model_prediction(-dir=>$d21, -hit=>$f11, -ref=>$f01_01);
 
 # Model Evaluation & Selection 
 my $d31 = "$dir/31_model_evaluation";
-pipe_model_evaluation(-dir=>$d31, -hit=>$f21_05, -gtb_all=>$f21, -ref=>$f01_01, -gtb_cur=>$f01_61, -d_hmm=>$dp_hmm, -d_aln=>$dp_aln, -f_sta=>$fp_sta);
+pipe_model_evaluation(-dir=>$d31, -hit=>$f21_05, -gtb_all=>$f21, 
+    -ref=>$f01_01, -gtb_ref=>$f01_61, -d_hmm=>$dp_hmm, -d_aln=>$dp_aln, -f_sta=>$fp_sta);
 
 $log->info("##########  Pipeline successfully completed  ##########");
 $log->info(sprintf("time elapsed: %.01f min", tv_interval($t0, [gettimeofday]) / 60));
