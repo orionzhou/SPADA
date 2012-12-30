@@ -6,7 +6,7 @@ use Data::Dumper;
 use Common;
 use Seq;
 use Gtb;
-use Genemodel;
+use CompareModel;
 use Software;
 use SignalP;
 use Spada;
@@ -129,8 +129,8 @@ sub prefilter_hits {
         push @idxs_rm, $i if $e > $co_e;
     }
     
-    $log->info(sprintf "  %d out of %d passed", $ti->nofRow-@idxs_rm, $ti->nofRow);
     $ti->delRows(\@idxs_rm);
+    $log->info(sprintf "\t%5d / %5d passed", $ti->nofRow, $ti->nofRow+@idxs_rm);
     open(FH, ">$fo") or die "cannot write to $fo\n";
     print FH $ti->tsv(1);
     close FH;
@@ -171,8 +171,10 @@ sub pipe_model_run {
 
 sub collect_models { 
     my ($f_hit, $fo, $f_ref, $p) = rearrange(['hit', 'out', 'ref', 'p'], @_);
+   
     my $log = Log::Log4perl->get_logger("ModelPred");
     $log->info("collecting all prediction results");
+    
     my $hm;
     for my $source (keys(%$p)) {
         my $f_gtb = $p->{$source};
@@ -187,8 +189,9 @@ sub collect_models {
         }
     }
     
+    my $cnt = 0;
     my $th = readTable(-in=>$f_hit, -header=>1);
-    open(FH, ">$fo");
+    open(FH, ">$fo") || $log->error_die("cannot open $fo for writing");
     print FH join("\t", qw/id parent chr beg end strand locE locI locC loc5 loc3 phase source conf cat1 cat2 cat3 note seq/)."\n";
     for my $i (0..$th->nofRow-1) {
         my ($id, $fam) = $th->row($i);
@@ -198,12 +201,16 @@ sub collect_models {
             $row->[15] = 'mRNA';
             $row->[16] = $fam;
             print FH join("\t", @$row)."\n";
+            $cnt ++;
         }
     }
     close FH;
+
+    $log->info(sprintf "\t%5d collected", $cnt);
 }
 sub refine_incomplete_models {
     my ($f_hit, $fi, $fo) = @_;
+    
     my $log = Log::Log4perl->get_logger("ModelPred");
     $log->info("refining incomplete models");
     my $th = readTable(-in=>$f_hit, -header=>1);
@@ -262,17 +269,20 @@ sub refine_incomplete_models {
         $tg->setElm($i, "seq", $seq_new);
     }
 
-    open(FH, ">$fo");
     $tg->delRows(\@idxs_rm);
+    $log->info(sprintf "\t%5d / %5d passed", $tg->nofRow, $tg->nofRow+@idxs_rm);
+
+    open(FH, ">$fo") || $log->error_die("cannot open $fo for writing");
     print FH $tg->tsv(1);
     close FH;
 }
 sub merge_redundant_models {
     my ($fi, $fo) = @_;
+    
     my $log = Log::Log4perl->get_logger("ModelPred");
     $log->info("merging redundant models");
-    my $ti = readTable(-in=>$fi, -header=>1);
     
+    my $ti = readTable(-in=>$fi, -header=>1);
     my $h;
     for my $i (0..$ti->nofRow-1) {
         my ($id) = $ti->elm($i, "parent");
@@ -282,7 +292,7 @@ sub merge_redundant_models {
     }
   
     my $cnt = 0;
-    open(FH, ">$fo");
+    open(FH, ">$fo") || $log->error_die("cannot open $fo for writing");
     print FH join("\t", qw/id parent chr beg end strand locE locI locC loc5 loc3 phase source conf cat1 cat2 cat3 note seq/)."\n";
     for my $id (sort keys %$h) {
         my @rows = @{$h->{$id}};
@@ -309,7 +319,8 @@ sub merge_redundant_models {
         $cnt += $n;
     }
     close FH;
-    $log->info("  $cnt in total");
+
+    $log->info(sprintf "\t%5d / %5d passed", $cnt, $ti->nofRow);
 }
 sub locRel2Abs {
     my ($beg, $end, $strand, $loc_rel_ary, $strand_rel) = @_;
@@ -358,7 +369,8 @@ sub recover_global_coordinate {
         $tg->setElm($i, "locC", $locCStr);
         $tg->setElm($i, "phase", $phase);
     }
-    open(FH, ">$fo");
+
+    open(FH, ">$fo") || $log->error_die("cannot open $fo for writing");
     print FH $tg->tsv(1);
     close FH;
 }
@@ -394,10 +406,11 @@ sub remove_incompatible_models {
         }
         push @idxs_rm, $i if $tag_rm;
     }
-    $log->info(sprintf "  %d removed", scalar(@idxs_rm));
     
     $ti->delRows(\@idxs_rm);
-    open(FH, ">$fo");
+    $log->info(sprintf "\t%5d / %5d passed", $ti->nofRow, $ti->nofRow+@idxs_rm);
+
+    open(FH, ">$fo") || $log->error_die("cannot open $fo fro writing");
     print FH $ti->tsv(1);
     close FH;
 }

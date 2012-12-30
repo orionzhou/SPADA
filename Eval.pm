@@ -6,7 +6,7 @@ use Genemodel;
 use Data::Dumper;
 use Gtb;
 use Align;
-use Model;
+use ModelEval;
 use List::Util qw/min max sum/;
 use List::MoreUtils qw/first_index last_index insert_after apply indexes pairwise zip uniq/;
 

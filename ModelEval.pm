@@ -11,7 +11,7 @@ use Seq;
 use Hmm;
 use Gtb;
 use SignalP;
-use Genemodel;
+use CompareModel;
 use List::Util qw/min max sum/;
 use List::MoreUtils qw/first_index first_value insert_after apply indexes pairwise zip uniq/;
 
@@ -23,13 +23,14 @@ require Exporter;
 
 sub get_aln_score {
     my ($fi, $d_aln, $f_sta, $do, $fo) = @_;
+    
     my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("computing MSA scores");
     make_path($do) unless -d $do;
     remove_tree($do, {keep_root => 1});
     
     my $f_bin = $ENV{"ClustalO"}."/bin/clustalo";
-    $log->error_die("cannot execute $f_bin") unless -s $f_bin;
+    -s $f_bin || $log->error_die("cannot execute $f_bin");
     
     open(FH, ">$fo") || die "cannot open $fo for writing\n";
     print FH join("\t", qw/id score/)."\n";
@@ -88,13 +89,14 @@ sub get_aln_score {
 }
 sub get_hmm_score {
     my ($fi, $d_hmm, $do, $fo) = @_;
+
     my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("computing HMM alignment scores");
     make_path($do) unless -d $do;
     remove_tree($do, {keep_root => 1});
     
     my $f_bin = $ENV{"HMMER"}."/bin/hmmsearch";
-    $log->error_die("cannot execute $f_bin") unless -s $f_bin;
+    -s $f_bin || $log->error_die("cannot execute $f_bin");
     
     open(FH, ">$fo") || die "cannot open $fo for writing\n";
     print FH join("\t", qw/id score/)."\n";
@@ -144,7 +146,7 @@ sub merge_stats {
 
     my $he = { map {$te->elm($_, "id") => $te->elm($_, "e")} (0..$te->nofRow-1) };
 
-    open(FH, ">$fo");
+    open(FH, ">$fo") || $log->error_die("cannot open $fo for writing");
     print FH join("\t", qw/id parent fam e tag_sp score_sp score_hmm score_aln n_cds lenC lenI codonStart codonStop preStop seq/)."\n";
     for my $i (0..$tg->nofRow-1) {
         my ($id, $pa, $fam, $seq) = map {$tg->elm($i, $_)} qw/id parent cat3 seq/;
@@ -165,8 +167,10 @@ sub merge_stats {
 }
 sub pick_best_model {
     my ($f_gtb, $f_stat, $fo) = @_;
+    
     my $log = Log::Log4perl->get_logger("ModelEval");
-    $log->info("picking best models & removing incomplete models");
+    $log->info("picking best alternative models");
+
     my $tg = readTable(-in=>$f_gtb, -header=>1);
     my $ts = readTable(-in=>$f_stat, -header=>1);
     $log->error_die("not equal rows $f_gtb - $f_stat") unless $tg->nofRow == $ts->nofRow;
@@ -181,21 +185,22 @@ sub pick_best_model {
 
     open(FH, ">$fo");
     print FH join("\t", $tg->header)."\n";
-    my $i = 0;
+    my $cnt = 0;
     for my $pa (sort (keys(%$h))) {
         my @rows = sort {$a->[1]<=>$b->[1] || $a->[2] <=> $b->[2] || $a->[3] <=> $b->[3]} @{$h->{$pa}};
         my ($id, $tag_sp, $score_aln, $score_sp, $e, $codonStart, $codonStop, $preStop, $row) = @{$rows[-1]};
-        next if $tag_sp == 0 || !$codonStart || !$codonStop || $preStop;
         print FH join("\t", @$row)."\n";
-        $i ++;
+        $cnt ++;
     }
-    $log->info("  $i picked");
+    $log->info(sprintf "\t%5d / %5d picked", $cnt, $tg->nofRow);
     close FH;
 }
 sub remove_ovlp_models {
     my ($f_stat, $fi, $fo) = @_;
+
     my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("removing overlapping models");
+
     my $ts = readTable(-in=>$f_stat, -header=>1);
     my $h;
     for my $i (0..$ts->nofRow-1) {
@@ -227,15 +232,28 @@ sub remove_ovlp_models {
     }
     
     $ti->delRows(\@idxs_rm);
-    $log->info(sprintf "  %d passed", $ti->nofRow);
-    open(FH, ">$fo");
+    $log->info(sprintf "\t%5d / %5d passed", $ti->nofRow, $ti->nofRow+@idxs_rm);
+
+    open(FH, ">$fo") || $log->error_die("cannot open $fo for writing");
     print FH $ti->tsv(1);
     close FH;
 }
 sub filter_models {
-    my ($f_stat, $fi, $fo, $co_e, $co_aln, $opt_mt) = @_;
+    my ($f_stat, $fi, $fo, $co_e, $co_aln, $opt_sp, $opt_codon, $opt_mt) = 
+        rearrange([qw/stat in out e aln sp codon opt_mt/], @_);
+    $co_e   ||= 10;
+    $co_aln ||= -1000;
+    $opt_sp ||= 0;
+    $opt_codon ||= 0;
+    $opt_mt ||= 0;
+
     my $log = Log::Log4perl->get_logger("ModelEval");
-    $log->info("final e-value filter");
+    $log->info("final filter:");
+    $log->info("\tSignal Peptide Present = $opt_sp");
+    $log->info("\tComplete ORF = $opt_codon");
+    $log->info("\tE value cutoff = $co_e");
+    $log->info("\tAlignment score cutoff = $co_aln");
+    $log->info("\t[optionl] Medicago evaluation filter = $opt_mt");
     
     my $ts = readTable(-in=>$f_stat, -header=>1);
     my $h;
@@ -251,7 +269,11 @@ sub filter_models {
         my ($id, $fam) = map {$t->elm($i, $_)} qw/id cat3/;
         die "no stat for $id\n" unless exists $h->{$id};
         my ($tag_sp, $score_hmm, $score_aln, $score_sp, $e, $codonStart, $codonStop, $preStop) = @{$h->{$id}};
-        if($e > $co_e || $score_aln < $co_aln) {
+        if($opt_sp && $tag_sp == 0) {
+            push @idxs_rm, $i;
+        } elsif($opt_codon && (!$codonStart || !$codonStop || $preStop)) {
+            push @idxs_rm, $i;
+        } elsif($e > $co_e || $score_aln < $co_aln) {
             push @idxs_rm, $i;
         } elsif($opt_mt && $ENV{"SPADA_ORG"} eq "Mtruncatula" && $fam gt "CRP1530") {
             push @idxs_rm, $i;
@@ -259,12 +281,13 @@ sub filter_models {
     }
     
     $t->delRows(\@idxs_rm);
-    $log->info(sprintf "  %d passed", $t->nofRow);
-    open(FH, ">$fo");
+    $log->info(sprintf "\t%5d / %5d passed", $t->nofRow, $t->nofRow+@idxs_rm);
+
+    open(FH, ">$fo") || $log->error_die("cannot open $fo for writing");
     print FH $t->tsv(1);
     close FH;
 }
-sub output_models {
+sub gtb2Friendly {
     my ($fi, $fo, $f_stat) = @_;
     my $t = readTable(-in=>$fi, -header=>1);
     
@@ -342,9 +365,10 @@ sub pipe_model_evaluation {
     my $f55 = "$dir/55_nonovlp.gtb";
     remove_ovlp_models($f41, $f51, $f55);
     my $f61 = "$dir/61_final.gtb";
-    filter_models($f41, $f55, $f61, $ENV{"evalue"}, -1000);
+    filter_models(-stat=>$f41, -in=>$f55, -out=>$f61, 
+        -e=>$ENV{"evalue"}, -aln=>-1000, -sp=>1, -codon=>1, -opt_mt=>0);
     gtb2Gff($f61, "$dir/61_final.gff");
-    output_models($f61, "$dir/61_final.tbl", $f41);
+    gtb2Friendly($f61, "$dir/61_final.tbl", $f41);
     
     my $f81 = "$dir/81_aln";
     align_by_group(-f_gtb=>$f61, -hmmstat=>$f_sta, -out=>$f81);
