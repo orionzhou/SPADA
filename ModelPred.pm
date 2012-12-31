@@ -154,8 +154,8 @@ sub pipe_model_run {
     
     if($soft eq "Augustus_evidence") {
         pipe_augustus($f_hit, $dir);
-    } elsif($soft eq "SPADA") {
-        pipe_spada($f_hit, $dir);
+    } elsif($soft eq "GeneWise_SplicePredictor") {
+        pipe_genewise_splicepredictor($f_hit, $dir);
     } elsif($soft eq "Augustus_de_novo") {
         pipe_augustus_simple($f_hit, $dir);
     } elsif($soft eq "GeneMark") {

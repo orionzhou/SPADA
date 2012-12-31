@@ -6,7 +6,6 @@ use Bio::SeqIO;
 use Data::Dumper;
 use Common;
 use Seq;
-use SplicePredictor;
 use Align;
 use Log::Log4perl;
 use List::Util qw/min max sum/;
@@ -14,7 +13,7 @@ use List::MoreUtils qw/first_index first_value insert_after apply indexes pairwi
 use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter AutoLoader/;
-@EXPORT = qw/pipe_spada/;
+@EXPORT = qw/pipe_genewise_splicepredictor/;
 @EXPORT_OK = qw//;
 
 sub run_genewise_batch {
@@ -58,6 +57,59 @@ sub sum_genewise1 {
     }
     close FHT;
     return $loc;
+}
+
+sub pick_valid_splice_sites {
+    my ($stat, $beg, $end, $seq) = @_;
+    
+    my @poss_d = ();
+    my @poss_a = ();
+    for (@$stat) {
+        my ($head, $type, $id, $pos, $c, $U, $s, $p, $rho, $gamma, $parse, $q1, $q2, $q3, $q4, $q5, $q) = @$_;
+        $q =~ s/[^\d]//g;
+        $pos = int($pos);
+        push @poss_d, $pos if($type eq "DONOR");
+        push @poss_a, $pos if($type eq "ACPTR");
+    }
+
+    my @pairs;
+    for my $pos_d (@poss_d) {
+        my @tmp = grep {$_ > $pos_d} @poss_a;
+        for my $pos_a (@tmp) {
+            my $tag = 1;
+            my $len_padding = $pos_d-$beg + $end-$pos_a;
+            $tag = 0 if $len_padding % 3 != 0;
+            if($len_padding >= 3) {
+                my $dna = getSubSeq($seq, [[$beg, $pos_d-1], [$pos_a+1, $end]]); 
+                my $prot = Bio::Seq->new(-seq=>$dna)->translate()->seq;
+                $tag = 0 if $prot =~ /\*/;
+            }
+            push @pairs, [$pos_d, $pos_a] if $tag == 1;
+        }
+    }
+    return @pairs;
+}
+sub get_splice_sites {
+    my ($seq, $beg, $end) = @_;
+  
+    my $f_bin = $ENV{"SplicePredictor"}."/bin/SplicePredictor";
+    die "$f_bin not there\n" unless -s $f_bin;
+    my $f_fas = $ENV{"TMP_DIR"}."/splice_predictor_".int(rand(1000)).".fa";
+    writeFile($f_fas, ">tmp", $seq);
+
+    my $cmd = "$f_bin -s Arabidopsis -c -99.9 -p 5 -a $beg -b $end -L $f_fas";
+    my $lines = runCmd($cmd, 2);
+
+    my @stats = map { [split("\t", $_)] } @$lines;
+    @stats = grep {defined($_->[1]) && $_->[1] =~ /^(ACPTR)|(DONOR)$/} @stats;
+    my @stats_f = grep {$_->[4] >=0} @stats;
+
+    my @pairs = pick_valid_splice_sites(\@stats_f, $beg, $end, $seq);
+    if(@pairs == 0) {
+        @pairs = pick_valid_splice_sites(\@stats, $beg, $end, $seq);
+    }
+    system("rm $f_fas");
+    return @pairs;
 }
 sub build_model {
     my ($fi, $fo, $dirG) = @_;
@@ -130,7 +182,7 @@ sub output_gtb {
     }
     close FH;
 }
-sub pipe_spada {
+sub pipe_genewise_splicepredictor {
     my ($fi, $dir) = @_;
     make_path($dir) unless -d $dir;
 

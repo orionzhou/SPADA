@@ -1,35 +1,61 @@
 #!/usr/bin/perl -w
 use strict; 
+use Cwd qw/abs_path/;
+use File::Basename qw/dirname/;
+BEGIN { unshift @INC, dirname(abs_path($0)); }
+
 use Pod::Usage;
 use Getopt::Long;
 use File::Path qw/make_path remove_tree/;
-BEGIN {
-        my ($f_cfg) = ('') x 1;
-        GetOptions(
-                'config|cfg|c=s'    => \$f_cfg, 
-        ) || pod2usage(2);
-
-        open(FH, "<$f_cfg") || die "config file $f_cfg is not there\n";
-        while(<FH>) {
-                chomp;
-                next unless $_;
-                next if /^\#/;
-                $_ =~ s/\s//g;
-                my ($k, $v) = split "=";
-                while( $v =~ /\$\{(\w+)\}/g ) {
-                        die "no env variable named $1\n" unless exists $ENV{$1};
-                        my $rep = $ENV{$1};
-                        $v =~ s/\$\{$1\}/$rep/;
-                }
-                $ENV{$k} = $v;
-        }
-}
 use Data::Dumper;
+use ConfigSetup;
 use Common; 
 use Seq;
 use Align;
 use List::Util qw/min max sum/;
 
+my ($dir_aln, $dir_hmm, $f_cfg);
+GetOptions(
+    'aln|a=s'           => \$dir_aln, 
+    'profile|hmm|h=s'   => \$dir_hmm, 
+    'config|cfg|c=s'    => \$f_cfg, 
+) || pod2usage(2);
+pod2usage("$0: argument required [--aln]") if ! defined $dir_aln;
+pod2usage("$0: argument required [--cfg]") if ! defined $f_cfg;
+pod2usage("cannot open $dir_aln for reading") if ! -d $dir_aln;
+
+config_setup_simple($f_cfg, $dir_hmm);
+
+sub copy_aln {
+    my ($di, $do) = @_;
+    if(abs_path($di) eq abs_path($do)) {
+        runCmd("mv $di tmp_aln");
+        $di = "tmp_aln";
+    }
+    
+    make_path($do) unless -d $do;
+    remove_tree($do, {keep_root=>1});
+
+    opendir(DH, $di) or die "cannot open $di: $!\n";
+    for my $fname (sort readdir(DH)) {
+        next if $fname =~ /^\./;
+        my $fi = "$di/$fname";
+        my $fo = "$do/$fname";
+        open(FHI, "<$fi") or die "cannot open $fi for reading\n";
+        open(FHO, ">$fo") or die "cannot open $fo for writing\n";
+        while(<FHI>) {
+            chomp;
+            my $line = $_;
+            if($line =~ /(\/\d+\-\d+)/) {
+                my $rep = " " x length($1);
+                $line =~ s/\Q$1\E/$rep/;
+            }
+            print FHO "$line\n";
+        }
+        close FHO;
+    }
+    closedir DH;
+}
 sub get_subgroups {
     my ($dir, $fo) = @_;
     print "Extracting gene family IDs\n";
@@ -54,7 +80,7 @@ sub trim_aln {
     print "trimming alignments\n";
     
     make_path($do) unless -d $do;
-    system("rm -rf $do/*");
+    remove_tree($do, {keep_root=>1});
     
     my $f_bin = $ENV{"trimAl"}."/bin/trimal";
     die("trimAl not installed: $f_bin not there") unless -s $f_bin;
@@ -172,10 +198,9 @@ sub split_hmm_single {
     }
 }
 
-my $dir = $ENV{"SPADA_PROFILE"};
-die "cannot open $dir for writing\n" unless -d $dir;
+my $dir = $dir_hmm;
 my $d11 = "$dir/11_aln";
-die "cannot open $d11 for reading\n" unless -d $d11;
+copy_aln($dir_aln, $d11);
 my $f03 = "$dir/03_fam.tbl";
 get_subgroups($d11, $f03);
 my $d12 = "$dir/12_aln_trim";

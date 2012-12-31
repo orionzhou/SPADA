@@ -438,7 +438,7 @@ sub pipe_hmmsearch {
 
     my $f01 = "$dir/01_raw.txt";
     $log->info(sprintf "running hmmsearch against %s", basename($f_tar));
-    runCmd("$f_bin --domE 10 --cpu 4 -o $dir/01_raw.txt --domtblout $dir/01_raw.tbl $f_hmm $f_tar", -1);
+    runCmd("$f_bin --domE 10 --cpu 4 -o $dir/01_raw.txt --domtblout $dir/01_raw.tbl $f_hmm $f_tar", 0);
 
     my $f02 = "$dir/02.htb";
     parse_hmm_output($f01, $f02);

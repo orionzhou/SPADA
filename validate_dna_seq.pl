@@ -73,13 +73,12 @@ my $seq_desc_old = '';
 my $wait_4_1st_entry = 'true';
 my $seq = '';
 my $help_flag;
-my %options = (
-                              "help|h" => \$help_flag,
-                              "out|o=s" => \$fo,
-	      );
 
 #----------------------------------- MAIN -----------------------------------#
-GetOptions(%options) or pod2usage(2);
+GetOptions(
+    "help|h"  => \$help_flag,
+    "out|o=s" => \$fo,
+) or pod2usage(2);
 pod2usage(1) if $help_flag;
 
 ($fi)= @ARGV;

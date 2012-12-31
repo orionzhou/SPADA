@@ -1,5 +1,6 @@
 package PrepareGenome;
 use strict; 
+use Cwd qw/abs_path/;
 use File::Path qw/make_path remove_tree/;
 use Common; 
 use Data::Dumper;
@@ -95,8 +96,10 @@ sub pipe_pre_processing {
     if(-s $f01 && $f01 eq $ENV{"SPADA_FAS"}) {
         $log->info("Sequence FAS already in data directory");
     } else {
-        $log->info("Copying Sequence FAS to data directory");
-        system("cp -f $ENV{'SPADA_FAS'} $f01");
+        $log->info("Creating symbolic link to FASTA file");
+        my $f_to = abs_path($ENV{"SPADA_FAS"});
+        my $f_from = abs_path($f01);
+        system("ln -sf $f_to $f_from");
     }
     system("rm -rf $f01.index") if -s "$f01.index";
 
@@ -117,8 +120,10 @@ sub pipe_pre_processing {
         if(-s $f51 && $f51 eq $ENV{"SPADA_GFF"}) {
             $log->info("Annotation GFF already in data directory");
         } else {
-            $log->info("copying Annotation GFF to data directory");
-            system("cp -f $ENV{'SPADA_GFF'} $f51");
+            $log->info("Creating symbolic link to GFF file");
+            my $f_to = abs_path($ENV{"SPADA_GFF"});
+            my $f_from = abs_path($f51);
+            system("ln -sf $f_to $f_from");
         }
         my $f61 = "$dir/61_gene.gtb";
         gff2Gtb($f51, $f61);

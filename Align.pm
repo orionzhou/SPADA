@@ -151,8 +151,8 @@ sub aln_score_pw {
     $seq2 =~ s/\./\-/g;
     
     my ($gap_open, $gap_ext) = (-8, -1);
-
-    my $parser = Bio::Matrix::IO->new(-format=>'scoring', -file=>$ENV{"SPADA_SOURCE"}.'/BLOSUM62');
+    
+    my $parser = Bio::Matrix::IO->new(-format=>'scoring', -file=>$ENV{"BLOSUM62"});
     my $matrix = $parser->next_matrix();
 
     my $score = 0;

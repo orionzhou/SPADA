@@ -1,0 +1,53 @@
+# SPADA source code directory
+SPADA_SRC_DIR = /home/msi/zhoup/spada_soft/spada
+# SPADA output directory
+# can be overridden by '--dir' command line argument
+SPADA_OUT_DIR = /project/youngn/zhoup/Data/misc4/spada.crp.Ath
+# directory containing profile alignments and HMM files
+SPADA_HMM_DIR = /project/youngn/zhoup/Data/misc4/hmm.crp
+# genome sequence file (FASTA format, required) 
+# can be overridden by '--fas' command line argument
+SPADA_FAS = test/01_refseq.fa
+# gene annotation file (GFF3 format, optional) 
+# can be overridden by '--gff' command line argument
+SPADA_GFF = test/51_gene.gff
+
+##########  required packages  ##########
+# ClustalO (clustalo) binary should locate in {ClustalO}/bin
+ClustalO = /home/msi/zhoup/spada_soft/clustalo
+# hmmsearch binary (hmmserach) should locate in {HMMER}/bin
+HMMER = /home/msi/zhoup/spada_soft/hmmer
+# augustus binary (augustus) should locate in {Augustus}/bin
+# config diretory shold be {Augustus}/config
+Augustus = /home/msi/zhoup/spada_soft/augustus
+# signalp script (signalp) should locate in {SignalP} 
+SignalP = /home/msi/zhoup/spada_soft/signalp-4.0
+# genewise binary (genewise) should locate in {GeneWise}/bin
+GeneWise = /home/msi/zhoup/spada_soft/wise2.2.0
+# SplicePredictor binary (SplicePredictor) should locate in {SplicePredictor}/bin
+SplicePredictor = /home/msi/zhoup/spada_soft/GENESEQER
+
+##########  optional packages  ##########
+# trimal binary (trimal) should locate in {trimAl}/bin
+trimAl = /home/msi/zhoup/spada_soft/trimal
+# GeneMark binary (gmhmme3) and MOD files (a_thaliana.mod) should locate in {GeneMark} 
+GeneMark = /home/msi/zhoup/spada_soft/genemark_hmm_euk.linux_64
+# GlimmerHMM binary (glimmerhmm) should locate in {GlimmerHMM}/bin
+# training directory locate in {GlimmerHMM}/trained_dir
+GlimmerHMM = /home/msi/zhoup/spada_soft/GlimmerHMM
+# GeneID binary (geneid) should locate in {GeneID}/bin
+# parameter files should locate in {GeneID}/param
+GeneID = /home/msi/zhoup/spada_soft/geneid
+
+##########  miscellaneous  ##########
+# organism to run, this tells GeneMark / GlimmerHMM / GeneID 
+# which *.mod / training dir / *.param file to use
+# can be overridden by '--org' command line argument
+SPADA_ORG = Athaliana
+# E-value threshold
+# can be overridden by '--e' command line argument
+evalue = 0.001
+# gene prediction programs to run, seperated by semicolon(;)
+#method = Augustus_evidence;GeneWise_SplicePredictor
+method = Augustus_evidence;GeneWise_SplicePredictor;Augustus_de_novo;GeneMark;GlimmerHMM;GeneID
+

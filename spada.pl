@@ -15,19 +15,22 @@ use MotifMining;
 use ModelPred;
 use ModelEval;
 
-my ($f_cfg, $org, $f_fas, $f_gff) = ('') x 4;
-my $cutoff_e = ""; 
+my ($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, $org, $cutoff_e);
 GetOptions(
     'config|cfg|c=s'    => \$f_cfg, 
-    'organism|org|o=s'  => \$org, 
-    'fasta|fas|f=s'     => \$f_fas, 
+    'directory|dir|d=s' => \$dir, 
+    'profile|hmm|h=s'   => \$dir_hmm, 
+    'fas|f=s'           => \$f_fas, 
     'gff|g=s'           => \$f_gff,
-    'evalue|e=f'        => \$cutoff_e
+    'organism|org|o=s'  => \$org, 
+    'evalue|e=f'        => \$cutoff_e,
 ) || pod2usage(2);
+pod2usage("$0: argument required [--cfg]") if ! defined $f_cfg;
+pod2usage("cfg file not there: $f_cfg") if ! -s $f_cfg;
 
-config_setup($f_cfg, $org, $f_fas, $f_gff, $cutoff_e);
+config_setup($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, $org, $cutoff_e);
 
-my $dir = $ENV{"SPADA_DATA"}."/".$org;
+$dir = $ENV{"SPADA_OUT_DIR"};
 my $t0 = [gettimeofday];
 
 my $f_log = sprintf "$dir/log.%02d%02d%02d%02d.txt", (localtime(time))[4]+1, (localtime(time))[3,2,1];
@@ -48,13 +51,13 @@ Log::Log4perl->init(\$log_conf);
 
 my $log = Log::Log4perl->get_logger("main");
 
-my $dp = $ENV{"SPADA_PROFILE"};
+my $dp = $ENV{"SPADA_HMM_DIR"};
 my $dp_aln = "$dp/12_aln_trim";
 my $dp_hmm = "$dp/15_hmm";
 my $fp_sta = "$dp/16_stat.tbl";
 my $fp_hmm = "$dp/21_all.hmm";
 
-$log->info("##########  Starting pipeline on $org  ##########");
+$log->info("##########  Starting pipeline  ##########");
 
 # Pre-processing
 my $d01 = "$dir/01_preprocessing";
