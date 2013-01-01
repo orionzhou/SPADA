@@ -48,6 +48,6 @@ SPADA_ORG = Athaliana
 # can be overridden by '--e' command line argument
 evalue = 0.001
 # gene prediction programs to run, seperated by semicolon(;)
-#method = Augustus_evidence;GeneWise_SplicePredictor
-method = Augustus_evidence;GeneWise_SplicePredictor;Augustus_de_novo;GeneMark;GlimmerHMM;GeneID
+method = Augustus_evidence;GeneWise_SplicePredictor
+#method = Augustus_evidence;GeneWise_SplicePredictor;Augustus_de_novo;GeneMark;GlimmerHMM;GeneID
 

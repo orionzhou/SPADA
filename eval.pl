@@ -13,15 +13,10 @@ use Common;
 use ConfigSetup;
 use ModelEval;
 
-my ($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, $org, $cutoff_e);
+my ($f_cfg, $dir);
 GetOptions(
     'config|cfg|c=s'    => \$f_cfg, 
     'directory|dir|d=s' => \$dir, 
-    'profile|hmm|h=s'   => \$dir_hmm, 
-    'fasta|fas|f=s'     => \$f_fas, 
-    'gff|g=s'           => \$f_gff,
-    'organism|org|o=s'  => \$dir, 
-    'evalue|e=f'        => \$cutoff_e,
 ) || pod2usage(2);
 pod2usage("$0: argument required [--cfg]") if ! defined $f_cfg;
 pod2usage("cfg file not there: $f_cfg") if ! -s $f_cfg;
