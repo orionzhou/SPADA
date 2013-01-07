@@ -10,10 +10,9 @@ require Exporter;
 @EXPORT_OK = qw//;
 @EXPORT = qw/config_setup config_setup_simple/; 
 
-sub config_setup_simple {
-    my ($f_cfg, $dir_hmm) = @_;
-   
-    print "=====  setting up environment variables  =====\n";
+sub read_cfg_hash {
+    my ($f_cfg) = @_;
+    my $h;
     open(FH, "<$f_cfg") || die "config file $f_cfg is not there\n";
     while(<FH>) {
         chomp;
@@ -21,8 +20,21 @@ sub config_setup_simple {
         next if /^\#/;
         $_ =~ s/\s//g;
         my ($k, $v) = split "=";
-        $ENV{$k} = $v;
+        while( $v =~ /\$\{(\w+)\}/g ) {
+            die "no env variable named $1\n" unless exists $ENV{$1};
+            my $rep = $ENV{$1};
+            $v =~ s/\$\{$1\}/$rep/;
+        }
+        $h->{$k} = $v;
     }
+    return $h;
+}
+sub config_setup_simple {
+    my ($f_cfg, $dir_hmm) = @_;
+   
+    print "=====  setting up environment variables  =====\n";
+    my $h = read_cfg_hash($f_cfg);
+    for my $k (keys %$h) { $ENV{$k} = $h->{$k}; }
 
     $ENV{"SPADA_HMM_DIR"} = $dir_hmm if defined $dir_hmm;
     make_path($ENV{"SPADA_HMM_DIR"}) if ! -d $ENV{"SPADA_HMM_DIR"};
@@ -38,15 +50,8 @@ sub config_setup {
     my ($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, $org, $cutoff_e) = @_;
    
     print "=====  setting up environment variables  =====\n";
-    open(FH, "<$f_cfg") || die "cannot open config file for reading:\n  $f_cfg\n";
-    while(<FH>) {
-        chomp;
-        next unless $_;
-        next if /^\#/;
-        $_ =~ s/\s//g;
-        my ($k, $v) = split "=";
-        $ENV{$k} = $v;
-    }
+    my $h = read_cfg_hash($f_cfg);
+    for my $k (keys %$h) { $ENV{$k} = $h->{$k}; }
 
     $ENV{"SPADA_OUT_DIR"} = $dir if defined $dir;
     $ENV{"SPADA_HMM_DIR"} = $dir_hmm if defined $dir_hmm;
@@ -60,6 +65,11 @@ sub config_setup {
     for my $key (@keys) {
         exists $ENV{$key} || die "$key not defined\n";
     }
+
+    $dir = $ENV{"SPADA_OUT_DIR"};
+    $dir_hmm = $ENV{"SPADA_HMM_DIR"};
+    $f_fas = $ENV{"SPADA_FAS"};
+    $f_gff = $ENV{"SPADA_GFF"};
     
     printf "  using %s matrix\n", $ENV{"SPADA_ORG"};
 

@@ -6,22 +6,24 @@ BEGIN { unshift @INC, dirname(abs_path($0)); }
 use Pod::Usage;
 use Getopt::Long;
 use Log::Log4perl;
-use Time::HiRes qw/gettimeofday tv_interval/;
 use File::Path qw/make_path remove_tree/;
+use List::Util qw/min max sum/;
 
 use Common;
 use ConfigSetup;
 use ModelEval;
+use CompareModel;
 
-my ($f_cfg, $dir);
+my ($f_cfg, $dir, $dir_hmm);
 GetOptions(
     'config|cfg|c=s'    => \$f_cfg, 
     'directory|dir|d=s' => \$dir, 
+    'profile|hmm|h=s'   => \$dir_hmm, 
 ) || pod2usage(2);
 pod2usage("$0: argument required [--cfg]") if ! defined $f_cfg;
 pod2usage("cfg file not there: $f_cfg") if ! -s $f_cfg;
 
-config_setup($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, $org, $cutoff_e);
+config_setup($f_cfg, $dir, $dir_hmm);
 
 $dir = $ENV{"SPADA_OUT_DIR"};
 
@@ -54,6 +56,7 @@ my $f01_01 = "$d01/01_refseq.fa";
 my $f01_61 = "$d01/61_gene.gtb";
 
 my $d21 = "$dir/21_model_prediction";
+my $f21_05 = "$d21/05_hits.tbl";
 my $f21 = "$d21/26_all.gtb";
 
 my $p = {
@@ -66,35 +69,104 @@ my $p = {
     GlimmerHMM => "GlimmerHMM",
     GeneID => "GeneID"
 };
+
 my $d41 = "$dir/41_perf_eval";
-split_pred_sets($d41, $f21, $p);
+my $f_gtb_gs = "$d41/01_model.gtb";
+my $d41_10 = "$d41/10_raw";
+#split_pred_sets($d41_10, $f21, $p);
+
+#complete_model_eval($p, $d41, $f21_05, $f01_01, $f_gtb_gs, $dp_hmm, $dp_aln, $fp_sta);
+
+my $f41 = "$d41/51_stat.tbl";
+perf_eval($d41, $f_gtb_gs, $f41, $p);
+
 sub split_pred_sets {
     my ($dir, $fi, $p) = @_;
     make_path($dir) unless -d $dir;
+    remove_tree($dir, {keep_root=>1});
 
     my @softs = split(" ", $p->{"All"});
     my $ref_idx = { map {$_=>[]} @softs };
-    my $t = readTable(-in=>$f21, -header=>1);
+    my @ary_src;
+    my $t = readTable(-in=>$fi, -header=>1);
     for my $i (0..$t->nofRow-1) {
         my @srcs = split(" ", $t->elm($i, "source"));
         for my $src (@srcs) {
             push @{$ref_idx->{$src}}, $i;
         }
+        push @ary_src, {map {$_=>1} @srcs};
     }
+    
+    for my $key (keys %$p) {
+        my @softs = split(" ", $p->{$key});
+        my $fo = "$dir/$key.gtb";
 
-    for my $soft (@softs) {
-        my $fo = "$dir/$soft.gtb";
-        my $to = $t->subTable($ref_idx->{$soft}, [$t->header]);
+        my $h;
+        for my $soft (@softs) {
+            my @idxs = @{$ref_idx->{$soft}};
+            for my $idx (@idxs) {
+                $h->{$idx} ||= [];
+                push @{$h->{$idx}}, $soft;
+            }
+        }
+
+        my $to = $t->subTable([0..$t->nofRow-1], [$t->header]);
+        for my $idx (keys %$h) {
+            $to->setElm( $idx, "source", join(" ", @{$h->{$idx}}) );
+        }
+        $to = $to->subTable([sort {$a<=>$b} keys(%$h)], [$to->header]);
+
         open(FH, ">$fo") or die "cannot open $fo for writing\n";
         print FH $to->tsv(1);
         close FH;
     }
 }
 
-my $f_gtb_gs = "$d41/01_model.gtb";
-
-for my $soft (keys %{$ENV{"method"}}) {
+sub complete_model_eval {
+    my ($p, $dir, $f_hit, $f_ref, $f_gtb_ref, $d_hmm, $d_aln, $f_sta) = @_;
+    my $log = Log::Log4perl->get_logger("main");
+    for my $key (keys(%$p)) {
+        $log->info("==========  Evaluating $key  ==========");
+        my $f_gtb_all = "$dir/10_raw/$key.gtb";
+        my $do = "$dir/$key";
+        pipe_model_evaluation(-dir=>$do, -hit=>$f_hit, -gtb_all=>$f_gtb_all, -ref=>$f_ref, -gtb_ref=>$f_gtb_ref, -d_hmm=>$d_hmm, -d_aln=>$d_aln, -f_sta=>$f_sta);
+    }
 }
+
+sub perf_eval {
+    my ($dir, $f_gtb_gs, $fo, $p) = @_;
+    
+    my $log = Log::Log4perl->get_logger("Main");
+    
+    my @es = (1E-8, 1E-7, 1E-6, 1E-5, 1E-4, 1E-3, 0.01, 0.05, 0.1, 0.5, 1);
+    my $score = -1000;
+    my $opt_mt = 1 if $dir =~ /crp\.Mtruncatula/;
+    
+    open(FHO, ">$fo") || die "cannot open $fo for writing\n";
+    print FHO join("\t", qw/soft e score sn_nt sp_nt sn_exon sp_exon/)."\n";
+    
+    my $f_gtb_qry = $ENV{"TMP_DIR"}."/qry.gtb";
+    my $f_eval = $ENV{"TMP_DIR"}."/eval.tbl";
+    my $f_stat = $ENV{"TMP_DIR"}."/stat.tbl";
+    
+    for my $key (keys %$p) {
+        my $fs = "$dir/$key/41_stat.tbl";
+        my $fg = "$dir/$key/55_nonovlp.gtb";
+        die "$fg is not there\n" unless -s $fg;
+        for my $e (@es) {
+            filter_models(-stat=>$fs, -in=>$fg, -out=>$f_gtb_qry, -e=>$e, -aln=>$score, -sp=>1, -codon=>1, -opt_mt=>$opt_mt);
+            compare_models($f_gtb_qry, $f_gtb_gs, $f_eval);
+            model_eval($f_eval, $f_gtb_gs, $f_stat);
+            my ($sn_nt, $sp_nt, $sn_ex, $sp_ex) = get_sn_sp($f_stat);
+            print FHO join("\t", $key, $e, $score, $sn_nt, $sp_nt, $sn_ex, $sp_ex)."\n";
+
+            system("cp $f_stat $dir/21_stat_$key\_$e.tbl") if $key eq "SPADA" && $e == 0.001;
+        }
+    }
+    close FHO;
+    system("rm $f_gtb_qry $f_eval $f_stat");
+}
+
 sub model_eval {
     my ($f_eval, $f_ref_gtb, $fo) = @_;
     my $tv = readTable(-in=>$f_eval, -header=>1);
@@ -168,38 +240,6 @@ sub align_for_visual_inspection {
         run_clustalo(-seqs=>$seqs, -out=>$f_aln);
     }
 }
-sub pipe_eval {
-    my ($dir, $f_gtb_ref, $p, $org) = @_;
-    
-    my $fo = "$dir/51_stat.tbl";
-    open(FHO, ">$fo") || die "cannot open $fo for writing\n";
-    print FHO join("\t", qw/org soft e score sn_nt sp_nt sn_exon sp_exon/)."\n";
-    
-    my $f_gtb_qry = $ENV{"TMP_DIR"}."/qry.gtb";
-    my $f_eval = $ENV{"TMP_DIR"}."/eval.tbl";
-    my $f_stat = $ENV{"TMP_DIR"}."/stat.tbl";
-    
-    my @es = (1E-8, 1E-7, 1E-6, 1E-5, 1E-4, 1E-3, 0.01, 0.05, 0.1, 0.5, 1);
-    my $score = -1000;
-    my $opt_mt = 1 if $org eq "Mtruncatula";
-    for my $soft (keys(%$p)) {
-        print "Evaluating performace for $soft\n";
-        my $dirI = $p->{$soft};
-        my $fi_sta = "$dirI/41_stat.tbl";
-        my $fi_gtb = "$dirI/55_nonovlp.gtb";
-        die "$fi_gtb is not there\n" unless -s $fi_gtb;
-        for my $e (@es) {
-            filter_models($fi_sta, $fi_gtb, $f_gtb_qry, $e, $score, $opt_mt);
-            compare_models($f_gtb_qry, $f_gtb_ref, $f_eval);
-            model_eval($f_eval, $f_gtb_ref, $f_stat);
-            my ($sn_nt, $sp_nt, $sn_ex, $sp_ex) = get_sn_sp($f_stat);
-            print FHO join("\t", $org, $soft, $e, $score, $sn_nt, $sp_nt, $sn_ex, $sp_ex)."\n";
 
-            system("cp $f_stat $dir/21_stat_$soft\_$e.tbl") if $soft eq "SPADA" && $e == 0.001;
-        }
-    }
-    close FHO;
-    system("rm $f_gtb_qry $f_eval $f_stat");
-}
 
 

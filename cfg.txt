@@ -2,9 +2,9 @@
 SPADA_SRC_DIR = /home/msi/zhoup/spada_soft/spada
 # SPADA output directory
 # can be overridden by '--dir' command line argument
-SPADA_OUT_DIR = /project/youngn/zhoup/Data/misc4/spada.crp.Ath
+SPADA_OUT_DIR = spada.crp.test
 # directory containing profile alignments and HMM files
-SPADA_HMM_DIR = /project/youngn/zhoup/Data/misc4/hmm.crp
+SPADA_HMM_DIR = hmm.crp
 # genome sequence file (FASTA format, required) 
 # can be overridden by '--fas' command line argument
 SPADA_FAS = test/01_refseq.fa

@@ -135,17 +135,6 @@ sub prefilter_hits {
     print FH $ti->tsv(1);
     close FH;
 }
-sub pipe_model_prepare {
-    my ($dir, $f_hit, $f_ref) = rearrange(['dir', 'hit', 'ref'], @_);
-    my $log = Log::Log4perl->get_logger("ModelPred");
-    $log->info("preparing hit sequences");
-    make_path($dir) unless -d $dir;
-    my $f01 = "$dir/01_hit_seq.tbl";
-    get_hit_seq($f_hit, $f01, $f_ref);
-    my $f05 = "$dir/05_hits.tbl";
-    prefilter_hits($f01, $f05, 10);
-#  prefilter_hits($f01, $f05, $ENV{'evalue'});
-}
 
 sub pipe_model_run {
     my ($dir, $f_hit, $f_ref, $soft) = rearrange(['dir', 'hit', 'ref', 'soft'], @_);
@@ -374,7 +363,7 @@ sub recover_global_coordinate {
     print FH $tg->tsv(1);
     close FH;
 }
-sub remove_incompatible_models {
+sub remove_incompatible_models { # remove models with no overlap with 'extended hits'
     my ($f_hit, $fi, $fo) = @_;
     my $log = Log::Log4perl->get_logger("ModelPred");
     $log->info("removing incompatible models");
@@ -394,17 +383,13 @@ sub remove_incompatible_models {
         my $locG = locStr2Ary($locGS);
         my $locI = locStr2Ary($locIS);
       
-        my $tag_rm = 0;
+        my $tag_rm = 1;
         my ($locH, $srdH, $phaseH) = @{$h->{$pa}};
         if($srdG eq $srdH) {
             my ($tag, $lenO, $len1, $len2) = compare_2_model($locH, $phaseH, $locG, $phaseG, $srdG);
-            $tag_rm = 1 if $tag > 2 || $len1 > 30;
+            $tag_rm = 0 if $tag < 8;
         }
-        for (@$locI) {
-            my $lenI = $_->[1] - $_->[0] + 1;
-            $tag_rm = 1 if $lenI > 1500;
-        }
-        push @idxs_rm, $i if $tag_rm;
+        push @idxs_rm, $i if $tag_rm == 1;
     }
     
     $ti->delRows(\@idxs_rm);
@@ -414,11 +399,29 @@ sub remove_incompatible_models {
     print FH $ti->tsv(1);
     close FH;
 }
-sub pipe_model_check {
-    my ($dir, $f_hit, $f_ref, $p) = rearrange([qw/dir hit ref p/], @_);
+
+sub pipe_model_prediction {
+    my ($dir, $fi, $f_ref) = rearrange([qw/dir hit ref/], @_); 
+    
     my $log = Log::Log4perl->get_logger("ModelPred");
-    $log->info("checking & refining models");
-  
+    $log->info("#####  Stage 3 [Model Prediction]  #####");
+
+    make_path($dir) unless -d $dir;
+    my $f01 = "$dir/01_hit_seq.tbl";
+    get_hit_seq($fi, $f01, $f_ref);
+    my $f05 = "$dir/05_hits.tbl";
+    prefilter_hits($f01, $f05, 10);
+#  prefilter_hits($f01, $f05, $ENV{'evalue'});
+
+    my $p;
+    for my $method (keys %{$ENV{"method"}}) {
+        next if $ENV{"method"}->{$method} != 1;
+        my $dirs = "$dir/$method";
+        pipe_model_run(-dir=>$dirs, -hit=>$f05, -ref=>$f_ref, -soft=>$method);
+        $p->{$method} = "$dirs/11.gtb";
+    }
+    
+    my $f_hit = $f05;
     my $f21 = "$dir/21_rel.gtb";
     collect_models(-hit=>$f_hit, -out=>$f21, -ref=>$f_ref, -p=>$p);
     my $f22 = "$dir/22_refined.gtb";
@@ -430,25 +433,6 @@ sub pipe_model_check {
     my $f26 = "$dir/26_all.gtb";
     remove_incompatible_models($f_hit, $f24, $f26);
     gtb2Gff($f26, "$dir/26_all.gff");
-}
-
-sub pipe_model_prediction {
-    my ($dir, $f_hit, $f_ref) = rearrange([qw/dir hit ref/], @_); 
-    my $log = Log::Log4perl->get_logger("ModelPred");
-    $log->info("#####  Stage 3 [Model Prediction]  #####");
-
-    my $f05 = "$dir/05_hits.tbl";
-    pipe_model_prepare(-dir=>$dir, -hit=>$f_hit, -ref=>$f_ref);
-    
-    my $p;
-    for my $method (keys %{$ENV{"method"}}) {
-        next if $ENV{"method"}->{$method} != 1;
-        my $dirs = "$dir/$method";
-        pipe_model_run(-dir=>$dirs, -hit=>$f05, -ref=>$f_ref, -soft=>$method);
-        $p->{$method} = "$dirs/11.gtb";
-    }
-    my $f26 = "$dir/26_all.gtb";
-    pipe_model_check(-dir=>$dir, -hit=>$f05, -ref=>$f_ref, -p=>$p);
 }
 
 1;

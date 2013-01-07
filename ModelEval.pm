@@ -275,7 +275,7 @@ sub filter_models {
             push @idxs_rm, $i;
         } elsif($e > $co_e || $score_aln < $co_aln) {
             push @idxs_rm, $i;
-        } elsif($opt_mt && $ENV{"SPADA_ORG"} eq "Mtruncatula" && $fam gt "CRP1530") {
+        } elsif($opt_mt && $fam gt "CRP1530") {
             push @idxs_rm, $i;
         }
     }
