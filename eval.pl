@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+k#!/usr/bin/perl -w
 use strict;
 use Cwd qw/abs_path/;
 use File::Basename qw/dirname/;
