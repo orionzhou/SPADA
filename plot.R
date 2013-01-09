@@ -43,7 +43,7 @@ p <- ggplot(ts2) +
   geom_point(mapping=aes(soft, value, colour=type), size=1.5) +
 #  geom_line(mapping=aes(soft, value, group=type), size=0.2) +
   scale_colour_brewer(palette="Set1", labels=c("sn_nt"="Nucleotide Sensitivity", "sn_exon"='Exon Sensitivity', "sp_nt"='Nucleotide Specifity', "sp_exon"='Exon Specifity')) + 
-  scale_x_discrete(name='Organism') +
+  scale_x_discrete(name='Gene Predicting Component') +
   scale_y_continuous(name='Sensitivity / Specificity') + 
   facet_grid(. ~ org) +
   theme(axis.text.x = element_text(size=7, hjust=1, vjust=1, angle=30), strip.text.x=element_text(face="italic")) +
