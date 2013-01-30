@@ -79,6 +79,7 @@ sub sum_gff_batch {
         print FH join("\t", "$id.1", $id, ("") x 3, "+", ("") x 2, $locCStr, "", "", $phase, "", ("") x 5, $seq_pro)."\n";
     }
     close FH;
+    runCmd("rm -rf $dir/*");
 }
 
 sub run_augustus_batch {

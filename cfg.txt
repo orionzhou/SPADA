@@ -1,5 +1,5 @@
 # SPADA source code directory
-SPADA_SRC_DIR = /home/msi/zhoup/spada_soft/spada
+SPADA_SRC_DIR = /home/youngn/zhoup/repos/spada
 # SPADA output directory
 # can be overridden by '--dir' command line argument
 SPADA_OUT_DIR = spada.crp.test

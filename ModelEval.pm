@@ -84,7 +84,7 @@ sub get_aln_score {
         printf "  %5d / %5d done\r", $i++, scalar(keys(%$ref));
     }
     print "\n";
-    system("rm -rf $f_fas");
+    runCmd("rm -rf $f_fas $do/*");
     close FH;
 }
 sub get_hmm_score {
@@ -130,7 +130,7 @@ sub get_hmm_score {
         printf "  %5d / %5d done\r", $i++, scalar(keys(%$ref));
     }
     print "\n";
-    system("rm -rf $f_fas");
+    runCmd("rm -rf $f_fas $do/*");
     close FH;
 }
 sub merge_stats {

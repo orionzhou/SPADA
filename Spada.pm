@@ -186,7 +186,7 @@ sub pipe_genewise_splicepredictor {
     my ($fi, $dir) = @_;
     make_path($dir) unless -d $dir;
 
-    my $d02 = "$dir/02_genewise";
+    my $d02 = "$dir/02_raw";
     run_genewise_batch($fi, $d02);
     my $f05 = "$dir/05.tbl";
     build_model($fi, $f05, $d02);

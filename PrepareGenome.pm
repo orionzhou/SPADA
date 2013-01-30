@@ -97,6 +97,7 @@ sub pipe_pre_processing {
         $log->info("Sequence FAS already in data directory");
     } else {
         $log->info("Creating symbolic link to FASTA file");
+        runCmd("rm -rf $f01"); 
         my $f_to = abs_path($ENV{"SPADA_FAS"});
         my $f_from = abs_path($f01);
         system("ln -sf $f_to $f_from");
@@ -121,6 +122,7 @@ sub pipe_pre_processing {
             $log->info("Annotation GFF already in data directory");
         } else {
             $log->info("Creating symbolic link to GFF file");
+            runCmd("rm -rf $f51"); 
             my $f_to = abs_path($ENV{"SPADA_GFF"});
             my $f_from = abs_path($f51);
             system("ln -sf $f_to $f_from");
