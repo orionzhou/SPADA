@@ -151,7 +151,7 @@ sub perf_eval {
     
     for my $key (keys %$p) {
         my $fs = "$dir/$key/41_stat.tbl";
-        my $fg = "$dir/$key/55_nonovlp.gtb";
+        my $fg = "$dir/$key/59.gtb";
         die "$fg is not there\n" unless -s $fg;
         for my $e (@es) {
             filter_models(-stat=>$fs, -in=>$fg, -out=>$f_gtb_qry, -e=>$e, -aln=>$score, -sp=>1, -codon=>1, -opt_mt=>$opt_mt);
@@ -201,13 +201,13 @@ sub model_eval {
     close FH;
 }
 sub get_sn_sp {
-        my ($fi) = @_;
-        my $t = readTable(-in=>$fi, -header=>1);
-        my $sn_nt = sum($t->col("lenTP")) / ( sum($t->col("lenTP")) + sum($t->col("lenFN")) );
-        my $sp_nt = sum($t->col("lenTP")) / ( sum($t->col("lenTP")) + sum($t->col("lenFP")) );
-        my $sn_ex = sum($t->col("exonTP")) / ( sum($t->col("exonTP")) + sum($t->col("exonFN")) );
-        my $sp_ex = sum($t->col("exonTP")) / ( sum($t->col("exonTP")) + sum($t->col("exonFP")) );
-        return ($sn_nt, $sp_nt, $sn_ex, $sp_ex);
+    my ($fi) = @_;
+    my $t = readTable(-in=>$fi, -header=>1);
+    my $sn_nt = sum($t->col("lenTP")) / ( sum($t->col("lenTP")) + sum($t->col("lenFN")) );
+    my $sp_nt = sum($t->col("lenTP")) / ( sum($t->col("lenTP")) + sum($t->col("lenFP")) );
+    my $sn_ex = sum($t->col("exonTP")) / ( sum($t->col("exonTP")) + sum($t->col("exonFN")) );
+    my $sp_ex = sum($t->col("exonTP")) / ( sum($t->col("exonTP")) + sum($t->col("exonFP")) );
+    return ($sn_nt, $sp_nt, $sn_ex, $sp_ex);
 }
 
 

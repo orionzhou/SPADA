@@ -287,6 +287,45 @@ sub filter_models {
     print FH $t->tsv(1);
     close FH;
 }
+
+sub crp_rename {
+    my ($fi, $f_ref, $fo, $pre) = @_;
+    my $ti = readTable(-in=>$fi, -header=>1);
+    $ti->sort("cat3", 1, 0, "chr", 1, 0, "beg", 0, 0);
+    
+    my @chrs = uniq($ti->col("chr"));
+    my @len_digits = map {getDigits(seqLen($_, $f_ref) / 1000000)} @chrs;
+    my $chr_digits = getDigits(scalar(grep /\d+/, @chrs));
+    my $h = { map {$chrs[$_] => $len_digits[$_]} 0..$#chrs };
+
+    for my $i (0..$ti->nofRow-1) {
+        my ($chr, $beg, $fam) = map {$ti->elm($i, $_)} qw/chr beg cat3/;
+        my $begStr = sprintf "%0".$h->{$chr}."d", $beg/1000000;
+        my $chrStr = $chr;
+        $chrStr =~ s/chr//i;
+        $chrStr = sprintf "%0".$chr_digits."d", $chrStr if $chrStr =~ /^\d+$/;
+
+        my $id = sprintf "$pre\_%s_chr%s_%sM", lc($fam), $chrStr, $begStr;
+        $ti->setElm($i, "parent", $ti->elm($i, "id"));
+        $ti->setElm($i, "id", $id);
+    }
+    
+    my $ref = group($ti->colRef("id"));
+    my $hd = { map { $_ => getDigits($ref->{$_}->[1]) } keys(%$ref) };
+    my $hc;
+    for my $i (0..$ti->nofRow-1) {
+        my $id = $ti->elm($i, "id");
+        $hc->{$id} ||= 0;
+        my $cnt = ++$hc->{$id};
+        
+        $id = sprintf "%s_%0".$hd->{$id}."d", $id, $cnt;
+        $ti->setElm($i, "id", $id);
+    }
+    open(FHO, ">$fo") or die "cannot open $fo for writing\n";
+    print FHO $ti->tsv(1);
+    close FHO;
+}
+
 sub gtb2Friendly {
     my ($fi, $fo, $f_stat) = @_;
     my $t = readTable(-in=>$fi, -header=>1);
@@ -303,7 +342,8 @@ sub gtb2Friendly {
     print FH join("\t", qw/id family chr beg end strand e score_sp score_hmm score_aln sequence/)."\n";
     for my $i (0..$t->nofRow-1) {
         my ($id, $chr, $beg, $end, $srd) = map {$t->elm($i, $_)} qw/id chr beg end strand/;
-        my ($pa, $fam, $e, $tag_sp, $score_sp, $score_hmm, $score_aln, $n_cds, $seq) = @{$hs->{$id}};
+        my ($pa, $fam, $e, $tag_sp, $score_sp, $score_hmm, $score_aln, $n_cds, $seq) 
+            = @{$hs->{$t->elm($i, "parent")}};
         print FH join("\t", $id, $fam, $chr, $beg, $end, $srd, $e, $score_sp, $score_hmm, $score_aln, $seq)."\n";
     }
     close FH;
@@ -364,9 +404,12 @@ sub pipe_model_evaluation {
     pick_best_model($f_gtb, $f41, $f51);
     my $f55 = "$dir/55_nonovlp.gtb";
     remove_ovlp_models($f41, $f51, $f55);
-    my $f61 = "$dir/61_final.gtb";
-    filter_models(-stat=>$f41, -in=>$f55, -out=>$f61, 
+    my $f59 = "$dir/59.gtb";
+    filter_models(-stat=>$f41, -in=>$f55, -out=>$f59, 
         -e=>$ENV{"evalue"}, -aln=>-1000, -sp=>1, -codon=>1, -opt_mt=>0);
+    
+    my $f61 = "$dir/61_final.gtb";
+    crp_rename($f59, $f_ref, $f61, "spada");
     gtb2Gff($f61, "$dir/61_final.gff");
     gtb2Friendly($f61, "$dir/61_final.tbl", $f41);
     
