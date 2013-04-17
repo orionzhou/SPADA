@@ -54,63 +54,6 @@ sub gff2Gtb {
     close FH;
 }
 
-sub read_mapping {
-    my ($fi, $opt) = @_;
-    $opt ||= 1;
-    open(FH, "<$fi") or die "cannot open $fi for reading\n";
-    my $h;
-    while(<FH>) {
-        chomp;
-        next if /^\s*\#/;
-        my ($chrC, $begC, $endC, $strand, $chrB, $begB, $endB, $type, $score, $note) = split "\t";
-        if($type =~ /^(BAC)|(contig)|(centromere)|(tc)$/g) {
-            if($opt == 1) {
-                $h->{$chrB} = [] unless exists $h->{$chrB};
-                push @{$h->{$chrB}}, [$begB, $endB, $chrC, $begC, $endC, $strand, $type, $score, $note];
-            } else {
-                $h->{$chrC} = [] unless exists $h->{$chrC};
-                push @{$h->{$chrC}}, [$begC, $endC, $chrB, $begB, $endB, $strand, $type, $score, $note];
-            }
-        }
-    }
-    close FH;
-    return $h;
-}
-sub format_gff_loc {
-    my ($fi, $fo, $fm) = rearrange(['fi', 'fo', 'fm'], @_);
-    my $h = read_mapping($fm, 1);
-
-    open(FHI, "<$fi");
-    open(FHO, ">$fo");
-    print FHO "##gff-version 3\n";
-    while(<FHI>) {
-        chomp;
-        next if !$_ || /^\#/;
-        my @ps = split "\t";
-        my ($chrL, $begL, $endL, $srdL) = @ps[0,3,4,6];
-        if($chrL !~ /^chr[1-8]$/) {
-            die "cannot find mapping info for $chrL\n" unless exists $h->{$chrL};
-            my @stats = grep {$_->[0] <= $begL && $_->[1] >= $endL} @{$h->{$chrL}};
-            if(@stats == 0) {
-                die "cannot find mapping info for $chrL:$begL-$endL\n";
-            } elsif(@stats >= 2) {
-                die "$chrL:$begL-$endL has spans >1 BAC/contig(s)\n";
-            }
-            my ($begI, $endI, $chrO, $begO, $endO, $srd, $type) = @{$stats[0]};
-            my ($locI, $locO) = ([[$begI, $endI]], [[$begO, $endO]]);
-            my $begG = coordTransform($begL, $locI, $srd, $locO, "+"); 
-            my $endG = coordTransform($endL, $locI, $srd, $locO, "+"); 
-            $ps[0] = $chrO;
-            $ps[3] = $begG;
-            $ps[4] = $endG;
-        }
-        print FHO join("\t", @ps)."\n";
-    }
-    close FHI;
-    close FHO;
-    runCmd("sed -i 's/\\\\//g' $fo");
-}
-
 sub makeAsblTbl {
     my ($fi, $fo) = @_;
     my $fhi = new IO::File $fi, "r";

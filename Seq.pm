@@ -16,7 +16,7 @@ require Exporter;
     get_start_codons get_stop_codon
     seqRet seqLen getLongestOrf getSubSeq slideSeq
     validate_dna_seq checkDnaSeq checkProtSeq
-    mergeShortSeqs translate_smart/;
+    translate_smart/;
 @EXPORT_OK = qw//;
 
 my (%genetic_code) = (
@@ -430,29 +430,7 @@ sub slideSeq {
         return Bio::Seq->new(-id=>$id2, -seq=>$seqStr);
     }
 }
-sub mergeShortSeqs {
-    my ($fi, $type, $seqid, $gapLen, $fo1, $fo2) = rearrange([qw/in type seqid gap out1 out2/], @_);
-    $gapLen ||= 50000;
-    die "$fi cannot be found\n" unless -s $fi;
-    my $seqhi = Bio::SeqIO->new(-file=>$fi, -format=>'fasta');
-    my $fh2 = new IO::File $fo2, "w";
-    my ($endPrev, $cnt) = (0, 0);
-    my $seqStr;
-    while( my $seq = $seqhi->next_seq ) {
-        my $seqLen = $seq->length;
-        if($endPrev > 0) {
-            $seqStr .= 'N' x $gapLen;
-            $endPrev += $gapLen;
-        }
-        my $acc = extractAcc($seq->id);
-        print $fh2 join("\t", $seqid, $endPrev+1, $endPrev+$seqLen, 1, $acc, 1, $seqLen, $type, '', '')."\n";
-        $seqStr .= $seq->seq;
-        $endPrev += $seqLen;
-    }
-    print $fh2 join("\t", $seqid, 1, $endPrev, 1, $seqid, 1, $endPrev, 'chromosome', '', '')."\n";
-    my $seqho = Bio::SeqIO->new(-file=>">".$fo1, -format=>'fasta');
-    $seqho->write_seq(Bio::Seq->new(-id=>$seqid, -seq=>$seqStr));
-}
+
 sub translate_smart {
     my ($seq) = @_;
     my $seqCds = $seq->seq;

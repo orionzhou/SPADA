@@ -247,7 +247,7 @@ sub run_genemark_batch {
     
     for my $i (0..$t->nofRow-1) {
         my ($id, $fam, $chr, $beg, $end, $srd, $locS, $begr, $endr, $begL, $endL, $locLS, $e, $seq_pro, $seq) = $t->row($i);
-#    next if $id != 1;
+#        next if $id != 1;
         writeFile($f_fas, ">tmp", $seq);
         my $fo = "$dir/$id";
         my $cmd = "$f_bin -m $f_mod -f gff3 -o $fo $f_fas";

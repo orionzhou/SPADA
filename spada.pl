@@ -1,4 +1,36 @@
 #!/usr/bin/perl -w
+#
+# POD documentation
+#-------------------------------------------------------------------------
+=pod BEGIN
+  
+=head1 NAME
+  
+  spada.pl - Secreted Peptide Alignment Detection Algorithm
+
+=head1 SYNOPSIS
+  
+  spada.pl [-help] <-cfg config-file> [options...]
+
+  Options:
+      -help   brief help message
+      -cfg    config file
+      -dir    SPADA output directory
+      -hmm    directory containing profile alignments and HMM files
+      -fas    genome sequence file (FASTA format)
+      -gff    gene annotation file (GFF3 format, optional)
+      -org    organism to run
+      -evalue E-value threshold
+
+=head1 DESCRIPTION
+
+  This program identify and predict the structure of cysteine-rich peptides in plant genomes
+
+=cut
+  
+#### END of POD documentation.
+#-------------------------------------------------------------------------
+
 use strict;
 use Cwd qw/abs_path/;
 use File::Basename qw/dirname/;

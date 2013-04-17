@@ -77,7 +77,7 @@ sub run_sigp {
         my ($id, $Cmax, $posC, $Ymax, $posY, $Smax, $posS, $Smean, $D, $sp, $Dmaxcut, $network) = split " ";
         ($tag, $pos, $d) = (1, $posY, $D) if $sp eq "Y";
     }
-    system("rm $f_fas");
+    system("rm $f_fas", 0);
     return ($tag, $d, $pos);
 }
 
