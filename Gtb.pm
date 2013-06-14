@@ -14,11 +14,9 @@ require Exporter;
     gtb2Gff gtb2Bed gtb2Seq gtb2Tbl
     gtb_fix_phase pep_score_gtb/;
 @EXPORT_OK = qw//;
-=cut
-print FH join("\t", qw/id parent chr beg end strand locE locI locC loc5 loc3 phase source conf cat1 cat2 cat3 note/)."\n";
-my ($id, $pa, $chr, $beg, $end, $strand, $locE, $locI, $locC, $loc5, $loc3, $phase, $source, $conf, $cat1, $cat2, $cat3, $note) = $t->row($i);
-my ($id, $pa, $chr, $beg, $end, $strand, $locE, $locI, $locC, $loc5, $loc3, $phase, $source, $conf, $cat1, $cat2, $cat3, $note) = @$_;
-=cut
+#print FH join("\t", qw/id parent chr beg end strand locE locI locC loc5 loc3 phase source conf cat1 cat2 cat3 note/)."\n";
+#my ($id, $pa, $chr, $beg, $end, $strand, $locE, $locI, $locC, $loc5, $loc3, $phase, $source, $conf, $cat1, $cat2, $cat3, $note) = $t->row($i);
+#my ($id, $pa, $chr, $beg, $end, $strand, $locE, $locI, $locC, $loc5, $loc3, $phase, $source, $conf, $cat1, $cat2, $cat3, $note) = @$_;
 sub readGtb {
     my ($fi, $opt) = rearrange(['in', 'opt'], @_);
     $opt ||= 1;
@@ -80,9 +78,8 @@ sub gtb2Seq { # opt = 1 (add a 'seq' column at the end); 2 (write to fasta file)
         } else {
             $seqH->write_seq($seq_pro);
         }
-        printf "  extracting sequence from Gtb... %5d out of %d done\r", $i+1, $t->nofRow;
+        printf "  extracting sequence from Gtb [%5d / %5d]\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
     }
-    print "\n";
 
     if($opt == 1) {
         open(FH, ">$fo");
@@ -103,12 +100,11 @@ sub gtb2Gff {
         print FH $gene->to_gff()."\n";
         for my $rna ($gene->get_rna()) {
             print FH $rna->to_gff()."\n";
-            printf "  converting Gtb to Gff... ( %5d RNA | %5d gene ) done\r", $cntR++, $cntG;
+            printf "  Gtb -> Gff %5d RNA | %5d gene...\n", $cntR, $cntG if $cntR % 1000 == 0;
+            $cntR ++;
         }
         $cntG ++; 
-        print FH "\n";
     }
-    print "\n";
     close FH;
 }
 sub gtb2Bed {
@@ -124,12 +120,12 @@ sub gtb2Bed {
         for my $rna ($gene->get_rna()) {
             my $idStr = $rna->id;
             $idStr .= $rna->note if $rna->note;
-            printf "  converting Gtb to Bed... ( %5d RNA | %5d gene ) done\r", $cntR++, $cntG;
             print FH join("\t", $rna->seqid, $rna->beg-1, $rna->end, $idStr, 0, $rna->strand)."\n";
+            printf "  Gtb -> Bed %5d RNA | %5d gene...\n", $cntR, $cntG if $cntR % 1000 == 0;
+            $cntR ++;
         }
         $cntG ++; 
     }
-    print "\n";
     close FH;
 }
 sub gtb2Tbl {
@@ -205,9 +201,9 @@ sub gtb_fix_phase {
             my @phases_new = map {($frame + $_) % 3} @phases_old;
             $t->setElm($i, "phase", join(",", @phases_new));
         }
-        printf "  fixing Gtb phases... ( %5d out of %5d done )\r", $i+1, $t->nofRow;
+        printf "  fixing Gtb phases [%5d / %5d]\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
     }
-    print "  \n$n_fixed non-0 frames fixed\n";
+    print "  $n_fixed non-0 frames fixed\n";
   
     open(FH, ">$fo") or die "cannot open $fo to write\n";
     print FH $t->csv(1, {delimiter=>"\t"});
@@ -231,9 +227,8 @@ sub pep_score_gtb {
         my $lenC = locAryLen($locCAry);
         my $lenI = locAryLen($locIAry);
         print FH join("\t", $id, $codonStart, $codonStop, $preStop, $gap, $n_cds, $lenC, $lenI)."\n";
-        printf "  assessing peptide scores: %5d / %5d done...\r", $i+1, $tg->nofRow;
+        printf "  assessing peptide scores: [%5d / %5d]\n", $i+1, $tg->nofRow if ($i+1) % 1000 == 0;
     }
-    print "\n";
     close FH;
 }
 

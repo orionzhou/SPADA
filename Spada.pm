@@ -39,9 +39,8 @@ sub run_genewise_batch {
         writeFile($f_pro, ">pro", $seqP);
         my $fo = "$dirO/$id.txt";
         runCmd("$f_bin -gff $f_pro $f_dna > $fo", 0);
-        printf "  %5d / %5d done\r", ($i+1), $t->nofRow;
+        printf "  %5d / %5d done...\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
     }
-    print "\n";
     system("rm $f_dna $f_pro");
 }
 sub sum_genewise1 {

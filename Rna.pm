@@ -156,13 +156,14 @@ sub check_mRNA { # infer exon/intron/utr/cds, sort cds location, check phase and
     $locC = [ sort {$a->[0] <=> $b->[0]} @$locC ];
     $locC = [ reverse @$locC ] if $strand eq "-";
 
-    if(defined($locC->[0]->[2]) && $locC->[0]->[2] != 0) {
+    my $phase1 = defined($locC->[0]->[2]) ? $locC->[0]->[2] : 0;
+    if($phase1 != 0) {
         my $opt_crop = $strand eq "-" ? 2 : 1;
         my $loc5x;
-        ($locC, $loc5x) = cropLoc($locC, $locC->[0]->[2], $opt_crop);
+        ($locC, $loc5x) = cropLoc($locC, $phase1, $opt_crop);
         push @$loc5, @$loc5x;
     }
-    if(locAryLen($locC) % 3 != 0) {
+    if( defined($locC->[0]->[2]) && locAryLen($locC) % 3 != 0) {
         my $res = locAryLen($locC) % 3;
         my $opt_crop = $strand eq "-" ? 1 : 2;
         my $loc3x;

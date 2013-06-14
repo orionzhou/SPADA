@@ -78,9 +78,8 @@ sub get_orf_proteome {
         my $seq_cds = Bio::Seq->new(-id=>$id, -seq=>$seqStr);
         my $seq_pro = $seq_cds->translate();
         $seqHO->write_seq($seq_pro);
-        printf "  %5d / %5d done\r", $i+1, $t->nofRow;
+        printf "  %5d / %5d done\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
     }
-    print "\n";
     $seqHO->close();
 }
 
@@ -97,10 +96,10 @@ sub pipe_pre_processing {
         $log->info("Sequence FAS already in data directory");
     } else {
         $log->info("Creating symbolic link to FASTA file");
-        runCmd("rm -rf $f01"); 
+        runCmd("rm -rf $f01", 0); 
         my $f_to = abs_path($ENV{"SPADA_FAS"});
         my $f_from = abs_path($f01);
-        system("ln -sf $f_to $f_from");
+        runCmd("ln -sf $f_to $f_from", 0);
     }
     system("rm -rf $f01.index") if -s "$f01.index";
 
@@ -122,7 +121,7 @@ sub pipe_pre_processing {
             $log->info("Annotation GFF already in data directory");
         } else {
             $log->info("Creating symbolic link to GFF file");
-            runCmd("rm -rf $f51"); 
+            runCmd("rm -rf $f51", 0); 
             my $f_to = abs_path($ENV{"SPADA_GFF"});
             my $f_from = abs_path($f51);
             system("ln -sf $f_to $f_from");

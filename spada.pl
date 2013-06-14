@@ -20,7 +20,9 @@
       -fas    genome sequence file (FASTA format)
       -gff    gene annotation file (GFF3 format, optional)
       -org    organism to run
+      -sp     if the searched gene family contains a signal peptide
       -evalue E-value threshold
+      -method gene prediction programs to run (seperated by semicolon)
 
 =head1 DESCRIPTION
 
@@ -32,9 +34,8 @@
 #-------------------------------------------------------------------------
 
 use strict;
-use Cwd qw/abs_path/;
-use File::Basename qw/dirname/;
-BEGIN { unshift @INC, dirname(abs_path($0)); }
+use FindBin;
+use lib "$FindBin::Bin";
 use Pod::Usage;
 use Getopt::Long;
 use Log::Log4perl;
@@ -47,20 +48,22 @@ use MotifMining;
 use ModelPred;
 use ModelEval;
 
-my ($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, $org, $cutoff_e);
+my ($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, $org, $sp, $e, $methods);
 GetOptions(
-    'config|cfg|c=s'    => \$f_cfg, 
-    'directory|dir|d=s' => \$dir, 
+     'config|cfg|c=s'   => \$f_cfg, 
+            'dir|d=s'   => \$dir, 
     'profile|hmm|h=s'   => \$dir_hmm, 
-    'fas|f=s'           => \$f_fas, 
-    'gff|g=s'           => \$f_gff,
-    'organism|org|o=s'  => \$org, 
-    'evalue|e=f'        => \$cutoff_e,
+            'fas|f=s'   => \$f_fas, 
+            'gff|g=s'   => \$f_gff,
+            'org|o=s'   => \$org, 
+     'signalp|sp|s=i'   => \$sp,
+         'evalue|e=f'   => \$e,
+         'method|m=s'   => \$methods,
 ) || pod2usage(2);
-pod2usage("$0: argument required [--cfg]") if ! defined $f_cfg;
+pod2usage("$0: argument required [-cfg]") if ! defined $f_cfg;
 pod2usage("cfg file not there: $f_cfg") if ! -s $f_cfg;
 
-config_setup($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, $org, $cutoff_e);
+config_setup($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, $org, $sp, $e, $methods);
 
 $dir = $ENV{"SPADA_OUT_DIR"};
 my $t0 = [gettimeofday];

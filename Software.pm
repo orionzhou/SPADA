@@ -79,7 +79,7 @@ sub sum_gff_batch {
         print FH join("\t", "$id.1", $id, ("") x 3, "+", ("") x 2, $locCStr, "", "", $phase, "", ("") x 5, $seq_pro)."\n";
     }
     close FH;
-    runCmd("rm -rf $dir/*");
+    runCmd("rm -rf $dir/*", 0);
 }
 
 sub run_augustus_batch {
@@ -109,9 +109,8 @@ sub run_augustus_batch {
         my $fo = "$dirO/$id";
         my $cmd = "$f_bin --AUGUSTUS_CONFIG_PATH=$d_cfg --species=arabidopsis --hintsfile=$f_hin --gff3=on --strand=forward --noInFrameStop=true $f_fas > $fo";
         runCmd($cmd, 0);
-        printf "  %5d / %5d done...\r", $i+1, $t->nofRow;
+        printf "  %5d / %5d done...\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
     }
-    print "\n";
     system("rm $f_fas $f_hin");
 }
 sub sum_augustus1 {
@@ -205,9 +204,8 @@ sub run_augustus_batch_simple {
         writeFile($f_fas, ">tmp", $seq);
         my $cmd = "$f_bin --AUGUSTUS_CONFIG_PATH=$d_cfg --species=arabidopsis --gff3=on --strand=forward --noInFrameStop=true $f_fas > $fo";
         runCmd($cmd, 0);
-        printf "  %5d / %5d done\r", $i+1, $t->nofRow;
+        printf "  %5d / %5d done...\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
     }
-    print "\n";
     system("rm $f_fas");
 }
 sub pipe_augustus_simple {
@@ -250,11 +248,9 @@ sub run_genemark_batch {
 #        next if $id != 1;
         writeFile($f_fas, ">tmp", $seq);
         my $fo = "$dir/$id";
-        my $cmd = "$f_bin -m $f_mod -f gff3 -o $fo $f_fas";
-        runCmd($cmd, 0);
-        printf "  %5d / %5d done...\r", $i+1, $t->nofRow;
+        runCmd("$f_bin -m $f_mod -f gff3 -o $fo $f_fas", 0);
+        printf "  %5d / %5d done...\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
     }
-    print "\n";
     system("rm $f_fas"); 
 }
 sub pipe_genemark {
@@ -295,11 +291,9 @@ sub run_glimmerhmm_batch {
 #    next if $id != 1;
         writeFile($f_fas, ">tmp", $seq);
         my $fo = "$dir/$id";
-        my $cmd = "$f_bin $f_fas $d_train -g > $fo";
-        runCmd($cmd, 0);
-        printf "  %5d / %5d done...\r", $i+1, $t->nofRow;
+        runCmd("$f_bin $f_fas $d_train -g > $fo", 0);
+        printf "  %5d / %5d done...\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
     }
-    print "\n";
     system("rm $f_fas"); 
 }
 sub pipe_glimmerhmm {
@@ -340,11 +334,9 @@ sub run_geneid_batch {
 #    next if $id != 1;
         writeFile($f_fas, ">tmp", $seq);
         my $fo = "$dir/$id";
-        my $cmd = "$f_bin -3 -W -P $f_param $f_fas > $fo";
-        runCmd($cmd, 0);
-        printf "  %5d / %5d done...\r", $i+1, $t->nofRow;
+        runCmd("$f_bin -3 -W -P $f_param $f_fas > $fo", 0);
+        printf "  %5d / %5d done...\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
     }
-    print "\n";
     system("rm $f_fas"); 
 }
 sub pipe_geneid {

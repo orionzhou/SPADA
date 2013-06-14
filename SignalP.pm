@@ -70,14 +70,14 @@ sub run_sigp {
     die "$f_bin not there\n" unless -s $f_bin;
     
     my ($prob1, $prob2, $site) = ("") x 3;
-    my ($tag, $d, $pos) = (0, "", "");
+    my ($tag, $d, $pos) = (0, 0, "");
     my $lines = runCmd("perl $f_bin -t euk -s notm $f_fas", 2);
     for (@$lines) {
         next unless /^tmp/;
         my ($id, $Cmax, $posC, $Ymax, $posY, $Smax, $posS, $Smean, $D, $sp, $Dmaxcut, $network) = split " ";
         ($tag, $pos, $d) = (1, $posY, $D) if $sp eq "Y";
     }
-    system("rm $f_fas", 0);
+    runCmd("rm $f_fas", 0);
     return ($tag, $d, $pos);
 }
 
@@ -160,9 +160,8 @@ sub search_sigp {
             next if $tag == 0;
             print FH join("\t", $id, $pos+1, $score, $prot)."\n";
         }
-        printf "%4d done...\r", $i+1 if ($i+1) % 100 == 0;
+        printf "  %5d / %5d done...\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
     }
-    print "\n";
     close FH;
 }
 sub sigp_score_gtb {
@@ -178,9 +177,8 @@ sub sigp_score_gtb {
 #    next unless $id eq "AT1G70250.1";
         my ($tag, $d, $pos) = run_sigp($seq);
         print FH join("\t", $id, $tag, $d, $pos)."\n";
-        printf "  %5d / %5d done...\r", $i+1, $tg->nofRow;
+        printf "  %5d / %5d done...\n", $i+1, $tg->nofRow if ($i+1) % 1000 == 0;
     }
-    print "\n";
     close FH;
 }
 

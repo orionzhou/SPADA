@@ -1,11 +1,11 @@
 #!/usr/bin/perl -w
 use strict; 
-use Cwd qw/abs_path/;
-use File::Basename qw/dirname/;
-BEGIN { unshift @INC, dirname(abs_path($0)); }
+use FindBin;
+use lib "$FindBin::Bin";
 
 use Pod::Usage;
 use Getopt::Long;
+use Cwd qw/abs_path/;
 use File::Path qw/make_path remove_tree/;
 use Data::Dumper;
 use ConfigSetup;

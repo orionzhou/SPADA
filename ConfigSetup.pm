@@ -47,7 +47,7 @@ sub config_setup_simple {
 } 
 
 sub config_setup {
-    my ($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, $org, $cutoff_e) = @_;
+    my ($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, $org, $sp, $e, $methods) = @_;
    
     print "=====  setting up environment variables  =====\n";
     my $h = read_cfg_hash($f_cfg);
@@ -56,12 +56,15 @@ sub config_setup {
     $ENV{"SPADA_OUT_DIR"} = $dir if defined $dir;
     $ENV{"SPADA_HMM_DIR"} = $dir_hmm if defined $dir_hmm;
     $ENV{"SPADA_FAS"} = $f_fas if defined $f_fas;
+    $ENV{"SPADA_GFF"} = "" if defined $f_fas;
     $ENV{"SPADA_GFF"} = $f_gff if defined $f_gff;
     $ENV{"SPADA_ORG"} = $org if defined $org;
-    $ENV{"evalue"} = $cutoff_e if defined $cutoff_e;
+    $ENV{"evalue"} = $e if defined $e;
+    $ENV{"eval_sp"} = $sp if defined $sp;
+    $ENV{"methods"} = $methods if defined $methods;
 
     my @keys = qw/SPADA_SRC_DIR SPADA_OUT_DIR SPADA_HMM_DIR SPADA_ORG SPADA_FAS
-        ClustalO GeneWise SplicePredictor SignalP HMMER Augustus/;
+        ClustalO SignalP HMMER/;
     for my $key (@keys) {
         exists $ENV{$key} || die "$key not defined\n";
     }
@@ -77,33 +80,32 @@ sub config_setup {
     -s "$dir_hmm/21_all.hmm" || die "$dir_hmm/21_all.hmm is not there\n";
 
     # check availability of called programs
-    $ENV{"method"} = { map {$_=>0} split(";", $ENV{"method"}) };
+    $ENV{"method"} = { map {$_=>{}} split(";", $ENV{"method"}) };
     for my $soft (keys %{$ENV{"method"}}) {
-        my @f_bins;
+        my $hb = $ENV{"method"}->{$soft};
         if($soft eq "Augustus_evidence") {
-            push @f_bins, $ENV{"Augustus"}."/bin/augustus";
+            $hb->{"Augustus"} = "bin/augustus";
         } elsif($soft eq "Augustus_de_novo") {
-            push @f_bins, $ENV{"Augustus"}."/bin/augustus";
+            $hb->{"Augustus"} = "bin/augustus";
         } elsif($soft eq "GeneWise_SplicePredictor") {
-            push @f_bins, $ENV{"GeneWise"}."/bin/genewise";
-            push @f_bins, $ENV{"SplicePredictor"}."/bin/SplicePredictor";
+            $hb->{"GeneWise"} = "bin/genewise";
+            $hb->{"SplicePredictor"} = "bin/SplicePredictor";
         } elsif($soft eq "GeneMark") {
-            push @f_bins, $ENV{"GeneMark"}."/gmhmme3";
+            $hb->{"GeneMark"} = "gmhmme3";
         } elsif($soft eq "GlimmerHMM") {
-            push @f_bins, $ENV{"GlimmerHMM"}."/bin/glimmerhmm";
+            $hb->{"GlimmerHMM"} = "bin/glimmerhmm";
         } elsif($soft eq "GeneID") {
-            push @f_bins, $ENV{"GeneID"}."/bin/geneid";
+            $hb->{"GeneID"} = "bin/geneid";
         }
-
-        my $tag = 1;
-        for my $f_bin (@f_bins) { $tag = 0 unless -s $f_bin; }
-        if($tag == 1) {
-            printf "\twill run %s\n", $soft;
-            $ENV{"method"}->{$soft} = 1;
-        } else {
-            printf "\twill NOT run %s\n", $soft;
+        
+        for my $key (keys %$hb) {
+            exists $ENV{$key} || die "$key not defined\n";
+            my $fb = $ENV{$key}."/".$hb->{$key};
+            -s $fb || die "$key: $fb is not there\n";
         }
+        printf "\twill run %s\n", $soft;
     }
+
     
     make_path($ENV{"SPADA_OUT_DIR"}) if ! -d $ENV{"SPADA_OUT_DIR"};
     $ENV{"TMP_DIR"} = $ENV{"SPADA_OUT_DIR"};

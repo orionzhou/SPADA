@@ -13,7 +13,7 @@ use List::MoreUtils qw/first_index first_value insert_after apply indexes pairwi
 use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter AutoLoader/;
-@EXPORT = qw/pretty tonum isnumber getDigits prettyStr extractAcc
+@EXPORT = qw/pretty tonum isnumber getDigits prettyStr 
     runCmd parse_gff_tags
     locStr2Ary locAry2Str locAryLen trimLoc cropLoc cropLoc_cds parse_old_loc_str
     posOvlp posCmp posMerge posSplit posDiff posMergeDeep
@@ -126,20 +126,6 @@ sub parse_gff_tags {
         $h->{$tag} = $value;
     }
     return $h;
-}
-sub extractAcc {
-    my ($str) = @_;
-    if($str =~ /\|?([A-Z]{2}\d{6}\.[0-9DF]{1,2})\|?/) {
-        return $1;
-    } elsif($str =~ /([A-Z]{2}\d{6})([^\.]|$)/) {
-        return $1;
-    } elsif($str =~ /^contig\_\d+$/) {
-        return $str;
-    } elsif($str =~ /^(fpc265)|(mtF83-89g3-P2)$/) {
-        return $str;
-    } else {
-        die "cannot get a valid acc from $str\n";
-    }
 }
 sub locStr2Ary {
     my ($locS) = @_;

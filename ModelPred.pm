@@ -415,7 +415,6 @@ sub pipe_model_prediction {
 
     my $p;
     for my $method (keys %{$ENV{"method"}}) {
-        next if $ENV{"method"}->{$method} != 1;
         my $dirs = "$dir/$method";
         pipe_model_run(-dir=>$dirs, -hit=>$f05, -ref=>$f_ref, -soft=>$method);
         $p->{$method} = "$dirs/11.gtb";

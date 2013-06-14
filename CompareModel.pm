@@ -144,9 +144,8 @@ sub compare_models {
         }
         @stats = sort {$a->[1]<=>$b->[1] || $b->[2]<=>$a->[2] || $a->[3]<=>$b->[3] || $a->[4]<=>$b->[4]} @stats;
         print FH join("\t", $id, @{$stats[0]})."\n";
-        printf "  comparing gene models... %5d out of %d done\r", $i+1, $tq->nofRow;
+        printf "  comparing gene models [%5d / %5d]\n", $i+1, $tq->nofRow if ($i+1) % 1000 == 0;
     }
-    print "\n";
     close FH;
 }
 
@@ -176,9 +175,8 @@ sub compare_models_2 {
         @stats = sort {$a->[1]<=>$b->[1] || $b->[2]<=>$a->[2] || $a->[6]<=>$b->[6] || $a->[7]<=>$b->[7]} @stats;
         my ($gene, $tag, $lenC, $lenI, $len5, $len3, $lenO, $lenM) = @{$stats[0]};
         print FH join("\t", $id, $gene, $tag, $lenC, $lenI, $len5, $len3, $lenO)."\n";
-        printf "  comparing gene models... %5d out of %d done\r", $i+1, $ti->nofRow;
+        printf "  comparing gene models [%5d / %5d]\n", $i+1, $ti->nofRow if ($i+1) % 1000 == 0;
     }
-    print "\n";
     close FH;
 }
 sub qry_one_model {

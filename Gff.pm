@@ -37,7 +37,7 @@ sub parse_gff {
     }
 }
 sub gff2Gtb {
-    my ($fi, $fo) = @_;
+    my ($fi, $fo, $fs) = @_;
     open(FH, ">$fo") or die "cannot open $fo for writing\n";
     print FH join("\t", qw/id parent chr beg end strand locE locI locC loc5 loc3 phase source conf cat1 cat2 cat3 note/)."\n";
 
@@ -46,11 +46,11 @@ sub gff2Gtb {
     while(my $gene = $it->()) {
         for my $rna ($gene->get_rna) {
             print FH $rna->to_gtb()."\n";
-            printf "  converting Gff to Gtb... ( %5d RNA | %5d gene ) done\r", $cntR++, $cntG;
+            printf "  Gff -> Gtb %5d RNA | %5d gene...\n", $cntR, $cntG if $cntR % 1000 == 0;
+            $cntR ++;
         }
         $cntG ++;
     }
-    print "\n";
     close FH;
 }
 

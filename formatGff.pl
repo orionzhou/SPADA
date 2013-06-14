@@ -21,9 +21,9 @@
 =cut
 
 use strict;
-use Cwd qw/abs_path/;
-use File::Basename qw/dirname/;
-BEGIN { unshift @INC, dirname(abs_path($0)); }
+use FindBin;
+use lib "$FindBin::Bin";
+
 use Getopt::Long;
 use Pod::Usage;
 use File::Basename;

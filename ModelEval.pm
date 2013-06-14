@@ -21,9 +21,30 @@ require Exporter;
 @EXPORT = qw/pipe_model_evaluation filter_models/;
 @EXPORT_OK = qw//;
 
-sub get_aln_score {
-    my ($fi, $d_aln, $f_sta, $do, $fo) = @_;
+sub get_stat_basic {
+    my ($fi, $f_hit, $fo) = @_;
     
+    my $log = Log::Log4perl->get_logger("ModelEval");
+    $log->info("extracting basic stats");
+   
+    my $th = readTable(-in=>$f_hit, -header=>1);
+    my $he = { map {$th->elm($_, "id") => $th->elm($_, "e")} (0..$th->nofRow-1) };
+
+    my $t = readTable(-in=>$fi, -header=>1);
+    open(FH, ">$fo") || die "cannot open $fo for writing\n";
+    print FH join("\t", qw/id parent family e seq/)."\n";
+    for my $i (0..$t->nofRow-1) {
+        my ($id, $pa, $fam, $seq) = map {$t->elm($i, $_)} qw/id parent cat3 seq/;
+        die "no E-value for $id:$pa\n" unless exists $he->{$pa};
+        my $e = $he->{$pa};
+        print FH join("\t", $id, $pa, $fam, $e, $seq)."\n";
+    }
+    close FH;
+}
+sub get_stat_aln {
+    my ($fi, $d_aln, $f_sta, $fo) = @_;
+    my $do = "$fo.dir";
+   
     my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("computing MSA scores");
     make_path($do) unless -d $do;
@@ -81,14 +102,14 @@ sub get_aln_score {
             $score = $h->{$id} if exists $h->{$id};
             print FH join("\t", $id, $score)."\n";
         }
-        printf "  %5d / %5d done\r", $i++, scalar(keys(%$ref));
+        printf "  %5d / %5d done...\n", $i+1, scalar(keys(%$ref)) if ($i+1) % 1000 == 0;
     }
-    print "\n";
     runCmd("rm -rf $f_fas $do/*", 0);
     close FH;
 }
-sub get_hmm_score {
-    my ($fi, $d_hmm, $do, $fo) = @_;
+sub get_stat_hmm {
+    my ($fi, $d_hmm, $fo) = @_;
+    my $do = "$fo.dir";
 
     my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("computing HMM alignment scores");
@@ -127,46 +148,76 @@ sub get_hmm_score {
             $score = $h->{$id} if exists $h->{$id};
             print FH join("\t", $id, $score)."\n";
         }
-        printf "  %5d / %5d done\r", $i++, scalar(keys(%$ref));
+        printf "  %5d / %5d done...\n", $i+1, scalar(keys(%$ref)) if ($i+1) % 1000 == 0;
     }
-    print "\n";
     runCmd("rm -rf $f_fas $do/*", 0);
     close FH;
 }
 sub merge_stats {
-    my ($f_gtb, $fe, $fm, $fa, $fs, $fp, $fo) = @_;
+    my ($fi, $fo, $p) = @_;
     my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("merging stats");
-    my $tg = readTable(-in=>$f_gtb, -header=>1);
-    my $te = readTable(-in=>$fe, -header=>1);
-    my $tm = readTable(-in=>$fm, -header=>1);
-    my $ta = readTable(-in=>$fa, -header=>1);
-    my $ts = readTable(-in=>$fs, -header=>1);
-    my $tp = readTable(-in=>$fp, -header=>1);
 
-    my $he = { map {$te->elm($_, "id") => $te->elm($_, "e")} (0..$te->nofRow-1) };
+    my $t = readTable(-in=>$fi, -header=>1);
+    my ($eval_hmm, $fm) = @{$p->{"hmm"}};
+    my ($eval_aln, $fa) = @{$p->{"aln"}};
+    my ($eval_pep, $fp) = @{$p->{"pep"}};
+    my ($eval_sp, $fs) = @{$p->{"sp"}};
+    
+    my @tag_sps = (0) x $t->nofRow;
+    my @score_sps = (0) x $t->nofRow;
+    if( $eval_sp ) {
+        my $ts = readTable(-in=>$fs, -header=>1);
+        @tag_sps = $ts->col("tag");
+        @score_sps = $ts->col("score");
+    }
+    $t->addCol( \@tag_sps, "tag_sp" );
+    $t->addCol( \@score_sps, "score_sp" );
+   
+    my @score_hmms = (0) x $t->nofRow;
+    if( $eval_hmm ) {
+        my $tm = readTable(-in=>$fm, -header=>1);
+        @score_hmms = $tm->col("score");
+    }
+    $t->addCol( \@score_hmms, "score_hmm" );
+
+    my @score_alns = (0) x $t->nofRow;
+    if( $eval_aln ) {
+        my $ta = readTable(-in=>$fa, -header=>1);
+        @score_alns = $ta->col("score");
+    }
+    $t->addCol( \@score_alns, "score_aln" );
+
+    my @n_cds = (0) x $t->nofRow;
+    my @lenC = (0) x $t->nofRow;
+    my @lenI = (0) x $t->nofRow;
+    my @codonStart = (0) x $t->nofRow;
+    my @codonStop = (0) x $t->nofRow;
+    my @preStop = (0) x $t->nofRow;
+    if( $eval_pep ) {
+        my $tp = readTable(-in=>$fp, -header=>1);
+        @n_cds = $tp->col("n_cds");
+        @lenC = $tp->col("lenC");
+        @lenI = $tp->col("lenI");
+        @codonStart = $tp->col("codonStart");
+        @codonStop = $tp->col("codonStop");
+        @preStop = $tp->col("preStop");
+    }
+    $t->addCol( \@n_cds, "n_cds" );
+    $t->addCol( \@lenC, "lenC" );
+    $t->addCol( \@lenI, "lenI" );
+    $t->addCol( \@codonStart, "codonStart" );
+    $t->addCol( \@codonStop, "codonStop" );
+    $t->addCol( \@preStop, "preStop" );
+
+    $t->moveCol("seq", $t->nofCol-1);
 
     open(FH, ">$fo") || $log->error_die("cannot open $fo for writing");
-    print FH join("\t", qw/id parent fam e tag_sp score_sp score_hmm score_aln n_cds lenC lenI codonStart codonStop preStop seq/)."\n";
-    for my $i (0..$tg->nofRow-1) {
-        my ($id, $pa, $fam, $seq) = map {$tg->elm($i, $_)} qw/id parent cat3 seq/;
-        my ($idM, $score_hmm) = map {$tm->elm($i, $_)} qw/id score/;
-        my ($idA, $score_aln) = map {$ta->elm($i, $_)} qw/id score/;
-        my ($idS, $tag_sp, $score_sp) = map {$ts->elm($i, $_)} qw/id tag score/;
-        my ($idP, $codonStart, $codonStop, $preStop, $gap, $n_cds, $lenC, $lenI) = $tp->row($i);
-        die "id conflict: $id != $idM [hmm]\n" unless $id eq $idM;
-        die "id conflict: $id != $idA [aln]\n" unless $id eq $idA;
-        die "id conflict: $id != $idS [sigp]\n" unless $id eq $idS;
-        die "id conflict: $id != $idP [pep]\n" unless $id eq $idP;
-        $score_sp = 0 unless $tag_sp;
-        my $e = $he->{$pa};
-        
-        print FH join("\t", $id, $pa, $fam, $e, $tag_sp, $score_sp, $score_hmm, $score_aln, $n_cds, $lenC, $lenI, $codonStart, $codonStop, $preStop, $seq)."\n";
-    }
+    print FH $t->tsv(1); 
     close FH;
 }
 sub pick_best_model {
-    my ($f_gtb, $f_stat, $fo) = @_;
+    my ($f_gtb, $f_stat, $fo, $p) = @_;
     
     my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("picking best alternative models");
@@ -333,7 +384,7 @@ sub gtb2Friendly {
     my $hs;
     my $ts = readTable(-in=>$f_stat, -header=>1);
     for my $i (0..$ts->nofRow-1) {
-        my ($id, @stats) = map {$ts->elm($i, $_)} qw/id parent fam e tag_sp score_sp score_hmm score_aln n_cds seq/;
+        my ($id, @stats) = map {$ts->elm($i, $_)} qw/id parent family e tag_sp score_sp score_hmm score_aln n_cds seq/;
         die "$id read twice in $f_stat\n" if exists $hs->{$id};
         $hs->{$id} = \@stats;
     }
@@ -375,9 +426,8 @@ sub align_by_group {
         push @$seqs, Bio::Seq->new(-id=>$fam, -seq=>$hs->{"$fam"});
         my $f_aln = "$dirO/$fam.aln";
         run_clustalo(-seqs=>$seqs, -out=>$f_aln);
-        printf "  %5d / %5d done...\r", $i++, scalar(keys(%$h));
+        printf "  %5d / %5d done...\n", $i+1, scalar(keys(%$h)) if ($i+1) % 1000 == 0;
     }
-    print "\n";
 }
 
 sub pipe_model_evaluation {
@@ -386,27 +436,38 @@ sub pipe_model_evaluation {
     
     my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("#####  Stage 4 [Model Evaluation & Selection]  #####");
-    
+    make_path($dir) unless -d $dir;
+   
+    my ($eval_e, $eval_hmm, $eval_aln, $eval_pep) = (1) x 4;
+    my $eval_sp = $ENV{"eval_sp"};
+
+    my $f30 = "$dir/30_stat_basic.tbl";
+    get_stat_basic($f_gtb, $f_hit, $f30);
+
     my $d31 = "$dir/31_stat";
-    my $d31_01 = "$d31/01_hmm_aln";
-    my $f31_02 = "$d31/02_hmm_score.tbl";
-    get_hmm_score($f_gtb, $d_hmm, $d31_01, $f31_02);
-    my $d31_11 = "$d31/11_aln";
-    my $f31_12 = "$d31/12_aln_score.tbl";
-    get_aln_score($f_gtb, $d_aln, $f_sta, $d31_11, $f31_12);
-    my $f31_21 = "$d31/21_sigp_score.tbl";
-    sigp_score_gtb($f_gtb, $f31_21);
-    my $f31_31 = "$d31/31_pep_score.tbl";
-    pep_score_gtb($f_gtb, $f31_31);
+    my $f31_02 = "$d31/02_hmm.tbl";
+    my $f31_03 = "$d31/03_aln.tbl";
+    my $f31_04 = "$d31/04_pep.tbl";
+    my $f31_05 = "$d31/05_sigp.tbl";
+    get_stat_hmm($f_gtb, $d_hmm, $f31_02) if $eval_hmm;
+    get_stat_aln($f_gtb, $d_aln, $f_sta, $f31_03) if $eval_aln;
+    pep_score_gtb($f_gtb, $f31_04) if $eval_pep;
+    sigp_score_gtb($f_gtb, $f31_05) if $eval_sp;
+
+    my $p = {
+        "hmm" => [ $eval_hmm, $f31_02 ],
+        "aln" => [ $eval_aln, $f31_03 ],
+        "pep" => [ $eval_pep, $f31_04 ],
+        "sp"  => [ $eval_sp,  $f31_05 ] };
     my $f41 = "$dir/41_stat.tbl";
-    merge_stats($f_gtb, $f_hit, $f31_02, $f31_12, $f31_21, $f31_31, $f41);
+    merge_stats($f30, $f41, $p);
     my $f51 = "$dir/51_best.gtb";
-    pick_best_model($f_gtb, $f41, $f51);
+    pick_best_model($f_gtb, $f41, $f51, $p);
     my $f55 = "$dir/55_nonovlp.gtb";
     remove_ovlp_models($f41, $f51, $f55);
     my $f59 = "$dir/59.gtb";
     filter_models(-stat=>$f41, -in=>$f55, -out=>$f59, 
-        -e=>$ENV{"evalue"}, -aln=>-1000, -sp=>1, -codon=>1, -opt_mt=>0);
+        -e=>$ENV{"evalue"}, -aln=>-1000, -sp=>$eval_sp, -codon=>1, -opt_mt=>0);
     
     my $f61 = "$dir/61_final.gtb";
     crp_rename($f59, $f_ref, $f61, "spada");
