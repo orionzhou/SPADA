@@ -1,4 +1,32 @@
 #!/usr/bin/perl -w
+#
+# POD documentation
+#-------------------------------------------------------------------------
+=pod BEGIN
+  
+=head1 NAME
+  
+  build_profile.pl - builds SPADA-compatible HMM profile from one or more input alignments
+
+=head1 SYNOPSIS
+  
+  build_profile.pl [-help] <-cfg config-file> <-aln input alignment-dir> <-hmm output HMM-dir>
+
+  Options:
+      -help   brief help message
+      -cfg    config file
+      -aln    directory containing input alignments
+      -hmm    output directory containing built HMMs
+
+=head1 DESCRIPTION
+
+  This program builds SPADA-compatible HMM profile from one or more input alignments
+
+=cut
+  
+#### END of POD documentation.
+#-------------------------------------------------------------------------
+
 use strict; 
 use FindBin;
 use lib "$FindBin::Bin";

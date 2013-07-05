@@ -9,7 +9,7 @@ use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter/;
 @EXPORT_OK = qw//;
-@EXPORT = qw/compare_models compare_2_model
+@EXPORT = qw/compare_models compare_2_model model_eval get_sn_sp
     compare_models_2
     extract_compatible_models/;
 
@@ -116,9 +116,9 @@ sub compare_models {
     my $tt = readTable(-in=>$f_tgt, -header=>1);
   
     open(FH, ">$fo");
-    print FH join("\t", qw/id gene tag lenO len1 len2 exonO exon1 exon2/)."\n";
+    print FH join("\t", qw/idQ idT tag lenO len1 len2 exonO exon1 exon2/)."\n";
     for my $i (0..$tq->nofRow-1) {
-        my ($id, $chr, $strand, $locQStr, $phaseQ) = map {$tq->elm($i, $_)} qw/id chr strand locC phase/;
+        my ($idQ, $chr, $strand, $locQStr, $phaseQ) = map {$tq->elm($i, $_)} qw/id chr strand locC phase/;
         my $locQ = locStr2Ary($locQStr);
         if(!$locQStr) {
             $locQ = locStr2Ary($tq->elm($i, "locE"));
@@ -131,7 +131,7 @@ sub compare_models {
             push @stats, ["", 9, 0, locAryLen($locQ), 0, 0, scalar(@$locQ), 0];
         } else {
             for my $j (0..$t2->nofRow-1) {
-                my ($gene, $locTStr, $phaseT) = map {$t2->elm($j, $_)} qw/id locC phase/;
+                my ($idT, $locTStr, $phaseT) = map {$t2->elm($j, $_)} qw/id locC phase/;
                 my $locT = locStr2Ary($locTStr);
                 if(!$locTStr) {
                     $locT = locStr2Ary($t2->elm($j, "locE"));
@@ -139,14 +139,58 @@ sub compare_models {
                 }
                 my ($tag, $lenO, $len1, $len2, $exonO, $exon1, $exon2) =
                     compare_2_model($locQ, $phaseQ, $locT, $phaseT, $strand);
-                push @stats, [$gene, $tag, $lenO, $len1, $len2, $exonO, $exon1, $exon2];
+                push @stats, [$idT, $tag, $lenO, $len1, $len2, $exonO, $exon1, $exon2];
             }
         }
         @stats = sort {$a->[1]<=>$b->[1] || $b->[2]<=>$a->[2] || $a->[3]<=>$b->[3] || $a->[4]<=>$b->[4]} @stats;
-        print FH join("\t", $id, @{$stats[0]})."\n";
+        print FH join("\t", $idQ, @{$stats[0]})."\n";
         printf "  comparing gene models [%5d / %5d]\n", $i+1, $tq->nofRow if ($i+1) % 1000 == 0;
     }
     close FH;
+}
+
+sub model_eval {
+    my ($f_cmp, $f_tgt, $fo) = @_;
+    my $tc = readTable(-in=>$f_cmp, -header=>1);
+    my $tt = readTable(-in=>$f_tgt, -header=>1);
+
+    my $ht;
+    for my $i (0..$tt->nofRow-1) {
+        my ($idT, $locS) = map {$tt->elm($i, $_)} qw/id locC/;
+        my $loc = locStr2Ary($locS);
+        my $len = locAryLen($loc);
+        my $n_cds = @$loc;
+        $ht->{$idT} = [0, $len, $n_cds];
+    }
+
+    open(FH, ">$fo") || die "cannot open $fo for writing\n";
+    print FH join("\t", qw/idQ tag idT lenTP lenFP lenFN exonTP exonFP exonFN/)."\n";
+    for my $i (0..$tc->nofRow-1) {
+        my ($idQ, $idT, $tag, $lenTP, $lenFP, $lenFN, $exonTP, $exonFP, $exonFN) = $tc->row($i);
+        $tag = 5 if $tag == 7 || $tag == 8 || ($tag==2 && $lenFP+$lenFN>30);
+
+        print FH join("\t", $idQ, $tag, $idT, $lenTP, $lenFP, $lenFN, $exonTP, $exonFP, $exonFN)."\n";
+        $ht->{$idT}->[0] ++ if $idT ne "";
+    }
+    for my $idT (keys(%$ht)) {
+        my ($cnt, $len, $n_cds) = @{$ht->{$idT}};
+        if($cnt == 0) {
+            print FH join("\t", '', 10, $idT, 0, 0, $len, 0, 0, $n_cds)."\n";
+        } elsif($cnt > 1) {
+            print "  $idT hit $cnt times\n";
+        }
+    }
+    close FH;
+}
+
+sub get_sn_sp {
+    my ($fi) = @_;
+    my $t = readTable(-in=>$fi, -header=>1);
+    my $sn_nt = sum($t->col("lenTP")) / ( sum($t->col("lenTP")) + sum($t->col("lenFN")) );
+    my $sp_nt = sum($t->col("lenTP")) / ( sum($t->col("lenTP")) + sum($t->col("lenFP")) );
+    my $sn_ex = sum($t->col("exonTP")) / ( sum($t->col("exonTP")) + sum($t->col("exonFN")) );
+    my $sp_ex = sum($t->col("exonTP")) / ( sum($t->col("exonTP")) + sum($t->col("exonFP")) );
+    return ($sn_nt, $sp_nt, $sn_ex, $sp_ex);
 }
 
 sub compare_models_2 {

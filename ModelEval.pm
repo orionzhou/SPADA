@@ -290,13 +290,12 @@ sub remove_ovlp_models {
     close FH;
 }
 sub filter_models {
-    my ($f_stat, $fi, $fo, $co_e, $co_aln, $opt_sp, $opt_codon, $opt_mt) = 
-        rearrange([qw/stat in out e aln sp codon opt_mt/], @_);
+    my ($f_stat, $fi, $fo, $co_e, $co_aln, $opt_sp, $opt_codon) = 
+        rearrange([qw/stat in out e aln sp codon/], @_);
     $co_e   ||= 10;
     $co_aln ||= -1000;
     $opt_sp ||= 0;
     $opt_codon ||= 0;
-    $opt_mt ||= 0;
 
     my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("final filter:");
@@ -304,7 +303,6 @@ sub filter_models {
     $log->info("\tComplete ORF = $opt_codon");
     $log->info("\tE value cutoff = $co_e");
     $log->info("\tAlignment score cutoff = $co_aln");
-    $log->info("\t[optionl] Medicago evaluation filter = $opt_mt");
     
     my $ts = readTable(-in=>$f_stat, -header=>1);
     my $h;
@@ -325,8 +323,6 @@ sub filter_models {
         } elsif($opt_codon && (!$codonStart || !$codonStop || $preStop)) {
             push @idxs_rm, $i;
         } elsif($e > $co_e || $score_aln < $co_aln) {
-            push @idxs_rm, $i;
-        } elsif($opt_mt && $fam gt "CRP1530") {
             push @idxs_rm, $i;
         }
     }
@@ -467,7 +463,7 @@ sub pipe_model_evaluation {
     remove_ovlp_models($f41, $f51, $f55);
     my $f59 = "$dir/59.gtb";
     filter_models(-stat=>$f41, -in=>$f55, -out=>$f59, 
-        -e=>$ENV{"evalue"}, -aln=>-1000, -sp=>$eval_sp, -codon=>1, -opt_mt=>0);
+        -e=>$ENV{"evalue"}, -aln=>-1000, -sp=>$eval_sp, -codon=>1);
     
     my $f61 = "$dir/61_final.gtb";
     crp_rename($f59, $f_ref, $f61, "spada");

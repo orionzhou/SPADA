@@ -6,7 +6,7 @@
   
 =head1 NAME
   
-  spada.pl - Secreted Peptide Alignment Detection Algorithm
+  spada.pl - Small Peptide Alignment Detection Application
 
 =head1 SYNOPSIS
   
@@ -26,7 +26,7 @@
 
 =head1 DESCRIPTION
 
-  This program identify and predict the structure of cysteine-rich peptides in plant genomes
+  This program identifies and predicts all members of a given small peptide family in a target genome
 
 =cut
   
