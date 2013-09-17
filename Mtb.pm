@@ -10,7 +10,8 @@ use List::MoreUtils qw/first_index first_value insert_after apply indexes pairwi
 use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter/;
-@EXPORT = qw/run_blast psl2Mtb bls2Mtb mtbFilter mtbExpand mtb2Gtb mtbRmDup/;
+@EXPORT = qw/run_blast psl2Mtb bls2Mtb 
+    mtbFilter mtbExpand mtb2Gtb mtbRmDup/;
 @EXPORT_OK = qw//;
 
 sub run_blast {
@@ -73,6 +74,7 @@ sub psl2Mtb {
     close FHI;
     close FHO;
 }
+
 sub bls2Mtb {
     my ($fi, $fo) = @_;
     my $in = Bio::SearchIO->new(-file=>$fi, -format=>'blast');
@@ -101,33 +103,34 @@ sub bls2Mtb {
 }
 
 sub mtbFilter {
-    my ($fi, $fo, $p) = @_;
-    my ($lenCov, $pctCov, $pctIdty, $pctCnsv, $gap, $strand, $best) = 
-        map {$p->{$_}} qw/lencov pctcov pctidty pctcnsv gap strand best/;
+    my ($fi, $fo, $lenCov, $pctCov, $pctIdty, $maxGap, $strand, $best) 
+        = rearrange([qw/in out lencov pctcov pctidty maxgap strand best/], @_);
     $pctCov ||= 0.1;
     $lenCov ||= 10;
     $pctIdty ||= 0.3;
     $best ||= 0;
-    $gap ||= 10_000;
+    $maxGap ||= 10_000;
+    $strand ||= "";
     my $t = readTable(-in=>$fi, -header=>1);
     my @rows;
     for my $i (0..$t->nofRow-1) {
-        my ($qLen, $qAlnLen, $nIdty, $qGap) = map {$t->elm($i, $_)} qw/lenQ alnLenQ matches gapQ/;
+        my ($id, $qId, $qBeg, $qEnd, $qSrd, $qLen, $qNumIns, $qBaseIns,
+          $hId, $hBeg, $hEnd, $hSrd, $hLen, $hNumIns, $hBaseIns,
+          $match, $misMatch, $repMatch, $baseN, $qLocS, $hLocS, $qIndel, $hIndel) = $t->row($i);
         my $flag = 1;
-        $flag = 0 if $t->elm($i, "idQ") eq $t->elm($i, "idH");
+        $flag = 0 if $qId eq $hId;
+
+        my $qAlnLen = $match + $misMatch + $repMatch + $qBaseIns;
         $flag = 0 if $qAlnLen < $lenCov;
         $flag = 0 if $qAlnLen / $qLen < $pctCov;
-        $flag = 0 if $nIdty / $qAlnLen < $pctIdty;
-        $flag = 0 if $strand && $t->elm($i, "srdH") ne $strand;
-        $flag = 0 if $qGap > $gap;
-        if($pctCnsv) {
-            my $qCnsv = $t->elm($i, "conserved");
-            $flag = 0 if $qCnsv / $qAlnLen < $pctCnsv;
-        }
+        $flag = 0 if $match / ($match + $misMatch) < $pctIdty;
+        $flag = 0 if $strand && $hSrd ne $strand;
+        $flag = 0 if $qBaseIns > $maxGap;
         push @rows, $i if $flag == 0;
     }
     $t->delRows(\@rows);
-    my $qIds = $t->colRef("idQ");
+
+    my $qIds = $t->colRef("qId");
     my $ref = group($qIds);
     if($best == 1) {
         my @rows2;
@@ -135,18 +138,18 @@ sub mtbFilter {
             my ($idx, $nofId) = @{$ref->{$qId}};
             next if $nofId == 1;
             my @idxs = ($idx..$idx+$nofId-1);
-            my @tmp = map {$t->elm($_, "idQ")} @idxs;
-            die "not 1 qId\n" unless (uniq(@tmp)) == 1;
-            my %ref = map { $_ => $t->elm($_, 'matches') } @idxs;
+            my @tmp = map {$t->elm($_, "qId")} @idxs;
+            die "not 1 qId\n" unless uniq(@tmp) == 1;
+            my %ref = map { $_ => $t->elm($_, 'match') } @idxs;
             my $maxM = max( values %ref );
             for my $idx (@idxs) {
                 push @rows2, $idx if $ref{$idx} < $maxM;
             }
-            my @chrs = map {$t->elm($_, "idH")} @idxs;
-            my @chrs2 = grep /^chr[1-8]$/, @chrs;
+            my @chrs = map {$t->elm($_, "hId")} @idxs;
+            my @chrs2 = grep /^chr[1-8]$/i, @chrs;
             if(@chrs2) {
                 for my $idx (@idxs) {
-#          push @rows2, $idx if $t->elm($idx, "hId") =~ /^chr[0TU]$/;
+#           push @rows2, $idx if $t->elm($idx, "hId") =~ /^chr[0TU]$/;
                 }
             }
         }
@@ -154,24 +157,24 @@ sub mtbFilter {
         $t->delRows(\@rows2);
     }
     printf "%d queries --> to %d hits\n", scalar(keys %$ref), $t->nofRow;
-    open(FH, ">$fo");
+    open(FH, ">$fo") || die "cannot write to $fo\n";
     print FH $t->tsv(1);
     close FH;
 }
 sub mtbRmDup {
     my ($fi, $fo) = @_;
     my $ti = readTable(-in=>$fi, -header=>1);
-    my @srdQs = uniq($ti->col("srdQ"));
-    die "qry not all + strand\n" unless @srdQs == 1 && $srdQs[0] eq "+";
-    $ti->sort("idQ", 1, 0, "idH", 1, 0);
-    my $ref = group($ti->colRef("idQ"));
+    my @qSrds = uniq($ti->col("qSrd"));
+    die "qry not all + strand\n" unless @qSrds == 1 && $qSrds[0] eq "+";
+    $ti->sort("qId", 1, 0, "hId", 1, 0);
+    my $ref = group($ti->colRef("qId"));
     my @qId_dup = grep {$ref->{$_}->[1] > 1} keys(%$ref);
 
     my $he;
     for my $idU (@qId_dup) {
         my ($idx, $cnt) = @{$ref->{$idU}};
         for my $i (0..$cnt-1) {
-            my $idV = join("_", "@", map {$ti->elm($idx+$i, $_)} qw/srdH idH locH/);
+            my $idV = join("_", "@", map {$ti->elm($idx+$i, $_)} qw/hSrd hId hLoc/);
             my $idE = join(" ", $idU, $idV);
             $he->{$idE} = [$idU, $idV, $idx+$i];
         }
@@ -210,20 +213,20 @@ sub mtbExpand {
     my ($fS, $fi, $fo) = rearrange(['fs', 'fi', 'fo'], @_);
     my $t = readTable(-in=>$fi, -header=>1);
     my $ref1 = readSeqInfo($fS, 1);
-    my $ref2 = group($t->colRef("idQ"));
-    $t->addCol([('') x $t->nofRow], "noteQ");
-    for my $idQ (keys %$ref1) {
-        my $noteQ = $ref1->{$idQ};
-        if(exists $ref2->{$idQ}) {
-            my ($idx, $n) = @{$ref2->{$idQ}};
+    my $ref2 = group($t->colRef("qId"));
+    $t->addCol([('') x $t->nofRow], "qNote");
+    for my $qId (keys %$ref1) {
+        my $qNote = $ref1->{$qId};
+        if(exists $ref2->{$qId}) {
+            my ($idx, $n) = @{$ref2->{$qId}};
             for my $i ($idx..$idx+$n-1) {
-                $t->setElm($i, "noteQ", $noteQ);
+                $t->setElm($i, "qNote", $qNote);
             }
         } else {
-            $t->addRow(["", $idQ, ("") x ($t->nofCol-3), $noteQ]);
+            $t->addRow(["", $qId, ("") x ($t->nofCol-3), $qNote]);
         }
     }
-    open(FH, ">$fo");
+    open(FH, ">$fo") || die "cannot write to $fo\n";
     print FH $t->tsv(1);
     close FH;
 }
@@ -236,23 +239,26 @@ sub mtb2Gtb { # opt = 1 - multiple mappings allowed; 2 - multiple mappings NOT a
     open(FH, ">$fo");
     print FH join("\t", qw/id parent chr beg end strand locE locI locC loc5 loc3 phase source conf cat1 cat2 cat3 note/)."\n";
     
-    $t->sort('idQ', 1, 0);
-    my $ref = group([$t->col("idQ")]);
+    $t->sort('qId', 1, 0);
+    my $ref = group([$t->col("qId")]);
     my $i = 0;
     for my $id (sort keys %$ref) {
         my ($idxS, $n) = @{$ref->{$id}};
         die "$id has $n mappings\n" if $n > 1 && $opt == 2;
         for my $j (0..$n-1) {
             my $idx = $idxS+$j;
-            my ($mId, $qId, $qLoc, $qStr, $qGap, $chr, $hLoc, $hStr, $hGap, $matches, $qAlnLen, $qLen, $qDesc) = $t->row($idx);
-            next if $chr eq "";
+            my ($mId, $qId, $qBeg, $qEnd, $qSrd, $qLen, $qNumIns, $qBaseIns,
+              $hId, $hBeg, $hEnd, $hSrd, $hLen, $hNumIns, $hBaseIns,
+              $match, $misMatch, $repMatch, $baseN, $qLocS, $hLocS, $qIndel, $hIndel) = 
+            $t->row($idx);
+            next if $hId eq "";
             my $idG = join("_", $id, $j+1);
             my $idM = join(".", $idG, 1);
 
-            my $locC = locStr2Ary($hLoc);
+            my $locC = locStr2Ary($hLocS);
             $locC = [ sort {$a->[0] <=> $b->[0]} @$locC ];
             my ($beg, $end) = ($locC->[0]->[0], $locC->[-1]->[1]);
-            $locC = [ reverse @$locC ] if $hStr =~ /^\-1?$/;
+            $locC = [ reverse @$locC ] if $hSrd =~ /^\-1?$/;
             my $locM = [[$beg, $end]];
             my ($locI) = posDiff($locM, $locC);
             my ($strC, $strI) = map {locAry2Str($_)} ($locC, $locI);
@@ -266,18 +272,15 @@ sub mtb2Gtb { # opt = 1 - multiple mappings allowed; 2 - multiple mappings NOT a
             }
             my $phase = join(",", @phases);
 
-            $qDesc =~ s/\=/-/g;
-            $qDesc =~ s/\;/./g;
             my $tag1 = ($j+1)."/$n";
-            my $tag2 = "$matches/$qAlnLen/$qLen";
-            my $note = "[$tag1][$tag2][$qDesc]";
+            my $tag2 = "$match/$qLen";
+            my $note = "[$tag1][$tag2]";
 
-            print FH join("\t", $idM, $idG, $chr, $beg, $end, $hStr, $strC, $strI, $strC, "", "", $phase, "", "", "gene", "mRNA", "", $note)."\n";
+            print FH join("\t", $idM, $idG, $hId, $beg, $end, $hSrd, $strC, $strI, $strC, "", "", $phase, "", "", "gene", "mRNA", "", $note)."\n";
         }
     }
     close FH;
 }
-
 
 
 1;

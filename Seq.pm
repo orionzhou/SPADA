@@ -16,7 +16,7 @@ require Exporter;
     get_start_codons get_stop_codon
     seqRet seqLen getLongestOrf getSubSeq slideSeq
     validate_dna_seq checkDnaSeq checkProtSeq
-    translate_smart/;
+    seqCompare translate_smart/;
 @EXPORT_OK = qw//;
 
 my (%genetic_code) = (
@@ -299,6 +299,25 @@ sub seqLen {
     die "no sequence file: $f_seq\n" unless -s $f_seq;
     my $db = Bio::DB::Fasta->new($f_seq);
     return $db->length($seqid);
+}
+
+sub seqCompare {
+    my ($qry, $tgt) = @_;
+    my ($lenQ, $lenT) = (length($qry), length($tgt));
+    $lenQ == $lenT || die "unequal seq length: $lenQ <> $lenT\n$qry\n$tgt\n";
+    my ($match, $misMatch, $baseN) = (0, 0, 0);
+    for my $j (0..$lenQ-1) {
+        my $chQ = uc(substr($qry, $j, 1));
+        my $chT = uc(substr($tgt, $j, 1));
+        if($chQ eq "N" || $chT eq "N") {
+            $baseN ++;
+        } elsif($chQ eq $chT) {
+            $match ++;
+        } else {
+            $misMatch ++;
+        }
+    }
+    return ($match, $misMatch, $baseN);
 }
 
 sub get_start_codons {

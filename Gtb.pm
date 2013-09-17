@@ -11,7 +11,7 @@ use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter AutoLoader/;
 @EXPORT = qw/readGtb gtbSum 
-    gtb2Gff gtb2Bed gtb2Seq gtb2Tbl
+    gtb2Gff gtb2Bed gtb2BigBed gtb2Seq gtb2Tbl
     gtb_fix_phase pep_score_gtb/;
 @EXPORT_OK = qw//;
 #print FH join("\t", qw/id parent chr beg end strand locE locI locC loc5 loc3 phase source conf cat1 cat2 cat3 note/)."\n";
@@ -120,13 +120,33 @@ sub gtb2Bed {
         for my $rna ($gene->get_rna()) {
             my $idStr = $rna->id;
             $idStr .= $rna->note if $rna->note;
-            print FH join("\t", $rna->seqid, $rna->beg-1, $rna->end, $idStr, 0, $rna->strand)."\n";
+            my $chr = $rna->seqid;
+            my $srd = $rna->strand;
+            my @locs = sort {$a->[0] <=> $b->[0]} @{$rna->exon};
+            my $beg = $locs[0]->[0] - 1;
+            my $end = $locs[-1]->[1];
+            my $n = @locs;
+            my @begs = map {$_->[0] - 1 - $beg} @locs;
+            my @lens = map {$_->[1] - $_->[0] + 1} @locs;
+
+            my $tBeg = min( map {$_->[0]} @{$rna->cds} ) - 1;
+            my $tEnd = max( map {$_->[1]} @{$rna->cds} );
+            print FH join("\t", $chr, $beg, $end, $idStr, 0, $srd, $tBeg, $tEnd, 0,
+                $n, join(",", @lens), join(",", @begs) )."\n";
             printf "  Gtb -> Bed %5d RNA | %5d gene...\n", $cntR, $cntG if $cntR % 1000 == 0;
             $cntR ++;
         }
         $cntG ++; 
     }
     close FH;
+}
+sub gtb2BigBed {
+    my ($fi, $fo, $fs) = @_;
+    my $ft = "$fo.tmp";
+    gtb2Bed($fi, $ft);
+    runCmd("bedSort $ft $ft", 1);
+    runCmd("bedToBigBed -tab $ft $fs $fo", 1);
+    runCmd("rm $ft", 1);
 }
 sub gtb2Tbl {
     my ($fi, $fo) = @_;
@@ -194,7 +214,7 @@ sub gtb_fix_phase {
             }
         }
         if($frame < 0) {
-            printf "%s: cannot find frame\n", $id;
+            die "$id: cannot find frame\n$seqStr\n";
         } elsif($frame > 0) {
             $n_fixed ++;
             my @phases_old = split(",", $phase);
