@@ -403,18 +403,6 @@ sub getLongestOrf {
 }
 
 
-sub validate_dna_seq {
-    my ($fi, $fo) = @_;
-    my $seqHI = Bio::SeqIO->new(-file=>"<$fi", -format=>'fasta');
-    my $seqHO = Bio::SeqIO->new(-file=>">$fo", -format=>'fasta');
-    while(my $seqO = $seqHI->next_seq()) {
-        my ($id, $seq) = ($seqO->id, $seqO->seq);
-        $seq =~ s/[^ATCGN]/N/ig;
-        $seqHO->write_seq(Bio::Seq->new(-id=>$id, -seq=>$seq));
-    }
-    $seqHI->close();
-    $seqHO->close();
-}
 sub checkProtSeq {
     my ($seqPro) = @_;
     my ($codonStart, $codonStop, $preStop, $gap) = (0) x 4;

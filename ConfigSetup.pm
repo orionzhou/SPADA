@@ -111,6 +111,7 @@ sub config_setup {
     $ENV{"TMP_DIR"} = $ENV{"SPADA_OUT_DIR"};
     
     $ENV{"BLOSUM62"} = $ENV{"SPADA_SRC_DIR"}."/BLOSUM62";
+    $ENV{"BLOSUM80"} = $ENV{"SPADA_SRC_DIR"}."/BLOSUM80";
     push @INC, $ENV{"SPADA_SRC_DIR"};
     $ENV{'PATH'} = join(":", $ENV{"SPADA_SRC_DIR"}, $ENV{'PATH'});
 }

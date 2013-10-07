@@ -52,8 +52,7 @@ use Bio::Seq;
 use Bio::SeqIO;
 
 my ($fi, $fo) = ('') x 2;
-my $fhi;
-my $fho;
+my ($fhi, $fho);
 my $seq_id = '';
 my $seq_desc = '';
 my $seq_id_old ='';
@@ -71,13 +70,13 @@ GetOptions(
 pod2usage(1) if $help_flag;
 pod2usage(2) if !$fi || !$fo;
 
-if ($fi eq "stdin") {
+if ($fi eq "stdin" || $fi eq "-") {
     $fhi = \*STDIN;
 } else {
     open ($fhi, $fi) || die "Can't open file $fi: $!\n";
 }
 
-if ($fo eq "stdout") {
+if ($fo eq "stdout" || $fo eq "-") {
     $fho = \*STDOUT;
 } else {
     open ($fho, ">$fo") || die "Can't open file $fo for writing: $!\n";
