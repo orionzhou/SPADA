@@ -6,6 +6,7 @@ use Bio::SeqIO;
 use Log::Log4perl;
 use Data::Dumper;
 use Common;
+use Location;
 use Align;
 use Seq;
 use Hmm;

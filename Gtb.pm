@@ -1,6 +1,7 @@
 package Gtb;
 use strict;
 use Common;
+use Location; 
 use Seq;
 use Gene;
 use Data::Dumper;
@@ -11,7 +12,7 @@ use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter AutoLoader/;
 @EXPORT = qw/readGtb gtbSum 
-    gtb2Gff gtb2Bed gtb2BigBed gtb2Seq gtb2Tbl
+    gtb2gff gtb2bed gtb2fas gtb2gtbx gtb2tbl
     gtb_fix_phase pep_score_gtb/;
 @EXPORT_OK = qw//;
 #print FH join("\t", qw/id parent chr beg end strand locE locI locC loc5 loc3 phase source conf cat1 cat2 cat3 note/)."\n";
@@ -33,9 +34,9 @@ sub readGtb {
     return $rst;
 }
 sub gtbSum {
-    my ($fi, $opt) = @_;
+    my ($fhi, $opt) = @_;
     $opt = 1 unless defined($opt);
-    my $t = readTable(-in=>$fi, -header=>1);
+    my $t = readTable(-inh=>$fhi, -header=>1);
     $t->sort("parent", 1, 0, "id", 1, 0);
     my @idGs = $t->col("parent");
     my $ref = group(\@idGs);
@@ -49,18 +50,10 @@ sub gtbSum {
     return ($t, $ref, \@idGs);
 }
 
-sub gtb2Seq { # opt = 1 (add a 'seq' column at the end); 2 (write to fasta file)
-    my ($fi, $fo, $f_seq, $opt) = rearrange(['in', 'out', 'seq', 'opt'], @_);
-    $opt ||= 1;
-    my $t = readTable(-in=>$fi, -header=>1);
-    my $seqH;
-    if($opt == 1) {
-        my $idx_seq = first_index {$_ eq "seq"} $t->header;
-        $t->addCol([("") x $t->nofRow], "seq") if $idx_seq < 0;
-    } else {
-        die "unknown opt: $opt\n" if $opt != 2;
-        $seqH = Bio::SeqIO->new(-file=>">$fo", -format=>"fasta");
-    }
+sub gtb2fas { 
+    my ($fhi, $fho, $f_seq) = @_;
+    my $t = readTable(-inh=>$fhi, -header=>1);
+    my $seqH = Bio::SeqIO->new(-fh=>$fho, -format=>"fasta");
 
     for my $i (0..$t->nofRow-1) {
         my ($id, $pa, $chr, $strand, $phase, $locS, $cat1, $cat2) = 
@@ -73,25 +66,37 @@ sub gtb2Seq { # opt = 1 (add a 'seq' column at the end); 2 (write to fasta file)
         my $seqStr = seqRet($loc, $chr, $strand, $f_seq);
         my $seq_cds = Bio::Seq->new(-id=>$id, -seq=>$seqStr);
         my $seq_pro = $seq_cds->translate(-frame=>$phase1);
-        if($opt == 1) {
-            $t->setElm($i, "seq", $seq_pro->seq);
-        } else {
-            $seqH->write_seq($seq_pro);
-        }
-        printf "  extracting sequence from Gtb [%5d / %5d]\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
-    }
-
-    if($opt == 1) {
-        open(FH, ">$fo");
-        print FH $t->csv(1, {delimiter=>"\t"});
-        close FH;
+        $seqH->write_seq($seq_pro);
+        printf "%8d/%8d\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
     }
 }
-sub gtb2Gff {
-    my ($fi, $fo) = @_;
-    my ($t, $ref, $idGs) = gtbSum($fi, 0);
-    open(FH, ">$fo");
-    print FH "##gff-version 3\n";
+sub gtb2gtbx {
+    my ($fhi, $fho, $f_seq) = @_;
+    my $t = readTable(-inh=>$fhi, -header=>1);
+    
+    my $idx_seq = first_index {$_ eq "seq"} $t->header;
+    $t->addCol([("") x $t->nofRow], "seq") if $idx_seq < 0;
+
+    for my $i (0..$t->nofRow-1) {
+        my ($id, $pa, $chr, $strand, $phase, $locS, $cat1, $cat2) = 
+            map {$t->elm($i, $_)} qw/id parent chr strand phase locC cat1 cat2/;
+        next if $cat2 ne "mRNA";
+        die "no locCDS for $id\n" unless $locS;
+        my $phase1 = [split(",", $phase)]->[0];
+
+        my $loc = locStr2Ary($locS);
+        my $seqStr = seqRet($loc, $chr, $strand, $f_seq);
+        my $seq_cds = Bio::Seq->new(-id=>$id, -seq=>$seqStr);
+        my $seq_pro = $seq_cds->translate(-frame=>$phase1);
+        $t->setElm($i, "seq", $seq_pro->seq);
+        printf "%8d/%8d\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
+    }
+    print $fho $t->csv(1, {delimiter=>"\t"});
+    close $fho;
+}
+sub gtb2gff {
+    my ($fhi, $fho) = @_;
+    my ($t, $ref, $idGs) = gtbSum($fhi, 0);
     my ($cntG, $cntR) = (1, 1);
     for my $idG (@$idGs) {
         my ($idxB, $cnt) = @{$ref->{$idG}};
@@ -105,13 +110,10 @@ sub gtb2Gff {
         }
         $cntG ++; 
     }
-    close FH;
 }
-sub gtb2Bed {
-    my ($fi, $fo) = @_;
-    my ($t, $ref, $idGs) = gtbSum($fi);
-    open(FH, ">$fo");
-    print FH "#track name=gene_models useScore=0\n";
+sub gtb2bed {
+    my ($fhi, $fho) = @_;
+    my ($t, $ref, $idGs) = gtbSum($fhi);
     my ($cntG, $cntR) = (1, 1);
     for my $idG (@$idGs) {
         my ($idxB, $cnt) = @{$ref->{$idG}};
@@ -138,23 +140,12 @@ sub gtb2Bed {
         }
         $cntG ++; 
     }
-    close FH;
 }
-sub gtb2BigBed {
-    my ($fi, $fo, $fs) = @_;
-    my $ft = "$fo.tmp";
-    gtb2Bed($fi, $ft);
-    runCmd("bedSort $ft $ft", 1);
-    runCmd("bedToBigBed -tab $ft $fs $fo", 1);
-    runCmd("rm $ft", 1);
-}
-sub gtb2Tbl {
-    my ($fi, $fo) = @_;
-    my $t = readTable(-in=>$fi, -header=>1);
+sub gtb2tbl {
+    my ($fhi, $fho) = @_;
+    my $t = readTable(-inh=>$fhi, -header=>1);
     my @chrs = uniq($t->col("chr"));
 
-    open(FH, ">$fo");
-    print FH join("\t", qw/chr beg end type id/)."\n";
     my $h_type = {1=>"cds", 2=>"utr5", 3=>"utr3", 4=>"intron"};
     for my $chr (@chrs) {
         my $t2 = $t->match_pattern("\$_->[2] eq '$chr'");
@@ -190,9 +181,7 @@ sub gtb2Tbl {
             print FH join("\t", $chr, $beg, $end, $h_type->{$typeNum}, $id)."\n";
         }
     }
-    close FH;
 }
-  
 
 sub gtb_fix_phase {
     my ($fi, $fo, $f_ref) = @_;

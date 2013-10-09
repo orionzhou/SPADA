@@ -1,5 +1,6 @@
 package CompareModel;
 use strict; 
+use Location; 
 use Common; 
 use Data::Dumper;
 use List::Util qw/min max sum/;

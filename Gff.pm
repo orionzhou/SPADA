@@ -12,7 +12,7 @@ use List::MoreUtils qw/first_index last_index insert_after apply indexes pairwis
 use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter/;
-@EXPORT = qw/parse_gff gff2Gtb
+@EXPORT = qw/parse_gff gff2gtb
     gffMerge makeAsblTbl makeAsblGff/;
 @EXPORT_OK = qw//;
 sub parse_gff {
@@ -36,22 +36,23 @@ sub parse_gff {
         }
     }
 }
-sub gff2Gtb {
-    my ($fi, $fo, $fs) = @_;
-    open(FH, ">$fo") or die "cannot open $fo for writing\n";
-    print FH join("\t", qw/id parent chr beg end strand locE locI locC loc5 loc3 phase source conf cat1 cat2 cat3 note/)."\n";
-
+sub gff2gtb {
+    my ($fi, $fo) = @_;
+    
+    my $fho;
+    open ($fho, ">$fo") || die "Can't open file $fo for writing: $!\n";
+    print $fho join("\t", qw/id parent chr beg end strand locE locI locC loc5 loc3 phase source conf cat1 cat2 cat3 note/)."\n";
     my ($cntR, $cntG) = (1, 1);
     my $it = parse_gff($fi);
     while(my $gene = $it->()) {
         for my $rna ($gene->get_rna) {
-            print FH $rna->to_gtb()."\n";
+            print $fho $rna->to_gtb()."\n";
             printf "  Gff -> Gtb %5d RNA | %5d gene...\n", $cntR, $cntG if $cntR % 1000 == 0;
             $cntR ++;
         }
         $cntG ++;
     }
-    close FH;
+    close $fho;
 }
 
 sub makeAsblTbl {

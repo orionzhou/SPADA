@@ -1,10 +1,10 @@
 package Gene;
 use strict; 
-use Common; 
 use Data::Dumper;
-use Rna; 
 use List::Util qw/min max sum/;
 use List::MoreUtils qw/first_index last_index insert_after apply indexes pairwise zip uniq/;
+use Common; 
+use Rna; 
 use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter/;

@@ -1,6 +1,7 @@
 package Hits;
 use strict; 
 use Common; 
+use Location; 
 use Seq;
 use Bio::Seq;
 use Align;

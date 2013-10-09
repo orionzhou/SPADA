@@ -3,6 +3,7 @@ use strict;
 use File::Basename;
 use File::Path qw/make_path remove_tree/;
 use Bio::SearchIO;
+use Location; 
 use Common;
 use Seq;
 use Gtb;

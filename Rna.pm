@@ -1,6 +1,7 @@
 package Rna;
 use strict; 
 use Common; 
+use Location; 
 use Data::Dumper;
 use List::Util qw/min max sum/;
 use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;

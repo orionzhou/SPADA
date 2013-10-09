@@ -3,6 +3,7 @@ use strict;
 use Cwd qw/abs_path/;
 use File::Path qw/make_path remove_tree/;
 use Common; 
+use Location; 
 use Data::Dumper;
 use Seq;
 use Gff;
@@ -127,9 +128,9 @@ sub pipe_pre_processing {
             system("ln -sf $f_to $f_from");
         }
         my $f61 = "$dir/61_gene.gtb";
-        gff2Gtb($f51, $f61);
+        runCmd("gff2gtb.pl -i $f51 -o $f61", 1);
         my $f62 = "$dir/62_gene.gff";
-        gtb2Gff($f61, $f62);
+        runCmd("gtb2gff.pl -i $f61 -o $f62", 1);
         get_orf_proteome($f61, $f71, $f01);
     }
 }

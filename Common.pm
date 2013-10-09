@@ -161,11 +161,15 @@ sub aryCmp {
     return (\@ary_share, \@ary_1, \@ary_2);
 }
 sub readTable {
-    my ($fi, $header, $skip) = rearrange(['in', 'header', 'skip'], @_);
-    die "$fi is not there\n" unless -s $fi;
+    my ($fi, $fh, $header, $skip) = rearrange(['in', 'inh', 'header', 'skip'], @_);
+    die "no file or handler passed" if !$fi && !$fh;
     $skip ||= 0;
     $header ||= 0;
-    open(my $fh, "<$fi") or die "cannot open $fi\n";
+    if(!$fh) {
+        die "$fi is not there\n" unless -s $fi;
+        open($fh, "<$fi") or die "cannot open $fi\n";
+    }
+
     my $t;
     if($header ne 1 && $header ne 0) {
         $t = Data::Table::fromTSV($fh, 0, $header, {skip_lines=>$skip, skip_pattern=>'(^\s*#)|(^\s*$)'});
@@ -173,7 +177,6 @@ sub readTable {
         $t = Data::Table::fromTSV($fh, $header, {skip_lines=>$skip, skip_pattern=>'(^\s*#)|(^\s*$)'});
     }
 #  printf "\t%s: cols[%d] rows[%d]\n", basename($fi), $t->nofCol, $t->nofRow;
-    close $fh;
     return $t;
 }
 sub scaleNumber {

@@ -4,6 +4,7 @@ use File::Path qw/make_path remove_tree/;
 use Log::Log4perl;
 use Data::Dumper;
 use Common;
+use Location; 
 use Seq;
 use Gtb;
 use CompareModel;

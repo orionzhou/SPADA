@@ -6,13 +6,13 @@
 
 =head1 SYNOPSIS
   
- formatGff.pl [-help] -p <option> -i <input-file> -o <output-file>
+ gfffix.pl [-help] -p <option> -i <input-file> -o <output-file>
 
  Options:
     -help    brief help message
-    -option  input GFF file format option 
-    -in      input file path
-    -out     output file path
+    -in      input file
+    -out     output file
+    -opt     input GFF file format option 
 
 =head1 DESCRIPTION
 
@@ -35,9 +35,9 @@ my $help_flag;
 my ($opt, $fi, $fo);
 my %options = (
     "help|h" => \$help_flag,
-    "option|opt|p=s" => \$opt,
     "in|i=s" => \$fi,
     "out|o=s" => \$fo
+    "opt|p=s" => \$opt,
 );
 
 sub format_gff_tair {

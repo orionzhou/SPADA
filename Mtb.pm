@@ -2,6 +2,7 @@ package Mtb;
 use strict;
 use Data::Dumper;
 use Bio::SearchIO;
+use Location; 
 use Common;
 use Seq;
 use Graph::Undirected;

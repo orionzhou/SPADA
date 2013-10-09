@@ -4,6 +4,7 @@ use File::Path qw/make_path remove_tree/;
 use Bio::Seq;
 use Bio::SeqIO;
 use Common;
+use Location; 
 use Seq;
 use Data::Dumper;
 use Log::Log4perl;
