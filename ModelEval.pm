@@ -32,81 +32,15 @@ sub get_stat_basic {
     my $he = { map {$th->elm($_, "id") => $th->elm($_, "e")} (0..$th->nofRow-1) };
 
     my $t = readTable(-in=>$fi, -header=>1);
-    open(FH, ">$fo") || die "cannot open $fo for writing\n";
-    print FH join("\t", qw/id parent family e seq/)."\n";
+    open(my $fh, ">$fo") || die "cannot open $fo for writing\n";
+    print $fh join("\t", qw/id parent family e seq/)."\n";
     for my $i (0..$t->nofRow-1) {
-        my ($id, $pa, $fam, $seq) = map {$t->elm($i, $_)} qw/id parent cat3 seq/;
-        die "no E-value for $id:$pa\n" unless exists $he->{$pa};
-        my $e = $he->{$pa};
-        print FH join("\t", $id, $pa, $fam, $e, $seq)."\n";
+        my ($id, $par, $fam, $seq) = map {$t->elm($i, $_)} qw/id par cat3 seq/;
+        die "no E-value for $id:$par\n" unless exists $he->{$par};
+        my $e = $he->{$par};
+        print $fh join("\t", $id, $par, $fam, $e, $seq)."\n";
     }
-    close FH;
-}
-sub get_stat_aln {
-    my ($fi, $d_aln, $f_sta, $fo) = @_;
-    my $do = "$fo.dir";
-   
-    my $log = Log::Log4perl->get_logger("ModelEval");
-    $log->info("computing MSA scores");
-    make_path($do) unless -d $do;
-    remove_tree($do, {keep_root => 1});
-    
-    my $f_bin = $ENV{"ClustalO"}."/bin/clustalo";
-    -s $f_bin || $log->error_die("cannot execute $f_bin");
-    
-    open(FH, ">$fo") || die "cannot open $fo for writing\n";
-    print FH join("\t", qw/id score/)."\n";
-  
-    my $ts = readTable(-in=>$f_sta, -header=>1);
-    my $hs;
-    for my $i (0..$ts->nofRow-1) {
-        my ($fam, $nseq, $npos, $gap, $seq) = $ts->row($i);
-        next if $gap == 1;
-        my $f_aln = "$d_aln/$fam.aln";
-        my $h_seq = read_aln_seq($f_aln);
-        my @seqs = map { Bio::Seq->new(-id=>$_, -seq=>$h_seq->{$_}) } keys(%$h_seq);
-        $hs->{$fam} = \@seqs;
-    }
-    
-    my $t = readTable(-in=>$fi, -header=>1);
-    my $ref = group($t->colRef("parent"));
-    my $i = 1;
-    
-    my $f_fas = $ENV{"TMP_DIR"}."/aln_score_".int(rand(1000)).".fa";
-    for my $pa (sort keys(%$ref)) {
-        my ($idx, $cnt) = @{$ref->{$pa}};
-        my $fam = $t->elm($idx, "cat3");
-        my (@ids, @seqs);
-        for my $i ($idx..$idx+$cnt-1) {
-            my ($id, $fam2, $seq) = map {$t->elm($i, $_)} qw/id cat3 seq/;
-            push @ids, $id;
-            push @seqs, Bio::Seq->new(-id=>$id, -seq=>$seq);
-            die "family not consistent for gene[$pa]\n" unless $fam eq $fam2;
-        }
-        
-        my $f_ao = "$do/$pa.fas";
-        if(exists $hs->{$fam}) {
-            writeSeq([@seqs, @{$hs->{$fam}}], $f_fas);
-            runCmd("$f_bin -i $f_fas --outfmt=fasta --force -o $f_ao", 0);
-        } else {
-            my $f_ai = "$d_aln/$fam.aln";
-            $log->error_die("alignment file [$f_ai] is not there") unless -s $f_ai;
-            writeSeq(\@seqs, $f_fas);
-            
-            my $tag_input = @ids == 1 ? "--p1 $f_fas --p2 $f_ai" : "-i $f_fas --p1 $f_ai";
-            runCmd("$f_bin $tag_input --outfmt=fasta --force -o $f_ao", 0);
-        }
-
-        my $h = aln_score_group($f_ao, \@ids);
-        for my $id (@ids) {
-            my $score = 0;
-            $score = $h->{$id} if exists $h->{$id};
-            print FH join("\t", $id, $score)."\n";
-        }
-        printf "  %5d / %5d done...\n", $i+1, scalar(keys(%$ref)) if ($i+1) % 1000 == 0;
-    }
-    runCmd("rm -rf $f_fas $do/*", 0);
-    close FH;
+    close $fh;
 }
 sub get_stat_hmm {
     my ($fi, $d_hmm, $fo) = @_;
@@ -125,23 +59,23 @@ sub get_stat_hmm {
   
     my $f_fas = $ENV{"TMP_DIR"}."/hmmsearch_".int(rand(1000)).".fa";
     my $t = readTable(-in=>$fi, -header=>1);
-    my $ref = group($t->colRef("parent"));
+    my $ref = group($t->colRef("par"));
     my $i = 1;
-    for my $pa (sort keys(%$ref)) {
-        my ($idx, $cnt) = @{$ref->{$pa}};
+    for my $par (sort keys(%$ref)) {
+        my ($idx, $cnt) = @{$ref->{$par}};
         my $h_seq;
         my $fam = $t->elm($idx, "cat3");
         for my $i ($idx..$idx+$cnt-1) {
             my ($id, $fam2, $seq) = map {$t->elm($i, $_)} qw/id cat3 seq/;
             $h_seq->{$id} = Bio::Seq->new(-id=>$id, -seq=>$seq);
-            die "family not consistent for gene[$pa]\n" unless $fam eq $fam2;
+            die "family not consistent for gene[$par]\n" unless $fam eq $fam2;
         }
 
         my $f_hmm = "$d_hmm/$fam.hmm";
         $log->error_die("HMM file [$f_hmm] is not there") unless -s $f_hmm;
         writeSeq([values(%$h_seq)], $f_fas);
         
-        my $f_ao = "$do/$pa.txt";
+        my $f_ao = "$do/$par.txt";
         runCmd("$f_bin -o $f_ao $f_hmm $f_fas", 0);
         my $h = score_hmm_by_hit($f_ao);
         for my $id (sort keys(%$h_seq)) {
@@ -153,6 +87,113 @@ sub get_stat_hmm {
     }
     runCmd("rm -rf $f_fas $do/*", 0);
     close FH;
+}
+sub get_stat_aln {
+    my ($fi, $d_aln, $f_sta, $fo) = @_;
+    my $do = "$fo.dir";
+   
+    my $log = Log::Log4perl->get_logger("ModelEval");
+    $log->info("computing MSA scores");
+    make_path($do) unless -d $do;
+    remove_tree($do, {keep_root => 1});
+    
+    my $f_bin = $ENV{"ClustalO"}."/bin/clustalo";
+    -s $f_bin || $log->error_die("cannot execute $f_bin");
+    
+    open(my $fho, ">$fo") || die "cannot open $fo for writing\n";
+    print $fho join("\t", qw/id score/)."\n";
+  
+    my $ts = readTable(-in=>$f_sta, -header=>1);
+    my $hs;
+    for my $i (0..$ts->nofRow-1) {
+        my ($fam, $nseq, $npos, $gap, $seq) = $ts->row($i);
+        next if $gap == 1;
+        my $f_aln = "$d_aln/$fam.aln";
+        my $h_seq = read_aln_seq($f_aln);
+        my @seqs = map { Bio::Seq->new(-id=>$_, -seq=>$h_seq->{$_}) } keys(%$h_seq);
+        $hs->{$fam} = \@seqs;
+    }
+    
+    my $t = readTable(-in=>$fi, -header=>1);
+    my $ref = group($t->colRef("par"));
+    my $i = 1;
+    
+    my $f_fas = $ENV{"TMP_DIR"}."/aln_score_".int(rand(1000)).".fa";
+    for my $par (sort keys(%$ref)) {
+        my ($idx, $cnt) = @{$ref->{$par}};
+        my $fam = $t->elm($idx, "cat3");
+        my (@ids, @seqs);
+        for my $i ($idx..$idx+$cnt-1) {
+            my ($id, $fam2, $seq) = map {$t->elm($i, $_)} qw/id cat3 seq/;
+            push @ids, $id;
+            push @seqs, Bio::Seq->new(-id=>$id, -seq=>$seq);
+            die "family not consistent for gene[$par]\n" unless $fam eq $fam2;
+        }
+        
+        my $f_ao = "$do/$par.fas";
+        if(exists $hs->{$fam}) {
+            writeSeq([@seqs, @{$hs->{$fam}}], $f_fas);
+            runCmd("$f_bin -i $f_fas --outfmt=fasta --force -o $f_ao", 0);
+        } else {
+            my $f_ai = "$d_aln/$fam.aln";
+            $log->error_die("alignment file [$f_ai] is not there") unless -s $f_ai;
+            writeSeq(\@seqs, $f_fas);
+            
+            my $tag_input = @ids == 1 ? "--p1 $f_fas --p2 $f_ai" : "-i $f_fas --p1 $f_ai";
+            runCmd("$f_bin $tag_input --outfmt=fasta --force -o $f_ao", 0);
+        }
+
+        my $h = aln_score_group($f_ao, \@ids);
+        for my $id (@ids) {
+            my $score = 0;
+            $score = $h->{$id} if exists $h->{$id};
+            print $fho join("\t", $id, $score)."\n";
+        }
+        printf "  %5d / %5d done...\n", $i+1, scalar(keys(%$ref)) if ($i+1) % 1000 == 0;
+    }
+    runCmd("rm -rf $f_fas $do/*", 0);
+    close $fho;
+}
+sub get_stat_pep {
+    my ($fi, $fo) = @_;
+    
+    my $log = Log::Log4perl->get_logger("ModelEval");
+    $log->info("assessing peptide scores");
+    
+    my $tg = readTable(-in=>$fi, -header=>1);
+    open(my $fho, ">$fo") or die "cannot open $fo for writing\n";
+    print $fho join("\t", qw/id codonStart codonStop preStop gap n_cds lenC lenI/)."\n";
+    for my $i (0..$tg->nofRow-1) {
+        my ($id, $par, $chr, $srdG, $locCS, $locIS, $phaseG, $seq) = 
+            map {$tg->elm($i, $_)} qw/id par chr srd locC locI phase seq/;
+        my $locC = locStr2Ary($locCS);
+        my $locI = locStr2Ary($locIS);
+
+        my ($codonStart, $codonStop, $preStop, $gap) = checkProtSeq($seq);
+        
+        my $n_cds = @$locC;
+        my $lenC = locAryLen($locC);
+        my $lenI = locAryLen($locI);
+        print $fho join("\t", $id, $codonStart, $codonStop, $preStop, $gap, $n_cds, $lenC, $lenI)."\n";
+    }
+    close $fho;
+}
+sub get_stat_sigp {
+    my ($fi, $fo) = @_;
+    my $log = Log::Log4perl->get_logger("ModelEval");
+    $log->info("assessing signalp scores");
+    my $tg = readTable(-in=>$fi, -header=>1);
+    open(my $fho, ">$fo") || die "cannot write $fo\n";
+    print $fho join("\t", qw/id tag score pos/)."\n";
+    for my $i (0..$tg->nofRow-1) {
+        my ($id, $seq) = map {$tg->elm($i, $_)} qw/id seq/;
+#        $seq = substr($seq, 0, 20);
+#        next unless $id eq "AT1G70250.1";
+        my ($tag, $d, $pos) = run_sigp($seq);
+        print $fho join("\t", $id, $tag, $d, $pos)."\n";
+        printf "  %5d / %5d done...\n", $i+1, $tg->nofRow if ($i+1) % 1000 == 0;
+    }
+    close $fho;
 }
 sub merge_stats {
     my ($fi, $fo, $p) = @_;
@@ -217,6 +258,7 @@ sub merge_stats {
     print FH $t->tsv(1); 
     close FH;
 }
+
 sub pick_best_model {
     my ($f_gtb, $f_stat, $fo, $p) = @_;
     
@@ -229,23 +271,23 @@ sub pick_best_model {
 
     my $h;
     for my $i (0..$ts->nofRow-1) {
-        my ($id, $pa, $fam, $e, $tag_sp, $score_sp, $score_hmm, $score_aln, $n_cds, $lenC, $lenI, $codonStart, $codonStop, $preStop) 
+        my ($id, $par, $fam, $e, $tag_sp, $score_sp, $score_hmm, $score_aln, $n_cds, $lenC, $lenI, $codonStart, $codonStop, $preStop) 
             = $ts->row($i);
-        $h->{$pa} ||= [];
-        push @{$h->{$pa}} , [$id, $tag_sp, $score_hmm+$score_aln, $score_sp, $e, $codonStart, $codonStop, $preStop, $tg->rowRef($i)];
+        $h->{$par} ||= [];
+        push @{$h->{$par}} , [$id, $tag_sp, $score_hmm+$score_aln, $score_sp, $e, $codonStart, $codonStop, $preStop, $tg->rowRef($i)];
     }
 
-    open(FH, ">$fo");
-    print FH join("\t", $tg->header)."\n";
+    open(my $fh, ">$fo") || die "cannot write $fo\n";
+    print $fh join("\t", $tg->header)."\n";
     my $cnt = 0;
-    for my $pa (sort (keys(%$h))) {
-        my @rows = sort {$a->[1]<=>$b->[1] || $a->[2] <=> $b->[2] || $a->[3] <=> $b->[3]} @{$h->{$pa}};
+    for my $par (sort (keys(%$h))) {
+        my @rows = sort {$a->[1]<=>$b->[1] || $a->[2] <=> $b->[2] || $a->[3] <=> $b->[3]} @{$h->{$par}};
         my ($id, $tag_sp, $score_aln, $score_sp, $e, $codonStart, $codonStop, $preStop, $row) = @{$rows[-1]};
-        print FH join("\t", @$row)."\n";
+        print $fh join("\t", @$row)."\n";
         $cnt ++;
     }
     $log->info(sprintf "\t%5d / %5d picked", $cnt, $tg->nofRow);
-    close FH;
+    close $fh;
 }
 sub remove_ovlp_models {
     my ($f_stat, $fi, $fo) = @_;
@@ -263,7 +305,7 @@ sub remove_ovlp_models {
     my ($hl, $hs);
     my $ti = readTable(-in=>$fi, -header=>1);
     for my $i (0..$ti->nofRow-1) {
-        my ($id, $pa, $chr, $beg, $end) = map {$ti->elm($i, $_)} qw/id parent chr beg end/;
+        my ($id, $par, $chr, $beg, $end) = map {$ti->elm($i, $_)} qw/id par chr beg end/;
         my $loc = [$beg, $end, $i];
         $hl->{$chr} ||= [];
         push @{$hl->{$chr}}, $loc;
@@ -308,7 +350,7 @@ sub filter_models {
     my $ts = readTable(-in=>$f_stat, -header=>1);
     my $h;
     for my $i (0..$ts->nofRow-1) {
-        my ($id, $pa, $fam, $e, $tag_sp, $score_sp, $score_hmm, $score_aln, $n_cds, $lenC, $lenI, $codonStart, $codonStop, $preStop) 
+        my ($id, $par, $fam, $e, $tag_sp, $score_sp, $score_hmm, $score_aln, $n_cds, $lenC, $lenI, $codonStart, $codonStop, $preStop) 
             = $ts->row($i);
         $h->{$id} = [$tag_sp, $score_hmm, $score_aln, $score_sp, $e, $codonStart, $codonStop, $preStop];
     }
@@ -354,7 +396,7 @@ sub crp_rename {
         $chrStr = sprintf "%0".$chr_digits."d", $chrStr if $chrStr =~ /^\d+$/;
 
         my $id = sprintf "$pre\_%s_chr%s_%sM", lc($fam), $chrStr, $begStr;
-        $ti->setElm($i, "parent", $ti->elm($i, "id"));
+        $ti->setElm($i, "par", $ti->elm($i, "id"));
         $ti->setElm($i, "id", $id);
     }
     
@@ -387,11 +429,11 @@ sub gtb2Friendly {
     }
 
     open(FH, ">$fo") or die "cannot open $fo for writing\n";
-    print FH join("\t", qw/id family chr beg end strand e score_sp score_hmm score_aln sequence/)."\n";
+    print FH join("\t", qw/id family chr beg end srd e score_sp score_hmm score_aln sequence/)."\n";
     for my $i (0..$t->nofRow-1) {
-        my ($id, $chr, $beg, $end, $srd) = map {$t->elm($i, $_)} qw/id chr beg end strand/;
+        my ($id, $chr, $beg, $end, $srd) = map {$t->elm($i, $_)} qw/id chr beg end srd/;
         my ($pa, $fam, $e, $tag_sp, $score_sp, $score_hmm, $score_aln, $n_cds, $seq) 
-            = @{$hs->{$t->elm($i, "parent")}};
+            = @{$hs->{$t->elm($i, "par")}};
         print FH join("\t", $id, $fam, $chr, $beg, $end, $srd, $e, $score_sp, $score_hmm, $score_aln, $seq)."\n";
     }
     close FH;
@@ -433,14 +475,13 @@ sub pipe_model_evaluation {
     
     my $log = Log::Log4perl->get_logger("ModelEval");
     $log->info("#####  Stage 4 [Model Evaluation & Selection]  #####");
-    make_path($dir) unless -d $dir;
+    -d $dir || make_path($dir);
    
     my ($eval_e, $eval_hmm, $eval_aln, $eval_pep) = (1) x 4;
     my $eval_sp = $ENV{"eval_sp"};
 
     my $f30 = "$dir/30_stat_basic.tbl";
     get_stat_basic($f_gtb, $f_hit, $f30);
-
     my $d31 = "$dir/31_stat";
     my $f31_02 = "$d31/02_hmm.tbl";
     my $f31_03 = "$d31/03_aln.tbl";
@@ -448,9 +489,8 @@ sub pipe_model_evaluation {
     my $f31_05 = "$d31/05_sigp.tbl";
     get_stat_hmm($f_gtb, $d_hmm, $f31_02) if $eval_hmm;
     get_stat_aln($f_gtb, $d_aln, $f_sta, $f31_03) if $eval_aln;
-    pep_score_gtb($f_gtb, $f31_04) if $eval_pep;
-    sigp_score_gtb($f_gtb, $f31_05) if $eval_sp;
-
+    get_stat_pep($f_gtb, $f31_04) if $eval_pep;
+    get_stat_sigp($f_gtb, $f31_05) if $eval_sp;
     my $p = {
         "hmm" => [ $eval_hmm, $f31_02 ],
         "aln" => [ $eval_aln, $f31_03 ],
@@ -468,14 +508,14 @@ sub pipe_model_evaluation {
     
     my $f61 = "$dir/61_final.gtb";
     crp_rename($f59, $f_ref, $f61, "spada");
-    gtb2Gff($f61, "$dir/61_final.gff");
+    runCmd("gtb2gff.pl -i $f61 -o $dir/61_final.gff", 1);
     gtb2Friendly($f61, "$dir/61_final.tbl", $f41);
     
     my $f81 = "$dir/81_aln";
     align_by_group(-f_gtb=>$f61, -hmmstat=>$f_sta, -out=>$f81);
     my $f91 = "$dir/91_compare.tbl";
     if(defined($f_gtb_ref) && -s $f_gtb_ref) {
-        compare_models($f61, $f_gtb_ref, $f91);
+        runCmd("gtbcompare.pl -q $f61 -t $f_gtb_ref -o $f91", 1);
     }
 }
 

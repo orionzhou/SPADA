@@ -64,12 +64,15 @@ sub get_orf_proteome {
 
     my $h = {};
     for my $i (0..$t->nofRow-1) {
-        my ($idM, $idG, $chr, $srd, $phaseS, $locS, $cat1, $cat2) = 
-            map {$t->elm($i, $_)} qw/id parent chr strand phase locC cat1 cat2/;
-        next if $cat2 ne "mRNA";
+        my ($idM, $idG, $chr, $beg, $end, $srd, $phaseS, $locS, $cat1, $cat2) = 
+            map {$t->elm($i, $_)} qw/id par chr beg end srd phase locC cat1 cat2/;
+        $cat2 eq "mRNA" || next;
         die "no locCDS for $idM\n" unless $locS;
-        my $loc = locStr2Ary($locS);
-
+        my $rloc = locStr2Ary($locS);
+        my $loc = $srd eq "+" ? [ map {[$beg+$_->[0]-1, $beg+$_->[1]-1]} @$rloc ]
+            : [ map {[$end-$_->[1]+1, $end-$_->[0]+1]} @$rloc ];
+        
+        $phaseS ne "" || die "$idM: no phase\n"; 
         $loc = cropLoc_cds($loc, $srd, $phaseS);
         my $id = join($sep, $chr, locAry2Str($loc), $srd, "p");
         next if exists $h->{$id};

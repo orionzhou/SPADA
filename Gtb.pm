@@ -11,13 +11,14 @@ use List::MoreUtils qw/first_index last_index insert_after apply indexes pairwis
 use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter AutoLoader/;
-@EXPORT = qw/readGtb gtbSum 
-    gtb2gff gtb2bed gtb2fas gtb2gtbx gtb2tbl
-    gtb_fix_phase pep_score_gtb/;
+@EXPORT = qw/@HEAD_GTB @HEAD_GTBX
+    readGtb gtbSum gtb2gff gtb2bed gtb2gtbx gtb2tbl
+    get_ovlp_gtb/;
 @EXPORT_OK = qw//;
-#print FH join("\t", qw/id parent chr beg end strand locE locI locC loc5 loc3 phase source conf cat1 cat2 cat3 note/)."\n";
-#my ($id, $pa, $chr, $beg, $end, $strand, $locE, $locI, $locC, $loc5, $loc3, $phase, $source, $conf, $cat1, $cat2, $cat3, $note) = $t->row($i);
-#my ($id, $pa, $chr, $beg, $end, $strand, $locE, $locI, $locC, $loc5, $loc3, $phase, $source, $conf, $cat1, $cat2, $cat3, $note) = @$_;
+
+our @HEAD_GTB  = qw/id par chr beg end srd locE locI locC loc5 loc3 phase src conf cat1 cat2 cat3 note/;
+our @HEAD_GTBX = qw/id par chr beg end srd locE locI locC loc5 loc3 phase src conf cat1 cat2 cat3 note seq/;
+#my ($id, $par, $chr, $beg, $end, $srd, $locE, $locI, $locC, $loc5, $loc3, $phase, $src, $conf, $cat1, $cat2, $cat3, $note) = $t->row($i);
 sub readGtb {
     my ($fi, $opt) = rearrange(['in', 'opt'], @_);
     $opt ||= 1;
@@ -37,8 +38,8 @@ sub gtbSum {
     my ($fhi, $opt) = @_;
     $opt = 1 unless defined($opt);
     my $t = readTable(-inh=>$fhi, -header=>1);
-    $t->sort("parent", 1, 0, "id", 1, 0);
-    my @idGs = $t->col("parent");
+    $t->sort("par", 1, 0, "id", 1, 0);
+    my @idGs = $t->col("par");
     my $ref = group(\@idGs);
     @idGs = sort {$ref->{$a}->[0] <=> $ref->{$b}->[0]} keys %$ref;
     printf "%d genes : %d models\n", scalar(@idGs), $t->nofRow if $opt == 1;
@@ -50,48 +51,28 @@ sub gtbSum {
     return ($t, $ref, \@idGs);
 }
 
-sub gtb2fas { 
-    my ($fhi, $fho, $f_seq) = @_;
-    my $t = readTable(-inh=>$fhi, -header=>1);
-    my $seqH = Bio::SeqIO->new(-fh=>$fho, -format=>"fasta");
-
-    for my $i (0..$t->nofRow-1) {
-        my ($id, $pa, $chr, $strand, $phase, $locS, $cat1, $cat2) = 
-            map {$t->elm($i, $_)} qw/id parent chr strand phase locC cat1 cat2/;
-        next if $cat2 ne "mRNA";
-        die "no locCDS for $id\n" unless $locS;
-        my $phase1 = [split(",", $phase)]->[0];
-
-        my $loc = locStr2Ary($locS);
-        my $seqStr = seqRet($loc, $chr, $strand, $f_seq);
-        my $seq_cds = Bio::Seq->new(-id=>$id, -seq=>$seqStr);
-        my $seq_pro = $seq_cds->translate(-frame=>$phase1);
-        $seqH->write_seq($seq_pro);
-        printf "%8d/%8d\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
-    }
-}
 sub gtb2gtbx {
-    my ($fhi, $fho, $f_seq) = @_;
+    my ($fhi, $fho, $fs) = @_;
     my $t = readTable(-inh=>$fhi, -header=>1);
     
-    my $idx_seq = first_index {$_ eq "seq"} $t->header;
-    $t->addCol([("") x $t->nofRow], "seq") if $idx_seq < 0;
-
+    $t->addCol([("") x $t->nofRow], "seq") if $t->colIndex("seq") < 0;
     for my $i (0..$t->nofRow-1) {
-        my ($id, $pa, $chr, $strand, $phase, $locS, $cat1, $cat2) = 
-            map {$t->elm($i, $_)} qw/id parent chr strand phase locC cat1 cat2/;
+        my ($id, $par, $chr, $beg, $end, $srd, $phase, $locS, $cat1, $cat2) = 
+            map {$t->elm($i, $_)} qw/id par chr beg end srd phase locC cat1 cat2/;
         next if $cat2 ne "mRNA";
         die "no locCDS for $id\n" unless $locS;
         my $phase1 = [split(",", $phase)]->[0];
 
-        my $loc = locStr2Ary($locS);
-        my $seqStr = seqRet($loc, $chr, $strand, $f_seq);
+        my $rloc = locStr2Ary($locS);
+        my $loc = $srd eq "-" ? [map {[$end-$_->[1]+1, $end-$_->[0]+1]} @$rloc] : 
+            [map {[$beg+$_->[0]-1, $beg+$_->[1]-1]} @$rloc];
+        my $seqStr = seqRet($loc, $chr, $srd, $fs);
         my $seq_cds = Bio::Seq->new(-id=>$id, -seq=>$seqStr);
         my $seq_pro = $seq_cds->translate(-frame=>$phase1);
         $t->setElm($i, "seq", $seq_pro->seq);
-        printf "%8d/%8d\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
+        printf "%5d | %5d\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
     }
-    print $fho $t->csv(1, {delimiter=>"\t"});
+    print $fho $t->tsv(1);
     close $fho;
 }
 sub gtb2gff {
@@ -102,9 +83,9 @@ sub gtb2gff {
         my ($idxB, $cnt) = @{$ref->{$idG}};
         my $ts = $t->subTable([$idxB..$idxB+$cnt-1]);
         my $gene = Gene->new( -gtb=>$ts );
-        print FH $gene->to_gff()."\n";
+        print $fho $gene->to_gff()."\n";
         for my $rna ($gene->get_rna()) {
-            print FH $rna->to_gff()."\n";
+            print $fho $rna->to_gff()."\n";
             printf "  Gtb -> Gff %5d RNA | %5d gene...\n", $cntR, $cntG if $cntR % 1000 == 0;
             $cntR ++;
         }
@@ -125,15 +106,25 @@ sub gtb2bed {
             my $chr = $rna->seqid;
             my $srd = $rna->strand;
             my @locs = sort {$a->[0] <=> $b->[0]} @{$rna->exon};
-            my $beg = $locs[0]->[0] - 1;
-            my $end = $locs[-1]->[1];
+            my ($beg, $end) = ($rna->beg, $rna->end);
             my $n = @locs;
-            my @begs = map {$_->[0] - 1 - $beg} @locs;
-            my @lens = map {$_->[1] - $_->[0] + 1} @locs;
-
-            my $tBeg = min( map {$_->[0]} @{$rna->cds} ) - 1;
-            my $tEnd = max( map {$_->[1]} @{$rna->cds} );
-            print FH join("\t", $chr, $beg, $end, $idStr, 0, $srd, $tBeg, $tEnd, 0,
+            
+            my $rloc = [ sort {$a->[0] <=> $b->[0]} @{$rna->cds} ];
+            my ($rtBeg, $rtEnd) = ($rloc->[0]->[0], $rloc->[-1]->[1]);
+            
+            my @begs;
+            my @lens;
+            my ($tBeg, $tEnd);
+            if($srd eq "+") {
+                @begs = map {$_->[0] - 1} @locs;
+                @lens = map {$_->[1] - $_->[0] + 1} @locs;
+                ($tBeg, $tEnd) = ($beg+$rtBeg-1, $beg+$rtEnd-1);
+            } else {
+                @begs = reverse map {$end-$beg+1 - $_->[1]} @locs;
+                @lens = reverse map {$_->[1] - $_->[0] + 1} @locs;
+                ($tBeg, $tEnd) = ($end-$rtEnd+1, $end-$rtBeg+1);
+            }
+            print $fho join("\t", $chr, $beg-1, $end, $idStr, 0, $srd, $tBeg-1, $tEnd, 0,
                 $n, join(",", @lens), join(",", @begs) )."\n";
             printf "  Gtb -> Bed %5d RNA | %5d gene...\n", $cntR, $cntG if $cntR % 1000 == 0;
             $cntR ++;
@@ -152,7 +143,7 @@ sub gtb2tbl {
         my @locs;
         my @stats;
         for my $i (0..$t2->nofRow-1) {
-            my ($id, $pa, $chr, $beg, $end, $strand, $locE, $locI, $locC, $loc5, $loc3, $phase, $source, $conf, $cat1, $cat2, $cat3, $note) = $t2->row($i);
+            my ($id, $par, $chr, $beg, $end, $srd, $locE, $locI, $locC, $loc5, $loc3, $phase, $src, $conf, $cat1, $cat2, $cat3, $note) = $t2->row($i);
             $locC = locStr2Ary($locC);
             push @locs, @$locC;
             push @stats, ([1, $id]) x @$locC;
@@ -178,67 +169,23 @@ sub gtb2tbl {
         for (@$ref) {
             my ($beg, $end, $idx) = @$_;
             my ($typeNum, $id) = @{$stats[$idx]};
-            print FH join("\t", $chr, $beg, $end, $h_type->{$typeNum}, $id)."\n";
+            print $fho join("\t", $chr, $beg, $end, $h_type->{$typeNum}, $id)."\n";
         }
     }
 }
 
-sub gtb_fix_phase {
-    my ($fi, $fo, $f_ref) = @_;
-    my $t = readTable(-in=>$fi, -header=>1);
+sub get_ovlp_gtb { # opt_srd = 1 (srd sensitive); 2 (srd Insensitive)
+    my ($locQ, $chr, $srd, $t, $opt_srd) = rearrange(['loc', 'chr', 'srd', 'tgt', 'opt'], @_);
+    $opt_srd ||= 1;
+    die "no strand provided\n" if $opt_srd == 1 && !defined($srd);
+    $locQ = [ sort {$a->[0] <=> $b->[0]} @$locQ ];
+    my ($beg, $end) = ($locQ->[0]->[0], $locQ->[-1]->[1]);
 
-    my $n_fixed = 0;
-    for my $i (0..$t->nofRow-1) {
-        my ($id, $pa, $chr, $beg, $end, $strand, $locE, $locI, $locC, $loc5, $loc3, $phase, $source, $conf, $cat1, $cat2, $cat3, $note) = $t->row($i);
-        my $loc = locStr2Ary($locC);
-        my $len = locAryLen($loc);
-        my $seqStr = seqRet($loc, $chr, $strand, $f_ref);
-        my $seq = Bio::Seq->new(-id=>"test", -seq=>$seqStr);
-        my $frame = -1;
-        for my $i (0..2) {
-            my $prot = $seq->translate(-frame=>$i)->seq;
-            if($prot =~ /^[A-Z]+\*?$/i) {
-                $frame = $i;
-                last;
-            }
-        }
-        if($frame < 0) {
-            die "$id: cannot find frame\n$seqStr\n";
-        } elsif($frame > 0) {
-            $n_fixed ++;
-            my @phases_old = split(",", $phase);
-            my @phases_new = map {($frame + $_) % 3} @phases_old;
-            $t->setElm($i, "phase", join(",", @phases_new));
-        }
-        printf "  fixing Gtb phases [%5d / %5d]\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
+    my $t2 = $t->match_pattern_hash("\$_{'chr'} eq '$chr' && \$_{'beg'} <= $end && \$_{'end'} >= $beg");
+    if($opt_srd == 1) {
+        $t2 = $t2->match_pattern_hash("\$_{'srd'} eq '$srd'");
     }
-    print "  $n_fixed non-0 frames fixed\n";
-  
-    open(FH, ">$fo") or die "cannot open $fo to write\n";
-    print FH $t->csv(1, {delimiter=>"\t"});
-    close FH;
-}
-
-sub pep_score_gtb {
-    my ($fi, $fo) = @_;
-    my $tg = readTable(-in=>$fi, -header=>1);
-    open(FH, ">$fo") or die "cannot open $fo for writing\n";
-    print FH join("\t", qw/id codonStart codonStop preStop gap n_cds lenC lenI/)."\n";
-    for my $i (0..$tg->nofRow-1) {
-        my ($id, $pa, $chr, $strandG, $locCStr, $locIStr, $phaseG, $seq) = 
-            map {$tg->elm($i, $_)} qw/id parent chr strand locC locI phase seq/;
-        my $locCAry = locStr2Ary($locCStr);
-        my $locIAry = locStr2Ary($locIStr);
-
-        my ($codonStart, $codonStop, $preStop, $gap) = checkProtSeq($seq);
-        
-        my $n_cds = @$locCAry;
-        my $lenC = locAryLen($locCAry);
-        my $lenI = locAryLen($locIAry);
-        print FH join("\t", $id, $codonStart, $codonStop, $preStop, $gap, $n_cds, $lenC, $lenI)."\n";
-        printf "  assessing peptide scores: [%5d / %5d]\n", $i+1, $tg->nofRow if ($i+1) % 1000 == 0;
-    }
-    close FH;
+    return $t2;
 }
 
 

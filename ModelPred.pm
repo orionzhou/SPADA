@@ -171,8 +171,8 @@ sub collect_models {
         next unless -s $f_gtb;
         my $tg = readTable(-in=>$f_gtb, -header=>1);
         for my $i (0..$tg->nofRow-1) {
-            my ($id) = $tg->elm($i, "parent");
-            $tg->setElm($i, "source", $source);
+            my ($id) = $tg->elm($i, "par");
+            $tg->setElm($i, "src", $source);
             $hm->{$id} ||= [];
             my $row = $tg->rowRef($i);
             push @{$hm->{$id}}, [@$row[0..18]];
@@ -181,8 +181,8 @@ sub collect_models {
     
     my $cnt = 0;
     my $th = readTable(-in=>$f_hit, -header=>1);
-    open(FH, ">$fo") || $log->error_die("cannot open $fo for writing");
-    print FH join("\t", qw/id parent chr beg end strand locE locI locC loc5 loc3 phase source conf cat1 cat2 cat3 note seq/)."\n";
+    open(my $fh, ">$fo") || $log->error_die("cannot open $fo for writing");
+    print $fh join("\t", @HEAD_GTBX)."\n";
     for my $i (0..$th->nofRow-1) {
         my ($id, $fam) = $th->row($i);
         next if( !exists $hm->{$id} );
@@ -190,11 +190,11 @@ sub collect_models {
             $row->[14] = 'gene';
             $row->[15] = 'mRNA';
             $row->[16] = $fam;
-            print FH join("\t", @$row)."\n";
+            print $fh join("\t", @$row)."\n";
             $cnt ++;
         }
     }
-    close FH;
+    close $fh;
 
     $log->info(sprintf "\t%5d collected", $cnt);
 }
@@ -209,7 +209,7 @@ sub refine_incomplete_models {
     my $tg = readTable(-in=>$fi, -header=>1);
     my @idxs_rm;
     for my $i (0..$tg->nofRow-1) {
-        my ($id, $pa, $locStr, $phase, $seq_gene) = map {$tg->elm($i, $_)} qw/id parent locC phase seq/;
+        my ($id, $pa, $locStr, $phase, $seq_gene) = map {$tg->elm($i, $_)} qw/id par locC phase seq/;
         my $loc = locStr2Ary($locStr);
         $loc = [ sort {$a->[0] <=> $b->[0]} @$loc ];
         my @phases = split(",", $phase);
@@ -275,15 +275,15 @@ sub merge_redundant_models {
     my $ti = readTable(-in=>$fi, -header=>1);
     my $h;
     for my $i (0..$ti->nofRow-1) {
-        my ($id) = $ti->elm($i, "parent");
+        my ($id) = $ti->elm($i, "par");
         $h->{$id} ||= [];
         my $row = $ti->rowRef($i);
         push @{$h->{$id}}, [@$row[0..18]];
     }
   
     my $cnt = 0;
-    open(FH, ">$fo") || $log->error_die("cannot open $fo for writing");
-    print FH join("\t", qw/id parent chr beg end strand locE locI locC loc5 loc3 phase source conf cat1 cat2 cat3 note seq/)."\n";
+    open(my $fh, ">$fo") || $log->error_die("cannot open $fo for writing");
+    print $fh join("\t", @HEAD_GTBX)."\n";
     for my $id (sort keys %$h) {
         my @rows = @{$h->{$id}};
         my @locCs;
@@ -298,31 +298,19 @@ sub merge_redundant_models {
         for my $i (0..$n-1) {
             my $locC = $locCs_uniq[$i];
             my @idxs = indexes {$_ eq $locC} @locCs;
-            my @sources = map {$rows[$_]->[12]} @idxs;
-            my $source = join(" ", uniq(@sources));
+            my @srcs = map {$rows[$_]->[12]} @idxs;
+            my $src = join(" ", uniq(@srcs));
             my $row = @rows[$idxs[0]];
             $row->[0] = sprintf "%s.%02d", $id, ($i+1);
-            $row->[12] = $source;
-            $row->[17] = $source;
-            print FH join("\t", @$row)."\n";
+            $row->[12] = $src;
+            $row->[17] = $src;
+            print $fh join("\t", @$row)."\n";
         }
         $cnt += $n;
     }
-    close FH;
+    close $fh;
 
     $log->info(sprintf "\t%5d / %5d passed", $cnt, $ti->nofRow);
-}
-sub locRel2Abs {
-    my ($beg, $end, $strand, $loc_rel_ary, $strand_rel) = @_;
-
-    my $strand_abs = is_opposite_strands($strand, $strand_rel) ? "-" : "+";
-    my $loc_abs_ary;
-    if($strand_abs eq "-") {
-        $loc_abs_ary = [ map {[$end - $_->[1] + 1, $end - $_->[0] + 1]} @$loc_rel_ary ];
-    } else {
-        $loc_abs_ary = [ map {[$beg + $_->[0] - 1, $beg + $_->[1] - 1]} @$loc_rel_ary ];
-    }
-    return ($loc_abs_ary, $strand_abs);
 }
 sub recover_global_coordinate {
     my ($f_hit, $fi, $fo) = @_;
@@ -333,36 +321,32 @@ sub recover_global_coordinate {
 
     my $tg = readTable(-in=>$fi, -header=>1);
     for my $i (0..$tg->nofRow-1) {
-        my ($id, $pa, $loc_cds_rel_str, $seq_pro) = map {$tg->elm($i, $_)} qw/id parent locC seq/;
-        my $loc_cds_rel_ary = locStr2Ary($loc_cds_rel_str);
+        my ($id, $par, $rlocCS, $seq_pro) = map {$tg->elm($i, $_)} qw/id par locC seq/;
+        my $rlocC = [ sort {$a->[0] <=> $b->[0]} @{locStr2Ary($rlocCS)} ];
 
-        $log->error_die("no hit info for $pa") unless exists $h->{$pa};
-        my ($id_hit, $fam, $chr, $beg, $end, $strand, $locS, $begr, $endr, $begL, $endL, $locLS, $e, $seqP, $seq)
-            = @{$h->{$pa}};
+        $log->error_die("no hit info for $par") unless exists $h->{$par};
+        my ($idh, $fam, $chr, $begh, $endh, $srd, $locS, $begr, $endr) = @{$h->{$par}};
 
-        my ($locCAry, $strand_abs) = locRel2Abs($begr, $endr, $strand, $loc_cds_rel_ary, "+");
-        $log->error_die("strand inconsistent: $strand_abs, $strand") unless $strand_abs eq $strand;
-        $locCAry = [ sort {$a->[0] <=> $b->[0]} @$locCAry ];
-        my ($begM, $endM) = ($locCAry->[0]->[0], $locCAry->[-1]->[-1]);
-        my ($locIAry) = posDiff([[$begM, $endM]], $locCAry);
+        my ($rbeg, $rend) = ($rlocC->[0]->[0], $rlocC->[-1]->[1]);
+        my ($beg, $end) = $srd eq "+" ? ($begr+$rbeg-1, $begr+$rend-1) :
+            ($endr-$rend+1, $endr-$rbeg+1);
+        my $locC = [ map {[$_->[0]-$rbeg+1, $_->[1]-$rbeg+1]} @$rlocC ];
+        my ($locI) = posDiff([[1, $rend-$rbeg+1]], $locC);
 
-        my $locCStr = locAry2Str($locCAry);
-        my $locIStr = locAry2Str($locIAry);
-        my $phase = join(",", getPhase($locCAry, $strand));
-
+        my $phase = join(",", @{getPhase($locC, "+")});
         $tg->setElm($i, "chr", $chr);
-        $tg->setElm($i, "beg", $begM);
-        $tg->setElm($i, "end", $endM);
-        $tg->setElm($i, "strand", $strand_abs);
-        $tg->setElm($i, "locE", $locCStr);
-        $tg->setElm($i, "locI", $locIStr);
-        $tg->setElm($i, "locC", $locCStr);
+        $tg->setElm($i, "beg", $beg);
+        $tg->setElm($i, "end", $end);
+        $tg->setElm($i, "srd", $srd);
+        $tg->setElm($i, "locE", locAry2Str($locC));
+        $tg->setElm($i, "locI", locAry2Str($locI));
+        $tg->setElm($i, "locC", locAry2Str($locC));
         $tg->setElm($i, "phase", $phase);
     }
 
-    open(FH, ">$fo") || $log->error_die("cannot open $fo for writing");
-    print FH $tg->tsv(1);
-    close FH;
+    open(my $fho, ">$fo") || $log->error_die("cannot open $fo for writing");
+    print $fho $tg->tsv(1);
+    close $fho;
 }
 sub remove_incompatible_models { # remove models with no overlap with 'extended hits'
     my ($f_hit, $fi, $fo) = @_;
@@ -380,14 +364,16 @@ sub remove_incompatible_models { # remove models with no overlap with 'extended 
     my @idxs_rm;
     my $ti = readTable(-in=>$fi, -header=>1);
     for my $i (0..$ti->nofRow-1) {
-        my ($id, $pa, $chr, $srdG, $locGS, $locIS, $phaseG) = map {$ti->elm($i, $_)} qw/id parent chr strand locC locI phase/;
-        my $locG = locStr2Ary($locGS);
-        my $locI = locStr2Ary($locIS);
+        my ($id, $par, $chr, $beg, $end, $srd, $locS, $phase) = 
+            map {$ti->elm($i, $_)} qw/id par chr beg end srd locC phase/;
+        my $rloc = locStr2Ary($locS);
+        my $loc = $srd eq "+" ? [ map {[$beg+$_->[0]-1, $beg+$_->[1]-1]} @$rloc ]
+            : [ map {[$end-$_->[1]+1, $end-$_->[0]+1]} @$rloc ];
       
         my $tag_rm = 1;
-        my ($locH, $srdH, $phaseH) = @{$h->{$pa}};
-        if($srdG eq $srdH) {
-            my ($tag, $lenO, $len1, $len2) = compare_2_model($locH, $phaseH, $locG, $phaseG, $srdG);
+        my ($locH, $srdH, $phaseH) = @{$h->{$par}};
+        if($srd eq $srdH) {
+            my ($tag, $lenO, $len1, $len2) = cmp_cds($locH, $phaseH, $loc, $phase, $srd);
             $tag_rm = 0 if $tag < 8;
         }
         push @idxs_rm, $i if $tag_rm == 1;
@@ -411,8 +397,7 @@ sub pipe_model_prediction {
     my $f01 = "$dir/01_hit_seq.tbl";
     get_hit_seq($fi, $f01, $f_ref);
     my $f05 = "$dir/05_hits.tbl";
-    prefilter_hits($f01, $f05, 10);
-#  prefilter_hits($f01, $f05, $ENV{'evalue'});
+    prefilter_hits($f01, $f05, 10); #$ENV{'evalue'});
 
     my $p;
     for my $method (keys %{$ENV{"method"}}) {
@@ -420,7 +405,6 @@ sub pipe_model_prediction {
         pipe_model_run(-dir=>$dirs, -hit=>$f05, -ref=>$f_ref, -soft=>$method);
         $p->{$method} = "$dirs/11.gtb";
     }
-    
     my $f_hit = $f05;
     my $f21 = "$dir/21_rel.gtb";
     collect_models(-hit=>$f_hit, -out=>$f21, -ref=>$f_ref, -p=>$p);
@@ -430,9 +414,13 @@ sub pipe_model_prediction {
     merge_redundant_models($f22, $f23);
     my $f24 = "$dir/24_abs.gtb";
     recover_global_coordinate($f_hit, $f23, $f24);
-    my $f26 = "$dir/26_all.gtb";
-    remove_incompatible_models($f_hit, $f24, $f26);
-    gtb2Gff($f26, "$dir/26_all.gff");
+    my $f25 = "$dir/25_incomp_rm.gtb";
+    remove_incompatible_models($f_hit, $f24, $f25);
+    my $f26 = "$dir/26_phase_fixed.gtb";
+    runCmd("gtbcheckphase.pl -i $f25 -o $f26 -s $f_ref", 1);
+    my $f30 = "$dir/30_all.gtb";
+    runCmd("gtb2gtbx.pl -i $f26 -o $f30 -s $f_ref", 1);
+    runCmd("gtb2gff.pl -i $f30 -o $dir/30_all.gff", 1);
 }
 
 1;

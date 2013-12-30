@@ -11,7 +11,7 @@ require Exporter;
 @EXPORT = qw/
     locStr2Ary locAry2Str locAryLen trimLoc cropLoc cropLoc_cds
     posOvlp posCmp posMerge posSplit posDiff posMergeDeep
-    tiling
+    tiling cmp_cds
     coordTransform coordTransform_rough coordTransform_itv/;
 @EXPORT_OK = qw//;
 
@@ -99,9 +99,10 @@ sub cropLoc {
 sub cropLoc_cds {
     my ($loc, $srd, $phase) = @_;
     die "unknown strand: $srd\n" if $srd !~ /^[\+\-]$/;
+    my @phases = split(",", $phase);
+    @phases == @$loc || die "phase error: $phase for ".Dumper($loc);
     $loc = [ sort {$a->[0] <=> $b->[0]} @$loc ];
     $loc = [ reverse @$loc ] if $srd eq "-";
-    my @phases = $phase ? split(",", $phase) : getPhase($loc, $srd);
     my $locO = [];
     for my $i (0..@$loc-1) {
         my ($beg, $end) = @{$loc->[$i]};
@@ -487,6 +488,86 @@ sub coordTransform_rough {
     }
     return $posO;
 }
+
+
+sub cmp_cds {
+    my ($qloc, $qphaseS, $tloc, $tphaseS, $srd) = @_;
+    my ($qlen, $tlen) = map {locAryLen($_)} ($qloc, $tloc);
+    if($tlen == 0) {
+        return (8, 0, $qlen, $tlen, 0, scalar(@$qloc), scalar(@$tloc));
+    }
+    
+    my ($h1, $h2);
+    for my $i (0..@$qloc-1) {
+        my ($b1, $e1) = @{$qloc->[$i]};
+        my $ho;
+        for my $j (0..@$tloc-1) {
+            my ($b2, $e2) = @{$tloc->[$j]};
+            my $lenO = max(0, min($e1, $e2) - max($b1, $b2) + 1);
+            $ho->{$j} = $lenO;
+        }
+        my @js = sort {$ho->{$b} <=> $ho->{$a}} keys(%$ho);
+        my $j = $js[0];
+        if($ho->{$j} == 0) {
+            $h1->{$i} = 2;
+        } elsif($tloc->[$j]->[0] == $b1 && $tloc->[$j]->[1] == $e1) {
+            $h1->{$i} = 1;
+            $h2->{$j} = 1;
+        } else {
+            $h1->{$i} = 4;
+            $h2->{$j} = 4;
+        }
+    }
+    for my $j (0..@$tloc-1) {
+        $h2->{$j} ||= 3;
+    }
+    my $oexon = scalar(grep {$h1->{$_} == 1} keys(%$h1));
+    my $sqexon = scalar(grep {$h1->{$_} == 2} keys(%$h1));
+    my $stexon = scalar(grep {$h2->{$_} == 3} keys(%$h2));
+    
+    my ($oloc, $sqloc, $stloc, $olen, $sqlen, $stlen) = posCmp($qloc, $tloc);
+    my $tag;
+    if($sqlen == 0 && $stlen == 0) {
+        $tag = 1;
+    } elsif($olen == 0) {
+        $tag = 8;
+    } else {
+        my @tlocs = sort {$a->[0] <=> $b->[0]} @$tloc;
+        @tlocs = reverse @tlocs if $srd =~ /^\-1?$/;
+        my @qlocs = sort {$a->[0] <=> $b->[0]} @$qloc;
+        @qlocs = reverse @qlocs if $srd =~ /^\-1?$/;
+        
+        $tag = 2;
+        for (sort {$a->[0] <=> $b->[0]} @$oloc) {
+            my ($ob, $oe) = @$_;
+      
+            my $qidx = first_index {$_->[0] <= $ob && $_->[1] >= $oe} @qlocs;
+            die "Overlap[$ob-$oe] not within locQ\n".Dumper($qloc) if $qidx == -1;
+            my ($qb, $qe) = @{$qlocs[$qidx]};
+            my $qphase = [split(",", $qphaseS)]->[$qidx];
+            die "no phase for qloc: $qphaseS\n".Dumper($qloc) if !defined($qphase);
+        
+            my $tidx = first_index {$_->[0] <= $ob && $_->[1] >= $oe} @tlocs;
+            die "Overlap[$ob-$oe] not within tloc\n".Dumper($tloc) if $tidx == -1;
+            my ($tb, $te) = @{$tlocs[$tidx]};
+            my $tphase = [split(",", $tphaseS)]->[$tidx];
+            die "no phase for tloc: $tphaseS\n".Dumper($tloc) if !defined($tphase);
+            
+            my ($qp, $tp);
+            if($srd =~ /^[\+1]$/) {
+                $qp = ($qphase - ($ob - $qb)) % 3;
+                $tp = ($tphase - ($ob - $tb)) % 3;
+            } else {
+                die "unknown srd: $srd\n" unless $srd =~ /^\-1?$/;
+                $qp = ($qphase - ($qe - $oe)) % 3;
+                $tp = ($tphase - ($te - $oe)) % 3;
+            }
+            $tag = 7 if $qp != $tp;
+        }
+    }
+    return ($tag, $olen, $sqlen, $stlen, $oexon, $sqexon, $stexon);
+}
+
 
 1;
 __END__

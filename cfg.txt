@@ -1,6 +1,6 @@
 ##########  pre-processing  ##########
 # SPADA source code directory
-SPADA_SRC_DIR = /home/youngn/zhoup/repos/spada
+SPADA_SRC_DIR = /home/youngn/zhoup/git/spada
 # SPADA output directory
 # can be overwritten by '-dir' command line argument
 SPADA_OUT_DIR = spada.crp.test

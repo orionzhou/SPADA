@@ -16,9 +16,9 @@ require Exporter;
     gffMerge makeAsblTbl makeAsblGff/;
 @EXPORT_OK = qw//;
 sub parse_gff {
-    my ($fi) = @_;
+    my ($fhi) = @_;
     my $header = [qw/chr source type beg end score strand phase tag/];
-    my $t = readTable(-in=>$fi, -header=>$header);
+    my $t = readTable(-inh=>$fhi, -header=>$header);
     my @bins;
     my @idxs = indexes {exists $h_gff->{$_}} $t->col("type");
     for my $i (0..$#idxs) {
@@ -37,22 +37,17 @@ sub parse_gff {
     }
 }
 sub gff2gtb {
-    my ($fi, $fo) = @_;
-    
-    my $fho;
-    open ($fho, ">$fo") || die "Can't open file $fo for writing: $!\n";
-    print $fho join("\t", qw/id parent chr beg end strand locE locI locC loc5 loc3 phase source conf cat1 cat2 cat3 note/)."\n";
+    my ($fhi, $fho) = @_;
     my ($cntR, $cntG) = (1, 1);
-    my $it = parse_gff($fi);
+    my $it = parse_gff($fhi);
     while(my $gene = $it->()) {
         for my $rna ($gene->get_rna) {
             print $fho $rna->to_gtb()."\n";
-            printf "  Gff -> Gtb %5d RNA | %5d gene...\n", $cntR, $cntG if $cntR % 1000 == 0;
+            printf "%5d RNA | %5d gene...\n", $cntR, $cntG if $cntR % 1000 == 0;
             $cntR ++;
         }
         $cntG ++;
     }
-    close $fho;
 }
 
 sub makeAsblTbl {

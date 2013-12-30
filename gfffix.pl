@@ -3,6 +3,7 @@
   
 =head1 NAME
   
+  gfffix.pl: format a GFF3 file into standard GFF3 format.
 
 =head1 SYNOPSIS
   
@@ -13,10 +14,6 @@
     -in      input file
     -out     output file
     -opt     input GFF file format option 
-
-=head1 DESCRIPTION
-
-  This program formats a GFF3 file into standard GFF3 format.
 
 =cut
 

@@ -6,6 +6,7 @@ use Bio::SeqIO;
 use Common;
 use Location; 
 use Seq;
+use Gtb;
 use Data::Dumper;
 use Log::Log4perl;
 use List::Util qw/min max sum/;
@@ -61,8 +62,8 @@ sub sum_gff_batch {
     $log->info("collecting prediction results");
     my $t = readTable(-in=>$fi, -header=>1);
     
-    open(FH, ">$fo");
-    print FH join("\t", qw/id parent chr beg end strand locE locI locC loc5 loc3 phase source conf cat1 cat2 cat3 note seq/)."\n";
+    open(my $fho, ">$fo") || die "cannot write to $fo\n";
+    print $fho join("\t", @HEAD_GTBX)."\n";
     for my $i (0..$t->nofRow-1) {
         my ($id, $fam, $chr, $beg, $end, $srd, $locS, $begr, $endr, $begL, $endL, $locLS, $e, $seqP, $seq) = $t->row($i);
         my $locL = locStr2Ary($locLS);
@@ -75,11 +76,11 @@ sub sum_gff_batch {
         my $seq_cds = getSubSeq($seq, $locC);
         my $seq_pro = Bio::Seq->new(-seq=>$seq_cds)->translate()->seq;
         my $locCStr = locAry2Str($locC);
-        my $phase = join(",", getPhase($locC, "+"));
+        my $phase = join(",", @{getPhase($locC, "+")});
         
-        print FH join("\t", "$id.1", $id, ("") x 3, "+", ("") x 2, $locCStr, "", "", $phase, "", ("") x 5, $seq_pro)."\n";
+        print $fho join("\t", "$id.1", $id, ("") x 3, "+", ("") x 2, $locCStr, "", "", $phase, "", ("") x 5, $seq_pro)."\n";
     }
-    close FH;
+    close $fho;
     runCmd("rm -rf $dir/*", 0);
 }
 

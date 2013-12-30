@@ -6,62 +6,59 @@
   
 =head1 NAME
   
-  gff2gtb.pl - convert a Gff file to Gtb file and validates
+  gtb2gtbx.pl - convert a Gtb file to Gtbx format
 
 =head1 SYNOPSIS
   
-  gff2gtb.pl [-help] [-in input-file] [-out output-file]
+  gtb2gtbx.pl [-help] [-in input-file] [-seq refseq-fasta] [-out output-file]
 
   Options:
-      -help   brief help message
-      -in     input file
-      -out    output file
-
-=head1 DESCRIPTION
-
-  This program converts an input Gff file to an output Gtb file
+      -h (--help)   brief help message
+      -i (--in)     input file
+      -o (--out)    output file
+      -s (--seq)    reference sequence file
 
 =cut
   
 #### END of POD documentation.
 #-----------------------------------------------------------------------------
+
+
 use strict;
 use FindBin;
 use lib "$FindBin::Bin";
 use Getopt::Long;
 use Pod::Usage;
 use Common;
-use Gff;
 use Gtb;
 
-my ($fi, $fo) = ('') x 2;
+my ($fi, $fo, $fs) = ('') x 3;
 my $help_flag;
 
 #----------------------------------- MAIN -----------------------------------#
 GetOptions(
-    "help|h"  => \$help_flag,
-    "in|i=s"  => \$fi,
-    "out|o=s" => \$fo,
+    "help|h"   => \$help_flag,
+    "in|i=s"   => \$fi,
+    "out|o=s"  => \$fo,
+    "seq|s=s"  => \$fs,
 ) or pod2usage(2);
 pod2usage(1) if $help_flag;
-pod2usage(2) if !$fi || !$fo;
+pod2usage(2) if !$fs;
 
 my ($fhi, $fho);
-if ($fi eq "stdin" || $fi eq "-") {
+if ($fi eq '' || $fi eq "stdin" || $fi eq "-") {
     $fhi = \*STDIN;
 } else {
     open ($fhi, $fi) || die "Can't open file $fi: $!\n";
 }
 
-if ($fo eq "stdout" || $fo eq "-") {
+if ($fo eq '' || $fo eq "stdout" || $fo eq "-") {
     $fho = \*STDOUT;
 } else {
     open ($fho, ">$fo") || die "Can't open file $fo for writing: $!\n";
 }
 
-print $fho join("\t", @HEAD_GTB)."\n";
-gff2gtb($fhi, $fho);
-close $fhi;
-close $fho;
+gtb2gtbx($fhi, $fho, $fs);
+
 
 __END__

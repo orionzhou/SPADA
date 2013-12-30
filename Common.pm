@@ -16,7 +16,7 @@ require Exporter;
 @EXPORT = qw/pretty tonum isnumber getDigits prettyStr 
     runCmd parse_gff_tags
     rearrange group bsearch readTable
-    mergeArray aryCmp get_sliding_windows 
+    mergeArray aryCmp
     get_opposite_strand is_opposite_strands
     getIdxRange getPhase sample_serial
     rmRedPairs backOneLine scaleNumber writeFile/;
@@ -206,20 +206,6 @@ sub backOneLine {
     }
     return tell($fH);
 }
-sub get_sliding_windows {
-    my ($beg, $end, $step, $size) = @_;
-    my $n_win = ceil(($end-$beg-$size+1)/$step) + 1;
-    $n_win = max(1, $n_win);
-
-    my @wins;
-    for my $i (0..$n_win-1) {
-        my $begL = $step * $i + 1;
-        my $endL = $step * $i + $size;
-        $endL = min($endL, $end);
-        push @wins, [$begL, $endL];
-    }
-    return \@wins;
-}
 sub get_opposite_strand {
     my ($srdI) = @_;
     return "-" if $srdI =~ /^[\+1]$/;
@@ -303,6 +289,7 @@ sub getIdxRange {
 }
 sub getPhase {
     my ($loc, $srd) = @_;
+    $srd ||= "+";
     $loc = [ sort {$a->[0] <=> $b->[0]} @$loc ];
     $loc = [ reverse @$loc ] if $srd =~ /^\-1?$/;
 
@@ -313,7 +300,7 @@ sub getPhase {
         push @phases, (3-$len%3) % 3;
         $len += $end - $beg + 1;
     }
-    return @phases;
+    return \@phases;
 }
 sub sample_serial {
     my ($n, $m) = @_;

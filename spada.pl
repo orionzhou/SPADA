@@ -13,20 +13,16 @@
   spada.pl [-help] <-cfg config-file> [options...]
 
   Options:
-      -help   brief help message
-      -cfg    config file
-      -dir    SPADA output directory
-      -hmm    directory containing profile alignments and HMM files
-      -fas    genome sequence file (FASTA format)
-      -gff    gene annotation file (GFF3 format, optional)
-      -org    organism to run
-      -sp     if the searched gene family contains a signal peptide
-      -evalue E-value threshold
-      -method gene prediction programs to run (seperated by semicolon)
-
-=head1 DESCRIPTION
-
-  This program identifies and predicts all members of a given small peptide family in a target genome
+     -h (--help)    brief help message
+     -c (--cfg)     config file
+     -d (--dir)     SPADA output directory
+     -p (--hmm)     directory containing profile alignments and HMM files
+     -f (--fas)     genome sequence file (FASTA format)
+     -g (--gff)     gene annotation file (GFF3 format, optional)
+     -o (--org)     organism to run
+     -s (--sp)      if the searched gene family contains a signal peptide
+     -e (--evalue)  E-value threshold
+     -m (--method)  gene prediction programs to run (seperated by semicolon)
 
 =cut
   
@@ -48,20 +44,22 @@ use MotifMining;
 use ModelPred;
 use ModelEval;
 
+my $help_flag;
 my ($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, $org, $sp, $e, $methods);
 GetOptions(
-     'config|cfg|c=s'   => \$f_cfg, 
-            'dir|d=s'   => \$dir, 
-    'profile|hmm|h=s'   => \$dir_hmm, 
-            'fas|f=s'   => \$f_fas, 
-            'gff|g=s'   => \$f_gff,
-            'org|o=s'   => \$org, 
-     'signalp|sp|s=i'   => \$sp,
-         'evalue|e=f'   => \$e,
-         'method|m=s'   => \$methods,
+    "help|h"           => \$help_flag,
+    'config|cfg|c=s'   => \$f_cfg, 
+    'dir|d=s'          => \$dir, 
+    'profile|hmm|p=s'  => \$dir_hmm, 
+    'fas|f=s'          => \$f_fas, 
+    'gff|g=s'          => \$f_gff,
+    'org|o=s'          => \$org, 
+    'signalp|sp|s=i'   => \$sp,
+    'evalue|e=f'       => \$e,
+    'method|m=s'       => \$methods,
 ) || pod2usage(2);
-pod2usage("$0: argument required [-cfg]") if ! defined $f_cfg;
-pod2usage("cfg file not there: $f_cfg") if ! -s $f_cfg;
+pod2usage(1) if $help_flag;
+pod2usage(2) if !defined($f_cfg) || ! -s $f_cfg;
 
 config_setup($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, $org, $sp, $e, $methods);
 
@@ -110,13 +108,12 @@ pipe_motif_mining(-dir=>$d11, -hmm=>$fp_hmm, -orf_g=>$f01_12, -orf_p=>$f01_71, -
 # Model Prediction
 my $d21 = "$dir/21_model_prediction";
 my $f21_05 = "$d21/05_hits.tbl";
-my $f21 = "$d21/26_all.gtb";
+my $f21 = "$d21/30_all.gtb";
 pipe_model_prediction(-dir=>$d21, -hit=>$f11, -ref=>$f01_01);
 
 # Model Evaluation & Selection 
 my $d31 = "$dir/31_model_evaluation";
-pipe_model_evaluation(-dir=>$d31, -hit=>$f21_05, -gtb_all=>$f21, 
-    -ref=>$f01_01, -gtb_ref=>$f01_61, -d_hmm=>$dp_hmm, -d_aln=>$dp_aln, -f_sta=>$fp_sta);
+pipe_model_evaluation(-dir=>$d31, -hit=>$f21_05, -gtb_all=>$f21, -ref=>$f01_01, -gtb_ref=>$f01_61, -d_hmm=>$dp_hmm, -d_aln=>$dp_aln, -f_sta=>$fp_sta);
 
 $log->info("##########  Pipeline successfully completed  ##########");
 $log->info(sprintf("time elapsed: %.01f min", tv_interval($t0, [gettimeofday]) / 60));

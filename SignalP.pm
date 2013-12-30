@@ -11,7 +11,7 @@ use List::MoreUtils qw/first_index first_value insert_after apply indexes pairwi
 use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter AutoLoader/;
-@EXPORT = qw/run_sigp pipe_search_sigp search_sigp sigp_score_gtb/;
+@EXPORT = qw/run_sigp pipe_search_sigp search_sigp/;
 @EXPORT_OK = qw//;
 
 sub run_sigp_hmm {
@@ -164,24 +164,6 @@ sub search_sigp {
     }
     close FH;
 }
-sub sigp_score_gtb {
-    my ($fi, $fo) = @_;
-    my $log = Log::Log4perl->get_logger("SignalP");
-    $log->info("assessing signalp scores");
-    my $tg = readTable(-in=>$fi, -header=>1);
-    open(FH, ">$fo");
-    print FH join("\t", qw/id tag score pos/)."\n";
-    for my $i (0..$tg->nofRow-1) {
-        my ($id, $seq) = map {$tg->elm($i, $_)} qw/id seq/;
-#    $seq = substr($seq, 0, 20);
-#    next unless $id eq "AT1G70250.1";
-        my ($tag, $d, $pos) = run_sigp($seq);
-        print FH join("\t", $id, $tag, $d, $pos)."\n";
-        printf "  %5d / %5d done...\n", $i+1, $tg->nofRow if ($i+1) % 1000 == 0;
-    }
-    close FH;
-}
-
 
 
 1;

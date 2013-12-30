@@ -277,18 +277,18 @@ sub writeSeqInOrder {
 }
 
 sub seqRet {
-    my ($loc, $seqid, $strand, $f_seq) = @_;
+    my ($loc, $seqid, $srd, $f_seq) = @_;
     die "no sequence file: $f_seq\n" unless -s $f_seq;
     my $db = Bio::DB::Fasta->new($f_seq);
     
     my @seqStrs;
     $loc = [ sort {$a->[0] <=> $b->[0]} @$loc ];
-    $loc = [ reverse @$loc ] if $strand =~ /^\-1?$/;
+    $loc = [ reverse @$loc ] if $srd =~ /^\-1?$/;
     for (@$loc) {
         my ($beg, $end) = @$_;
         my $seqStr = $db->seq($seqid, $beg, $end);
         die "cannot find seq: $seqid:$beg-$end in $f_seq\n" unless $seqStr;
-        $seqStr = Bio::Seq->new(-seq=>$seqStr)->revcom->seq if $strand =~ /^\-1?$/;
+        $seqStr = Bio::Seq->new(-seq=>$seqStr)->revcom->seq if $srd =~ /^\-1?$/;
         push @seqStrs, $seqStr;
     }
     my $seqStr = join("", @seqStrs);

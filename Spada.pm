@@ -7,6 +7,7 @@ use Data::Dumper;
 use Common;
 use Location; 
 use Seq;
+use Gtb;
 use Align;
 use Log::Log4perl;
 use List::Util qw/min max sum/;
@@ -172,15 +173,15 @@ sub output_gtb {
     $log->info("writing output in Gtb format");
     my $t = readTable(-in=>$fi, -header=>1);
     
-    open(FH, ">$fo");
-    print FH join("\t", qw/id parent chr beg end strand locE locI locC loc5 loc3 phase source conf cat1 cat2 cat3 note seq/)."\n";
+    open(my $fh, ">$fo") || die "cannot write $fo\n";
+    print $fh join("\t", @HEAD_GTBX)."\n";
     for my $i (0..$t->nofRow-1) {
-        my ($id, $pa, $fam, $beg, $end, $strand, $n_cds, $locCStr, $seq) = $t->row($i);
+        my ($id, $par, $fam, $beg, $end, $strand, $n_cds, $locCStr, $seq) = $t->row($i);
         my $locC = locStr2Ary($locCStr);
-        my $phase = join(",", getPhase($locC, "+"));
-        print FH join("\t", $id, $pa, ("") x 3, "+", ("") x 2, $locCStr, "", "", $phase, "", ("") x 5, $seq)."\n";
+        my $phase = join(",", @{getPhase($locC, "+")});
+        print $fh join("\t", $id, $par, ("") x 3, "+", ("") x 2, $locCStr, "", "", $phase, "", ("") x 5, $seq)."\n";
     }
-    close FH;
+    close $fh;
 }
 sub pipe_genewise_splicepredictor {
     my ($fi, $dir) = @_;

@@ -102,9 +102,9 @@ sub from_gff {
         my ($seqid, $source, $type, $beg, $end, $score, $strand, $phase, $tag) = $t->row($i);
         my $ht = parse_gff_tags($tag);
         my $id = exists $ht->{'ID'} ? $ht->{'ID'} : '';
-        my $pa = exists $ht->{'Parent'} ? $ht->{'Parent'} : '';
+        my $par = exists $ht->{'Parent'} ? $ht->{'Parent'} : '';
         my $note = exists $ht->{'Note'} ? $ht->{'Note'} : '';
-        push @stats, [$id, $pa, $type, $seqid, $source, $beg, $end, $score, $strand, $phase, $note];
+        push @stats, [$id, $par, $type, $seqid, $source, $beg, $end, $score, $strand, $phase, $note];
     }
     my $statG = $stats[0];
     $self->id($statG->[0]);
