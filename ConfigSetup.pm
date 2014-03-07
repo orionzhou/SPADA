@@ -80,7 +80,7 @@ sub config_setup {
     -s "$dir_hmm/21_all.hmm" || die "$dir_hmm/21_all.hmm is not there\n";
 
     # check availability of called programs
-    $ENV{"method"} = { map {$_=>{}} split(";", $ENV{"method"}) };
+    $ENV{"method"} = { map {$_=>{}} split(";", $ENV{"methods"}) };
     for my $soft (keys %{$ENV{"method"}}) {
         my $hb = $ENV{"method"}->{$soft};
         if($soft eq "Augustus_evidence") {

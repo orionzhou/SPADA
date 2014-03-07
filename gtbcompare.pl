@@ -92,7 +92,7 @@ close $fho;
 sub get_ovlp_idxs {
     my ($chr, $srd, $qloc, $h) = @_;
     my $loc1 = [ map {[@{$qloc->[$_]}, "q".$_]} (0..@$qloc-1) ];
-    my $loc2 = $h->{$chr}->{$srd};
+    my $loc2 = exists $h->{$chr}->{$srd} ? $h->{$chr}->{$srd} : [];
     my $ref = posSplit([@$loc1, @$loc2]);
     my @idxs;
     for (@$ref) {

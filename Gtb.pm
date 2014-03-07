@@ -12,7 +12,7 @@ use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter AutoLoader/;
 @EXPORT = qw/@HEAD_GTB @HEAD_GTBX
-    readGtb gtbSum gtb2gff gtb2bed gtb2gtbx gtb2tbl
+    readGtb gtbSum gtb2gff gtb2bed gtb2gtbx
     get_ovlp_gtb/;
 @EXPORT_OK = qw//;
 
@@ -90,87 +90,6 @@ sub gtb2gff {
             $cntR ++;
         }
         $cntG ++; 
-    }
-}
-sub gtb2bed {
-    my ($fhi, $fho) = @_;
-    my ($t, $ref, $idGs) = gtbSum($fhi);
-    my ($cntG, $cntR) = (1, 1);
-    for my $idG (@$idGs) {
-        my ($idxB, $cnt) = @{$ref->{$idG}};
-        my $ts = $t->subTable([$idxB..$idxB+$cnt-1]);
-        my $gene = Gene->new( -gtb=>$ts );
-        for my $rna ($gene->get_rna()) {
-            my $idStr = $rna->id;
-            $idStr .= $rna->note if $rna->note;
-            my $chr = $rna->seqid;
-            my $srd = $rna->strand;
-            my @locs = sort {$a->[0] <=> $b->[0]} @{$rna->exon};
-            my ($beg, $end) = ($rna->beg, $rna->end);
-            my $n = @locs;
-            
-            my $rloc = [ sort {$a->[0] <=> $b->[0]} @{$rna->cds} ];
-            my ($rtBeg, $rtEnd) = ($rloc->[0]->[0], $rloc->[-1]->[1]);
-            
-            my @begs;
-            my @lens;
-            my ($tBeg, $tEnd);
-            if($srd eq "+") {
-                @begs = map {$_->[0] - 1} @locs;
-                @lens = map {$_->[1] - $_->[0] + 1} @locs;
-                ($tBeg, $tEnd) = ($beg+$rtBeg-1, $beg+$rtEnd-1);
-            } else {
-                @begs = reverse map {$end-$beg+1 - $_->[1]} @locs;
-                @lens = reverse map {$_->[1] - $_->[0] + 1} @locs;
-                ($tBeg, $tEnd) = ($end-$rtEnd+1, $end-$rtBeg+1);
-            }
-            print $fho join("\t", $chr, $beg-1, $end, $idStr, 0, $srd, $tBeg-1, $tEnd, 0,
-                $n, join(",", @lens), join(",", @begs) )."\n";
-            printf "  Gtb -> Bed %5d RNA | %5d gene...\n", $cntR, $cntG if $cntR % 1000 == 0;
-            $cntR ++;
-        }
-        $cntG ++; 
-    }
-}
-sub gtb2tbl {
-    my ($fhi, $fho) = @_;
-    my $t = readTable(-inh=>$fhi, -header=>1);
-    my @chrs = uniq($t->col("chr"));
-
-    my $h_type = {1=>"cds", 2=>"utr5", 3=>"utr3", 4=>"intron"};
-    for my $chr (@chrs) {
-        my $t2 = $t->match_pattern("\$_->[2] eq '$chr'");
-        my @locs;
-        my @stats;
-        for my $i (0..$t2->nofRow-1) {
-            my ($id, $par, $chr, $beg, $end, $srd, $locE, $locI, $locC, $loc5, $loc3, $phase, $src, $conf, $cat1, $cat2, $cat3, $note) = $t2->row($i);
-            $locC = locStr2Ary($locC);
-            push @locs, @$locC;
-            push @stats, ([1, $id]) x @$locC;
-            
-            if($loc5) {
-                $loc5 = locStr2Ary($loc5);
-                push @locs, @$loc5;
-                push @stats, ([2, $id]) x @$loc5;
-            }
-            if($loc3) {
-                $loc3 = locStr2Ary($loc3);
-                push @locs, @$loc3;
-                push @stats, ([3, $id]) x @$loc3;
-            }
-            if($locI) {
-                $locI = locStr2Ary($locI);
-                push @locs, @$locI;
-                push @stats, ([4, $id]) x @$locI;
-            }
-        }
-        my @stats_score = map {$_->[0]} @stats;
-        my $ref = tiling(\@locs, \@stats_score, 1);
-        for (@$ref) {
-            my ($beg, $end, $idx) = @$_;
-            my ($typeNum, $id) = @{$stats[$idx]};
-            print $fho join("\t", $chr, $beg, $end, $h_type->{$typeNum}, $id)."\n";
-        }
     }
 }
 

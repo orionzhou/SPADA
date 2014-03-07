@@ -18,10 +18,6 @@
       -aln    directory containing input alignments
       -hmm    output directory containing built HMMs
 
-=head1 DESCRIPTION
-
-  This program builds SPADA-compatible HMM profile from one or more input alignments
-
 =cut
   
 #### END of POD documentation.
