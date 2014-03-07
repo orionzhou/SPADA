@@ -28,8 +28,8 @@ trimAl = /home/youngn/zhoup/spada_soft/trimal
 SPADA_ORG = Athaliana
 # gene prediction programs to run, seperated by semicolons
 # can be overwritten by '-method' command line argument
-method = Augustus_evidence;GeneWise_SplicePredictor
-#method = Augustus_evidence;GeneWise_SplicePredictor;Augustus_de_novo;GeneMark;GlimmerHMM;GeneID
+methods = Augustus_evidence;GeneWise_SplicePredictor
+#methods = Augustus_evidence;GeneWise_SplicePredictor;Augustus_de_novo;GeneMark;GlimmerHMM;GeneID
 
 # augustus binary (augustus) should locate in {Augustus}/bin
 # config diretory shold be {Augustus}/config
