@@ -9,10 +9,10 @@ use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter AutoLoader/;
 @EXPORT = qw/
-    locStr2Ary locAry2Str locAryLen trimLoc cropLoc cropLoc_cds
-    posOvlp posCmp posMerge posSplit posDiff posMergeDeep
-    tiling cmp_cds
-    coordTransform coordTransform_rough coordTransform_itv/;
+  locStr2Ary locAry2Str locAryLen trimLoc cropLoc cropLoc_cds
+  posOvlp posCmp posMerge posSplit posDiff posMergeDeep
+  tiling cmp_cds find_interval
+  coordTransform coordTransform_rough coordTransform_itv/;
 @EXPORT_OK = qw//;
 
 sub locStr2Ary {

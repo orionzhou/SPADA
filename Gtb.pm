@@ -18,7 +18,9 @@ require Exporter;
 
 our @HEAD_GTB  = qw/id par chr beg end srd locE locI locC loc5 loc3 phase src conf cat1 cat2 cat3 note/;
 our @HEAD_GTBX = qw/id par chr beg end srd locE locI locC loc5 loc3 phase src conf cat1 cat2 cat3 note seq/;
-#my ($id, $par, $chr, $beg, $end, $srd, $locE, $locI, $locC, $loc5, $loc3, $phase, $src, $conf, $cat1, $cat2, $cat3, $note) = $t->row($i);
+  my ($id, $par, $chr, $beg, $end, $srd, 
+    $locES, $locIS, $locCS, $loc5S, $loc3S, $phase, 
+    $src, $conf, $cat1, $cat2, $cat3, $note) = ();
 sub readGtb {
     my ($fi, $opt) = rearrange(['in', 'opt'], @_);
     $opt ||= 1;

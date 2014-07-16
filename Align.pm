@@ -3,6 +3,7 @@ use strict;
 use Bio::AlignIO;
 use Bio::Matrix::IO;
 use Common;
+use Location;
 use Seq;
 use Data::Dumper; 
 use List::Util qw/min max sum/;
@@ -54,24 +55,24 @@ sub run_clustalw {
     system("rm $fTree $f1"); 
 }
 sub run_clustalo {
-    my ($seqs, $fi, $fo, $f_dis, $f_hmm) = rearrange(['seqs', 'in', 'out', 'dis', 'f_hmm'], @_);
-    
-    my $mode = defined($fi) ? 1 : 2;
-    if($mode == 2) {
-        if( defined $ENV{"TMP_DIR"} ) {
-            $fi = $ENV{"TMP_DIR"}."/clustalo_".int(rand(1000)).".fa";
-        } else {
-            $fi = "$fo.tmp";
-        }
-        writeSeq($seqs, $fi);
+  my ($seqs, $fi, $fo, $f_dis, $f_hmm) = rearrange(['seqs', 'in', 'out', 'dis', 'f_hmm'], @_);
+  
+  my $mode = defined($fi) ? 1 : 2;
+  if($mode == 2) {
+    if( defined $ENV{"TMP_DIR"} ) {
+      $fi = $ENV{"TMP_DIR"}."/clustalo_".int(rand(1000)).".fa";
+    } else {
+      $fi = "$fo.tmp";
     }
-    my $f_bin = $ENV{"ClustalO"} ? $ENV{"ClustalO"}."/bin/clustalo" : "clustalo";
+    writeSeq($seqs, $fi);
+  }
+  my $f_bin = $ENV{"ClustalO"} ? $ENV{"ClustalO"}."/bin/clustalo" : "clustalo";
 
-    my $cmd = qq/$f_bin -i $fi -o $fo --outfmt=clu --force/;
-    $cmd .= " --hmm-in=$f_hmm" if $f_hmm;
-    $cmd .= " --full --distmat-out=$f_dis" if $f_dis;
-    runCmd($cmd, 0);
-    system("rm $fi") if $mode == 2; 
+  my $cmd = qq/$f_bin -i $fi -o $fo --outfmt=clu --force/;
+  $cmd .= " --hmm-in=$f_hmm" if $f_hmm;
+  $cmd .= " --full --distmat-out=$f_dis" if $f_dis;
+  runCmd($cmd, 0);
+  system("rm $fi") if $mode == 2; 
 }
 sub run_pal2nal {
     my ($fIn1, $fIn2, $fOut) = rearrange(['in1', 'in2', 'out'], @_);
@@ -92,37 +93,64 @@ sub run_tcoffee {
 }
 
 sub run_pw_aln {
-    my ($seq1, $seq2, $opt) = @_;
-    my $f_bin = $opt == 2 ? "needle" : "water";
-    my $format = "pair";
-    my $fi1 = "pw_seq1_".int(rand(1000)).".fa";
-    my $fi2 = "pw_seq2_".int(rand(1000)).".fa";
-    my $fo = "pw_".int(rand(1000)).".pwaln";
-    writeFile($fi1, ">".$seq1->id, $seq1->seq);
-    writeFile($fi2, ">".$seq2->id, $seq2->seq);
-    my $cmd = "$f_bin $fi1 $fi2 -gapopen 10 -gapextend 0.5 -aformat $format -outfile $fo";
-    runCmd($cmd, 0);
-
-    my ($len1, $len2) = ($seq1->length, $seq2->length);
-
-    my $alnH = Bio::AlignIO->new(-file=>$fo, -format=>"emboss");
-    my $aln = $alnH->next_aln();
-    my ($seqa1, $seqa2) = map {$_->seq} $aln->each_seq();
-    my $len_aln = length($seqa1);
-    my ($len_mat, $len_mis, $len_gap) = (0, 0, 0);
-    for my $i (0..$len_aln-1) {
-        my ($ch1, $ch2) = map {substr($_, $i, 1)} ($seqa1, $seqa2);
-        if($ch1 =~ /[\-\_ ]/ || $ch2 =~ /[\-\_ ]/) {
-            $len_gap ++;
-        } elsif($ch1 eq $ch2) {
-            $len_mat ++;
-        } else {
-            $len_mis ++;
-        }
+  my ($seq1, $seq2, $prog) = @_;
+  $prog ||= "water";
+  my $fi1 = "s1.".int(rand(1000)).".fa";
+  my $fi2 = "s2.".int(rand(1000)).".fa";
+  my $fo = "o".int(rand(1000));
+  writeFile($fi1, ">seq1", $seq1);
+  writeFile($fi2, ">seq2", $seq2);
+  runCmd("$prog $fi1 $fi2 -gapopen 10 -gapextend 0.5 -aformat fasta -outfile $fo");
+  
+  my $seqHI = Bio::SeqIO->new(-file => "<$fo", -format => 'fasta');
+  my $seqa1 = $seqHI->next_seq()->seq;
+  my $seqa2 = $seqHI->next_seq()->seq;
+  my $alen = length($seqa1);
+  
+  my @locs = ([1, $alen, 0]);
+  while($seqa1 =~ /([\-\_ ]+)/ig) {
+    push @locs, [$-[0] + 1, $+[0], 1];
+  }
+  while($seqa2 =~ /([\-\_ ]+)/ig) {
+    push @locs, [$-[0] + 1, $+[0], 2];
+  }
+  my $ref = posSplit(\@locs);
+  my (@loc1, @loc2);
+  my ($p1, $p2) = (1, 1);
+  for (@$ref) {
+    my ($beg, $end, $idxs) = @$_;
+    my $len = $end - $beg + 1;
+    my @nidxs = grep {$_ != 0} @$idxs;
+    @nidxs <= 1 || die "double gaps: $seqa1\n$seqa2\n";
+    if(@nidxs == 0) {
+      push @loc1, [$p1, $p1 + $len - 1];
+      push @loc2, [$p2, $p2 + $len - 1];
+      $p1 += $len;
+      $p2 += $len;
+    } elsif($nidxs[0] == 1) {
+      $p2 += $len;
+    } else {
+      $p1 += $len;
     }
-    die "alignment parse error\n$seqa1\n$seqa2\n" unless $len_aln == $len_mat+$len_mis+$len_gap;
-    system("rm $fi1 $fi2 $fo");
-    return ($len_aln, $len_mat, $len_mis, $len_gap, $len1, $len2);
+  }
+  
+  my ($ilen, $mlen) = (0, 0);
+  my ($gap1, $gap2) = (0, 0);
+  for my $i (0..$alen-1) {
+    my ($ch1, $ch2) = map {substr($_, $i, 1)} ($seqa1, $seqa2);
+    if($ch1 =~ /[\-\_ ]/ || $ch2 =~ /[\-\_ ]/) {
+      $gap1 ++ if $ch1 =~ /[\-\_ ]/;
+      $gap2 ++ if $ch2 =~ /[\-\_ ]/;
+    } elsif($ch1 eq $ch2) {
+      $ilen ++;
+    } else {
+      $mlen ++;
+    }
+  }
+  $alen == $ilen + $mlen + $gap1 + $gap2 
+    || die "aln parse err\n$seqa1\n$seqa2\n" ;
+  system("rm $fi1 $fi2 $fo");
+  return (\@loc1, \@loc2, $alen, $ilen, $mlen, $gap1, $gap2);
 }
 
 sub run_dotplot {

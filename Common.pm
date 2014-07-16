@@ -64,163 +64,163 @@ sub pretty {
     return $num;
 }
 sub prettyStr {
-    my ($str, $len, $sep) = @_;
-    $len ||= 5;
-    $sep ||= " ";
-    my @ary;
-    for(my $i = 0; $i*$len < length($str); $i++) {
-        push @ary, substr($str, $i*$len, $len);
-    }
-    return join($sep, @ary);
+  my ($str, $len, $sep) = @_;
+  $len ||= 5;
+  $sep ||= " ";
+  my @ary;
+  for(my $i = 0; $i*$len < length($str); $i++) {
+    push @ary, substr($str, $i*$len, $len);
+  }
+  return join($sep, @ary);
 }
 sub tonum {
-    my ($num) = @_;
-    $num =~ s/[^\d]//g;
-    return $num;
+  my ($num) = @_;
+  $num =~ s/[^\d]//g;
+  return $num;
 }
 sub getDigits {
-    my ($num) = @_;
-    my $digit = 1;
-    while(int($num/10) >= 1) {
-        $num = int($num/10);
-        $digit ++;
-    }
-    return $digit;
+  my ($num) = @_;
+  my $digit = 1;
+  while(int($num/10) >= 1) {
+    $num = int($num/10);
+    $digit ++;
+  }
+  return $digit;
 }
 sub isnumber {
-    my ($a) = @_;
-    if( $a =~ /^([+-]?)(?=\d|\.\d)\d*(\.\d*)?([Ee]([+-]?\d+))?$/ ) {
-        return 1;
-    } else {
-        return 0;
-    }
+  my ($a) = @_;
+  if( $a =~ /^([+-]?)(?=\d|\.\d)\d*(\.\d*)?([Ee]([+-]?\d+))?$/ ) {
+    return 1;
+  } else {
+    return 0;
+  }
 }
 sub runCmd {
-    my ($cmd, $opt) = @_; # opt=1 [print to STDOUT]; opt=2 [return output]
-    $opt = defined($opt) ? $opt : 1;
+  my ($cmd, $opt) = @_; # opt=1 [print to STDOUT]; opt=2 [return output]
+  $opt = defined($opt) ? $opt : 1;
 
-    print $cmd."\n" if $opt == 1;
-    open( PS, $cmd." |" ) or die "Failed: $!\n";
-    my @output;
-    while( <PS> ) {
-        if($opt == 1) {
-            print STDOUT $_;
-        } elsif($opt == 2) {
-            chomp;
-            push @output, $_;
-        }
+  print $cmd."\n" if $opt == 1;
+  open( PS, $cmd." |" ) or die "Failed: $!\n";
+  my @output;
+  while( <PS> ) {
+    if($opt == 1) {
+      print STDOUT $_;
+    } elsif($opt == 2) {
+      chomp;
+      push @output, $_;
     }
-    return \@output if $opt == 2;
+  }
+  return \@output if $opt == 2;
 }
 sub parse_gff_tags {
-    my ($str) = @_;
-    my @tagAry = split(";", $str);
-    my $h;
-    for (@tagAry) {
-        my ($tag, $value) = split "=";
-        die $str if $value eq "";
-        $value =~ s/\=/\:/g;
-        $value =~ s/\;/\|/g;
-        $h->{$tag} = $value;
-    }
-    return $h;
+  my ($str) = @_;
+  my @tagAry = split(";", $str);
+  my $h;
+  for (@tagAry) {
+    my ($tag, $value) = split "=";
+    die $str if $value eq "";
+    $value =~ s/\=/\:/g;
+    $value =~ s/\;/\|/g;
+    $h->{$tag} = $value;
+  }
+  return $h;
 }
 sub mergeArray {
-    my @refAry = @_;
-    my @rst;
-    for my $ref (@refAry) {
-        if(ref($ref) eq "ARRAY") {
-            push @rst, mergeArray(@$ref);
-        } elsif(!ref($ref)) {
-            push @rst, $ref;
-        } else{
-            die("unknown type $ref\n");
-        }
+  my @refAry = @_;
+  my @rst;
+  for my $ref (@refAry) {
+    if(ref($ref) eq "ARRAY") {
+      push @rst, mergeArray(@$ref);
+    } elsif(!ref($ref)) {
+      push @rst, $ref;
+    } else{
+      die("unknown type $ref\n");
     }
-    return @rst;
+  }
+  return @rst;
 }
 sub aryCmp {
-    my ($ary1, $ary2) = @_;
-    my @ary1 = uniq(@$ary1);
-    my @ary2 = uniq(@$ary2);
-    my @ary_merged = uniq(@ary1, @ary2);
-    my %hash1 = map {$_=>1} @ary1;
-    my %hash2 = map {$_=>1} @ary2;
-    my (@ary_share, @ary_1, @ary_2);
-    for my $ele (@ary_merged) {
-        if(exists $hash1{$ele} && exists $hash2{$ele}) {
-            push @ary_share, $ele;
-        } elsif(exists $hash1{$ele} && !exists $hash2{$ele}) {
-            push @ary_1, $ele;
-        } elsif(!exists $hash1{$ele} && exists $hash2{$ele}) {
-            push @ary_2, $ele;
-        } else {
-            die "$ele not in ary1 nor ary2\n";
-        }
+  my ($ary1, $ary2) = @_;
+  my @ary1 = uniq(@$ary1);
+  my @ary2 = uniq(@$ary2);
+  my @ary_merged = uniq(@ary1, @ary2);
+  my %hash1 = map {$_=>1} @ary1;
+  my %hash2 = map {$_=>1} @ary2;
+  my (@ary_share, @ary_1, @ary_2);
+  for my $ele (@ary_merged) {
+    if(exists $hash1{$ele} && exists $hash2{$ele}) {
+      push @ary_share, $ele;
+    } elsif(exists $hash1{$ele} && !exists $hash2{$ele}) {
+      push @ary_1, $ele;
+    } elsif(!exists $hash1{$ele} && exists $hash2{$ele}) {
+      push @ary_2, $ele;
+    } else {
+      die "$ele not in ary1 nor ary2\n";
     }
-    return (\@ary_share, \@ary_1, \@ary_2);
+  }
+  return (\@ary_share, \@ary_1, \@ary_2);
 }
 sub readTable {
-    my ($fi, $fh, $header, $skip) = rearrange(['in', 'inh', 'header', 'skip'], @_);
-    die "no file or handler passed" if !$fi && !$fh;
-    $skip ||= 0;
-    $header ||= 0;
-    if(!$fh) {
-        die "$fi is not there\n" unless -s $fi;
-        open($fh, "<$fi") or die "cannot open $fi\n";
-    }
+  my ($fi, $fh, $header, $skip) = rearrange(['in', 'inh', 'header', 'skip'], @_);
+  die "no file or handler passed" if !$fi && !$fh;
+  $skip ||= 0;
+  $header ||= 0;
+  if(!$fh) {
+    die "$fi is not there\n" unless -s $fi;
+    open($fh, "<$fi") or die "cannot open $fi\n";
+  }
 
-    my $t;
-    if($header ne 1 && $header ne 0) {
-        $t = Data::Table::fromTSV($fh, 0, $header, {skip_lines=>$skip, skip_pattern=>'(^\s*#)|(^\s*$)'});
-    } else {
-        $t = Data::Table::fromTSV($fh, $header, {skip_lines=>$skip, skip_pattern=>'(^\s*#)|(^\s*$)'});
-    }
+  my $t;
+  if($header ne 1 && $header ne 0) {
+    $t = Data::Table::fromTSV($fh, 0, $header, {skip_lines=>$skip, skip_pattern=>'(^\s*#)|(^\s*$)'});
+  } else {
+    $t = Data::Table::fromTSV($fh, $header, {skip_lines=>$skip, skip_pattern=>'(^\s*#)|(^\s*$)'});
+  }
 #  printf "\t%s: cols[%d] rows[%d]\n", basename($fi), $t->nofCol, $t->nofRow;
-    return $t;
+  return $t;
 }
 sub scaleNumber {
-    my ($ary, $down, $up) = rearrange(["value", "down", "up"], @_);
-    my $rst;
-    ($down, $up) = $down<=$up ? ($down, $up) : ($up, $down);
-    my $minX = min(@$ary);
-    my $maxX = max(@$ary);
-    $down ||= 0;
-    $up ||= 100;
-    my $factor = ($up-$down) / ($maxX-$minX);
-    for my $x (@$ary) {
-        my $y = $down + ($x-$minX) * $factor;
-        push @$rst, $y;
-    }
-    return $rst;
+  my ($ary, $down, $up) = rearrange(["value", "down", "up"], @_);
+  my $rst;
+  ($down, $up) = $down<=$up ? ($down, $up) : ($up, $down);
+  my $minX = min(@$ary);
+  my $maxX = max(@$ary);
+  $down ||= 0;
+  $up ||= 100;
+  my $factor = ($up-$down) / ($maxX-$minX);
+  for my $x (@$ary) {
+    my $y = $down + ($x-$minX) * $factor;
+    push @$rst, $y;
+  }
+  return $rst;
 }
 sub backOneLine {
-    my ($fH) = @_;
-    my $char;
-    my $flag_nonblank = 0;
-    while(seek($fH, -1, 1)) {
-        read($fH, $char, 1);
-        last if ($char eq "\n" && $flag_nonblank == 1);
-        $flag_nonblank = 1 if $char ne "\n";
-        seek($fH, -1, 1);
-    }
-    return tell($fH);
+  my ($fH) = @_;
+  my $char;
+  my $flag_nonblank = 0;
+  while(seek($fH, -1, 1)) {
+    read($fH, $char, 1);
+    last if ($char eq "\n" && $flag_nonblank == 1);
+    $flag_nonblank = 1 if $char ne "\n";
+    seek($fH, -1, 1);
+  }
+  return tell($fH);
 }
 sub get_opposite_strand {
-    my ($srdI) = @_;
-    return "-" if $srdI =~ /^[\+1]$/;
-    return "+" if $srdI =~ /^\-1?$/;
-    die "unknonw strand: $srdI\n";
+  my ($srdI) = @_;
+  return "-" if $srdI =~ /^[\+1]$/;
+  return "+" if $srdI =~ /^\-1?$/;
+  die "unknonw strand: $srdI\n";
 }
 sub is_opposite_strands {
-    my ($srd1, $srd2) = @_;
-    $srd1 = 1 if $srd1 eq "+";
-    $srd1 = -1 if $srd1 eq "-";
-    $srd2 = 1 if $srd2 eq "+";
-    $srd2 = -1 if $srd2 eq "-";
-    return 1 if $srd1 * $srd2 == -1;
-    return 0 if $srd1 * $srd2 == 1;
-    die "unknown strands: $srd1  $srd2\n";
+  my ($srd1, $srd2) = @_;
+  $srd1 = 1 if $srd1 eq "+";
+  $srd1 = -1 if $srd1 eq "-";
+  $srd2 = 1 if $srd2 eq "+";
+  $srd2 = -1 if $srd2 eq "-";
+  return 1 if $srd1 * $srd2 == -1;
+  return 0 if $srd1 * $srd2 == 1;
+  die "unknown strands: $srd1  $srd2\n";
 }
 
 sub rmRedPairs {
@@ -249,17 +249,17 @@ sub rmRedPairs {
     return \@pairs;
 }
 sub group {
-    my ($ary) = @_;
-    my $ref = {};
-    for my $i (0..@$ary-1) {
-        my $ele = $ary->[$i];
-        if(exists $ref->{$ele}) {
-            $ref->{$ele}->[1] ++;
-        } else {
-            $ref->{$ele} = [$i, 1];
-        }
+  my ($ary) = @_;
+  my $ref = {};
+  for my $i (0..@$ary-1) {
+    my $ele = $ary->[$i];
+    if(exists $ref->{$ele}) {
+      $ref->{$ele}->[1] ++;
+    } else {
+      $ref->{$ele} = [$i, 1];
     }
-    return $ref;
+  }
+  return $ref;
 }
 sub bsearch {
     my ($ary, $word) = @_;
@@ -308,20 +308,20 @@ sub sample_serial {
     return map {1+$inc*$_-1} (0..$m-1);
 }
 sub parse_old_loc_str {
-    my ($locS) = @_;
-    my $srd;
-    my $loc = [];
-    if($locS =~ /^complement\(([\w\.\,]+)\)$/) {
-        $srd = "-";
-        $locS = $1;
-    } else {
-        $srd = "+";
-    }
-    while($locS =~ /(\d+)\.\.(\d+)/g) {
-        push @$loc, [$1, $2];
-    }
-    $loc = [ sort {$a->[0] <=> $b->[0]} @$loc ];
-    return ($loc, $srd);
+  my ($locS) = @_;
+  my $srd;
+  my $loc = [];
+  if($locS =~ /^complement\(([\w\.\,]+)\)$/) {
+    $srd = "-";
+    $locS = $1;
+  } else {
+    $srd = "+";
+  }
+  while($locS =~ /(\d+)\.\.(\d+)/g) {
+    push @$loc, [$1, $2];
+  }
+  $loc = [ sort {$a->[0] <=> $b->[0]} @$loc ];
+  return ($loc, $srd);
 }
 sub writeFile {
     my ($fo, @strs) = @_;
