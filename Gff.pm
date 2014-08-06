@@ -12,7 +12,7 @@ use List::MoreUtils qw/first_index last_index insert_after apply indexes pairwis
 use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter/;
-@EXPORT = qw/parse_gff gff2gtb
+@EXPORT = qw/parse_gff
     gffMerge makeAsblTbl makeAsblGff/;
 @EXPORT_OK = qw//;
 sub parse_gff {
@@ -34,19 +34,6 @@ sub parse_gff {
     } else { 
       return undef;
     }
-  }
-}
-sub gff2gtb {
-  my ($fhi, $fho) = @_;
-  my ($cntR, $cntG) = (1, 1);
-  my $it = parse_gff($fhi);
-  while(my $gene = $it->()) {
-    for my $rna ($gene->get_rna) {
-      print $fho $rna->to_gtb()."\n";
-      printf "%5d RNA | %5d gene...\n", $cntR, $cntG if $cntR % 1000 == 0;
-      $cntR ++;
-    }
-    $cntG ++;
   }
 }
 

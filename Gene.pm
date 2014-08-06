@@ -152,19 +152,19 @@ sub from_gff {
     }
 }
 sub to_gff {
-    my $self = shift;
-    my $seqid = $self->seqid;
-    my $strand = $self->strand;
-    my @tags = ("ID=".$self->id);
-    push @tags, "Note=".$self->note if $self->note;
-    return join("\t", $seqid, $self->source, $self->type, $self->beg, $self->end, '.', $strand, '.', join(";", @tags));
+  my $self = shift;
+  my $seqid = $self->seqid;
+  my $strand = $self->strand;
+  my @tags = ("ID=".$self->id);
+  push @tags, "Note=".$self->note if $self->note;
+  return join("\t", $seqid, $self->source, $self->type, $self->beg, $self->end, '.', $strand, '.', join(";", @tags));
 }
 
 sub from_gtb {
-    my ($self, $t) = @_;
-    for my $i (0..$t->nofRow-1) {
-        $self->add_rna( Rna->new(-gtb=>$t->rowRef($i)) );
-    }
+  my ($self, $t) = @_;
+  for my $i (0..$t->nofRow-1) {
+    $self->add_rna( Rna->new(-gtb=>$t->rowRef($i)) );
+  }
 }
 
 sub add_rna {

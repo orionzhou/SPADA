@@ -12,11 +12,11 @@ require Exporter;
 @EXPORT = qw//;
 
 sub new {
-    my ($class, @args) = @_;
-    my $self = {};
-    bless $self, $class;
-    $self->set_attributes(@args);
-    return $self;
+  my ($class, @args) = @_;
+  my $self = {};
+  bless $self, $class;
+  $self->set_attributes(@args);
+  return $self;
 }
 sub set_attributes {
   my ($self, @args) = @_;

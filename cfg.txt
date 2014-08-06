@@ -1,18 +1,3 @@
-##########  pre-processing  ##########
-# SPADA source code directory
-SPADA_SRC_DIR = /home/youngn/zhoup/git/spada
-# SPADA output directory
-# can be overwritten by '-dir' command line argument
-SPADA_OUT_DIR = spada.crp.test
-# directory containing profile alignments and HMM files
-SPADA_HMM_DIR = hmm.crp
-# genome sequence file (FASTA format, required) 
-# can be overwritten by '-fas' command line argument
-SPADA_FAS = test/01_refseq.fa
-# gene annotation file (GFF3 format, optional) 
-# can be overwritten by '-gff' command line argument
-SPADA_GFF = test/51_gene.gff
-
 ##########  motif mining  ##########
 # hmmsearch binary (hmmserach) should locate in {HMMER}/bin
 HMMER = /home/youngn/zhoup/spada_soft/hmmer
@@ -22,10 +7,6 @@ ClustalO = /home/youngn/zhoup/spada_soft/clustalo
 trimAl = /home/youngn/zhoup/spada_soft/trimal
 
 ##########  model prediction  ##########
-# organism to run, this tells GeneMark / GlimmerHMM / GeneID 
-# which *.mod / training dir / *.param file to use
-# can be overwritten by '-org' command line argument
-SPADA_ORG = Athaliana
 # gene prediction programs to run, seperated by semicolons
 # can be overwritten by '-method' command line argument
 methods = Augustus_evidence;GeneWise_SplicePredictor
@@ -48,13 +29,7 @@ GlimmerHMM = /home/youngn/zhoup/spada_soft/GlimmerHMM
 GeneID = /home/youngn/zhoup/spada_soft/geneid
 
 ##########  model evaluation  ##########
-# does the searched gene family contain signal peptide? 
-# set to 0 if non-secreted; can be overwritten by '-sp' command line argument
-eval_sp = 1
 # signalp script (signalp) should locate in {SignalP}
 # required if eval_sp is set to 1
 SignalP = /home/youngn/zhoup/spada_soft/signalp-4.0
-# final E-value threshold used to filter predction set
-# can be overwritten by '-e' command line argument
-evalue = 0.001
 

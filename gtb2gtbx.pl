@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 #
 # POD documentation
-#------------------------------------------------------------------------------
+#---------------------------------------------------------------------------
 =pod BEGIN
   
 =head1 NAME
@@ -21,7 +21,7 @@
 =cut
   
 #### END of POD documentation.
-#-----------------------------------------------------------------------------
+#---------------------------------------------------------------------------
 
 
 use strict;
@@ -30,12 +30,14 @@ use lib "$FindBin::Bin";
 use Getopt::Long;
 use Pod::Usage;
 use Common;
+use Location;
+use Seq;
 use Gtb;
 
 my ($fi, $fo, $fs) = ('') x 3;
 my $help_flag;
 
-#----------------------------------- MAIN -----------------------------------#
+#--------------------------------- MAIN -----------------------------------#
 GetOptions(
     "help|h"   => \$help_flag,
     "in|i=s"   => \$fi,
@@ -58,7 +60,28 @@ if ($fo eq '' || $fo eq "stdout" || $fo eq "-") {
     open ($fho, ">$fo") || die "Can't open file $fo for writing: $!\n";
 }
 
-gtb2gtbx($fhi, $fho, $fs);
+my $t = readTable(-inh => $fhi, -header => 1);
+
+$t->addCol([("") x $t->nofRow], "seq") if $t->colIndex("seq") < 0;
+for my $i (0..$t->nofRow-1) {
+  my ($id, $par, $chr, $beg, $end, $srd, $phase, $locS, $cat1, $cat2) = 
+    map {$t->elm($i, $_)} qw/id par chr beg end srd phase cloc cat1 cat2/;
+  next if $cat2 ne "mRNA";
+  die "no locCDS for $id\n" unless $locS;
+  my $phase1 = [split(",", $phase)]->[0];
+
+  my $rloc = locStr2Ary($locS);
+  my $loc = $srd eq "-" ? [map {[$end-$_->[1]+1, $end-$_->[0]+1]} @$rloc] : 
+    [map {[$beg+$_->[0]-1, $beg+$_->[1]-1]} @$rloc];
+  my $seqStr = seqRet($loc, $chr, $srd, $fs);
+  my $seq_cds = Bio::Seq->new(-id=>$id, -seq=>$seqStr);
+  my $seq_pro = $seq_cds->translate(-frame=>$phase1);
+  $t->setElm($i, "seq", $seq_pro->seq);
+  printf "%5d | %5d\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
+}
+print $fho $t->tsv(1);
+close $fho;
+
 
 
 __END__

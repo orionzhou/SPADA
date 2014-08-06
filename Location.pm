@@ -396,7 +396,7 @@ sub coordTransform {
     
   my ($rangeI, $rangeO) = map {$_->[$idx]} ($locI, $locO);
   my $pos2;
-  if(is_opposite_strands($srdI, $srdO)) {
+  if(is_revsrd($srdI, $srdO)) {
     $pos2 = $rangeO->[1] - ($pos - $rangeI->[0]);
   } else {
     $pos2 = ($pos - $rangeI->[0]) + $rangeO->[0];
@@ -407,7 +407,7 @@ sub coordTransform_itv {
   my ($pos1, $pos2, $locI, $srdI, $locO, $srdO) = @_;
   $locI = [ sort {$a->[0] <=> $b->[0]} @$locI ];
   $locO = [ sort {$a->[0] <=> $b->[0]} @$locO ];
-  $locO = [ reverse @$locO ] if is_opposite_strands($srdI, $srdO);
+  $locO = [ reverse @$locO ] if is_revsrd($srdI, $srdO);
   ($pos1, $pos2) = ($pos2, $pos1) if $pos1 > $pos2;
   
   my ($idx1, $idx2);
@@ -430,8 +430,8 @@ sub coordTransform_itv {
     } else {
       ($bl, $el) = ($begI, $endI);
     }
-    my $bg = is_opposite_strands($srdI, $srdO) ? $endO - ($el - $begI) : $begO + ($bl - $begI);
-    my $eg = is_opposite_strands($srdI, $srdO) ? $endO - ($bl - $begI) : $begO + ($el - $begI);
+    my $bg = is_revsrd($srdI, $srdO) ? $endO - ($el - $begI) : $begO + ($bl - $begI);
+    my $eg = is_revsrd($srdI, $srdO) ? $endO - ($bl - $begI) : $begO + ($el - $begI);
     die "bg[$bg] > eg[$eg]\n" if $bg > $eg;
     push @$loc, [$bg, $eg];
   }

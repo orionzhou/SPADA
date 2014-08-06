@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 #
 # POD documentation
-#------------------------------------------------------------------------------
+#---------------------------------------------------------------------------
 =pod BEGIN
   
 =head1 NAME
@@ -14,8 +14,8 @@
 
   Options:
     -h (--help)   brief help message
-    -i (--in)     input file
-    -o (--out)    output file
+    -i (--in)     input file (Gff)
+    -o (--out)    output file (Gtb)
 
 =cut
   
@@ -43,20 +43,26 @@ pod2usage(1) if $help_flag;
 pod2usage(2) if !$fi || !$fo;
 
 my ($fhi, $fho);
-if ($fi eq "stdin" || $fi eq "-") {
-  $fhi = \*STDIN;
-} else {
-  open ($fhi, $fi) || die "Can't open file $fi: $!\n";
-}
+open ($fhi, "<$fi") || die "cannot read $fi\n";
 
 if ($fo eq "stdout" || $fo eq "-") {
   $fho = \*STDOUT;
 } else {
-  open ($fho, ">$fo") || die "Can't open file $fo for writing: $!\n";
+  open ($fho, ">$fo") || die "cannot write $fo\n";
 }
 
 print $fho join("\t", @HEAD_GTB)."\n";
-gff2gtb($fhi, $fho);
+
+my $it = parse_gff($fhi);
+my ($cntR, $cntG) = (1, 1);
+while(my $gene = $it->()) {
+  for my $rna ($gene->get_rna) {
+    print $fho $rna->to_gtb()."\n";
+    printf "%5d RNA | %5d gene...\n", $cntR, $cntG if $cntR % 1000 == 0;
+    $cntR ++;
+  }
+  $cntG ++;
+}
 close $fhi;
 close $fho;
 

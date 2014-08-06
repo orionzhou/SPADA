@@ -10,19 +10,35 @@
 
 =head1 SYNOPSIS
   
-  spada.pl [-help] <-cfg config-file> [options...]
+  spada.pl [-help] [options...]
 
   Options:
-     -h (--help)    brief help message
-     -c (--cfg)     config file
-     -d (--dir)     SPADA output directory
-     -p (--hmm)     directory containing profile alignments and HMM files
-     -f (--fas)     genome sequence file (FASTA format)
-     -g (--gff)     gene annotation file (GFF3 format, optional)
-     -o (--org)     organism to run
-     -s (--sp)      if the searched gene family contains a signal peptide
-     -e (--evalue)  E-value threshold
-     -m (--method)  gene prediction programs to run (seperated by semicolon)
+    -h (--help)    brief help message
+    -c (--cfg)     config file
+                     defaut: 'cfg.txt'
+    -d (--dir)     SPADA output directory
+                     defaut: 'spada.crp.test'
+    -p (--hmm)     directory with profile alignments and HMM files
+                     defaut: 'hmm.crp'
+    -f (--fas)     genome sequence (FASTA) file
+                     defaut: 'test/01_refseq.fas'
+    -g (--gff)     gene annotation file (GFF3 format, not required)
+                     defaut: ''
+    -o (--org)     organism: this tells GeneMark / GlimmerHMM / GeneID 
+                     which *.mod / training dir / *.param file to use
+                     supported: 'Athaliana', 'Mtruncatula', 'Osativa'
+                     defaut: 'Athaliana'
+    -s (--sp)      if set, predictions without signal peptide are filtered
+                     default: TRUE
+    -e (--evalue)  E-value threshold
+                     default: 0.001
+    -t (--threads) threads (precessors) to use
+                     default: 1
+    -m (--method)  gene prediction programs to run (semicolon-seperated)
+                   supported:
+                     'Augustus_evidence', 'GeneWise_SplicePredictor', 
+                     'Augustus_de_novo', 'GeneMark', 'GlimmerHMM', 'GeneID'
+                   default: 'Augustus_evidence;GeneWise_SplicePredictor'
 
 =cut
   
@@ -45,40 +61,52 @@ use ModelPred;
 use ModelEval;
 
 my $help_flag;
-my ($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, $org, $sp, $e, $methods);
+my $f_cfg    = "cfg.txt";
+my $dir      = "spada.crp.test";
+my $dir_hmm  = "hmm.crp";
+my $f_fas    = "test/01_refseq.fas";
+my $f_gff    = "";
+my $org      = "Athaliana";
+my $sp       = 1;
+my $e        = 0.001;
+my $methods  = "Augustus_evidence;GeneWise_SplicePredictor";
+my $ncpu     = 1;
+
 GetOptions(
-    "help|h"           => \$help_flag,
-    'config|cfg|c=s'   => \$f_cfg, 
-    'dir|d=s'          => \$dir, 
-    'profile|hmm|p=s'  => \$dir_hmm, 
-    'fas|f=s'          => \$f_fas, 
-    'gff|g=s'          => \$f_gff,
-    'org|o=s'          => \$org, 
-    'signalp|sp|s=i'   => \$sp,
-    'evalue|e=f'       => \$e,
-    'method|m=s'       => \$methods,
+  "help|h"     => \$help_flag,
+  'cfg|c=s'    => \$f_cfg, 
+  'dir|d=s'    => \$dir, 
+  'hmm|p=s'    => \$dir_hmm, 
+  'fas|f=s'    => \$f_fas, 
+  'gff|g=s'    => \$f_gff,
+  'org|o=s'    => \$org, 
+  'sp|s'       => \$sp,
+  'evalue|e=f' => \$e,
+  'method|m=s' => \$methods,
+  'threads|t=i'=> \$ncpu,
 ) || pod2usage(2);
 pod2usage(1) if $help_flag;
 pod2usage(2) if !defined($f_cfg) || ! -s $f_cfg;
 
-config_setup($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, $org, $sp, $e, $methods);
+config_setup($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, 
+  $org, $sp, $e, $methods, $ncpu);
 
 $dir = $ENV{"SPADA_OUT_DIR"};
 my $t0 = [gettimeofday];
 
 my $f_log = sprintf "$dir/log.%02d%02d%02d%02d.txt", (localtime(time))[4]+1, (localtime(time))[3,2,1];
 my $log_conf = qq/
-    log4perl.category                  = INFO, Logfile, Screen
+  log4perl.category                  = INFO, Logfile, Screen
 
-    log4perl.appender.Logfile          = Log::Log4perl::Appender::File
-    log4perl.appender.Logfile.filename = $f_log
-    log4perl.appender.Logfile.layout   = Log::Log4perl::Layout::PatternLayout
-    log4perl.appender.Logfile.layout.ConversionPattern = %d{HH:mm:ss} %F{1} %L> %m %n
+  log4perl.appender.Logfile          = Log::Log4perl::Appender::File
+  log4perl.appender.Logfile.filename = $f_log
+  log4perl.appender.Logfile.layout   = Log::Log4perl::Layout::PatternLayout
+  log4perl.appender.Logfile.layout.ConversionPattern = %d{HH:mm:ss} %F{1} %L> %m %n
 
-    log4perl.appender.Screen           = Log::Log4perl::Appender::Screen
-    log4perl.appender.Screen.stderr    = 0
-    log4perl.appender.Screen.layout    = Log::Log4perl::Layout::PatternLayout
-    log4perl.appender.Screen.layout.ConversionPattern = [%d{HH:mm:ss}] %m %n
+  log4perl.appender.Screen           = Log::Log4perl::Appender::Screen
+  log4perl.appender.Screen.stderr    = 0
+  log4perl.appender.Screen.layout    = Log::Log4perl::Layout::PatternLayout
+  log4perl.appender.Screen.layout.ConversionPattern = [%d{HH:mm:ss}] %m %n
 /;
 Log::Log4perl->init(\$log_conf);
 
@@ -94,10 +122,10 @@ $log->info("##########  Starting pipeline  ##########");
 
 # Pre-processing
 my $d01 = "$dir/01_preprocessing";
-my $f01_01 = "$d01/01_refseq.fa";
+my $f01_01 = "$d01/01_refseq.fas";
 my $f01_61 = "$d01/61_gene.gtb";
-my $f01_12 = "$d01/12_orf_genome.fa";
-my $f01_71 = "$d01/71_orf_proteome.fa";
+my $f01_12 = "$d01/12_orf_genome.fas";
+my $f01_71 = "$d01/71_orf_proteome.fas";
 pipe_pre_processing($d01);
 
 # Motif Mining

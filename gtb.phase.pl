@@ -6,17 +6,17 @@
   
 =head1 NAME
   
-  gtbcheckphase.pl - check and fix a Gtb file
+  gtb.phase.pl - check and fix phases for a Gtb file
 
 =head1 SYNOPSIS
   
-  gtbcheckphase.pl [-help] [-in input-Gtb] [-seq refseq-fasta] [-out output-Gtb]
+  gtb.phase.pl [-help] [-in input-file] [-out output-file]
 
   Options:
-      -help   brief help message
-      -in     input Gtb file
-      -out    output Gtb file
-      -seq    refseq fasta
+    -h (--help)   brief help message
+    -i (--in)     input (Gtb) file
+    -o (--out)    output (Gtb) file
+    -s (--seq)    refseq fasta
 
 =cut
   
@@ -56,11 +56,11 @@ if ($fo eq '' || $fo eq "stdout" || $fo eq "-") {
   open ($fho, ">$fo") || die "Can't open file $fo for writing: $!\n";
 }
 
-my $t = readTable(-inh=>$fhi, -header=>1);
+my $t = readTable(-inh => $fhi, -header => 1);
 close $fhi;
 
-my $cntF = 0;
 print $fho join("\t", @HEAD_GTB)."\n";
+my $cntF = 0;
 for my $i (0..$t->lastRow) {
   my $ts = $t->subTable([$i]);
   my $gene = Gene->new( -gtb=>$ts );

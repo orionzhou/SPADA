@@ -492,7 +492,7 @@ sub merge_hits_within {
         for my $fam (keys(%$h)) {
             my ($beg, $end, $srdQ, $e, $src, $locQo) = @{$h->{$fam}};
             $log->info("  $chr:$beg-$end\[$srd] [$note] hit != qry") if @$loc != @$locQo;
-            $locQo = [ reverse @$locQo ] if is_opposite_strands($srd, $srdQ);
+            $locQo = [ reverse @$locQo ] if is_revsrd($srd, $srdQ);
             $h->{$fam}->[-1] = merge_sub_loc($locQo, $idxs_merge);
         }
         my @fams = sort {$h->{$a}->[3] <=> $h->{$b}->[3]} keys(%$h);

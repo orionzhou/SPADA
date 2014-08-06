@@ -14,12 +14,12 @@ use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter AutoLoader/;
 @EXPORT = qw/pretty tonum isnumber getDigits prettyStr 
-    runCmd parse_gff_tags
-    rearrange group bsearch readTable
-    mergeArray aryCmp
-    get_opposite_strand is_opposite_strands
-    getIdxRange getPhase sample_serial
-    rmRedPairs backOneLine scaleNumber writeFile/;
+  runCmd parse_gff_tags
+  rearrange group bsearch readTable
+  mergeArray aryCmp
+  is_revsrd get_revsrd
+  getIdxRange getPhase sample_serial
+  rmRedPairs backOneLine scaleNumber writeFile/;
 @EXPORT_OK = qw//;
 sub rearrange {
     my( $order, @param ) = @_;
@@ -166,8 +166,8 @@ sub readTable {
   $skip ||= 0;
   $header ||= 0;
   if(!$fh) {
-    die "$fi is not there\n" unless -s $fi;
-    open($fh, "<$fi") or die "cannot open $fi\n";
+    -s $fi || die "$fi is not there\n";
+    open($fh, "<$fi") || die "cannot read $fi\n";
   }
 
   my $t;
@@ -206,13 +206,13 @@ sub backOneLine {
   }
   return tell($fH);
 }
-sub get_opposite_strand {
+sub get_revsrd {
   my ($srdI) = @_;
   return "-" if $srdI =~ /^[\+1]$/;
   return "+" if $srdI =~ /^\-1?$/;
   die "unknonw strand: $srdI\n";
 }
-sub is_opposite_strands {
+sub is_revsrd {
   my ($srd1, $srd2) = @_;
   $srd1 = 1 if $srd1 eq "+";
   $srd1 = -1 if $srd1 eq "-";

@@ -1,6 +1,8 @@
 package ConfigSetup;
 use strict; 
 use File::Path qw/make_path remove_tree/;
+use File::Basename; 
+use Cwd qw/abs_path/;
 use Common; 
 use Data::Dumper;
 
@@ -47,73 +49,74 @@ sub config_setup_simple {
 } 
 
 sub config_setup {
-    my ($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, $org, $sp, $e, $methods) = @_;
-   
-    print "=====  setting up environment variables  =====\n";
-    my $h = read_cfg_hash($f_cfg);
-    for my $k (keys %$h) { $ENV{$k} = $h->{$k}; }
+  my ($f_cfg, $dir, $dir_hmm, $f_fas, $f_gff, 
+    $org, $sp, $e, $methods, $ncpu) = @_;
+ 
+  print "=====  setting up environment variables  =====\n";
+  my $h = read_cfg_hash($f_cfg);
+  for my $k (keys %$h) { $ENV{$k} = $h->{$k}; }
 
-    $ENV{"SPADA_OUT_DIR"} = $dir if defined $dir;
-    $ENV{"SPADA_HMM_DIR"} = $dir_hmm if defined $dir_hmm;
-    $ENV{"SPADA_FAS"} = $f_fas if defined $f_fas;
-    $ENV{"SPADA_GFF"} = "" if defined $f_fas;
-    $ENV{"SPADA_GFF"} = $f_gff if defined $f_gff;
-    $ENV{"SPADA_ORG"} = $org if defined $org;
-    $ENV{"evalue"} = $e if defined $e;
-    $ENV{"eval_sp"} = $sp if defined $sp;
-    $ENV{"methods"} = $methods if defined $methods;
+  $ENV{"SPADA_SRC_DIR"} = dirname(__FILE__);
+  $ENV{"SPADA_OUT_DIR"} = abs_path($dir);
+  $ENV{"SPADA_HMM_DIR"} = abs_path($dir_hmm);
+  $ENV{"SPADA_FAS"} = abs_path($f_fas);
+  $ENV{"SPADA_GFF"} = abs_path($f_gff);
+  $ENV{"SPADA_ORG"} = $org;
+  $ENV{"evalue"} = $e;
+  $ENV{"eval_sp"} = $sp;
+  $ENV{"methods"} = $methods;
+  $ENV{"threads"} = $ncpu;
 
-    my @keys = qw/SPADA_SRC_DIR SPADA_OUT_DIR SPADA_HMM_DIR SPADA_ORG SPADA_FAS
-        ClustalO SignalP HMMER/;
-    for my $key (@keys) {
-        exists $ENV{$key} || die "$key not defined\n";
+  my @keys = qw/ClustalO SignalP HMMER/;
+  for my $key (@keys) {
+    exists $ENV{$key} || die "$key not defined\n";
+  }
+
+  $dir = $ENV{"SPADA_OUT_DIR"};
+  $dir_hmm = $ENV{"SPADA_HMM_DIR"};
+  $f_fas = $ENV{"SPADA_FAS"};
+  $f_gff = $ENV{"SPADA_GFF"};
+  
+  printf "  using %s matrix\n", $ENV{"SPADA_ORG"};
+
+  # check HMM / profile directory
+  -s "$dir_hmm/21_all.hmm" || die "$dir_hmm/21_all.hmm is not there\n";
+
+  # check availability of called programs
+  $ENV{"method"} = { map {$_=>{}} split(";", $ENV{"methods"}) };
+  for my $soft (keys %{$ENV{"method"}}) {
+    my $hb = $ENV{"method"}->{$soft};
+    if($soft eq "Augustus_evidence") {
+      $hb->{"Augustus"} = "bin/augustus";
+    } elsif($soft eq "Augustus_de_novo") {
+      $hb->{"Augustus"} = "bin/augustus";
+    } elsif($soft eq "GeneWise_SplicePredictor") {
+      $hb->{"GeneWise"} = "bin/genewise";
+      $hb->{"SplicePredictor"} = "bin/SplicePredictor";
+    } elsif($soft eq "GeneMark") {
+      $hb->{"GeneMark"} = "gmhmme3";
+    } elsif($soft eq "GlimmerHMM") {
+      $hb->{"GlimmerHMM"} = "bin/glimmerhmm";
+    } elsif($soft eq "GeneID") {
+      $hb->{"GeneID"} = "bin/geneid";
     }
-
-    $dir = $ENV{"SPADA_OUT_DIR"};
-    $dir_hmm = $ENV{"SPADA_HMM_DIR"};
-    $f_fas = $ENV{"SPADA_FAS"};
-    $f_gff = $ENV{"SPADA_GFF"};
     
-    printf "  using %s matrix\n", $ENV{"SPADA_ORG"};
-
-    # check HMM / profile directory
-    -s "$dir_hmm/21_all.hmm" || die "$dir_hmm/21_all.hmm is not there\n";
-
-    # check availability of called programs
-    $ENV{"method"} = { map {$_=>{}} split(";", $ENV{"methods"}) };
-    for my $soft (keys %{$ENV{"method"}}) {
-        my $hb = $ENV{"method"}->{$soft};
-        if($soft eq "Augustus_evidence") {
-            $hb->{"Augustus"} = "bin/augustus";
-        } elsif($soft eq "Augustus_de_novo") {
-            $hb->{"Augustus"} = "bin/augustus";
-        } elsif($soft eq "GeneWise_SplicePredictor") {
-            $hb->{"GeneWise"} = "bin/genewise";
-            $hb->{"SplicePredictor"} = "bin/SplicePredictor";
-        } elsif($soft eq "GeneMark") {
-            $hb->{"GeneMark"} = "gmhmme3";
-        } elsif($soft eq "GlimmerHMM") {
-            $hb->{"GlimmerHMM"} = "bin/glimmerhmm";
-        } elsif($soft eq "GeneID") {
-            $hb->{"GeneID"} = "bin/geneid";
-        }
-        
-        for my $key (keys %$hb) {
-            exists $ENV{$key} || die "$key not defined\n";
-            my $fb = $ENV{$key}."/".$hb->{$key};
-            -s $fb || die "$key: $fb is not there\n";
-        }
-        printf "\twill run %s\n", $soft;
+    for my $key (keys %$hb) {
+      exists $ENV{$key} || die "$key not defined\n";
+      my $fb = $ENV{$key}."/".$hb->{$key};
+      -s $fb || die "$key: $fb is not there\n";
     }
+    printf "\twill run %s\n", $soft;
+  }
 
-    
-    make_path($ENV{"SPADA_OUT_DIR"}) if ! -d $ENV{"SPADA_OUT_DIR"};
-    $ENV{"TMP_DIR"} = $ENV{"SPADA_OUT_DIR"};
-    
-    $ENV{"BLOSUM62"} = $ENV{"SPADA_SRC_DIR"}."/BLOSUM62";
-    $ENV{"BLOSUM80"} = $ENV{"SPADA_SRC_DIR"}."/BLOSUM80";
-    push @INC, $ENV{"SPADA_SRC_DIR"};
-    $ENV{'PATH'} = join(":", $ENV{"SPADA_SRC_DIR"}, $ENV{'PATH'});
+  
+  -d $ENV{"SPADA_OUT_DIR"} || make_path($ENV{"SPADA_OUT_DIR"});
+  $ENV{"TMP_DIR"} = $ENV{"SPADA_OUT_DIR"};
+  
+  $ENV{"BLOSUM62"} = $ENV{"SPADA_SRC_DIR"}."/BLOSUM62";
+  $ENV{"BLOSUM80"} = $ENV{"SPADA_SRC_DIR"}."/BLOSUM80";
+  push @INC, $ENV{"SPADA_SRC_DIR"};
+  $ENV{'PATH'} = join(":", $ENV{"SPADA_SRC_DIR"}, $ENV{'PATH'});
 }
 
 1;

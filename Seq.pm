@@ -12,11 +12,11 @@ use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter AutoLoader/;
 @EXPORT = qw/readSeq readSeqInfo writeSeq writeSeqInOrder read_aln_seq
-    revcom translate translate6
-    get_start_codons get_stop_codon
-    seqRet seqLen getLongestOrf getSubSeq slideSeq
-    validate_dna_seq checkDnaSeq checkProtSeq
-    seqCompare translate_smart/;
+  revcom translate translate6 seqret_simple
+  get_start_codons get_stop_codon
+  seqRet seqLen getLongestOrf getSubSeq slideSeq
+  validate_dna_seq checkDnaSeq checkProtSeq
+  seqCompare translate_smart/;
 @EXPORT_OK = qw//;
 
 my (%genetic_code) = (
@@ -275,6 +275,13 @@ sub writeSeqInOrder {
   }
 }
 
+sub seqret_simple {
+  my ($db, $chr, $beg, $end, $srd) = @_;
+  my $seqStr = $db->seq($chr, $beg, $end);
+  die "cannot find seq: $chr:$beg-$end\n" unless $seqStr;
+  $seqStr = Bio::Seq->new(-seq=>$seqStr)->revcom->seq if $srd =~ /^\-1?$/;
+  return $seqStr;
+}
 sub seqRet {
   my ($loc, $seqid, $srd, $f_seq) = @_;
   die "no sequence file: $f_seq\n" unless -s $f_seq;

@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 #
 # POD documentation
-#------------------------------------------------------------------------------
+#---------------------------------------------------------------------------
 =pod BEGIN
   
 =head1 NAME
@@ -14,17 +14,13 @@
 
   Options:
       -help   brief help message
-      -in     input file
-      -out    output file
-
-=head1 DESCRIPTION
-
-  This program converts an input Gtb file to an output GFF3 file
+      -in     input file (Gtb)
+      -out    output file (Gff)
 
 =cut
   
 #### END of POD documentation.
-#-----------------------------------------------------------------------------
+#---------------------------------------------------------------------------
 
 
 use strict;
@@ -33,34 +29,47 @@ use lib "$FindBin::Bin";
 use Getopt::Long;
 use Pod::Usage;
 use Common;
-use Gtb;
+use Gene;
 
 my ($fi, $fo) = ('') x 2;
 my $help_flag;
 
-#----------------------------------- MAIN -----------------------------------#
+#--------------------------------- MAIN -----------------------------------#
 GetOptions(
-    "help|h"   => \$help_flag,
-    "in|i=s"   => \$fi,
-    "out|o=s"  => \$fo,
+  "help|h"   => \$help_flag,
+  "in|i=s"   => \$fi,
+  "out|o=s"  => \$fo,
 ) or pod2usage(2);
 pod2usage(1) if $help_flag;
+pod2usage(2) if !$fi;
 
 my ($fhi, $fho);
-if ($fi eq '' || $fi eq "stdin" || $fi eq "-") {
-    $fhi = \*STDIN;
+if ($fo eq '' || $fo eq "stdout" || $fo eq "-") {
+  $fho = \*STDOUT;
 } else {
-    open ($fhi, $fi) || die "Can't open file $fi: $!\n";
+  open ($fho, ">$fo") || die "cannot write $fo\n";
 }
 
-if ($fo eq '' || $fo eq "stdout" || $fo eq "-") {
-    $fho = \*STDOUT;
-} else {
-    open ($fho, ">$fo") || die "Can't open file $fo for writing: $!\n";
-}
+my $t = readTable(-in => $fi, -header => 1);
+$t->sort("par", 1, 0, "id", 1, 0);
+my $ref = group($t->colRef("par"));
+my @gids = sort {$ref->{$a}->[0] <=> $ref->{$b}->[0]} keys %$ref;
+printf "%d genes : %d models\n", scalar(@gids), $t->nofRow;
 
 print $fho "##gff-version 3\n";
-gtb2gff($fhi, $fho);
+my ($cntG, $cntR) = (1, 1);
+for my $gid (@gids) {
+  my ($idxB, $cnt) = @{$ref->{$gid}};
+  my $ts = $t->subTable([$idxB..$idxB+$cnt-1]);
+  my $gene = Gene->new(-gtb => $ts);
+  print $fho $gene->to_gff()."\n";
+  for my $rna ($gene->get_rna()) {
+    print $fho $rna->to_gff()."\n";
+    printf "  Gtb -> Gff %5d RNA | %5d gene...\n", $cntR, $cntG if $cntR % 1000 == 0;
+    $cntR ++;
+  }
+  $cntG ++; 
+}
 close $fho;
 
 

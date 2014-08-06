@@ -419,7 +419,7 @@ sub coordinate_transform_cds {
     my ($sPosAry1, $sLen1) = posDiff($locR, $locR2);
     die "not completely in CDS:\n".Dumper($locR).Dumper($locO) unless $sLen1 == 0;
     
-    my $srdG = is_opposite_strands($srdI, $srdO) ? get_opposite_strand($srdR) : $srdR;
+    my $srdG = is_revsrd($srdI, $srdO) ? get_revsrd($srdR) : $srdR;
     my $locG;
     for (@$locR2) {
         my $pos1 = coordTransform($_->[0], $locI, $srdI, $locO, $srdO);
@@ -430,27 +430,27 @@ sub coordinate_transform_cds {
 }
 
 sub pipe_hmmsearch {
-    my ($dir, $f_hmm, $f_tar, $f_ref, $f_gtb) = rearrange([qw/dir hmm target ref gtb/], @_);
-    make_path($dir) unless -d $dir;
-    my $log = Log::Log4perl->get_logger("Hmm");
+  my ($dir, $f_hmm, $f_tar, $f_ref, $f_gtb) = rearrange([qw/dir hmm target ref gtb/], @_);
+  make_path($dir) unless -d $dir;
+  my $log = Log::Log4perl->get_logger("Hmm");
 
-    my $f_bin = $ENV{"HMMER"}."/bin/hmmsearch";
-    $log->error_die("cannot execute $f_bin") unless -s $f_bin;
+  my $f_bin = $ENV{"HMMER"}."/bin/hmmsearch";
+  $log->error_die("cannot execute $f_bin") unless -s $f_bin;
 
-    my $f01 = "$dir/01_raw.txt";
-    $log->info(sprintf "running hmmsearch against %s", basename($f_tar));
-    runCmd("$f_bin --domE 10 --cpu 4 -o $dir/01_raw.txt --domtblout $dir/01_raw.tbl $f_hmm $f_tar", 0);
+  my $f01 = "$dir/01_raw.txt";
+  $log->info(sprintf "running hmmsearch against %s", basename($f_tar));
+  runCmd("$f_bin --domE 10 --cpu $ENV{'threads'} -o $dir/01_raw.txt --domtblout $dir/01_raw.tbl $f_hmm $f_tar", 0);
 
-    my $f02 = "$dir/02.htb";
-    parse_hmm_output($f01, $f02);
-    my $f03 = "$dir/03_full.htb";
-    get_aln_position($f02, $f03);
-    my $f04 = "$dir/04_nt.htb";
-    coordTransform_aa2nt($f03, $f04);
-    my $f05 = "$dir/05_global.htb";
-    recoverCoord($f04, $f05, $f_ref);
-    my $f07 = "$dir/07_final.htb";
-    refine_hmm_hit($f05, $f07);
+  my $f02 = "$dir/02.htb";
+  parse_hmm_output($f01, $f02);
+  my $f03 = "$dir/03_full.htb";
+  get_aln_position($f02, $f03);
+  my $f04 = "$dir/04_nt.htb";
+  coordTransform_aa2nt($f03, $f04);
+  my $f05 = "$dir/05_global.htb";
+  recoverCoord($f04, $f05, $f_ref);
+  my $f07 = "$dir/07_final.htb";
+  refine_hmm_hit($f05, $f07);
 }
 
 
