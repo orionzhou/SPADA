@@ -11,7 +11,7 @@ use List::MoreUtils qw/first_index first_value insert_after apply indexes pairwi
 use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter AutoLoader/;
-@EXPORT = qw/run_sigp pipe_search_sigp search_sigp/;
+@EXPORT = qw/run_sigp parse_sigp pipe_search_sigp search_sigp/;
 @EXPORT_OK = qw//;
 
 sub run_sigp_hmm {
@@ -61,24 +61,39 @@ sub run_sigp_hmm {
     }
     return ($tag, $score, $len);
 }
+sub parse_sigp {
+  my ($fi) = @_;
+  open(my $fhi, "<$fi") or die "cannot read $fi\n";
+  my ($prob1, $prob2, $site) = ("") x 3;
+  my ($tag, $d, $pos) = (0, 0, "");
+  while(<$fhi>) {
+    chomp;
+    next unless /^tmp/;
+    my ($id, $Cmax, $posC, $Ymax, $posY, $Smax, $posS, $Smean, $D, $sp, $Dmaxcut, $network) = split " ";
+    ($tag, $pos, $d) = (1, $posY, $D) if $sp eq "Y";
+  }
+  return ($tag, $d, $pos);
+}
 sub run_sigp {
-    my ($seq) = @_;
-    $seq =~ s/\*$//;
-    my $f_fas = $ENV{"TMP_DIR"}."/signalp_".int(rand(1000)).".fa";
-    writeFile($f_fas, ">tmp", $seq);
-    my $f_bin = $ENV{"SignalP"}."/signalp";
-    die "$f_bin not there\n" unless -s $f_bin;
-    
-    my ($prob1, $prob2, $site) = ("") x 3;
-    my ($tag, $d, $pos) = (0, 0, "");
-    my $lines = runCmd("perl $f_bin -t euk -s notm $f_fas", 2);
-    for (@$lines) {
-        next unless /^tmp/;
-        my ($id, $Cmax, $posC, $Ymax, $posY, $Smax, $posS, $Smean, $D, $sp, $Dmaxcut, $network) = split " ";
-        ($tag, $pos, $d) = (1, $posY, $D) if $sp eq "Y";
-    }
-    runCmd("rm $f_fas", 0);
-    return ($tag, $d, $pos);
+  my ($seq) = @_;
+  $seq =~ s/\*$//;
+  
+  my $f_fas = $ENV{"TMP_DIR"}."/signalp_".int(rand(1000)).".fa";
+  writeFile($f_fas, ">tmp", $seq);
+  
+  my $f_bin = $ENV{"SignalP"}."/signalp";
+  die "$f_bin not there\n" unless -s $f_bin;
+  my $lines = runCmd("perl $f_bin -t euk -s notm $f_fas", 2);
+  
+  my ($prob1, $prob2, $site) = ("") x 3;
+  my ($tag, $d, $pos) = (0, 0, "");
+  for (@$lines) {
+    next unless /^tmp/;
+    my ($id, $Cmax, $posC, $Ymax, $posY, $Smax, $posS, $Smean, $D, $sp, $Dmaxcut, $network) = split " ";
+    ($tag, $pos, $d) = (1, $posY, $D) if $sp eq "Y";
+  }
+  runCmd("rm $f_fas", 0);
+  return ($tag, $d, $pos);
 }
 
 sub get_sigp_candidates {

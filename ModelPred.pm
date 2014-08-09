@@ -10,7 +10,6 @@ use Gtb;
 use CompareModel;
 use Software;
 use SignalP;
-use Spada;
 use List::Util qw/min max sum/;
 use List::MoreUtils qw/first_index first_value insert_after apply indexes pairwise zip uniq/;
 
@@ -135,28 +134,6 @@ sub prefilter_hits {
   open(FH, ">$fo") or die "cannot write to $fo\n";
   print FH $ti->tsv(1);
   close FH;
-}
-
-sub pipe_model_run {
-  my ($dir, $f_hit, $f_ref, $soft) = rearrange(['dir', 'hit', 'ref', 'soft'], @_);
-  my $log = Log::Log4perl->get_logger("ModelPred");
-  $log->info("### working on $soft pipeline ###");
-  
-  if($soft eq "Augustus_evidence") {
-    pipe_augustus($f_hit, $dir);
-  } elsif($soft eq "GeneWise_SplicePredictor") {
-    pipe_genewise_splicepredictor($f_hit, $dir);
-  } elsif($soft eq "Augustus_de_novo") {
-    pipe_augustus_simple($f_hit, $dir);
-  } elsif($soft eq "GeneMark") {
-    pipe_genemark($f_hit, $dir);
-  } elsif($soft eq "GlimmerHMM") {
-    pipe_glimmerhmm($f_hit, $dir);
-  } elsif($soft eq "GeneID") {
-    pipe_geneid($f_hit, $dir);
-  } else {
-    die "unsupported program: $soft\n";
-  }
 }
 
 sub collect_models { 

@@ -104,7 +104,7 @@ sub config_setup {
     for my $key (keys %$hb) {
       exists $ENV{$key} || die "$key not defined\n";
       my $fb = $ENV{$key}."/".$hb->{$key};
-      -s $fb || die "$key: $fb is not there\n";
+      -x $fb || die "$key: $fb is not there\n";
     }
     printf "\twill run %s\n", $soft;
   }

@@ -1,10 +1,12 @@
 ##########  motif mining  ##########
 # hmmsearch binary (hmmserach) should locate in {HMMER}/bin
-HMMER = /home/youngn/zhoup/spada_soft/hmmer
+HMMER = /home/youngn/zhoup/x86_64/soft/hmmer
 # ClustalO (clustalo) binary should locate in {ClustalO}/bin
-ClustalO = /home/youngn/zhoup/spada_soft/clustalo
+ClustalO = /home/youngn/zhoup/x86_64/soft/clustalo
 # trimal binary (trimal) should locate in {trimAl}/bin
-trimAl = /home/youngn/zhoup/spada_soft/trimal
+trimAl = /home/youngn/zhoup/x86_64/soft/trimal
+# GNU Parallel binary (parallel) should locate in {Parallel}/bin
+Parallel = /home/youngn/zhoup/x86_64/soft/parallel
 
 ##########  model prediction  ##########
 # gene prediction programs to run, seperated by semicolons
@@ -14,7 +16,7 @@ methods = Augustus_evidence;GeneWise_SplicePredictor
 
 # augustus binary (augustus) should locate in {Augustus}/bin
 # config diretory shold be {Augustus}/config
-Augustus = /home/youngn/zhoup/spada_soft/augustus
+Augustus = /home/youngn/zhoup/x86_64/soft/augustus
 # genewise binary (genewise) should locate in {GeneWise}/bin
 GeneWise = /home/youngn/zhoup/spada_soft/wise2.2.0
 # SplicePredictor binary (SplicePredictor) should locate in {SplicePredictor}/bin
