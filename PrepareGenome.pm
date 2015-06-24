@@ -67,7 +67,7 @@ sub get_orf_proteome {
   for my $i (0..$t->nofRow-1) {
     my ($idM, $idG, $chr, $beg, $end, $srd, $phaseS, $locS, $cat1, $cat2) = 
       map {$t->elm($i, $_)} qw/id par chr beg end srd phase cloc cat1 cat2/;
-    $cat2 eq "mRNA" || next;
+    $cat1 eq "mRNA" || next;
     die "no locCDS for $idM\n" unless $locS;
     my $rloc = locStr2Ary($locS);
     my $loc = $srd eq "+" ? 
@@ -84,7 +84,7 @@ sub get_orf_proteome {
     my $seq_cds = Bio::Seq->new(-id=>$id, -seq=>$seqStr);
     my $seq_pro = $seq_cds->translate();
     $seqHO->write_seq($seq_pro);
-    printf "  %5d / %5d done\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
+#    printf "  %5d / %5d done\n", $i+1, $t->nofRow if ($i+1) % 1000 == 0;
   }
   $seqHO->close();
 }
@@ -112,18 +112,7 @@ sub pipe_pre_processing {
     runCmd("ln -sf $ENV{'SPADA_FAS'} $fn", 0);
   }
   system("rm -rf $fn.index") if -s "$fn.index";
-
-  $fn = "11_refseq_trans6.fas";
-  if($dir eq $dirfas && -s $fn) {
-    $log->info("already generated: $fn");
-  } elsif(-s "$dirfas/$fn") {
-    $log->info("creating symlink to: $fn");
-    runCmd("rm -rf $fn", 0); 
-    runCmd("ln -sf $dirfas/$fn $fn", 0);
-  } else {
-    translate6("01_refseq.fas", $fn);
-  }
- 
+  
   $fn = "12_orf_genome.fas";
   if($dir eq $dirfas && -s $fn) {
     $log->info("already generated: $fn");
@@ -132,12 +121,11 @@ sub pipe_pre_processing {
     runCmd("rm -rf $fn", 0); 
     runCmd("ln -sf $dirfas/$fn $fn", 0);
   } else {
+    translate6("01_refseq.fas", "11_refseq_trans6.fas");
     get_orf_genome("11_refseq_trans6.fas", $fn);
   } 
 
   if(!exists $ENV{"SPADA_GFF"}) {
-    $log->info("Annotation GFF not defined");
-    $log->warn("Proceeding without GFF");
     return 1;
   } elsif(! -s $ENV{"SPADA_GFF"}) {
     $log->warn("Annotation GFF not there: $ENV{'SPADA_GFF'}");
@@ -153,7 +141,7 @@ sub pipe_pre_processing {
     runCmd("rm -rf $fn", 0); 
     runCmd("ln -sf $ENV{'SPADA_GFF'} $fn", 0);
   }
-  
+ 
   $fn = "71_orf_proteome.fas";
   if($dir eq $dirgff && -s $fn) {
     $log->info("already generated: $fn");

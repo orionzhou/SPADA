@@ -51,14 +51,14 @@ if ($fo eq "stdout" || $fo eq "-") {
   open ($fho, ">$fo") || die "cannot write $fo\n";
 }
 
+my $it = parse_gene_gff($fhi);
 print $fho join("\t", @HEAD_GTB)."\n";
 
-my $it = parse_gff($fhi);
 my ($cntR, $cntG) = (1, 1);
-while(my $gene = $it->()) {
-  for my $rna ($gene->get_rna) {
+while(my $rnas = $it->()) {
+  for my $rna (@$rnas) {
     print $fho $rna->to_gtb()."\n";
-    printf "%5d RNA | %5d gene...\n", $cntR, $cntG if $cntR % 1000 == 0;
+#    printf "%5d RNA | %5d gene...\n", $cntR, $cntG if $cntR % 1000 == 0;
     $cntR ++;
   }
   $cntG ++;

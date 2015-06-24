@@ -123,10 +123,10 @@ sub get_stat_aln {
   my $f_bin = $ENV{"ClustalO"}."/bin/clustalo";
   -x $f_bin || $log->error_die("cannot execute $f_bin");
   
-  -d "01_seq" || make_path("01_seq");
-  
   my $t = readTable(-in => $fi, -header => 1);
   my $ref = group($t->colRef("par"));
+  
+  -d "01_seq" || make_path("01_seq");
   
   open(my $fhc, ">03.cmds") or die "cannot write 03.cmds\n";
   for my $par (sort keys(%$ref)) {
@@ -539,7 +539,8 @@ sub pipe_model_evaluation {
   merge_stats('30_stat_basic.tbl', '41_stat.tbl', $p);
   pick_best_model($f_gtb, '41_stat.tbl', '51_best.gtb', $p);
   remove_ovlp_models('41_stat.tbl', '51_best.gtb', '55_nonovlp.gtb');
-  filter_models(-stat=>'41_stat.tbl', -in=>'55_nonovlp.gtb', -out=>'59.gtb', 
+  filter_models(-stat=>'41_stat.tbl', -in=>'55_nonovlp.gtb', 
+    -out=>'59.gtb', 
     -e=>$ENV{"evalue"}, -aln=>-1000, -sp=>$eval_sp, -codon=>1);
   
   crp_rename('59.gtb', $f_ref, '61_final.gtb');

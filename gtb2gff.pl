@@ -29,7 +29,8 @@ use lib "$FindBin::Bin";
 use Getopt::Long;
 use Pod::Usage;
 use Common;
-use Gene;
+use Rna;
+use List::Util qw/min max sum/;
 
 my ($fi, $fo) = ('') x 2;
 my $help_flag;
@@ -60,15 +61,22 @@ print $fho "##gff-version 3\n";
 my ($cntG, $cntR) = (1, 1);
 for my $gid (@gids) {
   my ($idxB, $cnt) = @{$ref->{$gid}};
-  my $ts = $t->subTable([$idxB..$idxB+$cnt-1]);
-  my $gene = Gene->new(-gtb => $ts);
-  print $fho $gene->to_gff()."\n";
-  for my $rna ($gene->get_rna()) {
-    print $fho $rna->to_gff()."\n";
-    printf "  Gtb -> Gff %5d RNA | %5d gene...\n", $cntR, $cntG if $cntR % 1000 == 0;
-    $cntR ++;
+
+  my @rnas;
+  for my $i ($idxB..$idxB+$cnt-1) {
+    push @rnas, Rna->new(-gtb => $t->rowRef($i));
   }
-  $cntG ++; 
+
+  my $seqid = $rnas[0]->seqid;
+  my $beg = min(map {$_->beg} @rnas);
+  my $end = max(map {$_->end} @rnas);
+  my $srd = $rnas[0]->strand;
+  my $tag = "ID=".$rnas[0]->parent;
+  print $fho join("\t", $seqid, '.', 'gene', $beg, $end, '.', $srd, '.', $tag)."\n";;
+
+  for my $rna (@rnas) {
+    print $fho $rna->to_gff()."\n";
+  }
 }
 close $fho;
 

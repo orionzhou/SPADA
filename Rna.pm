@@ -20,17 +20,14 @@ sub new {
 }
 sub set_attributes {
   my ($self, @args) = @_;
-  my ($id, $pa, $beg, $end, $seqid, $strand, $type, $source, $note) = 
-    rearrange([qw/id parent beg end seqid strand type source note/], @args);
+  my ($id, $pa, $beg, $end, $seqid, $strand) = 
+    rearrange([qw/id parent beg end seqid strand/], @args);
   defined $id     && $self->id($id);
   defined $pa     && $self->parent($pa);
+  defined $seqid  && $self->seqid($seqid);
   defined $beg    && $self->beg($beg);
   defined $end    && $self->end($end);
-  defined $seqid  && $self->seqid($seqid);
   defined $strand && $self->strand($strand);
-  defined $type   && $self->type($type);
-  defined $source && $self->source($source);
-  defined $note   && $self->note($note);
 
   my ($eloc, $iloc, $cloc, $floc, $tloc, $phase) = 
     rearrange([qw/exon intron cds utr5 utr3 phase/], @args);
@@ -41,11 +38,14 @@ sub set_attributes {
   defined $tloc  && $self->utr3($tloc);
   defined $phase && $self->phase($phase);
 
-  my ($conf, $cat1, $cat2, $cat3) = rearrange([qw/conf cat1 cat2 cat3/], @args);
-  defined $conf   && $self->conf($conf);
-  defined $cat1   && $self->cat1($cat1);
-  defined $cat3   && $self->cat3($cat3);
-  defined $cat3   && $self->cat3($cat3);
+  my ($src, $conf, $cat1, $cat2, $cat3, $note) = 
+    rearrange([qw/source conf cat1 cat2 cat3 note/], @args);
+  defined $src   && $self->source($src);
+  defined $conf  && $self->conf($conf);
+  defined $cat1  && $self->cat1($cat1);
+  defined $cat3  && $self->cat3($cat3);
+  defined $cat3  && $self->cat3($cat3);
+  defined $note  && $self->note($note);
   
   my ($t_gff, $t_gtb) = rearrange(['gff', 'gtb'], @args);
   defined $t_gff  && $self->from_gff($t_gff);
@@ -61,6 +61,11 @@ sub parent {
   return $obj->{'_parent'} = shift if @_;
   return $obj->{'_parent'};
 }
+sub seqid {
+  my $obj = shift;
+  return $obj->{'_seqid'} = shift if @_;
+  return $obj->{'_seqid'};
+}
 sub beg {
   my $obj = shift;
   return $obj->{'_beg'} = shift if @_;
@@ -70,11 +75,6 @@ sub end {
   my $obj = shift;
   return $obj->{'_end'} = shift if @_;
   return $obj->{'_end'};
-}
-sub seqid {
-  my $obj = shift;
-  return $obj->{'_seqid'} = shift if @_;
-  return $obj->{'_seqid'};
 }
 sub strand {
   my ($obj, $srd) = @_;
@@ -86,21 +86,6 @@ sub strand {
   } else {
     return $obj->{'_strand'};
   }
-}
-sub type {
-  my $obj = shift;
-  return $obj->{'_type'} = shift if @_;
-  return $obj->{'_type'};
-}
-sub source {
-  my $obj = shift;
-  return $obj->{'_source'} = shift if @_;
-  return $obj->{'_source'};
-}
-sub note {
-  my $obj = shift;
-  return $obj->{'_note'} = shift if @_;
-  return $obj->{'_note'};
 }
 
 sub exon {
@@ -134,6 +119,11 @@ sub phase {
   return $obj->{'_phase'};
 }
 
+sub source {
+  my $obj = shift;
+  return $obj->{'_source'} = shift if @_;
+  return $obj->{'_source'};
+}
 sub conf {
   my $obj = shift;
   return $obj->{'_conf'} = shift if @_;
@@ -154,13 +144,19 @@ sub cat3 {
   return $obj->{'_cat3'} = shift if @_;
   return $obj->{'_cat3'};
 }
+sub note {
+  my $obj = shift;
+  return $obj->{'_note'} = shift if @_;
+  return $obj->{'_note'};
+}
 
 sub check_mRNA { # infer exon/intron/utr/cds
   my $self = shift;
 
   my $srd = $self->strand;
   my $locR = [ [1, $self->end-$self->beg+1] ];
-  my ($locE, $locI, $locC, $loc5, $loc3) = map {$self->$_} qw/exon intron cds utr5 utr3/;
+  my ($locE, $locI, $locC, $loc5, $loc3) = 
+    map {$self->$_} qw/exon intron cds utr5 utr3/;
   $locC = [ @$locE ] if @$locC == 0;
   
   my $cdsB = min( map {$_->[0]} @$locC );
@@ -206,7 +202,7 @@ sub check_phase { # check & fix phases
   my $seq = Bio::Seq->new(-id=>"test", -seq=>$seqStr);
   my $frame = -1;
   for my $i (0..2) {
-    my $prot = $seq->translate(-frame=>$i)->seq;
+    my $prot = $seq->translate(-frame => $i)->seq;
     if($prot =~ /^[A-Z]+\*?$/i) {
       $frame = $i;
       last;
@@ -237,14 +233,13 @@ sub from_gff {
 
   $self->id($rows->[0]->[0]);
   $self->parent($rows->[0]->[1]);
-  $self->type($rows->[0]->[2]);
+  $self->cat1($rows->[0]->[2]);
   $self->seqid($rows->[0]->[3]);
   $self->source($rows->[0]->[4]);
   $self->beg($rows->[0]->[5]);
   $self->end($rows->[0]->[6]);
   $self->strand($rows->[0]->[8]);
   $self->note($rows->[0]->[10]);
-  $self->cat2($self->type);
 #  die join("\n", map {join("\t", @$_)} @$rows)."\n";
   
   my ($locE, $locI, $locC, $loc5, $loc3) = ([], [], [], [], []);
@@ -282,7 +277,7 @@ sub from_gff {
   @phases = grep {defined($_) && $_=~/^[012]$/} @phases;
   $self->phase(\@phases) if @phases > 0 && @phases == @$locC;
   
-  $self->check_mRNA() if $self->type eq "mRNA";
+  $self->check_mRNA() if $self->cat1 eq "mRNA";
 }
 sub to_gff {
   my $self = shift;
@@ -294,7 +289,7 @@ sub to_gff {
   my $srd = $self->strand;
   my @tags = ("ID=".$self->id, "Parent=".$self->parent);
   push @tags, "Note=".$self->note if $self->note;
-  push @rows, [$seqid, $self->source, $self->type, $self->beg, $self->end, '.', $srd, '.', join(";", @tags)];
+  push @rows, [$seqid, $self->source, $self->cat1, $self->beg, $self->end, '.', $srd, '.', join(";", @tags)];
   
   my @types = qw/exon CDS five_prime_UTR three_prime_UTR/;
   my @locs = ($self->exon, $self->cds, $self->utr5, $self->utr3);
@@ -317,24 +312,26 @@ sub to_gff {
 
 sub from_gtb {
   my ($self, $row) = @_;
-  my ($id, $pa, $seqid, $beg, $end, $strand, $locES, $locIS, $locCS, $loc5S, $loc3S, $phase, $source, $conf, $cat1, $cat2, $cat3, $note) = @$row;
-  $self->id($id);
-  $self->parent($pa);
-  $self->type($cat2);
-  $self->seqid($seqid);
-  $self->source($source);
-  $self->beg($beg);
-  $self->end($end);
-  $self->strand($strand);
-  $self->note($note);
-  $self->cat1($cat1);
-  $self->cat2($self->type);
-  $self->cat3($cat3);
+  my ($id, $pa, $seqid, $beg, $end, $srd, 
+    $locES, $locIS, $locCS, $loc5S, $loc3S, 
+    $phase, $src, $conf, $cat1, $cat2, $cat3, $note) = @$row;
   my $locE = locStr2Ary($locES);
   my $locI = locStr2Ary($locIS);
   my $locC = locStr2Ary($locCS);
   my $loc5 = locStr2Ary($loc5S);
   my $loc3 = locStr2Ary($loc3S);
+  $self->id($id);
+  $self->parent($pa);
+  $self->seqid($seqid);
+  $self->beg($beg);
+  $self->end($end);
+  $self->strand($srd);
+  $self->source($src);
+  $self->conf($conf);
+  $self->cat1($cat1);
+  $self->cat2($cat2);
+  $self->cat3($cat3);
+  $self->note($note);
 
   my @phases = split(",", $phase);
   if(@phases >= 1 && @$locC == @phases) {
@@ -346,11 +343,12 @@ sub from_gtb {
   $self->cds($locC);
   $self->utr5($loc5);
   $self->utr3($loc3);
-  $self->check_mRNA() if $self->type eq "mRNA";
+  $self->check_mRNA() if $cat1 eq "mRNA";
 }
 sub to_gtb {
   my ($self) = @_;
-  my ($locE, $locI, $locC, $loc5, $loc3) = map {locAry2Str($self->$_)} qw/exon intron cds utr5 utr3/;
+  my ($locE, $locI, $locC, $loc5, $loc3) = 
+    map {locAry2Str($self->$_)} qw/exon intron cds utr5 utr3/;
   my $phase = defined $self->phase ? join(",", @{$self->phase}) : ".";
   my $src  = defined $self->source ? $self->source : "";
   my $conf = defined $self->conf ? $self->conf : "";

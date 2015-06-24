@@ -29,6 +29,7 @@ use Getopt::Long;
 use Pod::Usage;
 use Common;
 use Gtb;
+use Rna;
 
 my ($fi, $fo, $fs) = ('') x 3;
 my $help_flag;
@@ -47,13 +48,13 @@ my ($fhi, $fho);
 if ($fi eq '' || $fi eq "stdin" || $fi eq "-") {
   $fhi = \*STDIN;
 } else {
-  open ($fhi, $fi) || die "Can't open file $fi: $!\n";
+  open ($fhi, $fi) || die "cannot read $fi\n";
 }
 
 if ($fo eq '' || $fo eq "stdout" || $fo eq "-") {
   $fho = \*STDOUT;
 } else {
-  open ($fho, ">$fo") || die "Can't open file $fo for writing: $!\n";
+  open ($fho, ">$fo") || die "cannot write $fo\n";
 }
 
 my $t = readTable(-inh => $fhi, -header => 1);
@@ -62,12 +63,10 @@ close $fhi;
 print $fho join("\t", @HEAD_GTB)."\n";
 my $cntF = 0;
 for my $i (0..$t->lastRow) {
-  my $ts = $t->subTable([$i]);
-  my $gene = Gene->new( -gtb=>$ts );
-  my ($rna) = $gene->get_rna(); 
+  my $rna = Rna->new(-gtb => $t->rowRef($i));
   $cntF += $rna->check_phase($fs);
   print $fho $rna->to_gtb()."\n";
-  printf "%5d: %5d non-0 phase fixed\n", $i+1, $cntF if ($i+1) % 1000 == 0;
+#  printf "%5d: %5d non-0 phase fixed\n", $i+1, $cntF if ($i+1) % 1000 == 0;
 }
 close $fho;
 

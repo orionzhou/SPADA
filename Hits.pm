@@ -17,263 +17,263 @@ require Exporter;
 @EXPORT = qw/pipe_hit hit2Gff/;
 
 sub prepare_for_tiling {
-    my ($fis, $fo1, $fo2) = @_;
-    my $log = Log::Log4perl->get_logger("Hmm");
-    $log->info("preparing for hit tiling");
+  my ($fis, $fo1, $fo2) = @_;
+  my $log = Log::Log4perl->get_logger("Hmm");
+  $log->info("preparing for hit tiling");
 
-    my $t = readTable(-in=>$fis->[0], -header=>1);
-    my $id = 1;
-    for my $i (1..@$fis-1) {
-        next unless -s $fis->[$i];
-        my $ti = readTable(-in=>$fis->[$i], -header=>1);
-        for my $j (0..$ti->nofRow-1) {
-            $ti->setElm($j, "id", $id++);
-            $t->addRow( $ti->rowRef($j) );
-        }
+  my $t = readTable(-in=>$fis->[0], -header=>1);
+  my $id = 1;
+  for my $i (1..@$fis-1) {
+    next unless -s $fis->[$i];
+    my $ti = readTable(-in=>$fis->[$i], -header=>1);
+    for my $j (0..$ti->nofRow-1) {
+      $ti->setElm($j, "id", $id++);
+      $t->addRow( $ti->rowRef($j) );
     }
+  }
 
-    open(FH, ">", $fo1) || die "Can't open file $fo1: $!\n";
-    print FH $t->tsv(1);
-    close FH;
-    
-    $t->delCols([qw/score locH locQ locA alnQ alnH alnP/]);
-    $t->addCol([('')x$t->nofRow], "note");
-    open(FH, ">", $fo2) || die "Can't open file $fo2: $!\n";
-    print FH $t->tsv(1);
-    close FH;
+  open(FH, ">", $fo1) || die "Can't open file $fo1: $!\n";
+  print FH $t->tsv(1);
+  close FH;
+  
+  $t->delCols([qw/score locH locQ locA alnQ alnH alnP/]);
+  $t->addCol([('')x$t->nofRow], "note");
+  open(FH, ">", $fo2) || die "Can't open file $fo2: $!\n";
+  print FH $t->tsv(1);
+  close FH;
 }
 sub hit_tiling {
-    my ($fi, $fo, $f_hit) = @_;
-    my $log = Log::Log4perl->get_logger("Hmm");
-    $log->info("tiling HMM hits");
+  my ($fi, $fo, $f_hit) = @_;
+  my $log = Log::Log4perl->get_logger("Hmm");
+  $log->info("tiling HMM hits");
 
-    my $hh;
-    my $th = readTable(-in=>$f_hit, -header=>1);
-    for my $i (0..$th->nofRow-1) {
-        my ($id, $idQ, $srdQ, $locQS, $idH, $srdH, $locHS, $src) =
-            map {$th->elm($i, $_)} qw/id idQ srdQ locQ idH srdH locH source/;
-        my $locQ = locStr2Ary($locQS);
-        my $locH = locStr2Ary($locHS);
-        $hh->{$id} = [$idQ, $locQ, $srdQ, $idH, $locH, $srdH, $src];
-    }
+  my $hh;
+  my $th = readTable(-in=>$f_hit, -header=>1);
+  for my $i (0..$th->nofRow-1) {
+    my ($id, $idQ, $srdQ, $locQS, $idH, $srdH, $locHS, $src) =
+      map {$th->elm($i, $_)} qw/id idQ srdQ locQ idH srdH locH source/;
+    my $locQ = locStr2Ary($locQS);
+    my $locH = locStr2Ary($locHS);
+    $hh->{$id} = [$idQ, $locQ, $srdQ, $idH, $locH, $srdH, $src];
+  }
 
-    my $t = readTable(-in=>$fi, -header=>1);
-    my $idx = first_index {$_ eq "domains"} $t->header;
-    my $colD = $idx == -1 ? "hits" : "domains";
-    my $refH = {};
-    for my $i (0..$t->nofRow-1) {
-        my ($id, $idQ, $begQ, $endQ, $srdQ, $idH, $begH, $endH, $srdH, $e, $score) = $t->row($i);
-        $log->error_die("qry not + strand: ".join("\t", $t->row($i))."\n") unless $srdQ eq "+";
-        $refH->{$idH} = [] unless exists $refH->{$idH};
-        push @{$refH->{$idH}}, [$begH, $endH, $e, $id];
+  my $t = readTable(-in=>$fi, -header=>1);
+  my $idx = first_index {$_ eq "domains"} $t->header;
+  my $colD = $idx == -1 ? "hits" : "domains";
+  my $refH = {};
+  for my $i (0..$t->nofRow-1) {
+    my ($id, $idQ, $begQ, $endQ, $srdQ, $idH, $begH, $endH, $srdH, $e, $score) = $t->row($i);
+    $log->error_die("qry not + strand: ".join("\t", $t->row($i))."\n") unless $srdQ eq "+";
+    $refH->{$idH} = [] unless exists $refH->{$idH};
+    push @{$refH->{$idH}}, [$begH, $endH, $e, $id];
+  }
+  
+  open(FH, ">", $fo) || die "Can't open file $fo: $!\n";
+  print FH join("\t", qw/id idH begH endH srdH idQ begQ endQ srdQ e source note/)."\n";
+  for my $idH (sort(keys(%$refH))) {
+    my $ref = $refH->{$idH};
+    $ref = [ sort {$a->[0] <=> $b->[0]} @$ref ];
+    my $locs1 = [ map {[$_->[0], $_->[1]]} @$ref ];
+    my $stats = [ map {$_->[2]} @$ref ];
+    my $locs2 = tiling($locs1, $stats, 1);
+    for (@$locs2) {
+      my ($begH, $endH, $idx, $idxs) = @$_;
+      my $hs = {};
+      for (@$idxs) {
+        my ($e, $id) = @{$ref->[$_]}[2,3];
+        die "no stat for $id\n" unless exists $hh->{$id};
+        my ($idQ, $locQ, $srdQ, $idH2, $locH, $srdH, $src) = @{$hh->{$id}};
+        my ($begQ, $endQ) = map {coordTransform($_, $locH, $srdH, $locQ, $srdQ)} ($begH, $endH);
+        ($begQ, $endQ) = ($endQ, $begQ) if $begQ > $endQ;
+        $hs->{$id} = [$idQ, $begQ, $endQ, $srdQ, $e, $srdH, $src];
+      }
+      my $id = $ref->[$idx]->[3];
+      my @notes;
+      for (values(%$hs)) {
+        my ($idQ, $begQ, $endQ, $srdQ, $e, $srdH, $src) = @$_;
+        my $str = join("_", $idQ, "$begQ-$endQ", $srdQ, $e, $src);
+        push @notes, $str;
+      }
+      my $note = join(" ", @notes);
+      my ($idQ, $begQ, $endQ, $srdQ, $e, $srdH, $src) = @{$hs->{$id}};
+      print FH join("\t", $id, $idH, $begH, $endH, $srdH, $idQ, $begQ, $endQ, $srdQ, $e, $src, $note)."\n";
     }
-    
-    open(FH, ">", $fo) || die "Can't open file $fo: $!\n";
-    print FH join("\t", qw/id idH begH endH srdH idQ begQ endQ srdQ e source note/)."\n";
-    for my $idH (sort(keys(%$refH))) {
-        my $ref = $refH->{$idH};
-        $ref = [ sort {$a->[0] <=> $b->[0]} @$ref ];
-        my $locs1 = [ map {[$_->[0], $_->[1]]} @$ref ];
-        my $stats = [ map {$_->[2]} @$ref ];
-        my $locs2 = tiling($locs1, $stats, 1);
-        for (@$locs2) {
-            my ($begH, $endH, $idx, $idxs) = @$_;
-            my $hs = {};
-            for (@$idxs) {
-                my ($e, $id) = @{$ref->[$_]}[2,3];
-                die "no stat for $id\n" unless exists $hh->{$id};
-                my ($idQ, $locQ, $srdQ, $idH2, $locH, $srdH, $src) = @{$hh->{$id}};
-                my ($begQ, $endQ) = map {coordTransform($_, $locH, $srdH, $locQ, $srdQ)} ($begH, $endH);
-                ($begQ, $endQ) = ($endQ, $begQ) if $begQ > $endQ;
-                $hs->{$id} = [$idQ, $begQ, $endQ, $srdQ, $e, $srdH, $src];
-            }
-            my $id = $ref->[$idx]->[3];
-            my @notes;
-            for (values(%$hs)) {
-                my ($idQ, $begQ, $endQ, $srdQ, $e, $srdH, $src) = @$_;
-                my $str = join("_", $idQ, "$begQ-$endQ", $srdQ, $e, $src);
-                push @notes, $str;
-            }
-            my $note = join(" ", @notes);
-            my ($idQ, $begQ, $endQ, $srdQ, $e, $srdH, $src) = @{$hs->{$id}};
-            print FH join("\t", $id, $idH, $begH, $endH, $srdH, $idQ, $begQ, $endQ, $srdQ, $e, $src, $note)."\n";
-        }
-    }
-    close FH;
+  }
+  close FH;
 }
 sub hit_noise_reduction {
-    my ($fi, $fo, $p) = @_;
-    my $log = Log::Log4perl->get_logger("Hmm");
-    $log->info("removing noise hits");
-    
-    my ($min_len, $min_e) = map {$p->{$_}} qw/min_len min_e/;
-    $min_len ||= 10;
-    $min_e ||= 10;
-    
-    my $t = readTable(-in=>$fi, -header=>1);
-    $t->sort("idH", 1, 0, "begH", 0, 0);
-    my @idxs_rm;
+  my ($fi, $fo, $p) = @_;
+  my $log = Log::Log4perl->get_logger("Hmm");
+  $log->info("removing noise hits");
+  
+  my ($min_len, $min_e) = map {$p->{$_}} qw/min_len min_e/;
+  $min_len ||= 10;
+  $min_e ||= 10;
+  
+  my $t = readTable(-in=>$fi, -header=>1);
+  $t->sort("idH", 1, 0, "begH", 0, 0);
+  my @idxs_rm;
 
-    my $ref = group([$t->col("idH")]);
-    for my $idH (sort(uniq(keys %$ref))) {
-        my ($idxB, $cnt) = @{$ref->{$idH}};
-        my ($sid, $srdH, $rf) = reverse map {scalar reverse} split("_", reverse($idH), 3);
-        die join("\t", $idH)."\n" if $srdH eq "1";
-        my @locs1 = map {[$t->elm($_, "begH"), $t->elm($_, "endH")]} ($idxB..$idxB+$cnt-1);
-        my $locs2 = posMerge(\@locs1);
-        for (@$locs2) {
-            my ($begHR, $endHR, $idxsR) = @$_;
-            my @idxs = map {$idxB + $_} @$idxsR;
+  my $ref = group([$t->col("idH")]);
+  for my $idH (sort(uniq(keys %$ref))) {
+    my ($idxB, $cnt) = @{$ref->{$idH}};
+    my ($sid, $srdH, $rf) = reverse map {scalar reverse} split("_", reverse($idH), 3);
+    die join("\t", $idH)."\n" if $srdH eq "1";
+    my @locs1 = map {[$t->elm($_, "begH"), $t->elm($_, "endH")]} ($idxB..$idxB+$cnt-1);
+    my $locs2 = posMerge(\@locs1);
+    for (@$locs2) {
+      my ($begHR, $endHR, $idxsR) = @$_;
+      my @idxs = map {$idxB + $_} @$idxsR;
 
-            my @stats = map { [ $_, $t->elm($_, "e"), $t->elm($_, "endH") - $t->elm($_, "begH") + 1 ] } @idxs;
-            @stats = sort {$a->[1] <=> $b->[1] || $b->[2] <=> $a->[2]} @stats;
-            my $idxM = $stats[0]->[0];
+      my @stats = map { [ $_, $t->elm($_, "e"), $t->elm($_, "endH") - $t->elm($_, "begH") + 1 ] } @idxs;
+      @stats = sort {$a->[1] <=> $b->[1] || $b->[2] <=> $a->[2]} @stats;
+      my $idxM = $stats[0]->[0];
 
-            if(@stats > 1) {
-                my @idxs_nonM = map {$_->[0]} @stats[1..$#stats];
-                push @idxs_rm, @idxs_nonM;
-            }
+      if(@stats > 1) {
+        my @idxs_nonM = map {$_->[0]} @stats[1..$#stats];
+        push @idxs_rm, @idxs_nonM;
+      }
 
-            my ($begH, $endH, $e) = map {$t->elm($idxM, $_)} qw/begH endH e/;
-            push @idxs_rm, $idxM if $endH-$begH+1 < $min_len || $e > $min_e;
-        }
+      my ($begH, $endH, $e) = map {$t->elm($idxM, $_)} qw/begH endH e/;
+      push @idxs_rm, $idxM if $endH-$begH+1 < $min_len || $e > $min_e;
     }
+  }
 
-    $t->delRows(\@idxs_rm);
-    $log->info(sprintf("  %d removed / %d passed", scalar(@idxs_rm), $t->nofRow));
-    open(FH, ">", $fo) || die "Can't open file $fo: $!\n";
-    print FH $t->tsv(1);
-    close FH;
+  $t->delRows(\@idxs_rm);
+  $log->info(sprintf("  %d removed / %d passed", scalar(@idxs_rm), $t->nofRow));
+  open(FH, ">", $fo) || die "Can't open file $fo: $!\n";
+  print FH $t->tsv(1);
+  close FH;
 }
 sub hit_resolve_rf {
-    my ($fi, $fo) = @_;
-    my $log = Log::Log4perl->get_logger("Hmm");
-    $log->info("removing hits on wrong reading frames");
-    
-    my $t = readTable(-in=>$fi, -header=>1);
+  my ($fi, $fo) = @_;
+  my $log = Log::Log4perl->get_logger("Hmm");
+  $log->info("removing hits on wrong reading frames");
+  
+  my $t = readTable(-in=>$fi, -header=>1);
 
-    my @chrs = map { [reverse map {scalar reverse} split("_", reverse($_), 3)]->[-3] } $t->col("idH");
-    $t->addCol(\@chrs, "chr");
-    $t->sort("chr", 1, 0, "begH", 0, 0);
-    my $ref = group($t->colRef("chr"));
+  my @chrs = map { [reverse map {scalar reverse} split("_", reverse($_), 3)]->[-3] } $t->col("idH");
+  $t->addCol(\@chrs, "chr");
+  $t->sort("chr", 1, 0, "begH", 0, 0);
+  my $ref = group($t->colRef("chr"));
 
-    my @idxs_rm;
-    for my $chr (sort(uniq(keys %$ref))) {
-        my ($idxB, $cnt) = @{$ref->{$chr}};
-        my @locs1 = map {[$t->elm($_, "begH"), $t->elm($_, "endH")]} ($idxB..$idxB+$cnt-1);
-        my $locs2 = posMerge(\@locs1);
-        for (@$locs2) {
-            my ($begHR, $endHR, $idxsR) = @$_;
-            my @idxs = map {$idxB + $_} @$idxsR;
+  my @idxs_rm;
+  for my $chr (sort(uniq(keys %$ref))) {
+    my ($idxB, $cnt) = @{$ref->{$chr}};
+    my @locs1 = map {[$t->elm($_, "begH"), $t->elm($_, "endH")]} ($idxB..$idxB+$cnt-1);
+    my $locs2 = posMerge(\@locs1);
+    for (@$locs2) {
+      my ($begHR, $endHR, $idxsR) = @$_;
+      my @idxs = map {$idxB + $_} @$idxsR;
 
-            my @stats = map { [ $_, $t->elm($_, "e") ] } @idxs;
-            @stats = sort {$a->[1] <=> $b->[1]} @stats;
-            my $idxM = $stats[0]->[0];
+      my @stats = map { [ $_, $t->elm($_, "e") ] } @idxs;
+      @stats = sort {$a->[1] <=> $b->[1]} @stats;
+      my $idxM = $stats[0]->[0];
 
-            if(@stats > 1) {
-                my @idxs_nonM = map {$_->[0]} @stats[1..$#stats];
+      if(@stats > 1) {
+        my @idxs_nonM = map {$_->[0]} @stats[1..$#stats];
 #        print join("\t", map {$t->elm($_, "id")} @idxs)."\n";
-                push @idxs_rm, @idxs_nonM;
-            }
-        }
+        push @idxs_rm, @idxs_nonM;
+      }
     }
+  }
 
-    $t->delRows(\@idxs_rm);
-    my $chrs = $t->delCol("chr");
-    $t->delCol("idH");
-    $t->addCol($chrs, "idH", 1);
-    $log->info(sprintf("  %d removed / %d passed", scalar(@idxs_rm), $t->nofRow));
-    open(FH, ">", $fo) || die "Can't open file $fo: $!\n";
-    print FH $t->tsv(1);
-    close FH;
+  $t->delRows(\@idxs_rm);
+  my $chrs = $t->delCol("chr");
+  $t->delCol("idH");
+  $t->addCol($chrs, "idH", 1);
+  $log->info(sprintf("  %d removed / %d passed", scalar(@idxs_rm), $t->nofRow));
+  open(FH, ">", $fo) || die "Can't open file $fo: $!\n";
+  print FH $t->tsv(1);
+  close FH;
 }
 
 sub unifyHits {
-    my ($locAs, $srds, $group) = @_;
-    my $n = @$locAs;
-    my $r = [];
-    my ($h, @loc);
-    for my $i (0..$n-1) {
-        my ($locA, $srd) = ($locAs->[$i], $srds->[$i]);
-        for my $j (0..@$locA-1) {
-            push @loc, [$locA->[$j]->[0], $locA->[$j]->[1], $i];
-        }
-        $h->{$i} = ['+0', $locA, $srd];
+  my ($locAs, $srds, $group) = @_;
+  my $n = @$locAs;
+  my $r = [];
+  my ($h, @loc);
+  for my $i (0..$n-1) {
+    my ($locA, $srd) = ($locAs->[$i], $srds->[$i]);
+    for my $j (0..@$locA-1) {
+      push @loc, [$locA->[$j]->[0], $locA->[$j]->[1], $i];
     }
-    my $ref = posSplit(\@loc);
-    my $ref2 = {};
-    for my $j (0..@$ref-1) {
-        my ($s, $e, $idxs) = @{$ref->[$j]};
-        for my $i (@$idxs) {
-            push @{$ref2->{$i}}, $j;
-        }
+    $h->{$i} = ['+0', $locA, $srd];
+  }
+  my $ref = posSplit(\@loc);
+  my $ref2 = {};
+  for my $j (0..@$ref-1) {
+    my ($s, $e, $idxs) = @{$ref->[$j]};
+    for my $i (@$idxs) {
+      push @{$ref2->{$i}}, $j;
     }
-    for my $i (0..$n-1) {
-        my $idxPs = $ref2->{$i};
-        my $srd = $h->{$i}->[2];
-        $idxPs = [sort {$ref->[$a]->[0] <=> $ref->[$b]->[0]} @$idxPs];
-        $idxPs = [reverse @$idxPs] if $srd =~ /^\-1?$/;
-        my $locAry = [ map { [$ref->[$_]->[0], $ref->[$_]->[1]] } @$idxPs ];
-        my @phases = getPhase($locAry, $srd);
-        $ref2->{$i} = { map {$idxPs->[$_] => $phases[$_]} (0..$#phases) };
+  }
+  for my $i (0..$n-1) {
+    my $idxPs = $ref2->{$i};
+    my $srd = $h->{$i}->[2];
+    $idxPs = [sort {$ref->[$a]->[0] <=> $ref->[$b]->[0]} @$idxPs];
+    $idxPs = [reverse @$idxPs] if $srd =~ /^\-1?$/;
+    my $locAry = [ map { [$ref->[$_]->[0], $ref->[$_]->[1]] } @$idxPs ];
+    my @phases = getPhase($locAry, $srd);
+    $ref2->{$i} = { map {$idxPs->[$_] => $phases[$_]} (0..$#phases) };
+  }
+  for my $j (0..@$ref-1) {
+    my ($s, $e, $idxs) = @{$ref->[$j]};
+    my $pH;
+    for my $i (@$idxs) {
+      my $phase = $ref2->{$i}->{$j};
+      $pH->{$phase} = [] unless exists $pH->{$phase};
+      push @{$pH->{$phase}}, $i;
     }
-    for my $j (0..@$ref-1) {
-        my ($s, $e, $idxs) = @{$ref->[$j]};
-        my $pH;
-        for my $i (@$idxs) {
-            my $phase = $ref2->{$i}->{$j};
-            $pH->{$phase} = [] unless exists $pH->{$phase};
-            push @{$pH->{$phase}}, $i;
-        }
-        push @$r, [$s, $e, $pH];
-    }
-    return $r;
+    push @$r, [$s, $e, $pH];
+  }
+  return $r;
 }
 sub group_pick_hits {
-    my ($fi, $fo1, $fo2) = rearrange(['in', 'out1', 'out2'], @_);
-    my $log = Log::Log4perl->get_logger("Hits");
-    $log->info("sorting hits into groups");
-    my $t = readTable(-in=>$fi, -header=>1);
-    $t->sort("chr", 1, 0);
-    my $ref = group($t->colRef("chr"));
+  my ($fi, $fo1, $fo2) = rearrange(['in', 'out1', 'out2'], @_);
+  my $log = Log::Log4perl->get_logger("Hits");
+  $log->info("sorting hits into groups");
+  my $t = readTable(-in=>$fi, -header=>1);
+  $t->sort("chr", 1, 0);
+  my $ref = group($t->colRef("chr"));
 
-    open(FH1, ">$fo1");
-    print FH1 join("\t", qw/id1 id2/, $t->header)."\n";
-    open(FH2, ">$fo2");
-    print FH2 join("\t", $t->header)."\n";
-    
-    my $id1 = 0;
-    for my $chr (sort keys %$ref) {
-        my ($idxS, $n) = @{$ref->{$chr}};
-        my $t1 = $t->subTable([$idxS..$idxS+$n-1]);
+  open(FH1, ">$fo1");
+  print FH1 join("\t", qw/id1 id2/, $t->header)."\n";
+  open(FH2, ">$fo2");
+  print FH2 join("\t", $t->header)."\n";
+  
+  my $id1 = 0;
+  for my $chr (sort keys %$ref) {
+    my ($idxS, $n) = @{$ref->{$chr}};
+    my $t1 = $t->subTable([$idxS..$idxS+$n-1]);
 
-        my @locAs = map {[split("-", $_)]} $t1->col("loc");
-        my $ref = posMerge(\@locAs);
-        for (@$ref) {
-            my ($beg, $end, $idxs) = @$_;
-            $id1 ++;
+    my @locAs = map {[split("-", $_)]} $t1->col("loc");
+    my $ref = posMerge(\@locAs);
+    for (@$ref) {
+      my ($beg, $end, $idxs) = @$_;
+      $id1 ++;
 
-            for my $i (0..@$idxs-1) {
-                my $idx = $idxs->[$i];
-                print FH1 join("\t", $id1, $i+1, $t1->row($idx))."\n";
-            }
-            
-            my @locAs = map {locStr2Ary($t1->elm($_, "loc"))} @$idxs;
-            my @srds = map {$t1->elm($_, "srd")} @$idxs;
-            my ($ref2) = unifyHits(\@locAs, \@srds, $id1);
-            my @tmp = grep {scalar keys %{$_->[2]} > 1} @$ref2;
-            my $tag = @tmp > 0 ? 1 : 0;
+      for my $i (0..@$idxs-1) {
+        my $idx = $idxs->[$i];
+        print FH1 join("\t", $id1, $i+1, $t1->row($idx))."\n";
+      }
+      
+      my @locAs = map {locStr2Ary($t1->elm($_, "loc"))} @$idxs;
+      my @srds = map {$t1->elm($_, "srd")} @$idxs;
+      my ($ref2) = unifyHits(\@locAs, \@srds, $id1);
+      my @tmp = grep {scalar keys %{$_->[2]} > 1} @$ref2;
+      my $tag = @tmp > 0 ? 1 : 0;
 #      print "Possible pseudogene: $id1\n" if $tag == 1;
 
-            my @es = map {$t1->elm($_, "e")} @$idxs;
-            my $idx_min = first_index {$_ == min(@es)} @es;
-            my $id2 = $idx_min + 1;
-            print FH2 join("\t", $t1->row($idxs->[$idx_min]))."\n";
-        }
+      my @es = map {$t1->elm($_, "e")} @$idxs;
+      my $idx_min = first_index {$_ == min(@es)} @es;
+      my $id2 = $idx_min + 1;
+      print FH2 join("\t", $t1->row($idxs->[$idx_min]))."\n";
     }
-    $log->info(sprintf "  %d groups in total", $id1);
-    close FH1;
-    close FH2;
+  }
+  $log->info(sprintf "  %d groups in total", $id1);
+  close FH1;
+  close FH2;
 }
 
 sub note2hash {
@@ -668,36 +668,36 @@ sub get_aln_score {
 
 
 sub pipe_hit {
-    my ($dir, $f_hit, $p, $f_ref) = rearrange(['dir', 'in', 'p', 'ref'], @_);
-    make_path($dir) unless -d $dir;
-    
-    my $f01f = "$dir/01_hit_full.htb";
-    my $f01 = "$dir/01_hit.htb";
-    prepare_for_tiling($f_hit, $f01f, $f01);
-    
-    my $f02 = "$dir/02_tiled.htb";
-    hit_tiling($f01, $f02, $f01f);
-    my $f04 = "$dir/04_nr.htb";
-    hit_noise_reduction($f02, $f04, $p);
-    my $f05 = "$dir/05_resolve_rf.htb";
-    hit_resolve_rf($f04, $f05);
+  my ($dir, $f_hit, $p, $f_ref) = rearrange(['dir', 'in', 'p', 'ref'], @_);
+  make_path($dir) unless -d $dir;
+  
+  my $f01f = "$dir/01_hit_full.htb";
+  my $f01 = "$dir/01_hit.htb";
+  prepare_for_tiling($f_hit, $f01f, $f01);
+  
+  my $f02 = "$dir/02_tiled.htb";
+  hit_tiling($f01, $f02, $f01f);
+  my $f04 = "$dir/04_nr.htb";
+  hit_noise_reduction($f02, $f04, $p);
+  my $f05 = "$dir/05_resolve_rf.htb";
+  hit_resolve_rf($f04, $f05);
 
-    my $f11 = "$dir/11.tbl";
-    reformat_hit_info($f05, $f11);
-    my $f12 = "$dir/12.tbl";
-    remove_noisy_hits($f11, $f12);
-    my $f13 = "$dir/13_merged_multi.tbl";
-    merge_hits_multi($f12, $f13);
-    my $f17 = "$dir/17_merged_within.tbl";
-    merge_hits_within($f13, $f17, $f_ref);
-    
-    my $f21 = "$dir/21.tbl";
-    remove_pseudo($f17, $f21, $f_ref);
-    my $f22 = "$dir/22_trimmed.tbl";
-    trim_cds_boundary($f21, $f22);
-    my $f29 = "$dir/29_hits.tbl";
-    output_hits($f22, $f29);
-    hit2Gff($f29, "$dir/29_hits.gff");
+  my $f11 = "$dir/11.tbl";
+  reformat_hit_info($f05, $f11);
+  my $f12 = "$dir/12.tbl";
+  remove_noisy_hits($f11, $f12);
+  my $f13 = "$dir/13_merged_multi.tbl";
+  merge_hits_multi($f12, $f13);
+  my $f17 = "$dir/17_merged_within.tbl";
+  merge_hits_within($f13, $f17, $f_ref);
+  
+  my $f21 = "$dir/21.tbl";
+  remove_pseudo($f17, $f21, $f_ref);
+  my $f22 = "$dir/22_trimmed.tbl";
+  trim_cds_boundary($f21, $f22);
+  my $f29 = "$dir/29_hits.tbl";
+  output_hits($f22, $f29);
+  hit2Gff($f29, "$dir/29_hits.gff");
 }
 
 

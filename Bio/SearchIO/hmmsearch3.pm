@@ -467,6 +467,12 @@ sub next_result{
 			       $count++;
 			       next;
 			   }
+                           elsif( $_ =~ m/^\s+[x\.]+\sRF$/ ){
+			       my $modeltrack = $_;
+                               $max_count++;
+			       $count++;
+			       next;
+			   }
 			   elsif( $count == $max_count - 3 ){
 			       #query track
 			       my @data = split(" ", $_);

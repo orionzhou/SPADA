@@ -165,8 +165,8 @@ sub collect_models {
     my ($id, $fam) = $th->row($i);
     next if( !exists $hm->{$id} );
     for my $row (@{$hm->{$id}}) {
-      $row->[14] = 'gene';
-      $row->[15] = 'mRNA';
+      $row->[14] = 'mRNA';
+      $row->[15] = 'crp';
       $row->[16] = $fam;
       print $fh join("\t", @$row)."\n";
       $cnt ++;
@@ -282,7 +282,6 @@ sub merge_redundant_models {
       my $row = @rows[$idxs[0]];
       $row->[0] = sprintf "%s.%02d", $id, ($i+1);
       $row->[12] = $src;
-      $row->[17] = $src;
       print $fh join("\t", @$row)."\n";
     }
     $cnt += $n;

@@ -3,7 +3,6 @@ use strict;
 use Common;
 use Seq;
 use Rna;
-use Gene;
 use Bio::DB::SeqFeature::Store::GFF3Loader;
 use Log::Log4perl;
 use Data::Dumper;
@@ -12,90 +11,56 @@ use List::MoreUtils qw/first_index last_index insert_after apply indexes pairwis
 use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter/;
-@EXPORT = qw/parse_gff
-    gffMerge makeAsblTbl makeAsblGff/;
+@EXPORT = qw/parse_gene_gff
+    gffMerge/;
 @EXPORT_OK = qw//;
-sub parse_gff {
+our $h_gff = {
+  'mRNA'   => [qw/exon intron CDS five_prime_UTR three_prime_UTR/],
+  'rRNA'   => ['exon'],
+  'tRNA'   => ['exon'],
+  'miRNA'  => ['exon'],
+  'ncRNA'  => ['exon'],
+  'snRNA'  => ['exon'],
+  'snoRNA' => ['exon'],
+};
+
+sub parse_gene_gff {
   my ($fhi) = @_;
   my $header = [qw/chr source type beg end score strand phase tag/];
-  my $t = readTable(-inh=>$fhi, -header=>$header);
+  my $t = readTable(-inh => $fhi, -header => $header);
   my @bins;
-  my @idxs = indexes {exists $h_gff->{$_}} $t->col("type");
+  my @idxs = indexes {$_ =~ /gene/i} $t->col("type");
   for my $i (0..$#idxs) {
     my $beg = $idxs[$i];
     my $end = ($i < $#idxs) ? $idxs[$i+1]-1 : $t->nofRow-1;
-    push @bins, [$beg..$end];
+    push @bins, [$beg, $end];
   }
   my $i = 0;
   return sub {
     if($i <= $#bins) {
-      my $t_gene = $t->subTable($bins[$i++]);
-      return Gene->new(-gff=>$t_gene);
+      my ($ib, $ie) = @{$bins[$i]};
+      my @idxs_r = grep {exists $h_gff->{$t->elm($_, "type")}} ($ib..$ie);
+      my @rnas;
+      for my $j (0..$#idxs_r) {
+        my $jb = $idxs_r[$j];
+        my $je = ($j < $#idxs_r) ? $idxs_r[$j+1]-1 : $ie;
+        my @stats = map {parse_gff_line($t->row($_))} ($jb..$je);
+        push @rnas, Rna->new(-gff => \@stats);
+      }
+      $i ++;
+      return [reverse @rnas];
     } else { 
       return undef;
     }
   }
 }
-
-sub makeAsblTbl {
-  my ($fi, $fo) = @_;
-  my $fhi = new IO::File $fi, "r";
-  my $fho = new IO::File $fo, "w";
-  my $phaseDict = {D=>1, U=>1, A=>2, F=>3};
-  my $hLen;
-  while(<$fhi>) {
-    chomp;
-    next unless $_;
-    my @ps = split "\t";
-    my ($chrC, $begC, $endC, $tag, $chrB, $begB, $endB, $strand) = @ps[0..2,4..8];
-    $chrC =~ s/^(\d+)$/chr$1/;
-    $strand = $strand eq "-" ? -1 : 1;
-    my ($type, $score) = ("") x 2;
-
-    $hLen->{$chrC} = 0 unless exists $hLen->{$chrC};
-    $hLen->{$chrC} = max($endC, $hLen->{$chrC});
-    
-    if($tag eq "N") {
-      next;
-    } else {
-      unless( exists $phaseDict->{$tag} ) {
-        print "unknown phase $tag => phase 1\n";
-        $score = 1;
-      } else {
-        $score = $phaseDict->{$tag};
-      }
-      $type = $chrB =~ /^contig/ ? "contig" : "BAC";
-    }
-    print $fho join("\t", $chrC, $begC, $endC, $strand, $chrB, $begB, $endB, $type, $score, "")."\n";
-  }
-  for my $chr (keys %$hLen) {
-    my $chrLen = $hLen->{$chr};
-    print $fho join("\t", $chr, 1, $chrLen, 1, $chr, 1, $chrLen, 'chromosome', '', '')."\n";
-  }
-}
-sub makeAsblGff {
-  my ($fi, $fo1, $fo2) = @_;
-  my ($cHash, $i) = ({}, 0);
-  my $fhi = new IO::File $fi, "r";
-  my $fho1 = new IO::File $fo1, "w";
-  my $fho2 = new IO::File $fo2, "w";
-  print $fho1 "##gff-version 3\n";
-  while(<$fhi>) {
-    chomp;
-    my ($chrC, $begC, $endC, $strand, $chrB, $begB, $endB, $type, $score, $note) = split "\t";
-    my $fe = Bio::SeqFeature::Generic->new(-seq_id=>$chrC, -start=>$begC, -end=>$endC, 
-      -strand=>$strand, -primary_tag=>$type);
-    my $id = sprintf "%05d", ++$i;
-    $fe->add_tag_value("ID", $id);
-    $fe->add_tag_value("Name", $chrB);
-    $fe->score($score) if $score;
-    $fe->add_tag_value("Note", "Phase $score") if $score;
-    
-    print $fho1 join("\n", fe2GffLine($fe))."\n";
-    
-    $strand = $strand == -1 ? "-" : "+";
-    print $fho2 join("\t", $chrC, $begC, $endC, $chrB, $score, $strand)."\n";
-  }
+sub parse_gff_line {
+  my ($seqid, $src, $type, $beg, $end, $score, $srd, $phase, $tag) = @_;
+  my $ht = parse_gff_tags($tag);
+  my $id = exists $ht->{'ID'} ? $ht->{'ID'} : '';
+  my $par = exists $ht->{'Parent'} ? $ht->{'Parent'} : '';
+  my $note = exists $ht->{'Note'} ? $ht->{'Note'} : '';
+  return [$id, $par, $type, $seqid, $src, $beg, $end, $score, $srd, $phase, $note];
 }
 
 sub gffMerge {

@@ -12,9 +12,9 @@ use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter/;
 @EXPORT = qw/read_aln_ids aln_fmt_convert
-    run_clustalw run_tcoffee run_clustalo run_pal2nal
-    run_pw_aln
-    aln_score_pw aln_score_vector aln_score_group aln_score_matrix/;
+  run_clustalw run_tcoffee run_clustalo run_pal2nal
+  run_pw_aln
+  aln_score_pw aln_score_vector aln_score_group aln_score_matrix/;
 @EXPORT_OK = qw//;
 
 sub read_aln_ids {
@@ -31,12 +31,12 @@ sub read_aln_ids {
     return @ids;
 }
 sub aln_fmt_convert {
-    my ($fi, $fo, $if, $of) = @_;
-    my $ai = Bio::AlignIO->new(-file=>"<$fi", -format=>$if);
-    my $ao = Bio::AlignIO->new(-file=>">$fo", -format=>$of);
-    while(my $aln = $ai->next_aln()) {
-        $ao->write_aln($aln);
-    }
+  my ($fi, $fo, $if, $of) = @_;
+  my $ai = Bio::AlignIO->new(-file=>"<$fi", -format=>$if);
+  my $ao = Bio::AlignIO->new(-file=>">$fo", -format=>$of);
+  while(my $aln = $ai->next_aln()) {
+    $ao->write_aln($aln);
+  }
 }
 sub run_clustalw {
     my ($seqAry, $fOut, $type) = rearrange(['seqs', 'out', 'type'], @_);
@@ -218,23 +218,23 @@ sub aln_score_vector {
     return $score;
 }
 sub aln_score_group {
-    my ($fi, $idsQ, $idsT) = @_;
-    my $h_seq = readSeq($fi, 2);
+  my ($fi, $idsQ, $idsT) = @_;
+  my $h_seq = readSeq($fi, 2);
 
-    my @idsQ_n = grep { !exists($h_seq->{$_}) } @$idsQ;
-    die "idsQ not all found\n".Dumper($idsQ).Dumper($h_seq) if @idsQ_n;
-    my $h = { map {$_ => 0} @$idsQ };
-    $idsT ||= [ grep { !exists($h->{$_}) } keys(%$h_seq) ];
+  my @idsQ_n = grep { !exists($h_seq->{$_}) } @$idsQ;
+  die "idsQ not all found\n".Dumper($idsQ).Dumper($h_seq) if @idsQ_n;
+  my $h = { map {$_ => 0} @$idsQ };
+  $idsT ||= [ grep { !exists($h->{$_}) } keys(%$h_seq) ];
 
-    for my $idQ (@$idsQ) {
-        my @scores;
-        for my $idT (@$idsT) {
-            my $score = aln_score_pw($h_seq->{$idQ}, $h_seq->{$idT});
-            push @scores, $score;
-        }
-        $h->{$idQ} = sprintf "%.01f", sum(@scores) / @scores;
+  for my $idQ (@$idsQ) {
+    my @scores;
+    for my $idT (@$idsT) {
+      my $score = aln_score_pw($h_seq->{$idQ}, $h_seq->{$idT});
+      push @scores, $score;
     }
-    return $h;
+    $h->{$idQ} = sprintf "%.01f", sum(@scores) / @scores;
+  }
+  return $h;
 }
 sub aln_score_matrix {
     my ($fi, $ids, $hi) = @_;

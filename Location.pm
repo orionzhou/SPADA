@@ -8,13 +8,23 @@ use Common;
 use vars qw/$VERSION @ISA @EXPORT @EXPORT_OK/;
 require Exporter;
 @ISA = qw/Exporter AutoLoader/;
-@EXPORT = qw/
+@EXPORT = qw/parse_locstr
   locStr2Ary locAry2Str locAryLen trimLoc cropLoc cropLoc_cds
-  posOvlp posCmp posMerge posSplit posDiff posMergeDeep
+  posOvlp posCmp posMerge posSplit posDiff posMergeDeep posSubtract
   tiling cmp_cds find_interval
   coordTransform coordTransform_rough coordTransform_itv/;
 @EXPORT_OK = qw//;
 
+sub parse_locstr {
+  my ($str) = @_;
+  my ($chr, $beg, $end);
+  if($str =~ /^([\w\.]+)\:([\d\.E]+)\-([\d\.E]+)$/) {
+    ($chr, $beg, $end) = ($1, $2, $3);
+  } else {
+    die "unknonw locstr: $str\n";
+  }
+  return ($chr, $beg, $end);
+}
 sub locStr2Ary {
   my ($locS) = @_;
   my @locA = ();
@@ -356,6 +366,12 @@ sub posMergeDeep {
   return $ref;
 }
 
+sub posSubtract {
+  my ($locp, $locc) = @_;
+  my ($loco) = posOvlp($locp, $locc);
+  my ($locs_p) = posDiff($locp, $loco);
+  return $locs_p;
+}
 sub posCmp {
   my ($posAryO1, $posAryO2) = @_;
   my ($posAry1, $posAry2) = (clone($posAryO1), clone($posAryO2));

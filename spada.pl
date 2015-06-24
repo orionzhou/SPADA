@@ -31,7 +31,7 @@
     -s (--sp)      if set, predictions without signal peptide are filtered
                      default: TRUE
     -e (--evalue)  E-value threshold
-                     default: 0.001
+                     default: 0.05
     -t (--threads) threads (precessors) to use
                      default: 1
     -m (--method)  gene prediction programs to run (semicolon-seperated)
@@ -68,7 +68,7 @@ my $f_fas    = "test/01_refseq.fas";
 my $f_gff    = "";
 my $org      = "Athaliana";
 my $sp       = 1;
-my $e        = 0.001;
+my $e        = 0.05;
 my $methods  = "Augustus_evidence;GeneWise_SplicePredictor";
 my $ncpu     = 1;
 
@@ -126,21 +126,22 @@ my $f01_01 = "$d01/01_refseq.fas";
 my $f01_61 = "$d01/61_gene.gtb";
 my $f01_12 = "$d01/12_orf_genome.fas";
 my $f01_71 = "$d01/71_orf_proteome.fas";
-pipe_pre_processing($d01);
 
 # Motif Mining
 my $d11 = "$dir/11_motif_mining";
 my $f11 = "$d11/21_hits/29_hits.tbl";
-pipe_motif_mining(-dir=>$d11, -hmm=>$fp_hmm, -orf_g=>$f01_12, -orf_p=>$f01_71, -ref=>$f01_01, -gtb=>$f01_61);
 
 # Model Prediction
 my $d21 = "$dir/21_model_prediction";
 my $f21_05 = "$d21/05_hits.tbl";
 my $f21 = "$d21/30_all.gtb";
-pipe_model_prediction(-dir=>$d21, -hit=>$f11, -ref=>$f01_01);
 
 # Model Evaluation & Selection 
 my $d31 = "$dir/31_model_evaluation";
+
+pipe_pre_processing($d01);
+pipe_motif_mining(-dir=>$d11, -hmm=>$fp_hmm, -orf_g=>$f01_12, -orf_p=>$f01_71, -ref=>$f01_01, -gtb=>$f01_61);
+pipe_model_prediction(-dir=>$d21, -hit=>$f11, -ref=>$f01_01);
 pipe_model_evaluation(-dir=>$d31, -hit=>$f21_05, -gtb_all=>$f21, -ref=>$f01_01, -gtb_ref=>$f01_61, -d_hmm=>$dp_hmm, -d_aln=>$dp_aln, -f_sta=>$fp_sta);
 runCmd("ln -sf $d31/61_final.tbl $dir/61_final.tbl", 0);
 runCmd("ln -sf $d31/61_final.gtb $dir/61_final.gtb", 0);
