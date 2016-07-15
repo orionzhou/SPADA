@@ -397,7 +397,7 @@ sub pipe_model_prediction {
   my $f26 = "$dir/26_phase_fixed.gtb";
   runCmd("gtb.phase.pl -i $f25 -o $f26 -s $f_ref", 1);
   my $f30 = "$dir/30_all.gtb";
-  runCmd("gtb2gtbx.pl -i $f26 -o $f30 -s $f_ref", 1);
+  runCmd("gtb2gtbx.pl -i $f26 -o $f30 -d $f_ref", 1);
   runCmd("gtb2gff.pl -i $f30 -o $dir/30_all.gff", 1);
 }
 

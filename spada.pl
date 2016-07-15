@@ -139,9 +139,9 @@ my $f21 = "$d21/30_all.gtb";
 # Model Evaluation & Selection 
 my $d31 = "$dir/31_model_evaluation";
 
-pipe_pre_processing($d01);
-pipe_motif_mining(-dir=>$d11, -hmm=>$fp_hmm, -orf_g=>$f01_12, -orf_p=>$f01_71, -ref=>$f01_01, -gtb=>$f01_61);
-pipe_model_prediction(-dir=>$d21, -hit=>$f11, -ref=>$f01_01);
+#pipe_pre_processing($d01);
+#pipe_motif_mining(-dir=>$d11, -hmm=>$fp_hmm, -orf_g=>$f01_12, -orf_p=>$f01_71, -ref=>$f01_01, -gtb=>$f01_61);
+#pipe_model_prediction(-dir=>$d21, -hit=>$f11, -ref=>$f01_01);
 pipe_model_evaluation(-dir=>$d31, -hit=>$f21_05, -gtb_all=>$f21, -ref=>$f01_01, -gtb_ref=>$f01_61, -d_hmm=>$dp_hmm, -d_aln=>$dp_aln, -f_sta=>$fp_sta);
 runCmd("ln -sf $d31/61_final.tbl $dir/61_final.tbl", 0);
 runCmd("ln -sf $d31/61_final.gtb $dir/61_final.gtb", 0);

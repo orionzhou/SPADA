@@ -407,7 +407,7 @@ sub filter_models {
     my ($tag_sp, $score_hmm, $score_aln, $score_sp, $e, $codonStart, $codonStop, $preStop) = @{$h->{$id}};
     if($opt_sp && $tag_sp == 0) {
       push @idxs_rm, $i;
-    } elsif($opt_codon && (!$codonStart || !$codonStop || $preStop)) {
+    } elsif($opt_codon && (!$codonStart || $preStop)) {
       push @idxs_rm, $i;
     } elsif($e > $co_e || $score_aln < $co_aln) {
       push @idxs_rm, $i;
