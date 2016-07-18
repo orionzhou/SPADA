@@ -10,7 +10,7 @@
 
 =head1 SYNOPSIS
   
-  gtb2gtbx.pl [-help] [-in input-file] [-seq refseq-fasta] [-out output-file]
+  gtb2gtbx.pl [-help] [-i input-file] [-d refseq-fasta] [-o output-file]
 
   Options:
       -h (--help)   brief help message
