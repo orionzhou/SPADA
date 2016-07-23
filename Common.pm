@@ -166,7 +166,7 @@ sub readTable {
   $skip ||= 0;
   $header ||= 0;
   if(!$fh) {
-    -s $fi || die "$fi is not there\n";
+    -e $fi || die "$fi is not there\n";
     open($fh, "<$fi") || die "cannot read $fi\n";
   }
 

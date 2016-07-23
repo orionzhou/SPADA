@@ -13,39 +13,39 @@ require Exporter;
 @EXPORT = qw/config_setup config_setup_simple/; 
 
 sub read_cfg_hash {
-    my ($f_cfg) = @_;
-    my $h;
-    open(FH, "<$f_cfg") || die "config file $f_cfg is not there\n";
-    while(<FH>) {
-        chomp;
-        next unless $_;
-        next if /^\#/;
-        $_ =~ s/\s//g;
-        my ($k, $v) = split "=";
-        while( $v =~ /\$\{(\w+)\}/g ) {
-            die "no env variable named $1\n" unless exists $ENV{$1};
-            my $rep = $ENV{$1};
-            $v =~ s/\$\{$1\}/$rep/;
-        }
-        $h->{$k} = $v;
+  my ($f_cfg) = @_;
+  my $h;
+  open(FH, "<$f_cfg") || die "config file $f_cfg is not there\n";
+  while(<FH>) {
+    chomp;
+    next unless $_;
+    next if /^\#/;
+    $_ =~ s/\s//g;
+    my ($k, $v) = split "=";
+    while( $v =~ /\$\{(\w+)\}/g ) {
+      die "no env variable named $1\n" unless exists $ENV{$1};
+      my $rep = $ENV{$1};
+      $v =~ s/\$\{$1\}/$rep/;
     }
-    return $h;
+    $h->{$k} = $v;
+  }
+  return $h;
 }
 sub config_setup_simple {
-    my ($f_cfg, $dir_hmm) = @_;
-   
-    print "=====  setting up environment variables  =====\n";
-    my $h = read_cfg_hash($f_cfg);
-    for my $k (keys %$h) { $ENV{$k} = $h->{$k}; }
+  my ($f_cfg, $dir_hmm) = @_;
+ 
+  print "=====  setting up environment variables  =====\n";
+  my $h = read_cfg_hash($f_cfg);
+  for my $k (keys %$h) { $ENV{$k} = $h->{$k}; }
 
-    $ENV{"SPADA_HMM_DIR"} = $dir_hmm if defined $dir_hmm;
-    make_path($ENV{"SPADA_HMM_DIR"}) if ! -d $ENV{"SPADA_HMM_DIR"};
-    $ENV{"TMP_DIR"} = $ENV{"SPADA_HMM_DIR"};
+  $ENV{"SPADA_HMM_DIR"} = $dir_hmm if defined $dir_hmm;
+  make_path($ENV{"SPADA_HMM_DIR"}) if ! -d $ENV{"SPADA_HMM_DIR"};
+  $ENV{"TMP_DIR"} = $ENV{"SPADA_HMM_DIR"};
 
-    my @keys = qw/ClustalO trimAl HMMER/;
-    for my $key (@keys) {
-        exists $ENV{$key} || die "$key not defined\n";
-    }
+  my @keys = qw/ClustalO trimAl HMMER/;
+  for my $key (@keys) {
+    exists $ENV{$key} || die "$key not defined\n";
+  }
 } 
 
 sub config_setup {
@@ -64,7 +64,7 @@ sub config_setup {
   $ENV{"SPADA_ORG"} = $org;
   $ENV{"evalue"} = $e;
   $ENV{"eval_sp"} = $sp;
-  $ENV{"methods"} = $methods;
+  $ENV{"spada_methods"} = $methods;
   $ENV{"threads"} = $ncpu;
 
   my @keys = qw/ClustalO SignalP HMMER/;
@@ -83,9 +83,9 @@ sub config_setup {
   -s "$dir_hmm/21_all.hmm" || die "$dir_hmm/21_all.hmm is not there\n";
 
   # check availability of called programs
-  $ENV{"method"} = { map {$_=>{}} split(";", $ENV{"methods"}) };
-  for my $soft (keys %{$ENV{"method"}}) {
-    my $hb = $ENV{"method"}->{$soft};
+  $ENV{"spada_method"} = { map {$_=>{}} split(";", $ENV{"spada_methods"}) };
+  for my $soft (keys %{$ENV{"spada_method"}}) {
+    my $hb = $ENV{"spada_method"}->{$soft};
     if($soft eq "Augustus_evidence") {
       $hb->{"Augustus"} = "bin/augustus";
     } elsif($soft eq "Augustus_de_novo") {

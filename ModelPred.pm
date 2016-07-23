@@ -378,7 +378,7 @@ sub pipe_model_prediction {
   prefilter_hits($f01, $f05, 10); #$ENV{'evalue'});
 
   my $p;
-  for my $method (keys %{$ENV{"method"}}) {
+  for my $method (keys %{$ENV{"spada_method"}}) {
     my $dirs = "$dir/$method";
     pipe_model_run(-dir=>$dirs, -hit=>$f05, -ref=>$f_ref, -soft=>$method);
     $p->{$method} = "$dirs/11.gtb";
