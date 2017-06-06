@@ -83,30 +83,41 @@ sub config_setup {
   -s "$dir_hmm/21_all.hmm" || die "$dir_hmm/21_all.hmm is not there\n";
 
   # check availability of called programs
-  $ENV{"spada_method"} = { map {$_=>{}} split(";", $ENV{"spada_methods"}) };
-  for my $soft (keys %{$ENV{"spada_method"}}) {
-    my $hb = $ENV{"spada_method"}->{$soft};
-    if($soft eq "Augustus_evidence") {
-      $hb->{"Augustus"} = "bin/augustus";
-    } elsif($soft eq "Augustus_de_novo") {
-      $hb->{"Augustus"} = "bin/augustus";
-    } elsif($soft eq "GeneWise_SplicePredictor") {
-      $hb->{"GeneWise"} = "bin/genewise";
-      $hb->{"SplicePredictor"} = "bin/SplicePredictor";
-    } elsif($soft eq "GeneMark") {
-      $hb->{"GeneMark"} = "gmhmme3";
-    } elsif($soft eq "GlimmerHMM") {
-      $hb->{"GlimmerHMM"} = "bin/glimmerhmm";
-    } elsif($soft eq "GeneID") {
-      $hb->{"GeneID"} = "bin/geneid";
+  my $bin_rel_path = {
+      "Augustus" => "bin/augustus",
+      "GeneWise" => "bin/genewise",
+      "SplicePredictor" => "bin/SplicePredictor",
+      "GeneMark" => "gmhmme3",
+      "GlimmerHMM" => "bin/glimmerhmm",
+      "GeneID" => "bin/geneid"
+  };
+
+  my @method_ary = split(";", $ENV{"spada_methods"});
+  for my $method (@method_ary) {
+    my @softs;
+    if($method eq "Augustus_evidence") {
+      @softs = ("Augustus");
+    } elsif($method eq "Augustus_de_novo") {
+      @softs = ("Augustus");
+    } elsif($method eq "GeneWise_SplicePredictor") {
+      @softs = ("GeneWise", "SplicePredictor");
+    } elsif($method eq "GeneMark") {
+      @softs = ("GeneMark");
+    } elsif($method eq "GlimmerHMM") {
+      @softs = ("GlimmerHMM");
+    } elsif($method eq "GeneID") {
+      @softs = ("GeneID");
     }
-    
-    for my $key (keys %$hb) {
-      exists $ENV{$key} || die "$key not defined\n";
-      my $fb = $ENV{$key}."/".$hb->{$key};
-      -x $fb || die "$key: $fb is not there\n";
+    $ENV{$method} = join(";", @softs);
+    for my $soft (@softs) {
+      exists $bin_rel_path->{$soft} || die "no rel path for $soft\n";
+      exists $ENV{$soft} || die "no dir-env path for $soft\n";
+      my $fb = $ENV{$soft}."/".$bin_rel_path->{$soft};
+      -x $fb || die "$soft: $fb is not there\n";
+      my $softr = $soft."_bin";
+      $ENV{$softr} = $bin_rel_path->{$soft};
     }
-    printf "\twill run %s\n", $soft;
+    printf "\twill run %s: %s\n", $method, $ENV{$method};
   }
 
   
