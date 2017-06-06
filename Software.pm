@@ -110,7 +110,7 @@ sub run_augustus_batch {
       " --noInFrameStop=true --hintsfile=02_hint/$id 01_seq/$id > $id\n";
   }
   close $fhc;
-  my $parallel = "$ENV{'Parallel'}/bin/parallel";
+  my $parallel = "$ENV{'parallel'}/bin/parallel";
   runCmd("$parallel -j $ENV{'threads'} --no-notice < 03.cmds");
   runCmd("rm -rf 01_seq 02_hint", 0);
 

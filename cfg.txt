@@ -16,7 +16,7 @@ methods = Augustus_evidence;GeneWise_SplicePredictor
 
 # augustus binary (augustus) should locate in {Augustus}/bin
 # config diretory shold be {Augustus}/config
-Augustus = /home/youngn/zhoux379/software/augustus
+Augustus = /panfs/roc/msisoft/augustus/3.0.2
 # genewise binary (genewise) should locate in {GeneWise}/bin
 GeneWise = /home/youngn/zhoux379/spada_soft/wise2.2.0
 # SplicePredictor binary (SplicePredictor) should locate in {SplicePredictor}/bin
