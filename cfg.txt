@@ -1,12 +1,12 @@
 ##########  motif mining  ##########
 # hmmsearch binary (hmmserach) should locate in {HMMER}/bin
-HMMER = /home/youngn/zhoup/x86_64/soft/hmmer
+HMMER = /home/youngn/zhoux379/software/hmmer
 # ClustalO (clustalo) binary should locate in {ClustalO}/bin
-ClustalO = /home/youngn/zhoup/x86_64/soft/clustalo
+ClustalO = /home/youngn/zhoux379/software/clustalo
 # trimal binary (trimal) should locate in {trimAl}/bin
-trimAl = /home/youngn/zhoup/x86_64/soft/trimal
+trimAl = /home/youngn/zhoux379/software/trimal
 # GNU Parallel binary (parallel) should locate in {Parallel}/bin
-Parallel = /home/youngn/zhoup/x86_64/soft/parallel
+parallel = /panfs/roc/msisoft/parallel/20160822
 
 ##########  model prediction  ##########
 # gene prediction programs to run, seperated by semicolons
@@ -16,22 +16,22 @@ methods = Augustus_evidence;GeneWise_SplicePredictor
 
 # augustus binary (augustus) should locate in {Augustus}/bin
 # config diretory shold be {Augustus}/config
-Augustus = /home/youngn/zhoup/x86_64/soft/augustus
+Augustus = /home/youngn/zhoux379/software/augustus
 # genewise binary (genewise) should locate in {GeneWise}/bin
-GeneWise = /home/youngn/zhoup/spada_soft/wise2.2.0
+GeneWise = /home/youngn/zhoux379/spada_soft/wise2.2.0
 # SplicePredictor binary (SplicePredictor) should locate in {SplicePredictor}/bin
-SplicePredictor = /home/youngn/zhoup/spada_soft/GENESEQER
+SplicePredictor = /home/youngn/zhoux379/spada_soft/GENESEQER
 # GeneMark binary (gmhmme3) and MOD files (a_thaliana.mod) should locate in {GeneMark} 
-GeneMark = /home/youngn/zhoup/spada_soft/genemark_hmm_euk.linux_64
+GeneMark = /home/youngn/zhoux379/spada_soft/genemark_hmm_euk.linux_64
 # GlimmerHMM binary (glimmerhmm) should locate in {GlimmerHMM}/bin
 # training directory locate in {GlimmerHMM}/trained_dir
-GlimmerHMM = /home/youngn/zhoup/spada_soft/GlimmerHMM
+GlimmerHMM = /home/youngn/zhoux379/spada_soft/GlimmerHMM
 # GeneID binary (geneid) should locate in {GeneID}/bin
 # parameter files should locate in {GeneID}/param
-GeneID = /home/youngn/zhoup/spada_soft/geneid
+GeneID = /home/youngn/zhoux379/spada_soft/geneid
 
 ##########  model evaluation  ##########
 # signalp script (signalp) should locate in {SignalP}
 # required if eval_sp is set to 1
-SignalP = /home/youngn/zhoup/spada_soft/signalp-4.0
+SignalP = /home/youngn/zhoux379/spada_soft/signalp-4.0
 

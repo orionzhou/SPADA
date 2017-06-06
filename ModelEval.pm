@@ -80,7 +80,8 @@ sub get_stat_hmm {
     print $fhc "$f_bin -o $par $f_hmm 01_seq/$par\n";
   }
   close $fhc;
-  runCmd("parallel -j $ENV{'threads'} --no-notice < 03.cmds");
+  my $parallel = "$ENV{'parallel'}/bin/parallel";
+  runCmd("$parallel -j $ENV{'threads'} --no-notice < 03.cmds");
 
   open(my $fho, ">$fo") || die "cannot write $fo\n";
   print $fho join("\t", qw/id score/)."\n";
@@ -154,7 +155,8 @@ sub get_stat_aln {
     }
   }
   close $fhc;
-  runCmd("parallel -j $ENV{'threads'} --no-notice < 03.cmds");
+  my $parallel = "$ENV{'parallel'}/bin/parallel";
+  runCmd("$parallel -j $ENV{'threads'} --no-notice < 03.cmds");
 
   open(my $fho, ">$fo") || die "cannot write $fo\n";
   print $fho join("\t", qw/id score/)."\n";
@@ -225,7 +227,8 @@ sub get_stat_sigp {
     print $fhc "perl $f_bin -t euk -s notm 01_seq/$id > $id\n";
   }
   close $fhc;
-  runCmd("parallel -j $ENV{'threads'} --no-notice < 03.cmds");
+  my $parallel = "$ENV{'parallel'}/bin/parallel";
+  runCmd("$parallel -j $ENV{'threads'} --no-notice < 03.cmds");
   
   open(my $fho, ">$fo") || die "cannot write $fo\n";
   print $fho join("\t", qw/id tag score pos/)."\n";

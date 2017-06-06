@@ -110,7 +110,8 @@ sub run_augustus_batch {
       " --noInFrameStop=true --hintsfile=02_hint/$id 01_seq/$id > $id\n";
   }
   close $fhc;
-  runCmd("parallel -j $ENV{'threads'} --no-notice < 03.cmds");
+  my $parallel = "$ENV{'Parallel'}/bin/parallel";
+  runCmd("$parallel -j $ENV{'threads'} --no-notice < 03.cmds");
   runCmd("rm -rf 01_seq 02_hint", 0);
 
   chdir $cwd || die "cannot chdir to $cwd\n";
@@ -152,7 +153,8 @@ sub run_augustus_batch_simple {
       " --noInFrameStop=true 01_seq/$id > $id\n";
   }
   close $fhc;
-  runCmd("parallel -j $ENV{'threads'} --no-notice < 03.cmds");
+  my $parallel = "$ENV{'parallel'}/bin/parallel";
+  runCmd("$parallel -j $ENV{'threads'} --no-notice < 03.cmds");
   runCmd("rm -rf 01_seq", 0);
 
   chdir $cwd || die "cannot chdir to $cwd\n";
@@ -185,7 +187,8 @@ sub run_genewise_batch {
     print $fhc "$f_bin -gff 02_pro/$id 01_dna/$id > $id.txt\n";
   }
   close $fhc;
-  runCmd("parallel -j $ENV{'threads'} --no-notice < 03.cmds");
+  my $parallel = "$ENV{'parallel'}/bin/parallel";
+  runCmd("$parallel -j $ENV{'threads'} --no-notice < 03.cmds");
   runCmd("rm -rf 01_dna 02_pro", 0);
 
   chdir $cwd || die "cannot chdir to $cwd\n";
